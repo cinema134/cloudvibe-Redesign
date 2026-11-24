@@ -68,7 +68,8 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 - **Hintergründe** wechseln hell/Fläche, nie zwei gleiche direkt untereinander. Keine flachen Kartenraster, keine aufgesetzten Tags, viel Weißraum.
 - **Welle:** feine Linien Grün → Blau, **bewegt nur im Hero der Startseite** (Canvas, `CV.zeichne` in `basis.js`, Werte in `startseite.js` → `LINIEN`). Unterseiten der Gesundheitswelt haben eine stehende Wellenkante unten im Hero, sonst ruhiger Hero. Nie in Karten oder Abschnitten. Zur Wahl stehen außerdem Bänder-Varianten nach Entwurf eines Kollegen (`CV.BAENDER`, `CV.baender`; Startseite mit `?welle=original|origRuhig|origKraeftig|origOhne|seide|ruhig|zart|linien`); **Standard ist „Aktuell“ (Linien), final noch offen** (siehe `OPTIONEN.md`).
 - **Bereichs-Welten:** gemeinsame Basis, Akzente nur im Detail. Gesundheitswesen Grün → Teal, Kanzleien Petrol, Unternehmen grauer Hero mit Blauschleier. Leistungsseiten neutral.
-- **Footer:** Standard ist Konzept **A** (Logo, Adressen Firmensitz und Büro, Social, Kontakt mit Telefon, Mail je Bereich, Servicezeiten, Linkzeile, Rechtliches); B bis D bleiben als Option (siehe `OPTIONEN.md`).
+- **Footer:** Standard ist **K Kompakt** (alle Angaben in zwei Zeilen: Marke und Social, Telefon Beratung/Support, Bereichs-Mail und Ticket, Firmensitz und Büro, Servicezeiten; darunter Links und Rechtliches); A bis D bleiben als Option (siehe `OPTIONEN.md`).
+- **Heros:** alle Hauptseiten gleich hoch (780 px bei 1440 × 900), Funktionsseiten einheitlich kompakt; eigener Touch je Bereich über Hintergrund und Farbe der Wellenkante. Höhe, Stil und Wellenart sind Optionen (siehe `OPTIONEN.md`).
 
 ## Bausteine (alle in `basis.css`, Beispiele in den Seiten)
 

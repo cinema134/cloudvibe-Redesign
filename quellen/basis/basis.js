@@ -209,14 +209,29 @@ const CV = (function () {
     o.rs();
     return o;
   }
-  // Stehende Welle (Unterseiten, ruhige Abschnitte)
-  function stillWelle(cv, p, t = 2.2) {
+  // Stehende Welle (Unterseiten-Hero, Kontaktblock). Zeichnet die gewählte Wellenart (Leon 24.11.2026: „an allen Stellen, wo wir Wellen verwenden“):
+  // Linien wie bisher, bei Bänder-Varianten die Bänder in der unteren Zone (zone = Anteil der Höhe), bei „mit Linien“ beides.
+  const STILL = [];
+  const welleJetzt = () => wert('welle', Q.get('welle'), 'aktuell');
+  function stillWelle(cv, p, t = 2.2, zone = 0.42) {
     const f = flaeche(cv);
-    const go = () => zeichne(f.ctx, f.W, f.H, p, t);
-    addEventListener('resize', () => { f.rs(); go(); });
+    const go = () => {
+      f.rs(); // Größe jedes Mal neu messen: Hero-Stil und Hero-Höhe können die Fläche ein- und umschalten
+      const w = BAENDER[welleJetzt()];
+      if (!w) return zeichne(f.ctx, f.W, f.H, p, t);
+      f.ctx.clearRect(0, 0, f.W, f.H);
+      const hz = Math.min(f.H, Math.max(170, f.H * zone));
+      f.ctx.save(); f.ctx.translate(0, f.H - hz);
+      baender(f.ctx, f.W, hz, { ...w.band, a: w.band.a * (p.opm < 1 ? 0.7 : 0.9) }, t);
+      f.ctx.restore();
+      if (w.band.linien) zeichne(f.ctx, f.W, f.H, { ...p, opm: p.opm * 0.6 }, t, true);
+    };
+    addEventListener('resize', go);
     hoerer.dark.push(go);
+    STILL.push(go);
     go();
   }
+  const wellenNeu = () => STILL.forEach((g) => g());
 
   /* ---- Bearbeiten und Speichern: Texte direkt ändern, Strg+S überschreibt dieselbe Datei ---- */
   const SEL = '.kopf nav a,.kopf .cta,main h1,main h2,main h3,main h4,main p,main .eb,main .krumen,main .ek-txt>span,main .ek-sub a,main .nk-meta>span,main dt,main dd,main li,main .link,main .btn,main .feld>label,main .check>span,main .refs-k,main .refs-t,main .ort>span,main figcaption,main summary,main blockquote,main .st-br,.fuss p,.fuss h4,.fuss li a,.fuss li small,.f-unten>span,.f-unten nav a';
@@ -519,22 +534,7 @@ const CV = (function () {
     if (tel && zeit) tel.addEventListener('input', () => (zeit.hidden = !tel.value.trim()));
   });
 
-  /* ---- Unterseiten-Hero: Variante A Wellenkante, B Schimmer, C Punkte ---- */
-  function setHero(h) {
-    B.classList.remove('hvA', 'hvB', 'hvC');
-    B.classList.add('hv' + h);
-    document.querySelectorAll('[data-h]').forEach((x) => x.classList.toggle('on', x.dataset.h === h));
-  }
-  document.querySelectorAll('[data-h]').forEach((x) => (x.onclick = () => setHero(x.dataset.h)));
-  if (document.querySelector('.uhero')) setHero(['A', 'B', 'C'].includes(Q.get('hero')) ? Q.get('hero') : 'A'); // entschieden: A Wellenkante (Leon, 20.11.2026)
-  // starre, flache Wellenkante am unteren Rand des Unterseiten-Hero
-  // Abstand, Linienstärke und Deckkraft wie auf der Startseite (30 Linien, 1,35 px, 100 %), nur weniger Linien und am unteren Rand.
-  // hs = 15/29: 16 Linien mit demselben Abstand wie 30 Linien auf der Startseite.
-  // Welle höher, damit sie nicht an der Unterkante abgeschnitten wirkt (Leon 24.11.2026); folgen direkt Kacheln (Gesundheitswesen-Übersicht), noch etwas mehr
-  if ($('cvH')) stillWelle($('cvH'), { N: 16, hs: 15 / 29, am: 1, lw: 1.35, opm: 1, ref: 'vh', unten: true, hoch: $('cvH').closest('.uhero').nextElementSibling?.classList.contains('einstiege') ? 0.035 : 0.03 }, 1.4);
-
-  /* ---- Stehende Welle hinter dem Kontaktblock (alle Seiten) ---- */
-  if ($('cvK')) stillWelle($('cvK'), { N: 26, hs: 0.9, lw: 1.1, bp: 0.78, opm: 0.55 }, 3.4);
+  /* ---- Unterseiten-Hero und stehende Wellen: siehe „Heros“ weiter unten (nach den Bändern, die sie zeichnen) ---- */
 
   /* ---- Newsletter-Baustein (Karte und Zeile): Anmeldung simulieren, nichts wird verschickt ---- */
   document.querySelectorAll('[data-nlb]').forEach((f) => {
@@ -702,14 +702,14 @@ const CV = (function () {
   const soz = document.querySelector('.fv-a .sozial-r');
   if (soz) document.querySelectorAll('[data-sozial]').forEach((x) => (x.innerHTML = soz.innerHTML));
   function setFuss(v) {
-    if (!['a', 'b', 'c', 'd', 'bisher'].includes(v)) v = 'a';
-    B.classList.remove('fussA', 'fussB', 'fussC', 'fussD', 'fussAlt');
+    if (!['k', 'a', 'b', 'c', 'd', 'bisher'].includes(v)) v = 'k'; // K Kompakt ist Standard (Leon 24.11.2026)
+    B.classList.remove('fussK', 'fussA', 'fussB', 'fussC', 'fussD', 'fussAlt');
     B.classList.add(v === 'bisher' ? 'fussAlt' : 'fuss' + v.toUpperCase());
     document.querySelectorAll('[data-fuss]').forEach((x) => x.classList.toggle('on', x.dataset.fuss === v || (v === 'bisher' && x.dataset.fuss === 'a')));
     merke('fuss', v);
   }
   document.querySelectorAll('[data-fuss]').forEach((x) => (x.onclick = () => setFuss(x.dataset.fuss)));
-  setFuss(String(wert('fuss', Q.get('fuss'), 'a')).toLowerCase());
+  setFuss(String(wert('fuss', Q.get('fuss'), 'k')).toLowerCase());
 
   /* ---- Mitlaufende Überschrift (sticky) nur einmal je Seite (Leon 24.11.2026: Doppelung vermeiden) ---- */
   function stickyEinmal(alle) {
@@ -803,6 +803,64 @@ const CV = (function () {
     }
   }
 
+  /* ---- Heros (Leon 24.11.2026): einheitliche Höhe, eigener Touch je Bereich, Stil und Wellenart im Panel umschaltbar ----
+     Hero-Höhe: einheitlich (Standard, body.hhE) | bisher. Hero-Stil: bereich (Standard: Gesundheitsseiten mit Wellenkante, sonst ruhig mit Bereichs-Hintergrund)
+     | welle (Wellenkante auf allen Unterseiten, Farbe je Bereich) | ruhig | schimmer | punkte. Wellenart gilt überall (Startseite, Wellenkanten, Kontaktblock). */
+  const WELT = B.dataset.welt || 'allgemein';
+  const PAL = { kanzlei: 3, unternehmen: 1 }; // Wellenkante je Bereich: Gesundheit Grün→Blau, Kanzleien Blau→Petrol, Unternehmen Blau, sonst Grün→Blau
+  // Kante wie bisher: 16 Linien im Abstand der Startseite (hs 15/29), 1,35 px, am unteren Rand
+  const kanteP = () => ({ N: 16, hs: 15 / 29, am: 1, lw: 1.35, opm: 1, ref: 'vh', unten: true, hoch: 0.03, fb: PAL[WELT] || 0 });
+  let kantenDa = false;
+  function kanten() {
+    if (kantenDa) return;
+    kantenDa = true;
+    document.querySelectorAll('.uhero').forEach((h) => {
+      if (h.querySelector('canvas.welle')) return;
+      const c = document.createElement('canvas');
+      c.className = 'welle'; c.setAttribute('aria-hidden', 'true');
+      h.prepend(c);
+      stillWelle(c, kanteP(), 1.4);
+    });
+  }
+  const STILE = ['bereich', 'welle', 'ruhig', 'schimmer', 'punkte'];
+  function setHeroStil(v) {
+    if (!STILE.includes(v)) v = 'bereich';
+    B.classList.remove('hvA', 'hvB', 'hvC', 'hvW');
+    if (v === 'bereich') B.classList.add('hvA');
+    if (v === 'welle') { B.classList.add('hvA', 'hvW'); kanten(); }
+    if (v === 'schimmer') B.classList.add('hvB');
+    if (v === 'punkte') B.classList.add('hvC');
+    if ($('heroStil')) $('heroStil').value = v;
+    merke('herostil', v);
+    wellenNeu();
+  }
+  function setHeroH(v) {
+    B.classList.toggle('hhE', v !== 'bisher');
+    document.querySelectorAll('[data-heroh]').forEach((x) => x.classList.toggle('on', x.dataset.heroh === (v === 'bisher' ? 'bisher' : 'einheitlich')));
+    merke('heroh', v === 'bisher' ? 'bisher' : 'einheitlich');
+    wellenNeu();
+  }
+  function setWelleArt(v) {
+    merke('welle', v);
+    if ($('welleArt')) $('welleArt').value = v;
+    wellenNeu();
+  }
+  // Erst Stil und Höhe setzen (macht die Wellenfläche sichtbar), dann zeichnen
+  if (document.querySelector('.uhero')) {
+    const alt = { A: 'bereich', B: 'schimmer', C: 'punkte' }[Q.get('hero')]; // frühere Adresse ?hero=A|B|C
+    setHeroStil(wert('herostil', Q.get('herostil') || alt, 'bereich'));
+    setHeroH(wert('heroh', Q.get('heroh'), 'einheitlich'));
+  }
+  if ($('cvH')) stillWelle($('cvH'), kanteP(), 1.4);
+  if ($('cvK')) stillWelle($('cvK'), { N: 26, hs: 0.9, lw: 1.1, bp: 0.78, opm: 0.55 }, 3.4, 0.6); // Welle hinter dem Kontaktblock
+  if ($('heroStil')) $('heroStil').onchange = (e) => setHeroStil(e.target.value);
+  document.querySelectorAll('[data-heroh]').forEach((x) => (x.onclick = () => setHeroH(x.dataset.heroh)));
+  if ($('welleArt')) {
+    $('welleArt').innerHTML = '<option value="aktuell">Aktuell (Linien)</option>' + Object.entries(BAENDER).map(([k, x]) => `<option value="${k}">${x.t}</option>`).join('');
+    $('welleArt').value = welleJetzt();
+    $('welleArt').onchange = (e) => setWelleArt(e.target.value);
+  }
+
   /* ---- Panel-Bereich „Speichern“: im Browser gemerkt (alle Seiten) und „Für alle festlegen“ (einstellungen.js) ---- */
   const gemerkt = (pre) => {
     const o = {};
@@ -845,6 +903,6 @@ const CV = (function () {
   }
   bereit = true;
 
-  return { $, Q, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
+  return { $, Q, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
     beimSpeichern: (f) => vorSpeichern.push(f), geaendert: () => setDirty(true) };
 })();

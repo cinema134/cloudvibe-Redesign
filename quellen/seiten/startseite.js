@@ -86,7 +86,7 @@
     p = { ...LINIEN, opm: (w.op || 100) / 100 };
     document.querySelectorAll('[data-welle]').forEach((x) => x.classList.toggle('on', x.dataset.welle === id));
     draw();
-    if (!start) CV.merke('welle', id);
+    if (!start) { CV.merke('welle', id); CV.wellenNeu(); } // stehende Wellen (Kontaktblock) mitziehen
   }
   const wl = document.querySelector('.stg-welle');
   if (wl) wl.insertAdjacentHTML('beforeend', Object.entries(CV.BAENDER).map(([id, x]) => `<button type="button" data-welle="${id}"><b>${x.t}</b><small>${x.b}</small></button>`).join(''));
