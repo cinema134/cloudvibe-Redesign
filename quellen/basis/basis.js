@@ -217,14 +217,15 @@ const CV = (function () {
     const f = flaeche(cv);
     const go = () => {
       f.rs(); // Größe jedes Mal neu messen: Hero-Stil und Hero-Höhe können die Fläche ein- und umschalten
+      const pp = typeof p === 'function' ? p() : p, zz = typeof zone === 'function' ? zone() : zone; // Werte können vom Hero-Modus abhängen
       const w = BAENDER[welleJetzt()];
-      if (!w) return zeichne(f.ctx, f.W, f.H, p, t);
+      if (!w) return zeichne(f.ctx, f.W, f.H, pp, t);
       f.ctx.clearRect(0, 0, f.W, f.H);
-      const hz = Math.min(f.H, Math.max(170, f.H * zone));
+      const hz = Math.min(f.H, Math.max(innerWidth < 700 ? 90 : 150, f.H * zz));
       f.ctx.save(); f.ctx.translate(0, f.H - hz);
-      baender(f.ctx, f.W, hz, { ...w.band, a: w.band.a * (p.opm < 1 ? 0.7 : 0.9) }, t);
+      baender(f.ctx, f.W, hz, { ...w.band, a: w.band.a * (pp.opm < 1 ? 0.7 : 0.9), schein: false }, t);
       f.ctx.restore();
-      if (w.band.linien) zeichne(f.ctx, f.W, f.H, { ...p, opm: p.opm * 0.6 }, t, true);
+      if (w.band.linien) zeichne(f.ctx, f.W, f.H, { ...pp, opm: pp.opm * 0.6 }, t, true);
     };
     addEventListener('resize', go);
     hoerer.dark.push(go);
@@ -747,9 +748,12 @@ const CV = (function () {
     ctx.clearRect(0, 0, W, H);
     const dark = B.classList.contains('dark'), s = o.form === 's';
     // leiser blauer Schein rechts, wie im Entwurf
-    const g = ctx.createRadialGradient(W * 0.95, H * 0.45, 0, W * 0.95, H * 0.45, W * 0.6);
-    g.addColorStop(0, `rgba(45,108,223,${dark ? 0.2 : 0.13})`); g.addColorStop(1, 'rgba(45,108,223,0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    // Schein nur auf voller Fläche (Startseiten-Hero, Varianten); in Wellenkanten (schein: false) würde er als Rechteck mit harter Kante sichtbar (Leon 24.11.2026)
+    if (o.schein !== false) {
+      const g = ctx.createRadialGradient(W * 0.95, H * 0.45, 0, W * 0.95, H * 0.45, W * 0.6);
+      g.addColorStop(0, `rgba(45,108,223,${dark ? 0.2 : 0.13})`); g.addColorStop(1, 'rgba(45,108,223,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    }
     const N = Math.max(120, Math.round(W / 10));
     const n = o.n, dreh = o.dreh ?? 0.65, kanten = o.kanten ?? n;
     // Reihenfolge: hinten das weiche Grundband, dann von unten (grün, flach) nach oben (blau, steigt am meisten)
@@ -809,7 +813,11 @@ const CV = (function () {
   const WELT = B.dataset.welt || 'allgemein';
   const PAL = { kanzlei: 3, unternehmen: 1 }; // Wellenkante je Bereich: Gesundheit Grün→Blau, Kanzleien Blau→Petrol, Unternehmen Blau, sonst Grün→Blau
   // Kante wie bisher: 16 Linien im Abstand der Startseite (hs 15/29), 1,35 px, am unteren Rand
-  const kanteP = () => ({ N: 16, hs: 15 / 29, am: 1, lw: 1.35, opm: 1, ref: 'vh', unten: true, hoch: 0.03, fb: PAL[WELT] || 0 });
+  // Im einheitlichen Modus flacher und schmaler, damit die Kante in der unteren Zone bleibt und keinen Text berührt (Leon 24.11.2026)
+  const kanteP = () => B.classList.contains('hhE')
+    ? { N: 14, hs: innerWidth < 700 ? 0.2 : 0.34, am: innerWidth < 700 ? 0.28 : 0.5, lw: 1.3, opm: 1, ref: 'vh', unten: true, hoch: -0.01, /* schmal: flacher, sonst schneidet sie Text */ fb: PAL[WELT] || 0 }
+    : { N: 16, hs: 15 / 29, am: 1, lw: 1.35, opm: 1, ref: 'vh', unten: true, hoch: 0.03, fb: PAL[WELT] || 0 };
+  const kanteZone = () => (B.classList.contains('hhE') ? (innerWidth < 700 ? 0.17 : 0.3) : 0.42);
   let kantenDa = false;
   function kanten() {
     if (kantenDa) return;
@@ -819,7 +827,7 @@ const CV = (function () {
       const c = document.createElement('canvas');
       c.className = 'welle'; c.setAttribute('aria-hidden', 'true');
       h.prepend(c);
-      stillWelle(c, kanteP(), 1.4);
+      stillWelle(c, kanteP, 1.4, kanteZone);
     });
   }
   const STILE = ['bereich', 'welle', 'ruhig', 'schimmer', 'punkte'];
@@ -851,7 +859,7 @@ const CV = (function () {
     setHeroStil(wert('herostil', Q.get('herostil') || alt, 'bereich'));
     setHeroH(wert('heroh', Q.get('heroh'), 'einheitlich'));
   }
-  if ($('cvH')) stillWelle($('cvH'), kanteP(), 1.4);
+  if ($('cvH')) stillWelle($('cvH'), kanteP, 1.4, kanteZone);
   if ($('cvK')) stillWelle($('cvK'), { N: 26, hs: 0.9, lw: 1.1, bp: 0.78, opm: 0.55 }, 3.4, 0.6); // Welle hinter dem Kontaktblock
   if ($('heroStil')) $('heroStil').onchange = (e) => setHeroStil(e.target.value);
   document.querySelectorAll('[data-heroh]').forEach((x) => (x.onclick = () => setHeroH(x.dataset.heroh)));

@@ -725,10 +725,12 @@ body .fuss.fv-k,body:not(.fussAlt) .fuss.fv-k{padding:44px 0 22px;font-size:14px
 :root{--hh:clamp(560px,87vh,780px);--hhk:clamp(380px,50vh,460px);--hb:clamp(90px,8.5vw,120px)}
 body.hhE .uhero{min-height:var(--hh);padding-bottom:var(--hb)!important}
 body.hhE.heroK .uhero{min-height:var(--hhk);padding-bottom:clamp(40px,4vw,60px)!important}
-@media(max-width:700px){:root{--hh:600px;--hhk:380px;--hb:96px}}
+@media(max-width:700px){:root{--hh:600px;--hhk:380px;--hb:120px}}
 /* Hero-Stil „Welle überall“: Wellenkante auch in Heros ohne eigene Welle (Farbe je Bereich, siehe basis.js) */
 body.hvW .uhero .welle{display:block}/* Einheitliche Heros: H1 und Einleitung etwas breiter, damit lange Überschriften auf zwei Zeilen passen und die Höhe gleich bleibt */
 body.hhE .uhero h1{max-width:min(1000px,100%)}
 body.hhE .uhero .lead{max-width:min(700px,100%)}/* Footer K: Zusatz bei E-Mail und Adressen als kleine zweite Zeile (sonst läuft „wecare@… Gesundheitswesen“ in die Nachbarspalte) */
 .fv-k .fk-sp:nth-child(3) li small,.fv-k .fk-sp:nth-child(4) li small{display:block;margin:1px 0 0}
-.fv-k .fk-sp:nth-child(3) ul,.fv-k .fk-sp:nth-child(4) ul{gap:8px}
+.fv-k .fk-sp:nth-child(3) ul,.fv-k .fk-sp:nth-child(4) ul{gap:8px}/* Gesundheitswesen im einheitlichen Modus: Einstiegskarten ragen nicht mehr in den Hero (sonst verdecken sie die Wellenkante), kurzer Abstand statt Überlappung. Bisher: wie gehabt */
+body.hhE .uhero + .einstiege{padding-top:clamp(36px,3.5vw,52px)}
+body.hhE .uhero + .einstiege .drei{margin-top:0}
