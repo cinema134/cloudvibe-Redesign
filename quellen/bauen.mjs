@@ -303,7 +303,7 @@ function baue(id, seite) {
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <!--@seo-->
 <style>${css}</style></head>
-<body class="lgB ${seite.body || ''}${seite.hero === 'kompakt' ? ' heroK' : ''}" data-welt="${WELT[id] || 'allgemein'}">
+<body class="lgB ${seite.body || ''}${seite.hero === 'kompakt' ? ' heroK' : seite.hero === 'werkzeug' ? ' heroW' : ''}" data-welt="${WELT[id] || 'allgemein'}">
 ${body}
 <script>const BEGRIFF_START=${JSON.stringify(cfg.begriff)};</script>
 <script>${js}</script>

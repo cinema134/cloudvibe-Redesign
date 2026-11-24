@@ -8,7 +8,7 @@
     "startseite": {
       "datei": "Startseite",
       "titel": "Startseite",
-      "version": 80,
+      "version": 81,
       "regler": true,
       "pfad": "/",
       "seoTitel": "IT-Betreuung für Praxen, Kanzleien & Mittelstand | cloudvibe",
@@ -17,7 +17,7 @@
     "gesundheitswesen": {
       "datei": "Gesundheitswesen",
       "titel": "Gesundheitswesen",
-      "version": 79,
+      "version": 80,
       "bereich": "gesundheit",
       "body": "hcseite",
       "pfad": "/gesundheitswesen",
@@ -28,7 +28,7 @@
     "arztpraxen": {
       "datei": "Arztpraxen",
       "titel": "Arztpraxen",
-      "version": 74,
+      "version": 75,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -41,7 +41,7 @@
     "apotheken": {
       "datei": "Apotheken",
       "titel": "Apotheken",
-      "version": 36,
+      "version": 37,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -55,7 +55,7 @@
     "pflege": {
       "datei": "Pflegeeinrichtungen",
       "titel": "Pflegeeinrichtungen",
-      "version": 36,
+      "version": 37,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -69,7 +69,7 @@
     "ti": {
       "datei": "Telematikinfrastruktur",
       "titel": "Telematikinfrastruktur",
-      "version": 31,
+      "version": 32,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -83,7 +83,7 @@
     "praxischeck": {
       "datei": "Praxis-Check",
       "titel": "Praxis-Check",
-      "version": 31,
+      "version": 32,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -97,13 +97,13 @@
     "welten": {
       "datei": "Bereichswelten",
       "titel": "Bereichs-Welten",
-      "version": 75,
+      "version": 76,
       "noindex": true
     },
     "kanzleien": {
       "datei": "Kanzleien",
       "titel": "Kanzleien",
-      "version": 72,
+      "version": 73,
       "aktiv": "kanzleien",
       "bereich": "kanzlei",
       "body": "kzseite kzC",
@@ -115,7 +115,7 @@
     "unternehmen": {
       "datei": "Unternehmen",
       "titel": "Unternehmen",
-      "version": 74,
+      "version": 75,
       "aktiv": "unternehmen",
       "bereich": "unternehmen",
       "body": "unseite",
@@ -127,7 +127,7 @@
     "datev": {
       "datei": "DATEV",
       "titel": "DATEV",
-      "version": 32,
+      "version": 33,
       "aktiv": "managed",
       "bereich": "unternehmen",
       "stil": "arztpraxen,unternehmen",
@@ -140,7 +140,7 @@
     "selectline": {
       "datei": "SelectLine",
       "titel": "SelectLine",
-      "version": 31,
+      "version": 32,
       "aktiv": "managed",
       "bereich": "unternehmen",
       "stil": "arztpraxen,unternehmen",
@@ -153,7 +153,7 @@
     "managed": {
       "datei": "Managed-Services",
       "titel": "Managed Services",
-      "version": 30,
+      "version": 31,
       "stil": "arztpraxen",
       "pfad": "/managed-services",
       "seoTitel": "Managed Services: Backup, Betrieb, Security | cloudvibe",
@@ -163,7 +163,7 @@
     "ki": {
       "datei": "KI-sicher-nutzen",
       "titel": "KI sicher nutzen",
-      "version": 29,
+      "version": 30,
       "aktiv": "managed",
       "stil": "arztpraxen",
       "pfad": "/ki-sicher-nutzen",
@@ -174,7 +174,7 @@
     "ueber": {
       "datei": "Ueber-uns",
       "titel": "Über uns",
-      "version": 28,
+      "version": 29,
       "aktiv": "ueber",
       "stil": "arztpraxen",
       "pfad": "/ueber-uns",
@@ -184,7 +184,7 @@
     "team": {
       "datei": "Team",
       "titel": "Team",
-      "version": 28,
+      "version": 29,
       "aktiv": "ueber",
       "stil": "arztpraxen,ueber",
       "pfad": "/ueber-uns/team",
@@ -195,7 +195,7 @@
     "referenzen": {
       "datei": "Referenzen",
       "titel": "Referenzen",
-      "version": 27,
+      "version": 28,
       "aktiv": "ueber",
       "stil": "arztpraxen",
       "pfad": "/ueber-uns/referenzen",
@@ -206,7 +206,7 @@
     "karriere": {
       "datei": "Karriere",
       "titel": "Karriere",
-      "version": 27,
+      "version": 28,
       "aktiv": "ueber",
       "bereich": "karriere",
       "stil": "arztpraxen",
@@ -219,7 +219,7 @@
     "news": {
       "datei": "News",
       "titel": "News",
-      "version": 26,
+      "version": 27,
       "aktiv": "ueber",
       "stil": "arztpraxen",
       "pfad": "/news",
@@ -229,7 +229,7 @@
     "newsletter": {
       "datei": "Newsletter",
       "titel": "Newsletter",
-      "version": 21,
+      "version": 22,
       "aktiv": "ueber",
       "stil": "arztpraxen,news",
       "pfad": "/news/newsletter",
@@ -240,7 +240,7 @@
     "newsbeitrag": {
       "datei": "News-Beitrag",
       "titel": "Datensicherung in der Praxis",
-      "version": 26,
+      "version": 27,
       "aktiv": "ueber",
       "stil": "arztpraxen,news",
       "pfad": "/news/datensicherung-in-der-praxis",
@@ -252,17 +252,17 @@
     "kontakt": {
       "datei": "Kontakt",
       "titel": "Kontakt",
-      "version": 25,
+      "version": 26,
       "stil": "arztpraxen,ueber",
       "pfad": "/kontakt",
       "seoTitel": "Kontakt: IT-Beratung aus Goch am Niederrhein | cloudvibe",
       "beschreibung": "Kontakt zu cloudvibe in Goch: anrufen, E-Mail schreiben, Termin vereinbaren oder als Kunde den Support erreichen. Mit Kontaktformular und Servicezeiten.",
-      "hero": "kompakt"
+      "hero": "werkzeug"
     },
     "recht": {
       "datei": "Rechtliches",
       "titel": "Impressum, Datenschutz, AGB",
-      "version": 25,
+      "version": 26,
       "pfad": "/impressum",
       "seoTitel": "Impressum, Datenschutz und AGB | cloudvibe GmbH",
       "beschreibung": "Impressum der cloudvibe GmbH aus Goch mit Anbieterangaben, Handelsregister und Umsatzsteuer-ID, dazu Datenschutzerklärung und Allgemeine Geschäftsbedingungen.",
@@ -271,60 +271,62 @@
     "lexikon": {
       "datei": "Lexikon",
       "titel": "Lexikon",
-      "version": 24,
+      "version": 25,
       "stil": "arztpraxen,news",
       "pfad": "/lexikon",
       "seoTitel": "IT-Lexikon: TI, Backup, Firewall und mehr erklärt | cloudvibe",
       "beschreibung": "IT-Begriffe einfach erklärt: Telematikinfrastruktur, Konnektor, KIM, Managed Backup, Firewall, SLA, DATEV und mehr. Das Lexikon von cloudvibe aus Goch.",
-      "hero": "kompakt"
+      "hero": "werkzeug"
     },
     "konzepte": {
       "datei": "Konzepte",
       "titel": "Konzepte",
-      "version": 44,
+      "version": 45,
       "noindex": true
     },
     "wellen": {
       "datei": "Wellen-Varianten",
       "titel": "Wellen-Varianten",
-      "version": 21,
+      "version": 22,
       "noindex": true
     },
     "termin": {
       "datei": "Termin",
       "titel": "Termin vereinbaren",
-      "version": 44,
+      "version": 45,
       "pfad": "/termin",
       "seoTitel": "Termin vereinbaren: Erstberatung und mehr | cloudvibe",
       "beschreibung": "Buche deinen Termin bei cloudvibe aus Goch: Erstberatung, TI-Beratung, Praxis-Check, DATEV- oder SelectLine-Termin oder Rückruf. Online oder vor Ort.",
-      "body": "ohneTermin"
+      "body": "ohneTermin",
+      "hero": "werkzeug"
     },
     "support": {
       "datei": "Support",
       "titel": "Support",
       "body": "spseite ohneTermin",
-      "version": 42,
+      "version": 43,
       "pfad": "/support",
       "seoTitel": "Support: Ticket eröffnen und schnelle Hilfe | cloudvibe",
-      "beschreibung": "Schnelle Hilfe von cloudvibe: Ticket eröffnen, Fernwartung starten oder anrufen. Servicezeiten, Kurzanleitung fürs Team und Zugang zum Kundenportal."
+      "beschreibung": "Schnelle Hilfe von cloudvibe: Ticket eröffnen, Fernwartung starten oder anrufen. Servicezeiten, Kurzanleitung fürs Team und Zugang zum Kundenportal.",
+      "hero": "werkzeug"
     },
     "ticket": {
       "datei": "Ticket",
       "titel": "Ticket eröffnen",
       "body": "spseite ohneTermin",
-      "version": 41,
+      "version": 42,
       "aktiv": "support",
       "pfad": "/support/ticket",
       "eltern": "support",
       "seoTitel": "Ticket eröffnen: Hilfe in drei Schritten | cloudvibe",
       "beschreibung": "Eröffne dein Support-Ticket bei cloudvibe in drei kurzen Schritten: Kontakt, Problem und Dringlichkeit. Steht der Betrieb still, ruf direkt an.",
-      "hero": "kompakt"
+      "hero": "werkzeug"
     },
     "login": {
       "datei": "Login",
       "titel": "Kundenportal",
       "body": "spseite ohneTermin",
-      "version": 6,
+      "version": 7,
       "stil": "ticket",
       "aktiv": "support",
       "pfad": "/login",
@@ -332,7 +334,7 @@
       "noindex": true,
       "seoTitel": "Login Kundenportal: Tickets und Stand im Blick | cloudvibe",
       "beschreibung": "Melde dich im Kundenportal von cloudvibe an: offene Tickets, Antworten und Stand auf einen Blick. Ohne Zugang hilft dir der Support per Ticket oder Telefon.",
-      "hero": "kompakt"
+      "hero": "werkzeug"
     }
   }
 }

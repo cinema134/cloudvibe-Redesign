@@ -733,4 +733,20 @@ body.hhE .uhero .lead{max-width:min(700px,100%)}/* Footer K: Zusatz bei E-Mail u
 .fv-k .fk-sp:nth-child(3) li small,.fv-k .fk-sp:nth-child(4) li small{display:block;margin:1px 0 0}
 .fv-k .fk-sp:nth-child(3) ul,.fv-k .fk-sp:nth-child(4) ul{gap:8px}/* Gesundheitswesen im einheitlichen Modus: Einstiegskarten ragen nicht mehr in den Hero (sonst verdecken sie die Wellenkante), kurzer Abstand statt Überlappung. Bisher: wie gehabt */
 body.hhE .uhero + .einstiege{padding-top:clamp(36px,3.5vw,52px)}
-body.hhE .uhero + .einstiege .drei{margin-top:0}
+body.hhE .uhero + .einstiege .drei{margin-top:0}/* ---------- Werkzeugseiten ohne Hero (Leon 24.11.2026: „beim Termin vereinbaren muss man erst runterscrollen“) ----------
+   Termin, Ticket, Login, Kontakt, Support, Lexikon: schmale Kopfzeile (Pfad, kleinere H1, ein Satz), darunter direkt das Werkzeug. Keine Welle, keine Leerzone. Bisher: ohne hhE */
+body.hhE.heroW .uhero{min-height:0;padding-top:clamp(124px,10vw,148px);padding-bottom:clamp(18px,2vw,28px)!important;background:none}
+body.hhE.heroW .uhero:before,body.hhE.heroW .uhero:after,body.hhE.heroW .uhero .welle{display:none}
+body.hhE.heroW .uhero h1{font-size:clamp(32px,3.3vw,46px);margin-bottom:12px;max-width:none}
+body.hhE.heroW .uhero .lead{font-size:17px;max-width:780px}
+body.hhE.heroW .uhero .btns{margin-top:20px}
+body.hhE.heroW .uhero .tel-zeile{margin-top:12px}
+body.hhE.heroW .uhero + section{padding-top:clamp(14px,2vw,28px)}
+body.hhE.heroW .uhero + section .kopfzeile{margin-bottom:clamp(18px,2vw,28px)}/* Footer K: Logo größer, Social-Icons mit Luft zum Logo und untereinander (Leon 24.11.2026) */
+.fv-k .lg{height:60px}
+.fk-marke{gap:20px}
+.fv-k .sozial-r{gap:10px}
+.fv-k .sozial-r a{width:34px;height:34px}
+.fv-k .sozial-r svg{width:15px;height:15px}/* Footer K: Logo nicht in die Spaltenbreite strecken (wirkte gequetscht), eigene Proportionen behalten */
+.fk-marke{align-items:flex-start}
+.fv-k .lg{width:auto;max-width:100%;align-self:flex-start;object-fit:contain}

@@ -814,16 +814,20 @@ const CV = (function () {
   const PAL = { kanzlei: 3, unternehmen: 1 }; // Wellenkante je Bereich: Gesundheit Grün→Blau, Kanzleien Blau→Petrol, Unternehmen Blau, sonst Grün→Blau
   // Kante wie bisher: 16 Linien im Abstand der Startseite (hs 15/29), 1,35 px, am unteren Rand
   // Im einheitlichen Modus flacher und schmaler, damit die Kante in der unteren Zone bleibt und keinen Text berührt (Leon 24.11.2026)
+  // Leon 24.11.2026 „zu stark komprimiert, wirkt kaum“: volle Fächerbreite wie bisher, dafür steigt die Kante nach rechts an (ng),
+  // links bleibt sie flach am unteren Rand unter dem Text, rechts im freien Bereich hat sie ihre Höhe. Schmal (mobil) flacher.
   const kanteP = () => B.classList.contains('hhE')
-    ? { N: 14, hs: innerWidth < 700 ? 0.2 : 0.34, am: innerWidth < 700 ? 0.28 : 0.5, lw: 1.3, opm: 1, ref: 'vh', unten: true, hoch: -0.01, /* schmal: flacher, sonst schneidet sie Text */ fb: PAL[WELT] || 0 }
+    ? (innerWidth < 700
+      ? { N: 14, hs: 0.22, am: 0.3, lw: 1.3, opm: 1, ref: 'vh', unten: true, hoch: -0.01, fb: PAL[WELT] || 0 }
+      : { N: 16, hs: 15 / 29, am: 0.85, ng: 0.5, lw: 1.35, opm: 1, ref: 'vh', unten: true, hoch: -0.045, fb: PAL[WELT] || 0 })
     : { N: 16, hs: 15 / 29, am: 1, lw: 1.35, opm: 1, ref: 'vh', unten: true, hoch: 0.03, fb: PAL[WELT] || 0 };
-  const kanteZone = () => (B.classList.contains('hhE') ? (innerWidth < 700 ? 0.17 : 0.3) : 0.42);
+  const kanteZone = () => (B.classList.contains('hhE') ? (innerWidth < 700 ? 0.17 : 0.45) : 0.42);
   let kantenDa = false;
   function kanten() {
     if (kantenDa) return;
     kantenDa = true;
     document.querySelectorAll('.uhero').forEach((h) => {
-      if (h.querySelector('canvas.welle')) return;
+      if (h.querySelector('canvas.welle') || B.classList.contains('heroW')) return; // Werkzeugseiten: keine Kante
       const c = document.createElement('canvas');
       c.className = 'welle'; c.setAttribute('aria-hidden', 'true');
       h.prepend(c);
