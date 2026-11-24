@@ -27,7 +27,7 @@
 .nl-mail{background:#F4F7FC;padding:clamp(18px,3vw,40px)}
 body.dark .nl-mail{background:#0E131C}
 .nl-mail>div{max-width:600px;margin:0 auto}
-.nl-m-kopf{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 30px;background:#fff;border-radius:18px 18px 0 0;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#2EB329,#2D6CDF) 1}
+.nl-m-kopf{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 30px;background:#fff;border-radius:18px 18px 0 0;border-bottom:1px solid #E3E8F0}
 .nl-m-kopf img{height:46px;width:auto}
 .nl-m-kopf span{font-size:13px;color:#4F5663}
 .nl-m-block{display:flex;flex-direction:column;gap:8px;padding:24px 30px;background:#fff;color:#14171C;border-bottom:1px solid #E3E8F0}

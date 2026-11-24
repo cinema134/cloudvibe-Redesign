@@ -23,7 +23,7 @@ main [hidden]{display:none!important}
 .sp-weg{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,3vw,42px)}
 .sp-weg+.sp-weg{border-left:1px solid var(--edge)}
 .sp-weg-haupt{background:color-mix(in srgb,var(--blue) 4%,transparent)}
-.sp-weg-haupt:before{content:"";position:absolute;left:clamp(28px,3vw,42px);top:0;width:38px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2EB329,#2D6CDF)}
+.sp-weg-haupt:before{content:none} /* Verlaufs-Streifen entfernt */
 .sp-weg .sp-ic{margin-bottom:22px}
 .sp-hin{font:700 13px Comfortaa,sans-serif;color:var(--muted);margin-bottom:8px}
 .sp-weg-haupt .sp-hin{color:var(--blue)}
@@ -42,7 +42,7 @@ main [hidden]{display:none!important}
 .tk-nr:after{content:"";width:38px;height:2px;border-radius:2px;background:var(--edge);transition:background .2s}
 .tk-schritte li.on{color:var(--text)}
 .tk-schritte li.on .tk-nr{color:var(--blue)}
-.tk-schritte li.on .tk-nr:after{background:linear-gradient(90deg,#2EB329,#2D6CDF)}
+.tk-schritte li.on .tk-nr:after{background:var(--blue)}
 .tk-schritte li.fertig .tk-nr{color:var(--gt)}
 .tk-schritte li.fertig .tk-nr:after{background:var(--gt);opacity:.5}
 .tk-notfall{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:20px;background:var(--gbg);color:var(--gt)}

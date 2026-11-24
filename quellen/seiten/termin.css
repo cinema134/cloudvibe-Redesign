@@ -6,10 +6,10 @@
 .buchung{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5.4fr);gap:clamp(24px,3vw,44px);align-items:start}
 
 /* Liste: ein Milchglas-Feld, Zeilen durch Haarlinien getrennt */
-.ta-liste{padding:6px 0;overflow:hidden}
+.ta-liste{padding:0;overflow:hidden} /* ohne Innenabstand: Hover füllt auch erste/letzte Kachel bis an den Rand (Leon 24.11.2026) */
 .ta{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto 44px;gap:10px 26px;align-items:center;padding:24px 28px 24px 32px;cursor:pointer;transition:background .25s}
 .ta+.ta{border-top:1px solid var(--edge)}
-.ta:before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:2px;border-radius:2px;background:linear-gradient(180deg,#2EB329,#2D6CDF);opacity:0;transition:opacity .25s}
+.ta:before{content:none} /* Verlaufs-Streifen links entfernt (Leon 24.11.2026) */
 .ta:hover{background:color-mix(in srgb,var(--blue) 4%,transparent)}
 .ta.on{background:color-mix(in srgb,var(--blue) 7%,transparent)}
 .ta.on:before{opacity:1}
@@ -107,7 +107,7 @@ body.dark .bp-fehler{color:#F08A8A}
 
 /* ---------- So läuft dein Termin (wie Arztpraxen) ---------- */
 .ablauf{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,56px)}
-.ablauf:before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:linear-gradient(90deg,var(--edge),color-mix(in srgb,var(--blue) 30%,transparent),var(--edge))}
+.ablauf:before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:var(--edge)}
 .ab-p{position:relative}
 .ab-p .nr{background:var(--bg2);padding-right:14px}
 .ab-p h3{font-size:22px;margin:26px 0 10px}

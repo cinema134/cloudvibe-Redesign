@@ -17,7 +17,7 @@
 .bk li:before{content:"";position:absolute;left:2px;top:18px;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#2EB329,#2D6CDF)}
 /* Aufzählung zur Probe (Umschalter "Aufzählung", Leon 23.11.2026): P Punkt (bisher), H Häkchen, S Strich, L ohne Zeichen (Standard) */
 body.azH .bk li:before{left:1px;top:16px;width:10px;height:5px;border-radius:0;background:none;border-left:2px solid var(--a1,#3C9893);border-bottom:2px solid var(--a1,#3C9893);transform:rotate(-45deg)}
-body.azS .bk li:before{left:0;top:21px;width:12px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1,#4E9E62),var(--a2,#3C9893))}
+body.azS .bk li:before{left:0;top:21px;width:12px;height:2px;border-radius:2px;background:var(--muted)}
 body.azL .bk li{padding-left:0}
 body.azL .bk li:before{display:none}
 .bk .link{padding:24px 32px 30px}

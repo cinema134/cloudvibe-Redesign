@@ -261,7 +261,7 @@ body.dark.hvC .uhero:after{background-image:radial-gradient(rgba(255,255,255,.2)
 .ukarten-1{grid-template-columns:minmax(0,1fr);max-width:640px}
 .uk{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 28px 28px 32px;border-radius:24px;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s,visibility 0s .3s}
 .uk:hover{transform:translateY(-3px)}
-.uk:before{content:"";position:absolute;left:32px;top:-1px;width:40px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1,#2EB329),var(--a2,#2D6CDF))}
+.uk:before{content:none} /* Verlaufs-Streifen entfernt (Leon 24.11.2026) */
 .uk h3{font-size:clamp(22px,2vw,27px);margin-bottom:8px;transition:color .25s}
 .uk:hover h3{color:var(--blue)}
 .uk p{font-size:15px;color:var(--muted)}
@@ -514,7 +514,7 @@ body.edit .ek:hover,body.edit .nk:hover{transform:none}
 .lx:hover,.lx:focus-visible,.lx.an{color:var(--blue);opacity:.8;outline:none}
 .lx-pop{position:absolute;z-index:70;width:min(340px,calc(100vw - 32px));padding:18px 20px 16px;border-radius:20px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);border:1px solid var(--edge);box-shadow:var(--sh2),var(--hi);font-size:15px;line-height:1.55;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;pointer-events:none}
 .lx-pop.an{opacity:1;transform:none;pointer-events:auto}
-.lx-pop:before{content:"";position:absolute;left:20px;top:-1px;width:32px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2EB329,#2D6CDF)}
+.lx-pop:before{content:none} /* Verlaufs-Streifen entfernt */
 .lx-pop .lx-k{font:700 11px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .lx-pop b{display:block;font:700 17px Comfortaa,sans-serif;margin-bottom:6px}
 .lx-pop p{color:var(--muted);margin-bottom:10px}
@@ -624,7 +624,7 @@ body:not(.fussAlt) .f-unten{margin-top:22px;padding-top:0;border-top:0}
 /* ---------- So starten wir ohne Zahlen, als Zeitleiste auf eigener Fläche (Leon 24.11.2026: Zahlen raus, wirkte Ton in Ton) ---------- */
 .st-p .nr{display:none!important}
 .st-reihe{--stp:clamp(22px,2.6vw,38px);position:relative;border-top:0;padding:34px var(--stp) 30px;border-radius:30px;background:var(--bg);border:1px solid var(--edge);box-shadow:var(--sh),var(--hi)}
-.st-reihe:before{content:"";position:absolute;left:var(--stp);right:var(--stp);top:39px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2EB329,#2D6CDF);opacity:.45}
+.st-reihe:before{content:"";position:absolute;left:var(--stp);right:var(--stp);top:39px;height:2px;border-radius:2px;background:var(--edge)} /* Zeitleiste neutral statt Verlauf (Leon 24.11.2026) */
 .st-p,.st-p+.st-p{position:relative;padding:36px var(--stp) 6px 0;border-left:0}
 .st-p+.st-p{padding-left:var(--stp)}
 .st-p:before{content:"";position:absolute;top:0;left:0;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2.5px solid #2EB329;box-shadow:0 0 0 5px var(--bg)}
@@ -634,7 +634,7 @@ body:not(.fussAlt) .f-unten{margin-top:22px;padding-top:0;border-top:0}
 .st-p:nth-child(4):before,.st-p:nth-child(3):last-child:before{border-color:#2D6CDF}
 .st-p h3{color:var(--text)}
 @media(max-width:1000px){
- .st-reihe:before{left:calc(var(--stp) + 5px);right:auto;top:34px;bottom:34px;width:2px;height:auto;background:linear-gradient(180deg,#2EB329,#2D6CDF)}
+ .st-reihe:before{left:calc(var(--stp) + 5px);right:auto;top:34px;bottom:34px;width:2px;height:auto;background:var(--edge)}
  .st-reihe{grid-template-columns:1fr!important}
  .st-p,.st-p+.st-p,.st-p:nth-child(3),.st-p:nth-child(n+3){padding:0 0 26px 34px;margin-top:0;border:0}
  .st-p:before,.st-p+.st-p:before{left:0;top:5px}
@@ -763,7 +763,14 @@ body.hhE.heroW .uhero + section .kopfzeile{margin-bottom:clamp(18px,2vw,28px)}/*
 .fv-k .sozial-r a{width:34px;height:34px}
 .fv-k .sozial-r svg{width:15px;height:15px}/* Footer K: Logo nicht in die Spaltenbreite strecken (wirkte gequetscht), eigene Proportionen behalten */
 .fk-marke{align-items:flex-start}
-.fv-k .lg{width:auto;max-width:100%;align-self:flex-start;object-fit:contain}
+.fv-k .lg{width:auto;max-width:100%;align-self:flex-start;object-fit:contain}/* Werkzeugseiten: nur das Werkzeug (Leon 24.11.2026: „wer einen Termin will, weiß was er will, keine Überschrift plus Satz“).
+   Pfad, H1, Einleitung, Telefonzeile und die Kopfzeile des ersten Abschnitts sind nur noch für Suchmaschinen und Screenreader da (eine H1 bleibt im Code).
+   Sichtbar bleibt, was selbst Werkzeug ist (z. B. Notfall-Hinweis auf Support). Bisher: ohne hhE */
+body.hhE.heroW .uhero .krumen,body.hhE.heroW .uhero h1,body.hhE.heroW .uhero .lead,body.hhE.heroW .uhero .tel-zeile,body.hhE.heroW .uhero .btns,
+body.hhE.heroW .uhero + section > .wrap > .kopfzeile{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+body.hhE.heroW .uhero{padding-top:clamp(112px,9vw,132px);padding-bottom:0!important}
+body.hhE.heroW .uhero .sp-not{margin-top:0}
+body.hhE.heroW .uhero + section{padding-top:clamp(12px,1.6vw,24px)}
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
 
@@ -896,7 +903,7 @@ body.hhE.heroW .uhero + section .kopfzeile{margin-bottom:clamp(18px,2vw,28px)}/*
 .nl-mail{background:#F4F7FC;padding:clamp(18px,3vw,40px)}
 body.dark .nl-mail{background:#0E131C}
 .nl-mail>div{max-width:600px;margin:0 auto}
-.nl-m-kopf{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 30px;background:#fff;border-radius:18px 18px 0 0;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#2EB329,#2D6CDF) 1}
+.nl-m-kopf{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 30px;background:#fff;border-radius:18px 18px 0 0;border-bottom:1px solid #E3E8F0}
 .nl-m-kopf img{height:46px;width:auto}
 .nl-m-kopf span{font-size:13px;color:#4F5663}
 .nl-m-block{display:flex;flex-direction:column;gap:8px;padding:24px 30px;background:#fff;color:#14171C;border-bottom:1px solid #E3E8F0}
