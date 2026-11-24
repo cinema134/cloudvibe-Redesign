@@ -1,0 +1,85 @@
+<main>
+<!-- ================= Login Kundenportal (Leon 24.11.2026). Live: Anmeldung im Odoo-Kundenportal (/my), Zugang richtet cloudvibe ein, keine Selbstregistrierung. ================= -->
+<section class="uhero tk-hero lg-hero" id="top">
+ <div class="wrap uhero-in">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:support}}">Support</a><span>/</span>Kundenportal</nav>
+  <h1>Willkommen im <b>Kundenportal</b>.</h1>
+  <p class="lead">Melde dich an und sieh, welche Tickets offen sind, wer daran arbeitet und was schon erledigt ist.</p>
+ </div>
+</section>
+
+<section class="ab tk-ab lg-ab" id="login" data-name="Anmeldung">
+ <div class="wrap lg-in">
+  <div class="lg-karte glas">
+   <!-- Anmelden -->
+   <form class="lg-form" data-lg="an" novalidate>
+    <h2 class="lg-t">Anmelden</h2>
+    <div class="feld"><label for="lg-mail">E-Mail</label><input id="lg-mail" type="email" autocomplete="username" required><small class="tk-fm">Bitte deine E-Mail-Adresse eingeben.</small></div>
+    <div class="feld"><label for="lg-pw">Passwort</label>
+     <span class="lg-pw"><input id="lg-pw" type="password" autocomplete="current-password" required><button type="button" class="lg-zeig" aria-label="Passwort anzeigen" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button></span>
+     <small class="tk-fm">Bitte dein Passwort eingeben.</small></div>
+    <div class="lg-zeile">
+     <label class="check"><input type="checkbox" id="lg-bleib"> <span>Angemeldet bleiben</span></label>
+     <a class="lg-link" href="#" data-zu="vergessen">Passwort vergessen?</a>
+    </div>
+    <button type="submit" class="btn lg-btn">Anmelden</button>
+    <p class="lg-neu">Noch keinen Zugang? Den richten wir für dich ein. Schreib kurz an <a href="mailto:support@cloudvibe.de">support@cloudvibe.de</a>.</p>
+   </form>
+
+   <!-- Passwort vergessen -->
+   <form class="lg-form" data-lg="vergessen" novalidate hidden>
+    <h2 class="lg-t">Passwort zurücksetzen</h2>
+    <p class="lg-text">Gib die E-Mail-Adresse deines Zugangs ein. Wir schicken dir einen Link, mit dem du ein neues Passwort festlegst.</p>
+    <div class="feld"><label for="lg-mail2">E-Mail</label><input id="lg-mail2" type="email" autocomplete="username" required><small class="tk-fm">Bitte eine gültige E-Mail-Adresse.</small></div>
+    <button type="submit" class="btn lg-btn">Link senden</button>
+    <a class="lg-link lg-zurueck" href="#" data-zu="an">Zurück zur Anmeldung</a>
+   </form>
+
+   <!-- Link gesendet -->
+   <div class="lg-form" data-lg="gesendet" hidden tabindex="-1">
+    <span class="tk-haken" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+    <h2 class="lg-t">Schau in dein <b>Postfach</b>.</h2>
+    <p class="lg-text">Wenn es zu dieser Adresse einen Zugang gibt, ist der Link gleich bei dir. Nichts angekommen? Sieh im Spam-Ordner nach oder schreib an <a href="mailto:support@cloudvibe.de">support@cloudvibe.de</a>.</p>
+    <a class="lg-link lg-zurueck" href="#" data-zu="an">Zurück zur Anmeldung</a>
+   </div>
+
+   <!-- Angemeldet (Mockup: Weiterleitung ins Portal) -->
+   <div class="lg-form" data-lg="drin" hidden tabindex="-1">
+    <span class="tk-haken" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+    <h2 class="lg-t">Du bist <b>angemeldet</b>.</h2>
+    <p class="lg-text">Wir bringen dich zu deinen Tickets.</p>
+    <a class="lg-link lg-zurueck" href="#" data-zu="an">Abmelden</a>
+   </div>
+  </div>
+
+  <aside class="lg-ohne" aria-label="Hilfe ohne Anmeldung">
+   <div class="eb">Ohne Anmeldung</div>
+   <h2>Akut ein <b>Problem</b>?</h2>
+   <p class="leise">Dafür brauchst du keinen Zugang.</p>
+   <ul class="lg-wege">
+    <li><a href="{{LINK:ticket}}"><span class="sp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v2a2.5 2.5 0 0 0 0 5v2a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-2a2.5 2.5 0 0 0 0-5z"/><path d="M14 5v14" stroke-dasharray="2 2.5"/></svg></span><span><b>Ticket eröffnen</b><small>In drei kurzen Schritten</small></span></a></li>
+    <li><a {{FW}}><span class="sp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2.5"/><path d="M8.5 20h7M12 16.5V20M12 7v6M9.5 10.5L12 13l2.5-2.5"/></svg></span><span><b>Fernwartung starten</b><small>QuickSupport herunterladen</small></span></a></li>
+    <li><a href="tel:{{SUPPORT_TEL}}"><span class="sp-ic lg-ic-tel" aria-hidden="true">{{TEL}}</span><span><b>Anrufen</b><small>{{SUPPORT}}</small></span></a></li>
+   </ul>
+  </aside>
+ </div>
+</section>
+
+<!-- ================= Was im Portal steht ================= -->
+<section class="ab alt sp-portal lg-portal" id="im-portal">
+ <div class="wrap sp-portal-in">
+  <div class="sp-portal-t">
+   <div class="eb">Im Kundenportal</div>
+   <h2>Alles zu deinen Tickets <b>an einem Ort</b>.</h2>
+   <p class="lead">Du siehst jedes Ticket mit seinem Stand, liest unsere Antworten und schreibst direkt zurück. Auch Tickets, die du per Telefon oder E-Mail gemeldet hast, stehen hier.</p>
+   <p class="leise">Mehrere Personen in deinem Betrieb brauchen einen Zugang? Sag uns Bescheid, dann richten wir sie ein.</p>
+  </div>
+  <div class="sp-portal-bild glas" aria-hidden="true">
+   <div class="pb-kopf"><span>Meine Tickets</span><i></i></div>
+   <div class="pb-z"><span class="pb-n">CV-48217</span><span class="pb-t">Drucker am Empfang offline</span><span class="pb-s pb-neu">Neu</span></div>
+   <div class="pb-z"><span class="pb-n">CV-48190</span><span class="pb-t">E-Mail am Laptop Büro 2</span><span class="pb-s pb-lauf">In Bearbeitung</span></div>
+   <div class="pb-z"><span class="pb-n">CV-48102</span><span class="pb-t">Neuer Arbeitsplatz Anmeldung</span><span class="pb-s pb-ok">Erledigt</span></div>
+  </div>
+ </div>
+</section>
+</main>

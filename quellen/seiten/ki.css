@@ -1,0 +1,4 @@
+
+/* ================= KI sicher nutzen (Vorlage Arztpraxen) ================= */
+/* KI-Check: Button rechts unter dem Text */
+.kicheck .rechts{display:flex;flex-direction:column;align-items:flex-start;gap:22px}

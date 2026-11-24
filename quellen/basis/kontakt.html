@@ -1,0 +1,31 @@
+<!-- ================= Kontakt ================= -->
+<section class="ab kontakt" id="kontakt">
+ <canvas class="welle" id="cvK" aria-hidden="true"></canvas>
+ <div class="wrap">
+  <div class="kontakt-in glas">
+   <div class="kontakt-text">
+    <div class="eb">Jetzt beraten lassen</div>
+    <h2>Sag uns kurz, <b>worum es geht</b>.</h2>
+    <p class="lead">Wir melden uns bei dir. Lieber direkt sprechen? Dann ruf uns an.</p>
+    <div class="btns"><a class="btn zw call" href="tel:{{SALES_TEL}}">{{TEL}}<span class="cw"><span class="c1">Anrufen</span><span class="c2">{{SALES}}</span></span></a></div>
+   </div>
+   <form class="kontakt-form" novalidate>
+    <!-- Felder (Leon 23.11.2026, Abstimmung 24.11.2026): Vor- und Nachname getrennt, Firma Pflicht (verrät die Art des Betriebs),
+         keine Branche mehr: die Seite, auf der das Formular ausgefüllt wurde, steht im verdeckten Feld "quelle". Telefon optional;
+         "Am besten erreichbar" erscheint erst, wenn eine Telefonnummer eingetragen ist. -->
+    <div class="feld"><label for="f-vorname">Vorname <i class="pf">*</i></label><input id="f-vorname" autocomplete="given-name" required></div>
+    <div class="feld"><label for="f-nachname">Nachname <i class="pf">*</i></label><input id="f-nachname" autocomplete="family-name" required></div>
+    <div class="feld voll"><label for="f-firma">Praxis, Kanzlei oder Firma <i class="pf">*</i></label><input id="f-firma" autocomplete="organization" required></div>
+    <div class="feld"><label for="f-mail">E-Mail <i class="pf">*</i></label><input id="f-mail" type="email" autocomplete="email" required></div>
+    <div class="feld"><label for="f-tel">Telefon <small>(optional)</small></label><input id="f-tel" type="tel" autocomplete="tel"></div>
+    <div class="feld voll f-zeit" hidden><label for="f-zeit">Wann erreichen wir dich am besten?</label>
+     <select id="f-zeit"><option value="">Egal wann</option><option>Vormittags (8 bis 12 Uhr)</option><option>Mittags (12 bis 14 Uhr)</option><option>Nachmittags (14 bis 17 Uhr)</option></select></div>
+    <div class="feld voll"><label for="f-text">Worum geht es? <i class="pf">*</i></label><textarea id="f-text" required></textarea></div>
+    <p class="voll pf-hinweis"><i class="pf">*</i> Pflichtfeld</p>
+    <input type="hidden" name="quelle" value="{{QUELLE}}">
+    <label class="check voll"><input type="checkbox"> <span>Ich bin einverstanden, dass ihr meine Angaben zur Bearbeitung meiner Anfrage verwendet. Mehr dazu in unserer <a class="link-t" href="{{LINK:recht}}#datenschutz">Datenschutzerklärung</a>.</span></label>
+    <div class="voll form-fuss"><button class="btn" type="submit">Anfrage senden</button><span class="hinweis leise" hidden>Mockup: Die Anfrage wird nicht verschickt.</span></div>
+   </form>
+  </div>
+ </div>
+</section>

@@ -1,0 +1,38 @@
+# Optionen und Varianten (noch nicht final entschieden)
+
+Stand 24.11.2026. Einige Gestaltungsfragen entscheidet cloudvibe erst später. **Diese Optionen müssen in der Umsetzung umschaltbar bleiben** (z. B. als Theme-Option, Snippet-Variante oder Konfigurationswert in Odoo), damit die finale Wahl ohne Neubau möglich ist. Umgesetzt wird jeweils der **Standard**; die anderen Werte werden mitgebaut und sind per Einstellung wählbar.
+
+**Ansehen:** Die Seiten in `seiten_mit_optionen/` haben unten rechts **„Einstellungen“** (Panel mit allen Umschaltern, auf jeder Seite). Jede Option lässt sich auch über die Adresse setzen, z. B. `seiten_mit_optionen/index.html?welle=original&fuss=d`. Die Seiten in `seiten/` zeigen nur den Standard. („Bearbeiten“ und „Speichern“ in der Leiste sind Mockup-Werkzeuge zum Texten und werden nicht umgesetzt.)
+
+## Speichern (online, z. B. GitHub Pages)
+
+- **In diesem Browser, automatisch:** Jede Auswahl im Panel (Welle, Footer, Kopfleiste, Begriff, Aufzählung, Kundenstimmen, Hero-Buttons, Dunkelmodus, Körnung, Logo) gilt sofort **auf allen Seiten**, auch nach dem Neuladen. Module je Seite und **Textänderungen** („Bearbeiten“, nur die bearbeiteten Stellen) werden je Seite gemerkt. Technisch: `localStorage` (`cloudvibe-optionen`, `cloudvibe-module-<datei>`, `cloudvibe-texte-<datei>`).
+- **Für alle:** Panel → „Speichern“ → **„Für alle festlegen“** lädt `einstellungen.js` herunter (Optionen, Module und Texte aller Seiten, die in diesem Browser eingestellt wurden). Diese Datei im Hauptordner des Repositorys ersetzen (GitHub: Add file → Upload files → Commit). Nach 1 bis 10 Minuten sehen alle Besucher diesen Stand, auch in `seiten/` ohne Panel.
+- **Reihenfolge:** Adresse (`?fuss=d`) > in diesem Browser gemerkt > `einstellungen.js` (für alle) > Standard der Seite. „Meine Auswahl zurücksetzen“ löscht den Browser-Stand, dann gilt wieder `einstellungen.js`.
+- Für die spätere Umsetzung: `einstellungen.js` enthält die finale Wahl als Daten (`window.CV_EINST = { optionen, module, texte }`).
+
+## Offene Optionen
+
+| Option | Wo | Werte | Standard | Adresse | Umsetzung im Code |
+|---|---|---|---|---|---|
+| **Welle im Startseiten-Hero** | Startseite | `aktuell` (feine Linien Grün → Blau) · Bänder nach Entwurf eines Kollegen: `original`, `origRuhig`, `origKraeftig`, `origOhne` (S-Bogen, nah am Entwurf) · erste Bänder-Fassung: `seide`, `ruhig`, `zart`, `linien` | `aktuell` | `?welle=` | Canvas-Animation. Linien: `CV.zeichne` (basis.js), Werte `LINIEN` in `startseite.js`. Bänder: `CV.baender` + Parameter `CV.BAENDER` (basis.js). Alle Varianten groß: `seiten_mit_optionen/wellen-varianten.html` (Nr. 34 bis 41 = Bänder). |
+| **Footer** | alle Seiten | `a` Spalten (Logo, Adressen, Social, Kontakt, Linkzeile) · `b` Minimal, mittig · `c` Kontakt-Band · `d` vier Spalten (Wer wir sind, Kontakt, Standorte, Für Kunden) · `bisher` alter Footer | `a` (vorläufig gewählt) | `?fuss=` | `basis/fuss.html` (alle vier Footer), Klassen `fv-a` … `fv-d`, `body.fussA` … `fussD` |
+| **Begriff für die Gesundheitsbranche** | Menü, Kacheln, Überschriften, Texte | `Gesundheitswesen` · `Healthcare` | `Gesundheitswesen` | `?begriff=Healthcare` | überall als `<span class="hc">`; ein zentraler Textwert |
+| **Aufzählungszeichen** | Listen in Einstiegskarten (Gesundheitswesen) und Fragen (Kanzleien) | `L` ohne Zeichen, graue Trennlinien · `P` Punkt · `H` Häkchen (nicht bei Fragen) · `S` Strich | `L` (Kanzleien-Fragen: `P`) | `?az=` | Klassen `body.azL|azP|azH|azS` |
+| **Kundenstimmen** | Bereichsseiten, Referenzen | `buehne` (ein großes Zitat, Pfeile/Punkte) · `liste` | `buehne` | `?kst=liste` | basis.js „Kundenstimmen“, Daten `basis/stimmen.json` (bis zur Freigabe fiktive Beispiele) |
+| **Kopfleiste** | alle Seiten | `neu` (Gruppen mit Dropdowns, rechts Support ▾ und Termin) · `alt` (bisherige Leiste mit Fernwartung-Button) | `neu` | `?ks=alt` | `basis/kopf.html`, Klasse `body.ksAlt` |
+| **Hero-Buttons** | Unterseiten | `neu` reduziert (nur Buttons mit eigenem Zweck, „Anrufen“ als Telefonzeile) · `alt` bisher | `neu` | `?herobtn=bisher` | Klasse `body.hbR` |
+| **Gesundheitswesen-Seite** | `/gesundheitswesen` | überarbeitet · bisher | überarbeitet | `?gw=bisher` | `seiten/gesundheitswesen.js` |
+| **Module je Seite** | alle Seiten | jeder Abschnitt in `<main>` ein/aus und in der Reihenfolge verschiebbar; dazu passende Zusatzmodule je Bereich | wie in `seiten/` sichtbar; Abschnitte mit Klasse `mod-aus` und alle mit `data-extra` sind aus | `?mod=id1,id2,…` (sichtbar in dieser Reihenfolge) | Panel „Module“ (basis.js). Welche Module je Seite es gibt: `sitemap.html` (blass = aus, „Zusatzmodule“). Offen u. a.: „Menschen dahinter“ auf der Startseite oder nur auf Über uns. Startseite ist bewusst minimal (Hero, Karriere, News). |
+| **Dunkelmodus** | alle Seiten | hell · dunkel | hell | `?dunkel=1` | Klasse `body.dark`, Farben in `basis.css`. Offen: wo der Schalter live sitzt und ob Blau für kleine Schrift auf Dunkel heller wird (Kontrast heute 3,6 bis 4,0). |
+| **Startseite: Körnung im Hero** | Startseite | an · aus | an | (Panel) | Klasse `#top.nograin` |
+| **Startseite: Logo** | Startseite | frei links neben der Leiste · in der Leiste; Größe und Abstand | frei, 90 px, Abstand 70 px | (Panel) | `body.lgB`, CSS-Variablen `--lgh`, `--lga` |
+| **Startseite: Kachelform** (Probe) | Startseite-Kacheln | `S` Standard · `W` Wolke · `L` Wolke leicht | `S` | `?kf=W|L` | `startseite.js` |
+
+## Bereits entschieden (nur zur Info, technisch noch umschaltbar)
+
+Eyebrow-Farbe Grau (`?ebf=B|G|S`), Hero der Unterseiten mit Wellenkante (`?hero=A|B|C`), Footer-Spalte „cloudvibe“ entfällt, Kontaktformular nur wo jemand Hilfe sucht, Kopfleiste neu. Diese brauchen keine Option, die Werte stehen im Standard.
+
+## Keine Optionen, sondern Zustände zum Durchklicken
+
+Termin `?art=erst|ti|check|datev|sl|ki|rueck|kunde&demo=angaben|fertig` · Ticket und Support `?schritt=2|3|fertig&dringend=1` · Login `?demo=vergessen|gesendet|drin` · Newsletter `?nl=bestaetigt|einstellungen|abgemeldet` · Karriere `#stelle-1` · DATEV-FAQ `?fuer=unternehmen` (live-Funktion: Umschalter Kanzleien/Unternehmen auf der Seite) · Managed Services `#backup|#infrastruktur|#hardware|#security` · Lexikon `#lx-<schlüssel>` · mobiles Menü `?menue=auf|1…5` · Cookie-Karte aus `?cookie=aus`.

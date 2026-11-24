@@ -1,0 +1,70 @@
+
+/* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
+.uhero h1{max-width:860px}
+
+/* ---------- Was bei uns liegt: ein Milchglas-Feld, Punkte durch feine Linien getrennt ---------- */
+.liegt-raster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
+.lp{display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;align-items:start;padding:34px 32px 36px;border-left:1px solid var(--edge);border-top:1px solid var(--edge)}
+.lp:nth-child(3n+1){border-left:0}
+.lp:nth-child(-n+3){border-top:0}
+.ic{width:44px;height:44px;padding:10px;border-radius:14px;fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;background:color-mix(in srgb,var(--blue) 8%,transparent)}
+.lp h3{font-size:20px;margin:2px 0 8px}
+.lp p{font-size:15px;color:var(--muted)}
+
+/* ---------- TI kurz ---------- */
+.ti-kurz-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px clamp(40px,6vw,88px);align-items:start}
+.ti-kurz-text{display:flex;flex-direction:column;align-items:flex-start;gap:20px;padding-top:40px}
+
+/* ---------- Datensicherung ---------- */
+.backup-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:center}
+.backup .lead{margin:26px 0 28px}
+/* Ohne Nummern (Leon 23.11.2026: keine echte Reihenfolge), Punkte nur durch graue Linien getrennt, je ein kurzer Satz */
+.was{list-style:none;padding:8px 34px}
+.was li{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:6px 28px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--edge)}
+.was li:last-child{border-bottom:0}
+.was h3{font-size:clamp(20px,1.6vw,23px)}
+.was p{font-size:15px;color:var(--muted)}
+
+/* ---------- So läuft die Betreuung: drei Punkte nebeneinander, getrennt durch graue Linien (keine Nummern) ---------- */
+.ablauf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.ab-p{padding:34px clamp(22px,3vw,40px) 38px}
+.ab-p:first-child{padding-left:0}
+.ab-p+.ab-p{border-left:1px solid var(--edge)}
+.ab-p h3{font-size:22px;margin:0 0 10px}
+.ab-p p{color:var(--muted);max-width:340px}
+
+/* ---------- Referenzen: Orte als ruhige Typo-Reihe ---------- */
+.refs-ab h2{margin-bottom:clamp(36px,4vw,56px)}
+.orte{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.ort{display:flex;flex-direction:column;gap:6px;padding:30px 22px 32px 0}
+.ort+.ort{padding-left:22px;border-left:1px solid var(--edge)}
+.ort-n{font:300 clamp(26px,2.4vw,36px)/1.1 Comfortaa,sans-serif;letter-spacing:-.02em}
+.ort-a{font-size:14px;color:var(--muted)}
+.refs-hinweis{margin-top:26px}
+
+/* ---------- Breiten ---------- */
+@media(max-width:1000px){
+ .liegt-raster{grid-template-columns:1fr 1fr}
+ .lp:nth-child(n){border-left:1px solid var(--edge);border-top:1px solid var(--edge)}
+ .lp:nth-child(2n+1){border-left:0}
+ .lp:nth-child(-n+2){border-top:0}
+ .ti-kurz-in,.backup-in{grid-template-columns:1fr}
+ .ti-kurz-text{padding-top:0}
+ .orte{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .ort:nth-child(4){border-left:0;padding-left:0}
+ .ort:nth-child(n+4){border-top:1px solid var(--edge)}
+}
+@media(max-width:700px){
+ .liegt-raster{grid-template-columns:1fr}
+ .lp:nth-child(n){border-left:0;border-top:1px solid var(--edge);padding:26px 22px}
+ .lp:first-child{border-top:0}
+ .ablauf{grid-template-columns:1fr}
+ .ab-p,.ab-p:first-child{padding:26px 0 28px}
+ .ab-p+.ab-p{border-left:0;border-top:1px solid var(--edge)}
+ .orte{grid-template-columns:1fr 1fr}
+ .ort:nth-child(n){border-left:0;padding-left:0;border-top:1px solid var(--edge)}
+ .ort:nth-child(even){padding-left:18px;border-left:1px solid var(--edge)}
+ .ort:nth-child(-n+2){border-top:0}
+ .was{padding:4px 22px}
+ .was li{grid-template-columns:1fr}
+}

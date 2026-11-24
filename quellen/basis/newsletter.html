@@ -1,0 +1,31 @@
+<!-- ================= Baustein Newsletter-Anmeldung (Karte mit Themenwahl) =================
+     Logik: Jede Ausgabe hat einen allgemeinen Teil (Sicherheit, Microsoft 365, Neues von cloudvibe) und je gewähltem Bereich einen eigenen Block.
+     Ohne Auswahl kommt nur der allgemeine Teil. Anmeldung erst nach Klick auf den Link in der Bestätigungs-E-Mail (Double-Opt-in).
+     Später: Odoo E-Mail-Marketing, je Bereich eine Mailingliste plus "Allgemein". -->
+<form class="nlb glas" data-nlb novalidate>
+ <div class="nlb-text">
+  <div class="eb">Newsletter</div>
+  <h2>Kurz informiert, <b>einmal im Monat</b>.</h2>
+  <p class="leise">Sicherheitshinweise und Neues aus deiner Branche, verständlich erklärt. Abmelden geht jederzeit mit einem Klick.</p>
+  <a class="link" href="{{LINK:newsletter}}">Was drinsteht{{PFEIL}}</a>
+ </div>
+ <div class="nlb-form">
+  <fieldset class="nlb-themen">
+   <legend>Welche Bereiche betreffen dich?</legend>
+   <span class="nlb-chip"><input type="checkbox" value="gesundheit" aria-label="Gesundheitswesen"><span class="hc">{{HC}}</span></span>
+   <span class="nlb-chip"><input type="checkbox" value="kanzlei" aria-label="Kanzleien"><span>Kanzleien</span></span>
+   <span class="nlb-chip"><input type="checkbox" value="unternehmen" aria-label="Unternehmen"><span>Unternehmen</span></span>
+  </fieldset>
+  <div class="nlb-feld"><label class="sr" for="nlb-mail-{{NLB}}">E-Mail-Adresse</label><input id="nlb-mail-{{NLB}}" type="email" placeholder="deine@e-mail.de" autocomplete="email"><button class="btn" type="submit">Anmelden</button></div>
+  <small class="nlb-fm">Bitte eine gültige E-Mail-Adresse eingeben.</small>
+  <small class="nlb-hw">Ohne Auswahl bekommst du den allgemeinen Teil. Du bekommst zuerst eine E-Mail mit Bestätigungslink. Mehr in der <a class="link-t" href="{{LINK:recht}}#datenschutz">Datenschutzerklärung</a>.</small>
+ </div>
+ <div class="nlb-ok" hidden>
+  <span class="nlb-brief" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span>
+  <div>
+   <b>Fast geschafft.</b>
+   <span class="nlb-ok-t"></span>
+   <a class="link" href="{{LINK:newsletter}}?nl=bestaetigt">Bestätigungslink öffnen (Vorschau){{PFEIL}}</a>
+  </div>
+ </div>
+</form>

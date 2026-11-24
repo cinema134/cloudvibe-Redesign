@@ -1,0 +1,26 @@
+
+/* ================= Lexikon: A–Z, Suche, Filter (Pillen .nf aus news.css) ================= */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lx-werkzeug{display:grid;gap:22px;margin-bottom:clamp(36px,4vw,56px)}
+.lx-werkzeug .nf{margin-bottom:0}
+.lx-suche{display:flex;align-items:center;gap:12px;max-width:520px;height:54px;padding:0 20px;border-radius:100px;border:1px solid var(--edge);background:var(--bg);box-shadow:var(--sh2)}
+.lx-suche:focus-within{border-color:color-mix(in srgb,var(--blue) 50%,transparent)}
+.lx-suche svg{width:20px;height:20px;flex:none;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round}
+.lx-suche input{flex:1;min-width:0;border:0;background:none;color:var(--text);font:400 17px 'Mozilla Text',sans-serif;outline:none}
+.lx-abc{display:flex;flex-wrap:wrap;gap:4px;padding-top:18px;border-top:1px solid var(--edge)}
+.lx-abc a,.lx-abc span{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;font:700 15px Comfortaa,sans-serif}
+.lx-abc a{color:var(--blue)}
+.lx-abc a:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+.lx-abc span{color:color-mix(in srgb,var(--text) 25%,transparent)}
+.lx-gruppe{display:grid;grid-template-columns:90px minmax(0,1fr);gap:24px;padding:28px 0;border-top:1px solid var(--edge);scroll-margin-top:100px}
+.lx-gruppe[hidden]{display:none}
+.lx-bst{font:300 clamp(40px,4vw,56px)/1 Comfortaa,sans-serif;color:var(--blue)}
+.lx-gruppe dl{margin:0;display:grid}
+.lx-eintrag{padding:14px 0 18px;scroll-margin-top:110px;border-radius:14px;transition:background .6s}
+.lx-eintrag+.lx-eintrag{border-top:1px solid var(--edge)}
+.lx-eintrag[hidden]{display:none}
+.lx-eintrag:target{background:color-mix(in srgb,var(--blue) 7%,transparent);padding-left:14px;padding-right:14px}
+.lx-eintrag dt{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;font:700 clamp(19px,1.6vw,22px)/1.35 Comfortaa,sans-serif}
+.lx-ber{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lx-eintrag dd{margin:8px 0 0;max-width:760px;color:var(--muted);font-size:16.5px;line-height:1.65}
+@media(max-width:700px){.lx-gruppe{grid-template-columns:1fr;gap:6px}}

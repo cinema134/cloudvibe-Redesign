@@ -1,0 +1,332 @@
+{
+  "begriff": "Gesundheitswesen",
+  "sales": "+49 2823 8901434-60",
+  "support": "+49 2823 8901434-00",
+  "fernwartung": "#",
+  "domain": "https://cloudvibe.de",
+  "seiten": {
+    "startseite": {
+      "datei": "Startseite",
+      "titel": "Startseite",
+      "version": 78,
+      "regler": true,
+      "pfad": "/",
+      "seoTitel": "IT-Betreuung für Praxen, Kanzleien & Mittelstand | cloudvibe",
+      "beschreibung": "IT-Betreuung aus Goch für Gesundheitswesen, Kanzleien und Unternehmen: Betrieb, Backup und Sicherheit. Vor Ort am Niederrhein, per Fernwartung bundesweit."
+    },
+    "gesundheitswesen": {
+      "datei": "Gesundheitswesen",
+      "titel": "Gesundheitswesen",
+      "version": 77,
+      "bereich": "gesundheit",
+      "body": "hcseite",
+      "pfad": "/gesundheitswesen",
+      "seoTitel": "IT für Praxen, Apotheken & Pflege mit TI | cloudvibe",
+      "beschreibung": "IT für Arztpraxen, Apotheken und Pflege inklusive TI-Anbindung mit Telekonnekt. Aus Goch, vor Ort am Niederrhein, per Fernwartung deutschlandweit.",
+      "leistung": "IT-Betreuung und Anbindung an die Telematikinfrastruktur für Arztpraxen, Apotheken und Pflegeeinrichtungen"
+    },
+    "arztpraxen": {
+      "datei": "Arztpraxen",
+      "titel": "Arztpraxen",
+      "version": 72,
+      "aktiv": "gesundheitswesen",
+      "bereich": "gesundheit",
+      "body": "hcseite",
+      "pfad": "/gesundheitswesen/arztpraxen",
+      "eltern": "gesundheitswesen",
+      "seoTitel": "IT für Arzt- und Zahnarztpraxen mit TI-Anbindung | cloudvibe",
+      "beschreibung": "IT für Arzt- und Zahnarztpraxen: Server, Netzwerk, Telefonie, Datensicherung und TI-Anbindung. Aus Goch, vor Ort am Niederrhein.",
+      "leistung": "IT-Betreuung für Arzt- und Zahnarztpraxen"
+    },
+    "apotheken": {
+      "datei": "Apotheken",
+      "titel": "Apotheken",
+      "version": 34,
+      "aktiv": "gesundheitswesen",
+      "bereich": "gesundheit",
+      "body": "hcseite",
+      "stil": "arztpraxen",
+      "pfad": "/gesundheitswesen/apotheken",
+      "eltern": "gesundheitswesen",
+      "seoTitel": "IT für Apotheken mit TI-Anbindung und E-Rezept | cloudvibe",
+      "beschreibung": "IT für Apotheken: Arbeitsplätze, Netzwerk, Drucker, Filialen und TI-Anbindung für das E-Rezept. Aus Goch, vor Ort am Niederrhein, Fernwartung bundesweit.",
+      "leistung": "IT-Betreuung und TI-Anbindung für Apotheken"
+    },
+    "pflege": {
+      "datei": "Pflegeeinrichtungen",
+      "titel": "Pflegeeinrichtungen",
+      "version": 34,
+      "aktiv": "gesundheitswesen",
+      "bereich": "gesundheit",
+      "body": "hcseite",
+      "stil": "arztpraxen",
+      "pfad": "/gesundheitswesen/pflegeeinrichtungen",
+      "eltern": "gesundheitswesen",
+      "seoTitel": "IT für Pflegeeinrichtungen mit TI-Anbindung | cloudvibe",
+      "beschreibung": "IT für Pflegeeinrichtungen: Arbeitsplätze, Tablets, WLAN im Wohnbereich, Datensicherung und TI-Anbindung. Aus Goch, vor Ort am Niederrhein.",
+      "leistung": "IT-Betreuung und TI-Anbindung für Pflegeeinrichtungen"
+    },
+    "ti": {
+      "datei": "Telematikinfrastruktur",
+      "titel": "Telematikinfrastruktur",
+      "version": 29,
+      "aktiv": "gesundheitswesen",
+      "bereich": "gesundheit",
+      "body": "hcseite",
+      "stil": "arztpraxen",
+      "eltern": "gesundheitswesen",
+      "pfad": "/gesundheitswesen/telematikinfrastruktur",
+      "seoTitel": "TI-Anbindung mit Konnektor oder TI-Gateway | cloudvibe",
+      "beschreibung": "TI-Anbindung für Praxen, Apotheken und Pflege mit Telekonnekt: Konnektor oder TI-Gateway, KIM und Kartenterminals, eingerichtet und betreut aus Goch.",
+      "leistung": "Anbindung und Betrieb der Telematikinfrastruktur"
+    },
+    "praxischeck": {
+      "datei": "Praxis-Check",
+      "titel": "Praxis-Check",
+      "version": 29,
+      "aktiv": "gesundheitswesen",
+      "bereich": "gesundheit",
+      "body": "hcseite",
+      "stil": "arztpraxen",
+      "eltern": "gesundheitswesen",
+      "pfad": "/gesundheitswesen/praxis-check",
+      "seoTitel": "Praxis-Check IT-Sicherheit im Gesundheitswesen | cloudvibe",
+      "beschreibung": "Unverbindlicher Praxis-Check IT-Sicherheit: Datensicherung, Updates, Zugänge, Firewall und E-Mail-Schutz, verständlich zusammengefasst. Aus Goch.",
+      "leistung": "Praxis-Check IT-Sicherheit"
+    },
+    "welten": {
+      "datei": "Bereichswelten",
+      "titel": "Bereichs-Welten",
+      "version": 73,
+      "noindex": true
+    },
+    "kanzleien": {
+      "datei": "Kanzleien",
+      "titel": "Kanzleien",
+      "version": 70,
+      "aktiv": "kanzleien",
+      "bereich": "kanzlei",
+      "body": "kzseite kzC",
+      "pfad": "/kanzleien",
+      "seoTitel": "IT für Kanzleien und Steuerberatung, mit DATEV | cloudvibe",
+      "beschreibung": "IT für Steuerberatung und Anwaltskanzleien: vertraulich, verfügbar, mit DATEV-Support. Fester Ansprechpartner aus Goch, Fernwartung bundesweit.",
+      "leistung": "IT-Betreuung für Steuerberatung und Anwaltskanzleien"
+    },
+    "unternehmen": {
+      "datei": "Unternehmen",
+      "titel": "Unternehmen",
+      "version": 72,
+      "aktiv": "unternehmen",
+      "bereich": "unternehmen",
+      "body": "unseite",
+      "pfad": "/unternehmen",
+      "seoTitel": "IT für den Mittelstand, DATEV & SelectLine | cloudvibe",
+      "beschreibung": "IT-Betreuung für den Mittelstand: Betrieb, Backup, Security und Hardware, dazu Support für DATEV und SelectLine. Aus Goch, vor Ort am Niederrhein.",
+      "leistung": "IT-Betreuung für mittelständische Unternehmen"
+    },
+    "datev": {
+      "datei": "DATEV",
+      "titel": "DATEV",
+      "version": 30,
+      "aktiv": "managed",
+      "bereich": "unternehmen",
+      "stil": "arztpraxen,unternehmen",
+      "eltern": "managed",
+      "pfad": "/leistungen/datev",
+      "seoTitel": "DATEV-Support: Updates, Wartung und Betreuung | cloudvibe",
+      "beschreibung": "DATEV-Support für Kanzleien und Unternehmen: Updates in abgestimmten Wartungsfenstern, Wartung, Datensicherung und Hilfe bei Fragen. Aus Goch.",
+      "leistung": "Support und IT-Betreuung rund um DATEV"
+    },
+    "selectline": {
+      "datei": "SelectLine",
+      "titel": "SelectLine",
+      "version": 29,
+      "aktiv": "managed",
+      "bereich": "unternehmen",
+      "stil": "arztpraxen,unternehmen",
+      "eltern": "managed",
+      "pfad": "/leistungen/selectline",
+      "seoTitel": "SelectLine Partner: Einführung, Schulung, Support | cloudvibe",
+      "beschreibung": "SelectLine Warenwirtschaft, Rechnungswesen und Produktion: Auswahl, Einführung, Schulung und Support, lokal oder in der Cloud. Partner aus Goch.",
+      "leistung": "Einführung und Support für SelectLine"
+    },
+    "managed": {
+      "datei": "Managed-Services",
+      "titel": "Managed Services",
+      "version": 28,
+      "stil": "arztpraxen",
+      "pfad": "/managed-services",
+      "seoTitel": "Managed Services: Backup, Betrieb, Security | cloudvibe",
+      "beschreibung": "Managed Services aus Goch: Backup, Infrastruktur, Hardware und Security dauerhaft betreut, mit SLA. Fernwartung bundesweit, vor Ort am Niederrhein.",
+      "leistung": "Managed Services: Backup, Infrastruktur, Hardware und Netzwerke, Security und Schulungen"
+    },
+    "ki": {
+      "datei": "KI-sicher-nutzen",
+      "titel": "KI sicher nutzen",
+      "version": 27,
+      "aktiv": "managed",
+      "stil": "arztpraxen",
+      "pfad": "/ki-sicher-nutzen",
+      "seoTitel": "KI sicher nutzen: Richtlinie, Schulung, Copilot | cloudvibe",
+      "beschreibung": "KI im Betrieb sicher nutzen: KI-Richtlinie, Schulung fürs Team, Microsoft 365 Copilot mit geprüften Berechtigungen und Datenschutz. Aus Goch.",
+      "leistung": "Beratung, Schulung und Einrichtung für den sicheren Einsatz von KI"
+    },
+    "ueber": {
+      "datei": "Ueber-uns",
+      "titel": "Über uns",
+      "version": 26,
+      "aktiv": "ueber",
+      "stil": "arztpraxen",
+      "pfad": "/ueber-uns",
+      "seoTitel": "Über uns: IT-Team aus Goch am Niederrhein | cloudvibe",
+      "beschreibung": "cloudvibe aus Goch: ein siebenköpfiges IT-Team für Praxen, Apotheken, Pflege, Kanzleien und Unternehmen. Vor Ort am Niederrhein, per Fernwartung bundesweit."
+    },
+    "team": {
+      "datei": "Team",
+      "titel": "Team",
+      "version": 26,
+      "aktiv": "ueber",
+      "stil": "arztpraxen,ueber",
+      "pfad": "/ueber-uns/team",
+      "eltern": "ueber",
+      "seoTitel": "Team: Die Menschen hinter cloudvibe in Goch | cloudvibe",
+      "beschreibung": "Lerne das Team von cloudvibe kennen: sieben Menschen in Goch, die deine IT betreuen. Fester Ansprechpartner, Fernwartung bundesweit, vor Ort am Niederrhein."
+    },
+    "referenzen": {
+      "datei": "Referenzen",
+      "titel": "Referenzen",
+      "version": 25,
+      "aktiv": "ueber",
+      "stil": "arztpraxen",
+      "pfad": "/ueber-uns/referenzen",
+      "eltern": "ueber",
+      "seoTitel": "Referenzen: Was Kunden über cloudvibe sagen | cloudvibe",
+      "beschreibung": "Kundenstimmen aus Praxen, Apotheken, Pflegeeinrichtungen, Kanzleien und Unternehmen über die IT-Betreuung von cloudvibe aus Goch am Niederrhein."
+    },
+    "karriere": {
+      "datei": "Karriere",
+      "titel": "Karriere",
+      "version": 25,
+      "aktiv": "ueber",
+      "bereich": "karriere",
+      "stil": "arztpraxen",
+      "pfad": "/ueber-uns/karriere",
+      "eltern": "ueber",
+      "seoTitel": "Karriere: Jobs und Ausbildung in der IT in Goch | cloudvibe",
+      "beschreibung": "Jobs, Ausbildung zur Fachinformatikerin oder zum Fachinformatiker und Praktikum bei cloudvibe in Goch. Bewirb dich einfach per Mail an hire@cloudvibe.de.",
+      "body": "ohneTermin"
+    },
+    "news": {
+      "datei": "News",
+      "titel": "News",
+      "version": 24,
+      "aktiv": "ueber",
+      "stil": "arztpraxen",
+      "pfad": "/news",
+      "seoTitel": "News: IT-Sicherheit, Backup, TI und DATEV | cloudvibe",
+      "beschreibung": "Kurze Beiträge von cloudvibe zu IT-Sicherheit, Datensicherung, Telematikinfrastruktur und DATEV. Für Praxen, Kanzleien und Unternehmen, verständlich erklärt."
+    },
+    "newsletter": {
+      "datei": "Newsletter",
+      "titel": "Newsletter",
+      "version": 19,
+      "aktiv": "ueber",
+      "stil": "arztpraxen,news",
+      "pfad": "/news/newsletter",
+      "eltern": "news",
+      "seoTitel": "Newsletter: IT-Sicherheit, TI und DATEV kurz erklärt | cloudvibe",
+      "beschreibung": "Der cloudvibe-Newsletter: einmal im Monat Sicherheitshinweise und Neues aus deiner Branche, kurz erklärt. Themen frei wählbar, Abmelden mit einem Klick."
+    },
+    "newsbeitrag": {
+      "datei": "News-Beitrag",
+      "titel": "Datensicherung in der Praxis",
+      "version": 24,
+      "aktiv": "ueber",
+      "stil": "arztpraxen,news",
+      "pfad": "/news/datensicherung-in-der-praxis",
+      "eltern": "news",
+      "seoTitel": "Datensicherung in der Praxis: drei Fragen | cloudvibe",
+      "beschreibung": "Ist deine Praxis-Datensicherung im Ernstfall wirklich hilfreich? Drei Fragen zu Umfang, getrennter Kopie und getesteter Wiederherstellung, kurz erklärt."
+    },
+    "kontakt": {
+      "datei": "Kontakt",
+      "titel": "Kontakt",
+      "version": 23,
+      "stil": "arztpraxen,ueber",
+      "pfad": "/kontakt",
+      "seoTitel": "Kontakt: IT-Beratung aus Goch am Niederrhein | cloudvibe",
+      "beschreibung": "Kontakt zu cloudvibe in Goch: anrufen, E-Mail schreiben, Termin vereinbaren oder als Kunde den Support erreichen. Mit Kontaktformular und Servicezeiten."
+    },
+    "recht": {
+      "datei": "Rechtliches",
+      "titel": "Impressum, Datenschutz, AGB",
+      "version": 23,
+      "pfad": "/impressum",
+      "seoTitel": "Impressum, Datenschutz und AGB | cloudvibe GmbH",
+      "beschreibung": "Impressum der cloudvibe GmbH aus Goch mit Anbieterangaben, Handelsregister und Umsatzsteuer-ID, dazu Datenschutzerklärung und Allgemeine Geschäftsbedingungen."
+    },
+    "lexikon": {
+      "datei": "Lexikon",
+      "titel": "Lexikon",
+      "version": 22,
+      "stil": "arztpraxen,news",
+      "pfad": "/lexikon",
+      "seoTitel": "IT-Lexikon: TI, Backup, Firewall und mehr erklärt | cloudvibe",
+      "beschreibung": "IT-Begriffe einfach erklärt: Telematikinfrastruktur, Konnektor, KIM, Managed Backup, Firewall, SLA, DATEV und mehr. Das Lexikon von cloudvibe aus Goch."
+    },
+    "konzepte": {
+      "datei": "Konzepte",
+      "titel": "Konzepte",
+      "version": 42,
+      "noindex": true
+    },
+    "wellen": {
+      "datei": "Wellen-Varianten",
+      "titel": "Wellen-Varianten",
+      "version": 19,
+      "noindex": true
+    },
+    "termin": {
+      "datei": "Termin",
+      "titel": "Termin vereinbaren",
+      "version": 42,
+      "pfad": "/termin",
+      "seoTitel": "Termin vereinbaren: Erstberatung und mehr | cloudvibe",
+      "beschreibung": "Buche deinen Termin bei cloudvibe aus Goch: Erstberatung, TI-Beratung, Praxis-Check, DATEV- oder SelectLine-Termin oder Rückruf. Online oder vor Ort.",
+      "body": "ohneTermin"
+    },
+    "support": {
+      "datei": "Support",
+      "titel": "Support",
+      "body": "spseite ohneTermin",
+      "version": 40,
+      "pfad": "/support",
+      "seoTitel": "Support: Ticket eröffnen und schnelle Hilfe | cloudvibe",
+      "beschreibung": "Schnelle Hilfe von cloudvibe: Ticket eröffnen, Fernwartung starten oder anrufen. Servicezeiten, Kurzanleitung fürs Team und Zugang zum Kundenportal."
+    },
+    "ticket": {
+      "datei": "Ticket",
+      "titel": "Ticket eröffnen",
+      "body": "spseite ohneTermin",
+      "version": 39,
+      "aktiv": "support",
+      "pfad": "/support/ticket",
+      "eltern": "support",
+      "seoTitel": "Ticket eröffnen: Hilfe in drei Schritten | cloudvibe",
+      "beschreibung": "Eröffne dein Support-Ticket bei cloudvibe in drei kurzen Schritten: Kontakt, Problem und Dringlichkeit. Steht der Betrieb still, ruf direkt an."
+    },
+    "login": {
+      "datei": "Login",
+      "titel": "Kundenportal",
+      "body": "spseite ohneTermin",
+      "version": 4,
+      "stil": "ticket",
+      "aktiv": "support",
+      "pfad": "/login",
+      "eltern": "support",
+      "noindex": true,
+      "seoTitel": "Login Kundenportal: Tickets und Stand im Blick | cloudvibe",
+      "beschreibung": "Melde dich im Kundenportal von cloudvibe an: offene Tickets, Antworten und Stand auf einen Blick. Ohne Zugang hilft dir der Support per Ticket oder Telefon."
+    }
+  }
+}

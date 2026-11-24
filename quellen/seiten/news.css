@@ -1,0 +1,34 @@
+
+/* ================= News: Übersicht und Beitrag ================= */
+/* Filter: ruhige Pillen in einer Zeile, auf schmalen Bildschirmen seitlich wischbar */
+.nf{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:clamp(32px,3.6vw,48px)}
+.nf button{height:42px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 14.5px 'Mozilla Text',sans-serif;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.nf button:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+.nf button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.nf-trenn{width:1px;height:24px;background:var(--edge);margin:0 6px}
+.news-alle{row-gap:28px}
+.news-alle .nk[hidden]{display:none}
+.nf-leer{margin-top:10px}
+@media(max-width:700px){
+ .nf{flex-wrap:nowrap;overflow-x:auto;margin-inline:calc(var(--gut,18px) * -1);padding:0 18px 6px;scrollbar-width:none}
+ .nf::-webkit-scrollbar{display:none}
+ .nf button{flex:none}
+}
+
+/* ---------- Beitrag ---------- */
+.artikel-hero .nk-meta{margin-bottom:22px}
+.artikel-hero h1{max-width:900px}
+.artikel-in{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:clamp(40px,6vw,96px);align-items:start}
+.artikel{max-width:720px;font-size:18px;line-height:1.7}
+.artikel>*+*{margin-top:20px}
+.artikel h2{font-size:clamp(26px,2.4vw,32px);margin-top:48px}
+.artikel h2+p{margin-top:16px}
+.artikel ul{padding-left:22px}
+.artikel li+li{margin-top:8px}
+.artikel .merke{margin-top:36px;padding:26px 28px;border-radius:22px;border:1px solid var(--edge);background:var(--bg2)}
+.artikel .merke b{display:block;font:700 15px 'Mozilla Text',sans-serif;color:var(--blue);margin-bottom:6px}
+.artikel-seite{position:sticky;top:130px;display:flex;flex-direction:column;gap:18px;padding:26px 24px;border-radius:24px}
+.artikel-seite .eb{margin:0}
+.artikel-seite p{font-size:15px;color:var(--muted)}
+.mehr-news h2{margin-bottom:clamp(32px,3.6vw,48px)}
+@media(max-width:1000px){.artikel-in{grid-template-columns:1fr}.artikel-seite{position:static}}

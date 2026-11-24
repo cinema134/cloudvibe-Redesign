@@ -1,0 +1,45 @@
+<main>
+<!-- ================= News-Übersicht: Hero ruhig, ohne Welle ================= -->
+<!-- Beiträge sind Beispiele (fiktiv, markiert). Pflege der News ist nicht Teil dieses Projekts (später Odoo-Blog). Filter: ?kat=hc|kanzlei|unternehmen|sicherheit|backup|ti -->
+<section class="uhero" id="top">
+ <div class="wrap uhero-in">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span>News</nav>
+  <h1>Das Wichtigste aus der IT, <b>kurz erklärt</b>.</h1>
+  <p class="lead">Kurze Beiträge zu Sicherheit, Datensicherung, Telematikinfrastruktur und DATEV. Für Praxen, Kanzleien und Unternehmen, ohne Fachchinesisch.</p>
+ </div>
+</section>
+
+<!-- ================= Filter und Beiträge ================= -->
+<section class="ab news-ab" id="beitraege">
+ <div class="wrap">
+  <div class="nf" role="group" aria-label="Beiträge filtern">
+   <button type="button" data-kat="alle" class="on">Alle</button>
+   <button type="button" data-kat="hc">{{HC}}</button>
+   <button type="button" data-kat="kanzlei">Kanzleien</button>
+   <button type="button" data-kat="unternehmen">Unternehmen</button>
+   <span class="nf-trenn" aria-hidden="true"></span>
+   <button type="button" data-kat="sicherheit">IT-Sicherheit</button>
+   <button type="button" data-kat="backup">Datensicherung</button>
+   <button type="button" data-kat="ti">Telematikinfrastruktur</button>
+  </div>
+  <div class="news-reihe news-alle">
+   <a class="nk" href="{{LINK:newsbeitrag}}" data-kat="hc backup"><div class="nk-bild"></div><div class="nk-txt"><div class="nk-meta"><span>{{HC}}</span><span>12. November 2026</span><em class="st-bsp">Beispiel</em></div><h3>Datensicherung in der Praxis: drei Fragen, die du dir stellen solltest</h3><p>Wann hast du zuletzt geprüft, ob sich deine Sicherung auch wirklich zurückspielen lässt?</p></div></a>
+   <a class="nk" href="{{LINK:newsbeitrag}}" data-kat="kanzlei sicherheit"><div class="nk-bild"></div><div class="nk-txt"><div class="nk-meta"><span>Kanzleien</span><span>5. November 2026</span><em class="st-bsp">Beispiel</em></div><h3>DATEV von unterwegs: sicher arbeiten außerhalb der Kanzlei</h3><p>Worauf es beim Zugriff von zu Hause oder beim Mandanten ankommt.</p></div></a>
+   <a class="nk" href="{{LINK:newsbeitrag}}" data-kat="unternehmen"><div class="nk-bild"></div><div class="nk-txt"><div class="nk-meta"><span>Unternehmen</span><span>29. Oktober 2026</span><em class="st-bsp">Beispiel</em></div><h3>Das Team wächst: IT mitdenken statt nachrüsten</h3><p>Neue Arbeitsplätze, mehr Daten, mehr Zugänge. So bleibt die Technik einen Schritt voraus.</p></div></a>
+   <a class="nk" href="{{LINK:newsbeitrag}}" data-kat="hc kanzlei unternehmen sicherheit"><div class="nk-bild"></div><div class="nk-txt"><div class="nk-meta"><span>IT-Sicherheit</span><span>22. Oktober 2026</span><em class="st-bsp">Beispiel</em></div><h3>Phishing erkennen: woran gefälschte E-Mails sich verraten</h3><p>Absender, Links, Zeitdruck: die typischen Zeichen, die dein Team kennen sollte.</p></div></a>
+   <a class="nk" href="{{LINK:newsbeitrag}}" data-kat="hc ti"><div class="nk-bild"></div><div class="nk-txt"><div class="nk-meta"><span>Telematikinfrastruktur</span><span>15. Oktober 2026</span><em class="st-bsp">Beispiel</em></div><h3>Konnektor oder TI-Gateway: was der Unterschied im Alltag bedeutet</h3><p>Zwei Wege in die TI, einfach erklärt, und woran du erkennst, welcher zu dir passt.</p></div></a>
+   <a class="nk" href="{{LINK:newsbeitrag}}" data-kat="unternehmen kanzlei"><div class="nk-bild"></div><div class="nk-txt"><div class="nk-meta"><span>Microsoft 365</span><span>8. Oktober 2026</span><em class="st-bsp">Beispiel</em></div><h3>Copilot im Betrieb: erst aufräumen, dann einschalten</h3><p>Warum Freigaben und Berechtigungen vor dem Start wichtiger sind als jede Einstellung.</p></div></a>
+  </div>
+  <p class="nf-leer leise" hidden>Zu diesem Thema gibt es gerade keine Beiträge.</p>
+ </div>
+</section>
+
+<!-- ================= Newsletter-Anmeldung (Baustein) ================= -->
+<section class="ab alt" id="newsletter">
+ <div class="wrap">
+  <!--@newsletter-->
+ </div>
+</section>
+
+<!-- Kein Kontaktformular (Leon 24.11.2026): Formular nur, wo jemand konkret Hilfe sucht -->
+</main>

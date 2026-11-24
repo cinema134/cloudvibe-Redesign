@@ -1,0 +1,207 @@
+
+/* ================= Support (/support) ================= */
+main [hidden]{display:none!important}
+@keyframes spRein{from{opacity:0;transform:translateY(6px)}}
+.sp-ic{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;flex:none;background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blue)}
+.sp-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Hero: Notfall-Zeile und Servicezeiten ---------- */
+.sp-hero .lead{max-width:640px}
+.sp-not{display:flex;align-items:center;gap:18px;max-width:720px;margin-top:40px;padding:16px 16px 16px 20px;border-radius:100px}
+.sp-not-ic{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;flex:none;background:var(--gbg);color:var(--gt)}
+.sp-not-t{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.sp-not-t b{font:700 17px/1.3 Comfortaa,sans-serif}
+.sp-not-t span{font-size:15.5px;color:var(--muted)}
+.sp-not-t a{font-weight:700;color:var(--text);white-space:nowrap}
+.sp-not-t a:hover{color:var(--blue)}
+.sp-not .btn{flex:none}
+.sp-zeiten{display:flex;align-items:center;gap:10px;margin-top:18px;padding-left:22px;font-size:15px;color:var(--muted)}
+.sp-zeiten svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Drei Wege: ein Milchglas-Feld, Spalten durch Haarlinien getrennt ---------- */
+.sp-wege{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
+.sp-weg{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,3vw,42px)}
+.sp-weg+.sp-weg{border-left:1px solid var(--edge)}
+.sp-weg-haupt{background:color-mix(in srgb,var(--blue) 4%,transparent)}
+.sp-weg-haupt:before{content:"";position:absolute;left:clamp(28px,3vw,42px);top:0;width:38px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2EB329,#2D6CDF)}
+.sp-weg .sp-ic{margin-bottom:22px}
+.sp-hin{font:700 13px Comfortaa,sans-serif;color:var(--muted);margin-bottom:8px}
+.sp-weg-haupt .sp-hin{color:var(--blue)}
+.sp-weg h3{font-size:clamp(21px,1.7vw,24px);margin-bottom:10px}
+.sp-weg p{font-size:15.5px;line-height:1.6;color:var(--muted);margin-bottom:26px;flex:1}
+.sp-weg .link{overflow-wrap:anywhere}
+
+/* ---------- Geführtes Ticket (aus Konzepte übernommen, Präfix tk-) ---------- */
+.tk{display:grid;grid-template-columns:minmax(0,270px) minmax(0,1fr);gap:clamp(28px,4.5vw,72px);padding:clamp(24px,4vw,52px);border-radius:34px;scroll-margin-top:110px}
+.sp-ticket{scroll-margin-top:40px}
+.tk-seite{display:flex;flex-direction:column;gap:28px}
+.tk-schritte{list-style:none;display:grid;gap:0;border-top:1px solid var(--edge)}
+.tk-schritte li{display:flex;flex-direction:column;gap:8px;padding:16px 0;border-bottom:1px solid var(--edge);color:var(--muted);transition:color .2s}
+.tk-schritte li b{font:700 16px Comfortaa,sans-serif}
+.tk-nr{display:inline-flex;align-items:center;gap:12px;font:700 15px/1 Comfortaa,sans-serif;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--muted)}
+.tk-nr:after{content:"";width:38px;height:2px;border-radius:2px;background:var(--edge);transition:background .2s}
+.tk-schritte li.on{color:var(--text)}
+.tk-schritte li.on .tk-nr{color:var(--blue)}
+.tk-schritte li.on .tk-nr:after{background:linear-gradient(90deg,#2EB329,#2D6CDF)}
+.tk-schritte li.fertig .tk-nr{color:var(--gt)}
+.tk-schritte li.fertig .tk-nr:after{background:var(--gt);opacity:.5}
+.tk-notfall{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:20px;background:var(--gbg);color:var(--gt)}
+.tk-notfall svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tk-notfall b{display:block;font-size:13.5px;margin-bottom:1px}
+.tk-notfall a{font-weight:700;font-size:15.5px;color:var(--text);white-space:nowrap}
+.tk-form{min-width:0}
+.tk-form fieldset{border:0;min-width:0;margin:0;padding:0;animation:spRein .3s ease}
+.tk-form legend{font:700 clamp(20px,1.8vw,24px) Comfortaa,sans-serif;margin-bottom:22px;padding:0}
+.tk-gitter{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tk-gitter .voll{grid-column:1/-1}
+.tk-pf{color:var(--blue);font-weight:700}
+.tk-pfl{font-size:13.5px;color:var(--muted)}
+.tk-tipp{font-size:13px;color:var(--muted);line-height:1.4}
+.tk-fm{display:none;font-size:13px;font-weight:700;color:#B8402A}
+body.dark .tk-fm{color:#FF8D76}
+.fehlt>.tk-fm,.tk-fm.an{display:block}
+.feld.fehlt input,.feld.fehlt textarea,.feld.fehlt select{border-color:#C9543C}
+.fehlt .tk-chip>span,.fehlt .tk-opt{border-color:color-mix(in srgb,#C9543C 60%,transparent)}
+.feld input::placeholder,.feld textarea::placeholder{color:color-mix(in srgb,var(--muted) 70%,transparent)}
+.tk-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tk-chip{position:relative;display:inline-flex}
+.tk-chip input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
+.tk-chip>span{display:inline-flex;align-items:center;padding:9px 16px;border-radius:100px;border:1px solid var(--edge);background:var(--bg);font-size:15px;font-weight:700;color:var(--muted);transition:border-color .2s,color .2s,background .2s}
+.tk-chip:hover>span{color:var(--text)}
+.tk-chip input:checked+span{border-color:var(--blue);color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--bg))}
+.tk-chip input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.tk-gruppe{margin-bottom:22px}
+.tk-gruppe>label{margin-bottom:4px}
+.tk-dr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.feld .tk-opt{font:400 15px/1.4 'Mozilla Text',sans-serif;letter-spacing:0;color:var(--text)}
+.tk-opt{position:relative;display:block;padding:14px 16px;border-radius:18px;border:1px solid var(--edge);background:var(--bg);cursor:pointer;transition:border-color .2s,background .2s}
+.tk-opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.tk-opt b{display:block;font-size:15px;margin-bottom:2px}
+.tk-opt small{display:block;font-size:13px;line-height:1.4;color:var(--muted)}
+.tk-opt:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent)}
+.tk-opt:has(input:checked){border-color:var(--blue);background:color-mix(in srgb,var(--blue) 6%,var(--bg))}
+.tk-opt:has(input:checked) b{color:var(--blue)}
+.tk-opt:has(input:focus-visible){outline:2px solid var(--blue);outline-offset:2px}
+.tk-alarm{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;margin-top:12px;padding:14px 14px 14px 20px;border-radius:20px;background:var(--bg2);border:1px solid var(--edge);font-size:15px;animation:spRein .3s ease}
+.sp-ticket .tk-alarm{background:var(--bg)}
+.tk-alarm span{flex:1 1 260px}
+.tk-alarm .btn{padding:12px 20px;font-size:15px}
+.tk-datei{position:relative;display:flex!important;align-items:center;gap:12px;padding:15px 18px;border:1px dashed color-mix(in srgb,var(--text) 24%,transparent);border-radius:16px;cursor:pointer;font:700 15px 'Mozilla Text',sans-serif!important;color:var(--muted)!important;letter-spacing:0!important;transition:border-color .2s,color .2s}
+.tk-datei:hover{border-color:var(--blue);color:var(--blue)!important}
+.tk-datei svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tk-datei input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.tk-datei-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tk-akt{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:28px}
+.tk-akt .btn.leise-btn{padding:14px 24px}
+.tk-zus{border-top:1px solid var(--edge);margin-bottom:22px}
+.tk-zus>div{display:grid;grid-template-columns:170px minmax(0,1fr);gap:2px 20px;padding:11px 0;border-bottom:1px solid var(--edge);font-size:15.5px}
+.tk-zus .k{color:var(--muted);font-weight:700;font-size:14px}
+.tk-zus .v{white-space:pre-wrap;overflow-wrap:anywhere}
+.tk-zus .v.leer{color:var(--muted);font-style:italic}
+.tk-ds-fm{margin-top:6px}
+.tk-danke{padding:10px 0;outline:none;animation:spRein .35s ease}
+.tk-haken{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--gbg);color:var(--gt);margin-bottom:20px}
+.tk-haken svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.tk-mt{font:300 clamp(24px,2.2vw,30px)/1.2 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:20px}
+.tk-mt b{font-weight:700;color:var(--blue)}
+.tk-nummer{display:inline-flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:14px 20px;border-radius:18px;background:color-mix(in srgb,var(--blue) 6%,transparent);margin-bottom:18px}
+.tk-nummer span{font-size:14px;color:var(--muted)}
+.tk-nummer b{font:700 20px Comfortaa,sans-serif;letter-spacing:.04em;color:var(--text);font-variant-numeric:tabular-nums}
+.tk-ml{font-size:15.5px;line-height:1.6;color:var(--muted);max-width:560px;margin-bottom:24px}
+.tk-vorschau{grid-column:1/-1;padding-top:14px;border-top:1px dashed var(--edge);font-size:12.5px;line-height:1.5;color:var(--muted);opacity:.85}
+
+/* ---------- Was ein gutes Ticket enthält ---------- */
+.sp-gut-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.sp-gut-kopf .leise{margin-top:22px;max-width:360px}
+.sp-gut-liste{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,4vw,56px);border-top:1px solid var(--edge)}
+.sp-p{padding:24px 0;border-bottom:1px solid var(--edge)}
+.sp-p h3{font-size:clamp(18px,1.45vw,20px);margin-bottom:8px}
+.sp-p p{font-size:15.5px;line-height:1.6;color:var(--muted)}
+.sp-pdf{display:flex;align-items:center;gap:20px;margin-top:clamp(48px,5vw,72px);padding:20px 20px 20px 24px;border-radius:30px}
+.sp-pdf-t{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+.sp-pdf-t b{font:700 17px/1.3 Comfortaa,sans-serif}
+.sp-pdf-t span{font-size:15px;line-height:1.5;color:var(--muted)}
+.sp-pdf .btn{flex:none}
+.sp-dl{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Kundenportal ---------- */
+.sp-portal-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.sp-portal-t .lead{margin:24px 0 14px;max-width:520px}
+.sp-portal-t .leise{max-width:480px}
+.sp-portal-t .btns{margin-top:32px}
+.sp-portal-bild{padding:10px 26px 14px;border-radius:30px;font-size:14.5px}
+.pb-kopf{display:flex;justify-content:space-between;align-items:center;padding:16px 0 14px;font:700 16px Comfortaa,sans-serif}
+.pb-kopf i{width:34px;height:34px;border-radius:50%;background:color-mix(in srgb,var(--blue) 12%,transparent)}
+.pb-z{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:15px 0;border-top:1px solid var(--edge)}
+.pb-n{font:700 13px Comfortaa,sans-serif;color:var(--muted);font-variant-numeric:tabular-nums}
+.pb-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pb-s{font-weight:700;font-size:12.5px;padding:4px 10px;border-radius:100px;white-space:nowrap}
+.pb-neu{color:var(--blue);background:color-mix(in srgb,var(--blue) 9%,transparent)}
+.pb-lauf{color:var(--muted);border:1px solid var(--edge)}
+.pb-ok{color:var(--gt);background:var(--gbg)}
+
+/* ---------- FAQ und Schlusszeile ---------- */
+.faq-a .link-t{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.sp-neu{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:clamp(56px,6vw,88px);padding-top:28px;border-top:1px solid var(--edge);font-size:16px;color:var(--muted)}
+
+/* ---------- Breiten ---------- */
+@media(max-width:1100px){
+ .sp-wege{grid-template-columns:1fr}
+ .sp-weg+.sp-weg{border-left:0;border-top:1px solid var(--edge)}
+ .sp-weg{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:22px}
+ .sp-weg>*{grid-column:2}
+ .sp-weg .sp-ic{grid-column:1;grid-row:1/5;margin:0}
+ .sp-weg p{max-width:620px}
+ .sp-weg .btn,.sp-weg .link{justify-self:start}
+ .sp-gut-liste{grid-template-columns:1fr}
+}
+@media(max-width:1000px){
+ .tk{grid-template-columns:minmax(0,1fr)}
+ .tk-seite{gap:20px}
+ .tk-schritte{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 18px}
+ .tk-schritte li{padding:12px 0}
+ .tk-schritte li b{font-size:14.5px}
+ .sp-gut-in,.sp-portal-in{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+ .tk-dr{grid-template-columns:minmax(0,1fr)}
+ .sp-not{flex-wrap:wrap;border-radius:26px;padding:18px}
+ .sp-not .btn{width:100%}
+ .sp-zeiten{padding-left:4px;align-items:flex-start}
+ .sp-zeiten svg{margin-top:2px}
+ .sp-pdf{flex-wrap:wrap;border-radius:26px}
+ .sp-pdf .btn{width:100%}
+}
+@media(max-width:560px){
+ .tk{padding:22px 18px;border-radius:26px}
+ .tk-gitter{grid-template-columns:minmax(0,1fr)}
+ .tk-schritte li b{font-size:13px;line-height:1.3}
+ .tk-nr:after{width:20px}
+ .tk-zus>div{grid-template-columns:minmax(0,1fr)}
+ .tk-akt .btn{flex:1 1 auto}
+ .sp-weg{grid-template-columns:minmax(0,1fr);padding:26px 22px}
+ .sp-weg>*,.sp-weg .sp-ic{grid-column:1;grid-row:auto}
+ .sp-weg .sp-ic{margin-bottom:18px}
+ .sp-weg .btn{width:100%}
+ .sp-portal-bild{padding:6px 18px 10px}
+ .pb-z{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
+ .pb-n{grid-column:1/-1}
+ .sp-portal-t .btns .btn{width:100%}
+}
+
+/* ================= Ticketseite (eigene Seite): Hero schmal, Formular direkt im ersten Bild ================= */
+.tk-hero{padding-bottom:clamp(20px,3vw,40px)}
+.tk-hero h1{font-size:clamp(36px,4vw,56px)}
+.tk-hero .lead{max-width:640px}
+.tk-ab{padding-top:clamp(12px,2vw,28px)}
+.tk-fw{margin-top:12px}
+
+/* Schrittleiste ohne Striche neben den Zahlen (Leon 23.11.2026) */
+.tk-nr:after{display:none}
+/* Zahl direkt neben dem Schritt-Titel (Leon 23.11.2026) */
+.tk-schritte li{flex-direction:row;align-items:baseline;gap:12px}
+.tk-nr{flex:none;min-width:22px}
+@media(max-width:700px){.tk-schritte li{flex-direction:column;gap:6px}}
+/* Ohne obere Linie über dem ersten Schritt (Leon 23.11.2026) */
+.tk-schritte{border-top:0}
+.tk-schritte li:first-child{padding-top:4px}

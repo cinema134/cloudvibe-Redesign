@@ -1,0 +1,67 @@
+<header class="kopf" id="kopf">
+ <a class="lgOut" href="{{LINK:startseite}}" aria-label="cloudvibe Startseite"><img class="lg" src="{{LOGO}}" alt="cloudvibe, Your IT. Our business."></a>
+ <div class="w">
+  <a class="logo" href="{{LINK:startseite}}" aria-label="cloudvibe Startseite"><img class="lg" src="{{LOGO}}" alt="cloudvibe, Your IT. Our business."></a>
+  <!-- Neue Leiste (Leon 23.11.2026): 5 Menüpunkte mit Dropdowns, rechts Support-Menü und Termin-Button -->
+  <nav class="nav-neu" aria-label="Hauptmenü">
+   <div class="dd">
+    <a href="{{LINK:gesundheitswesen}}"{{ON:gesundheitswesen}} aria-haspopup="true">{{HC}}{{CHEV}}</a>
+    <div class="dd-m dd-2">
+     <a href="{{LINK:gesundheitswesen}}"><b>Übersicht</b><small>Alles für Praxen, Apotheken und Pflege</small></a>
+     <a href="{{LINK:arztpraxen}}"><b>Arztpraxen</b><small>Arzt- und Zahnarztpraxen</small></a>
+     <a href="{{LINK:apotheken}}"><b>Apotheken</b><small>IT und TI im Apothekenalltag</small></a>
+     <a href="{{LINK:pflege}}"><b>Pflegeeinrichtungen</b><small>IT, die die Pflege nicht stört</small></a>
+     <a href="{{LINK:ti}}"><b>Telematikinfrastruktur</b><small>Anbindung und Betrieb mit Telekonnekt</small></a>
+     <a href="{{LINK:praxischeck}}"><b>Praxis-Check IT-Sicherheit</b><small>Unverbindlicher erster Schritt</small></a>
+    </div>
+   </div>
+   <a href="{{LINK:kanzleien}}"{{ON:kanzleien}}>Kanzleien</a>
+   <!-- Unternehmen ohne Dropdown (Leon 24.11.2026): DATEV und SelectLine stehen unter Leistungen, weil DATEV Kanzleien und Unternehmen betrifft -->
+   <a href="{{LINK:unternehmen}}"{{ON:unternehmen}}>Unternehmen</a>
+   <div class="dd">
+    <a href="{{LINK:managed}}"{{ON:managed}} aria-haspopup="true">Leistungen{{CHEV}}</a>
+    <div class="dd-m">
+     <a href="{{LINK:managed}}"><b>Managed Services</b><small>Backup, Infrastruktur, Hardware, Security</small></a>
+     <a href="{{LINK:ki}}"><b>KI sicher nutzen</b><small>Regeln, Einrichtung und Schulung</small></a>
+     <a href="{{LINK:datev}}"><b>DATEV</b><small>Für Kanzleien und Unternehmen</small></a>
+     <a href="{{LINK:selectline}}"><b>SelectLine</b><small>Warenwirtschaft und Rechnungswesen</small></a>
+    </div>
+   </div>
+   <div class="dd">
+    <a href="{{LINK:ueber}}"{{ON:ueber}} aria-haspopup="true">Über uns{{CHEV}}</a>
+    <div class="dd-m">
+     <a href="{{LINK:ueber}}"><b>Übersicht</b><small>Wer wir sind und wie wir arbeiten</small></a>
+     <a href="{{LINK:team}}"><b>Team</b><small>Die Menschen hinter cloudvibe</small></a>
+     <a href="{{LINK:referenzen}}"><b>Referenzen</b><small>Was Kundinnen und Kunden sagen</small></a>
+     <a href="{{LINK:karriere}}"><b>Karriere</b><small>Jobs und Ausbildung in Goch</small></a>
+     <a href="{{LINK:news}}"><b>News</b><small>Das Wichtigste aus der IT</small></a>
+    </div>
+   </div>
+  </nav>
+  <div class="kopf-r nav-neu">
+   <div class="dd dd-rechts">
+    <button type="button" class="sup" aria-haspopup="true" aria-label="Support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-2"/></svg><span>Support</span>{{CHEV}}</button>
+    <div class="dd-m dd-sup">
+     <!-- Fernwartung als erster, hervorgehobener Punkt (Leon 23.11.2026, Variante A); lädt direkt die QuickSupport-.exe, keine eigene Seite (Leon 24.11.2026) -->
+     <a class="dd-haupt" {{FW}}><b>Fernwartung starten</b><small>QuickSupport herunterladen und ID nennen</small></a>
+     <a href="{{LINK:ticket}}"><b>Ticket eröffnen</b><small>Geführt, damit wir sofort loslegen können</small></a>
+     <a href="tel:{{SUPPORT_TEL}}"><b>Anrufen</b><small>{{SUPPORT}}</small></a>
+     <a href="#"><b>Kurzanleitung fürs Team</b><small>PDF zum Ausdrucken</small></a>
+     <a href="{{LINK:login}}"><b>Kundenportal</b><small>Login und Stand deiner Tickets</small></a>
+    </div>
+   </div>
+   <!-- Hauptbutton auf allen Seiten "Termin vereinbaren" (unter 1420 px nur "Termin"); Fernwartung steht im Support-Menü -->
+   <a class="cta cta-termin" href="{{LINK:termin}}">Termin<span class="tv"> vereinbaren</span></a>
+  </div>
+  <!-- Bisherige Leiste (Vergleich, Umschalter "Kopfleiste") -->
+  <nav class="nav-alt" aria-label="Hauptmenü (bisher)">
+   <a href="{{LINK:gesundheitswesen}}"{{ON:gesundheitswesen}}>{{HC}}{{CHEV}}</a>
+   <a href="{{LINK:kanzleien}}"{{ON:kanzleien}}>Kanzleien</a>
+   <a href="{{LINK:unternehmen}}"{{ON:unternehmen}}>Unternehmen</a>
+   <a href="{{LINK:managed}}">Managed Services</a>
+   <a href="#">News</a>
+   <a href="{{LINK:ueber}}">Über uns{{CHEV}}</a>
+  </nav>
+  <a class="cta nav-alt" {{FW}}>Fernwartung</a>
+ </div>
+</header>

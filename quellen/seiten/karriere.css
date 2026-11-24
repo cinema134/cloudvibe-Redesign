@@ -1,0 +1,49 @@
+
+/* ================= Karriere (Konzept 7, Vorlage Arztpraxen) ================= */
+/* Stellenliste: ruhige Zeilen mit grauen Linien, kein Kartenraster */
+.kr-stellen{border-top:1px solid var(--edge)}
+.kr-stellen a{display:flex;align-items:center;gap:20px;padding:26px 4px;border-bottom:1px solid var(--edge);color:var(--text);transition:background .2s,padding .25s}
+.kr-stellen a:hover{background:color-mix(in srgb,var(--blue) 5%,transparent);padding-left:14px}
+.kr-st{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.kr-st b{font:700 clamp(18px,1.6vw,21px)/1.3 Comfortaa,sans-serif;transition:color .2s}
+.kr-stellen a:hover .kr-st b{color:var(--blue)}
+.kr-st small{font-size:14.5px;color:var(--muted)}
+.kr-stellen .pf{width:20px;height:20px;flex:none;stroke:var(--blue)}
+
+.kr-leer{padding:26px 4px;border-bottom:1px solid var(--edge);color:var(--muted)}
+
+/* Detailansicht je Stelle ("Unterseite", später eigene URL aus Odoo) */
+.stelle-ansicht{display:none}
+body.stelle-an main{display:none}
+body.stelle-an .stelle-ansicht{display:block}
+.stelle-hero .st-bsp{display:inline-block;margin-bottom:14px}
+.stelle-meta{font:700 15px 'Mozilla Text',sans-serif;color:var(--muted);margin:14px 0 18px}
+.stelle-raster{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px)}
+.stelle-raster h2{margin-bottom:26px}
+.stelle-l{list-style:none;border-top:1px solid var(--edge)}
+.stelle-l li{padding:15px 0;border-bottom:1px solid var(--edge);line-height:1.5}
+.stelle-bew-in{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.stelle-bew-in h2{margin-bottom:14px}
+@media(max-width:800px){.stelle-raster{grid-template-columns:1fr}.stelle-bew-in{flex-direction:column;align-items:flex-start}}
+
+/* Einstellungen: Stellenanzeigen */
+.stg-hin{font-size:12.5px;line-height:1.45;color:var(--muted);margin:-2px 0 10px}
+.stg-stelle{border:1px solid var(--edge);border-radius:12px;margin-bottom:8px;padding:0 12px}
+.stg-stelle summary{cursor:pointer;padding:10px 0;font-weight:700;font-size:13.5px;line-height:1.35}
+.stg-stelle label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);margin-bottom:8px}
+.stg-stelle input:not([type=checkbox]),.stg-stelle textarea{width:100%;font-size:13px;padding:7px 9px;border-radius:8px;border:1px solid var(--edge);background:var(--bg);color:var(--text);resize:vertical}
+.stg-stelle .stg-ck{flex-direction:row;align-items:center;gap:8px}
+.stg-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stg-st-knoepfe{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.stg-st-knoepfe button{font-size:12.5px;padding:7px 12px;border-radius:100px;border:1px solid var(--edge);background:transparent;cursor:pointer}
+.stg-st-knoepfe button.prim{background:var(--blue);border-color:var(--blue);color:#fff}
+.stg-st-knoepfe button:disabled{opacity:.4;cursor:default}
+
+/* Fragen vorab: ein Milchglas-Feld mit Mail-Button */
+.kr-kontakt{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:clamp(32px,4.4vw,60px)}
+.kr-kontakt h2{margin-bottom:16px}
+@media(max-width:700px){
+ .kr-kontakt{flex-direction:column;align-items:flex-start}
+ .kr-stellen a{flex-wrap:wrap;gap:10px 16px}
+ .kr-st{flex-basis:100%}
+}

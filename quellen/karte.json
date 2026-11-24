@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "stand": "24.11.2026",
+  "start": {
+    "id": "startseite",
+    "t": "Startseite"
+  },
+  "hauptmenue": [
+    {
+      "id": "gesundheitswesen",
+      "t": "{{BEGRIFF}}",
+      "kids": [
+        {
+          "id": "arztpraxen",
+          "t": "Arztpraxen"
+        },
+        {
+          "id": "apotheken",
+          "t": "Apotheken"
+        },
+        {
+          "id": "pflege",
+          "t": "Pflegeeinrichtungen"
+        },
+        {
+          "id": "ti",
+          "t": "Telematikinfrastruktur"
+        },
+        {
+          "id": "praxischeck",
+          "t": "Praxis-Check IT-Sicherheit"
+        }
+      ]
+    },
+    {
+      "id": "kanzleien",
+      "t": "Kanzleien",
+      "kids": []
+    },
+    {
+      "id": "unternehmen",
+      "t": "Unternehmen",
+      "kids": []
+    },
+    {
+      "id": "managed",
+      "t": "Managed Services",
+      "kids": [
+        {
+          "id": "ki",
+          "t": "KI sicher nutzen"
+        },
+        {
+          "id": "datev",
+          "t": "DATEV"
+        },
+        {
+          "id": "selectline",
+          "t": "SelectLine"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "t": "News",
+      "kids": [
+        {
+          "id": "newsbeitrag",
+          "t": "Beitragsseite"
+        },
+        {
+          "id": "newsletter",
+          "t": "Newsletter"
+        }
+      ]
+    },
+    {
+      "id": "ueber",
+      "t": "Über uns",
+      "kids": [
+        {
+          "id": "team",
+          "t": "Team"
+        },
+        {
+          "id": "referenzen",
+          "t": "Referenzen"
+        },
+        {
+          "id": "karriere",
+          "t": "Karriere"
+        }
+      ]
+    }
+  ],
+  "footer": [
+    {
+      "id": "support",
+      "t": "Support"
+    },
+    {
+      "id": "ticket",
+      "t": "Ticket eröffnen"
+    },
+    {
+      "id": "termin",
+      "t": "Termin vereinbaren"
+    },
+    {
+      "id": "kontakt",
+      "t": "Kontakt"
+    },
+    {
+      "id": "login",
+      "t": "Login Kundenportal"
+    },
+    {
+      "id": "lexikon",
+      "t": "Lexikon"
+    },
+    {
+      "id": "recht",
+      "t": "Impressum, Datenschutz, AGB"
+    }
+  ],
+  "offen": [
+    [
+      "Begriff",
+      "Gesundheitswesen oder Healthcare",
+      "startseite"
+    ],
+    [
+      "Social Media",
+      "Profil-Links und aktiv gepflegte Kanäle",
+      null
+    ]
+  ]
+}

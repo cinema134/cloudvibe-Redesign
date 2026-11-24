@@ -1,0 +1,12 @@
+
+/* ================= DATEV (Vorlagen Arztpraxen + Unternehmen) ================= */
+/* Hero ohne Anlass-Spalte: wie Unternehmen-Hero, aber einspaltig */
+.un-hero .uhero-in{display:block}
+
+/* FAQ je Kundengruppe */
+.faq-wahl{margin:0 0 6px;padding-bottom:18px}
+
+.faq-wahl{display:flex;flex-wrap:wrap;gap:10px;padding:22px 0 18px}
+.faq-wahl button{height:42px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:transparent;color:var(--text);font:700 14.5px 'Mozilla Text',sans-serif;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.faq-wahl button:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+.faq-wahl button.on{background:var(--blue);border-color:var(--blue);color:#fff}

@@ -1,0 +1,699 @@
+
+/* ================= cloudvibe Mockup-Basis =================
+   Werte aus cloudvibe_Hero_v07.html. Hell ist Standard, Dunkel nur per Schalter (body.dark). */
+:root{
+ --bg:#fff;--bg2:#F4F7FC;--bg3:#E6EDF8;
+ --text:#14171C;--muted:#4F5663;--line:#E3E8F0;
+ --blue:#2D6CDF;--gt:#1E8A1A;--accent:#2EB329;
+ --sh:0 36px 80px -46px rgba(20,30,60,.30);
+ --sh2:0 18px 44px -26px rgba(20,30,60,.40);
+ --hi:inset 0 1px 0 rgba(255,255,255,.7);
+ --phbg:#FFF4E0;--phtx:#8A5A00;--phln:#E9B860;
+ /* Logo frei links: EIN Wert für alle Seiten, Maßstab ist die Startseite (Leon, 20.11.2026: 90 px hoch, 70 px Abstand) */
+ --lgh:90px;--lga:70px;
+ --gut:28px;
+}
+body.dark{
+ --bg:#0B0D10;--bg2:#121A27;--bg3:#142033;
+ --text:#fff;--muted:#AEB5C2;--line:#252A33;--gt:#4BD545;
+ --sh:0 36px 80px -40px rgba(0,0,0,.85);
+ --sh2:0 18px 44px -24px rgba(0,0,0,.8);
+ --hi:inset 0 1px 0 rgba(255,255,255,.06);
+ --phbg:#2A2110;--phtx:#F2C66D;--phln:#7A5A20;
+}
+/* abgeleitete Werte am body berechnen, damit sie im Dunkelmodus mitgehen */
+body{--gbg:color-mix(in srgb,var(--accent) 14%,var(--bg));--edge:color-mix(in srgb,var(--text) 9%,transparent);--glass:color-mix(in srgb,var(--bg) 72%,transparent)}
+body.dark{--gbg:color-mix(in srgb,var(--accent) 22%,var(--bg));--edge:color-mix(in srgb,var(--text) 11%,transparent)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{font:400 17px/1.6 'Mozilla Text',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .5s,color .5s;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1240px;width:calc(100% - var(--gut)*2);margin:0 auto}
+
+/* ---------- Typografie ---------- */
+h1,h2,h3,h4{font-family:Comfortaa,'Mozilla Text',sans-serif;font-weight:300;letter-spacing:-.02em}
+h1{font-size:clamp(38px,4.5vw,66px);line-height:1.07}
+h2{font-size:clamp(30px,3.3vw,48px);line-height:1.12}
+h1 b,h2 b{font-weight:700;color:var(--blue)}
+h3{font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.eb{font:700 13px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:14px;align-items:center;margin-bottom:24px}
+.eb:before{content:"";width:40px;height:1.5px;background:var(--text);flex:none}
+.lead{font-size:19px;line-height:1.55;color:var(--muted)}
+.leise{font-size:15px;line-height:1.55;color:var(--muted)}
+
+/* Bereichsfarbe Gesundheitswesen (für Details wie Eyebrow) */
+body.hcseite{--a1:#4E9E62;--a2:#3C9893}
+body.dark.hcseite{--a1:#6CC284;--a2:#5BB8B2}
+
+/* ---------- Eyebrow (entschieden 20.11.2026, Entwurf 3): leise Schrift ohne Zierelement ----------
+   Comfortaa in normaler Schreibung, in der Bereichsfarbe. Nur dort einsetzen, wo sie einordnet. */
+.eb{font:700 15px Comfortaa,sans-serif;letter-spacing:.01em;text-transform:none;color:var(--a1,var(--blue))}
+.eb:before,.eb:after{display:none}
+.tile .eb{font-size:15px}
+/* Sichtbarer Platzhalter für fehlende Inhalte */
+.ph{display:inline;font:700 .82em/1.5 'Mozilla Text',sans-serif;letter-spacing:0;color:var(--phtx);background:var(--phbg);border:1px dashed var(--phln);border-radius:7px;padding:1px 7px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* ---------- Buttons und Links ---------- */
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:100px;padding:16px 30px;font:700 16px 'Mozilla Text',sans-serif;background:var(--blue);color:#fff;border:0;cursor:pointer;transition:transform .2s,box-shadow .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px);box-shadow:0 16px 30px -16px rgba(45,108,223,.75)}
+.btn.zw{background:var(--gbg);color:var(--gt)}
+.btn.zw:hover{box-shadow:0 16px 30px -18px rgba(46,179,41,.6)}
+/* ---------- Hero-Buttons (Leon 23.11.2026): Umschalter "Hero-Buttons" Bisher / Reduziert (Standard, body.hbR; ?herobtn=bisher)
+   Reduziert: Buttons nur, wenn sie etwas Eigenes bieten; "Anrufen" als leise Telefonzeile; Grün nur noch für Anrufen ---------- */
+body.hbR .nur-alt{display:none!important}
+body:not(.hbR) .nur-neu{display:none!important}
+.tel-zeile{margin-top:26px;font-size:16px;color:var(--muted)}
+.uhero .btns+.tel-zeile,.uhero .btns.nur-alt+.btns+.tel-zeile{margin-top:22px}
+.tel-zeile a:not(.link){font-weight:700;color:var(--text);white-space:nowrap;transition:color .2s}
+.tel-zeile a:not(.link):hover{color:var(--blue)}
+body.hbR .btn.zw:not(.call){background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--edge)}
+body.hbR .btn.zw:not(.call):hover{color:var(--blue);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--blue) 45%,transparent)}
+/* Termin-Button oben auf Seiten ausblenden, wo er nicht passt (Termin, Support, Ticket, Karriere: body.ohneTermin) */
+body.hbR.ohneTermin .kopf-r .cta-termin{display:none}
+@media(min-width:1041px){body.hbR.ohneTermin .kopf nav.nav-neu{flex:0 1 auto;justify-content:flex-start;gap:clamp(22px,2.4vw,40px);margin-right:auto}}
+.call .cw{display:inline-flex}
+.call .cw span{overflow:hidden;white-space:nowrap;transition:max-width .35s ease,opacity .25s}
+.call .c1{max-width:110px}.call .c2{max-width:0;opacity:0}
+@media(hover:hover){.call:hover .c1,.call:focus-visible .c1,.call.open .c1{max-width:0;opacity:0}.call:hover .c2,.call:focus-visible .c2,.call.open .c2{max-width:230px;opacity:1}}
+/* Leiser Pillen-Button (z. B. Ticket schreiben): nur Kante, kein Farbfeld */
+.btn.leise-btn{background:transparent;color:var(--text);border:1px solid var(--edge);padding:12px 22px;font-size:15px}
+.btn.leise-btn:hover{border-color:var(--blue);color:var(--blue);box-shadow:none}
+.ticket{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:22px}
+.ticket .leise{font-size:14.5px}
+
+/* E-Mail-Button: am Desktop erscheint beim Überfahren die Adresse, Klick öffnet das Mailprogramm */
+.mail .cw{display:inline-flex}
+.mail .cw span{overflow:hidden;white-space:nowrap;transition:max-width .35s ease,opacity .25s}
+.mail .c1{max-width:160px}.mail .c2{max-width:0;opacity:0}
+@media(hover:hover){.mail:hover .c1,.mail:focus-visible .c1{max-width:0;opacity:0}.mail:hover .c2,.mail:focus-visible .c2{max-width:230px;opacity:1}}
+.pf{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:transform .25s}
+.link{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--blue)}
+.link:hover .pf{transform:translateX(4px)}
+/* runder Pfeil-Knopf */
+.go{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;flex:none;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);transition:background .25s,color .25s,border-color .25s,transform .25s}
+.go .pf{width:18px;height:18px}
+a:hover>.go,a:hover .go{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* ---------- Aufzählungs-Zahlen (01, 02 ...): kleine Zahl in Comfortaa mit grün-blauer Linie ---------- */
+.nr{display:inline-flex;align-items:center;gap:14px;font:700 17px/1 Comfortaa,sans-serif;letter-spacing:.08em;color:var(--blue);font-variant-numeric:tabular-nums}
+/* Linie an den Schrittzahlen entfernt (Abstimmung 24.11.2026, Leon: Nein) */
+/* ---------- Milchglas ---------- */
+.glas{position:relative;border-radius:30px;background:var(--glass);backdrop-filter:blur(34px) saturate(1.15);-webkit-backdrop-filter:blur(34px) saturate(1.15);border:1px solid var(--edge);box-shadow:var(--sh),var(--hi)}
+
+/* ---------- Header (Leiste wie im Hero) ---------- */
+.kopf{position:fixed;z-index:40;left:0;right:0;top:18px;pointer-events:none}
+.kopf .w{pointer-events:auto;position:relative;max-width:1240px;width:calc(100% - 56px);margin:0 auto;height:75px;display:flex;align-items:center;gap:24px;padding:0 14px 0 30px;border-radius:100px;background:color-mix(in srgb,var(--bg) 66%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--edge);box-shadow:var(--sh2);transition:background .5s}
+.kopf .logo img{height:54px;width:auto;transition:filter .4s}
+.kopf nav{flex:1;display:flex;justify-content:space-between;gap:22px;font:700 clamp(15px,1.15vw,17px) 'Mozilla Text',sans-serif;white-space:nowrap;margin:0 clamp(14px,2.4vw,44px)}
+/* Sehr breite Fenster (z. B. Zoom 50 %): Menü nicht über die ganze Leiste verteilen, sondern höchstens 880 px breit und mittig (Leon 23.11.2026) */
+@media(min-width:1700px){.kopf nav{flex:0 1 880px;margin-inline:auto}.kopf .kopf-r,.kopf .cta.nav-alt{margin-left:auto;padding-left:20px}}
+.kopf nav a{display:inline-flex;align-items:center;gap:4px;position:relative;padding:6px 0}
+.kopf nav a:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.kopf nav a:hover:after,.kopf nav a.on:after{transform:scaleX(1)}
+.kopf nav a.on{color:var(--blue)}
+.chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+.kopf .cta{font:700 15px 'Mozilla Text',sans-serif;background:var(--blue);color:#fff;border-radius:100px;padding:14px 26px;flex:none;transition:box-shadow .25s}
+.kopf .cta:hover{box-shadow:0 12px 26px -12px rgba(45,108,223,.8)}
+/* Sehr breite Bildschirme: Logo + Leiste zusammen höchstens 1440 px, mittig beim Inhalt (Abstimmung 24.11.2026); Verlauf und Welle laufen weiter bis an den Rand */
+:root{--gk:max(var(--gut),calc((100vw - 1440px)/2))}
+.lgOut{display:none;position:absolute;z-index:41;pointer-events:auto;left:var(--gk);top:max(-18px,calc(38px - var(--lgh)/2))}
+.lgOut img{height:var(--lgh);width:auto;transition:filter .4s}
+body.dark .lg{filter:brightness(1.45) saturate(1.15)}
+/* Logo frei links (Variante B): nur oben auf der Seite; beim Scrollen wandert das Logo in die Leiste */
+body.lgB:not(.stuck) .lgOut{display:block}
+body.lgB:not(.stuck) .kopf .logo{display:none}
+body.lgB:not(.stuck) .kopf .w{max-width:none;margin:0 var(--gk) 0 auto;width:calc(100% - var(--gk)*2 - var(--lgh)*2.2436 - var(--lga));padding-left:34px}
+body.stuck .kopf{top:12px;animation:kopfRein .45s ease both}
+@keyframes kopfRein{from{transform:translateY(-130%)}to{transform:none}}
+@media(max-width:1280px){:root{--lgh:72px;--lga:40px}}
+@media(max-width:1180px){:root{--lgh:56px;--lga:20px}.kopf nav{gap:14px;margin:0 6px;font-size:14.5px}.kopf .w{gap:12px}body.lgB:not(.stuck) .kopf .w{padding-left:24px}.kopf .cta{padding:12px 20px;font-size:14.5px}}
+@media(max-width:1040px){
+ .kopf nav{display:none}
+ body.lgB .lgOut{display:none!important}
+ body.lgB .kopf .logo{display:block!important}
+ .kopf .w,body.lgB:not(.stuck) .kopf .w{max-width:1240px;margin:0 auto;width:calc(100% - 24px);padding:0 12px 0 22px;justify-content:space-between}
+}
+@media(max-width:560px){.kopf{top:10px}.kopf .w{height:64px}.kopf .logo img{height:44px}.kopf .cta{padding:12px 20px;font-size:14px}}
+
+/* ---------- Kopfleiste neu (Leon 23.11.2026): Dropdowns, Support-Menü, Termin-Button; Umschalter "Kopfleiste" (?ks=alt) ---------- */
+body:not(.ksAlt) .nav-alt{display:none!important}
+body.ksAlt .nav-neu{display:none!important}
+.kopf .dd{position:relative;display:flex;align-items:center}
+.kopf .dd-m{position:absolute;top:calc(100% + 22px);left:-18px;z-index:5;display:grid;gap:2px;min-width:290px;padding:10px;border-radius:22px;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);border:1px solid var(--edge);box-shadow:0 30px 60px -30px rgba(20,30,60,.35);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s,transform .2s,visibility .2s;white-space:normal}
+body.dark .kopf .dd-m{background:color-mix(in srgb,#121A27 92%,transparent);box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+.kopf .dd-m:before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px}
+.kopf .dd:hover>.dd-m,.kopf .dd:focus-within>.dd-m,.kopf .dd.auf>.dd-m{opacity:1;visibility:visible;transform:none}
+.kopf .dd:hover>a .chev,.kopf .dd.auf>a .chev,.kopf .dd:hover>.sup .chev{transform:rotate(180deg);opacity:.9}
+.kopf .chev{transition:transform .25s}
+.kopf .dd-2{grid-template-columns:1fr 1fr;min-width:560px}
+.kopf nav .dd-m a,.kopf .dd-m a{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:12px 14px;border-radius:14px;color:var(--text);transition:background .2s}
+.kopf nav .dd-m a:after{display:none}
+.kopf .dd-m b{font:700 15px 'Mozilla Text',sans-serif;transition:color .2s}
+.kopf .dd-m small{font:400 13px/1.4 'Mozilla Text',sans-serif;color:var(--muted)}
+.kopf .dd-m a:hover{background:color-mix(in srgb,var(--blue) 7%,transparent)}
+.kopf .dd-m a:hover b{color:var(--blue)}
+.kopf .dd-m .dd-haupt{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+.kopf .dd-m .dd-haupt b{color:var(--blue)}
+.kopf-r{display:flex;align-items:center;gap:10px;flex:none}
+.kopf-r .dd-m{left:auto;right:-6px}
+.kopf .sup{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 16px 0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 15px 'Mozilla Text',sans-serif;cursor:pointer;transition:border-color .2s,color .2s}
+.kopf .sup:hover,.kopf .dd.auf .sup{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+.kopf .sup>svg:first-child{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* Platz: neue Leiste hat rechts zwei Elemente, daher weniger Außenabstand im Menü; schmaler wird "Support" zum Symbol */
+.kopf nav.nav-neu{margin:0 clamp(6px,1.4vw,26px);gap:clamp(12px,1.6vw,28px);min-width:0}
+.kopf-r .cta{padding:14px 22px}
+/* "Support" bleibt als Wort sichtbar (Support erklärt: "oben rechts auf Support, dann Fernwartung"); bei Platzmangel wird zuerst "Termin vereinbaren" zu "Termin" */
+@media(max-width:1420px){.kopf-r .cta-termin .tv{display:none}}
+/* Leiste im Scroll-Zustand so breit wie oben (höchstens 1440 px), damit das Menü Platz hat */
+body.stuck .kopf .w{max-width:1440px}
+/* Schutz gegen Überlagerung (gemessen in basis.js): erst "Termin" kurz und Menü enger, dann Support nur als Symbol */
+body.kopf-eng .kopf-r .cta-termin .tv{display:none}
+body.kopf-eng .kopf nav{gap:14px;margin:0 12px}
+body.kopf-enger .kopf .sup span{display:none}
+body.kopf-enger .kopf .sup{padding:0 12px 0 14px}
+@media(max-width:1180px){.kopf .sup span{display:none}.kopf .sup{padding:0 12px 0 14px}}
+@media(max-width:1180px){.kopf .sup{height:44px}.kopf .dd-2{min-width:500px}.kopf-r .cta{padding:12px 18px}}
+@media(max-width:1040px){.kopf .sup span,.kopf .sup .chev{display:none}.kopf .sup{width:44px;padding:0;justify-content:center}}
+@media(max-width:560px){.kopf .sup{width:40px;height:40px}.kopf-r .cta{padding:11px 16px;font-size:13.5px}}
+
+/* ---------- Mobile Navigation (Leon 23.11.2026): Menü-Button unter 1040 px, Menü als Milchglas-Feld unter der Leiste (Inhalt per basis.js aus der Kopfleiste) ---------- */
+.mbtn{display:none}
+.mnav{display:none}
+@media(max-width:1040px){
+ /* Mobil-Leiste: Logo, Termin, Menü. Support steht nur im Menü (mit Fernwartung zuerst), keine Dopplung (Leon 23.11.2026) */
+ body:not(.ksAlt) .kopf-r .dd-rechts{display:none}
+ body:not(.ksAlt) .mbtn{display:inline-flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);cursor:pointer;transition:border-color .2s,color .2s}
+ .mbtn:hover,body.mnav-auf .mbtn{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+ .mbtn span{display:block;width:18px;height:1.8px;border-radius:2px;background:currentColor;transition:transform .25s,opacity .2s}
+ body.mnav-auf .mbtn span:nth-child(1){transform:translateY(5.8px) rotate(45deg)}
+ body.mnav-auf .mbtn span:nth-child(2){opacity:0}
+ body.mnav-auf .mbtn span:nth-child(3){transform:translateY(-5.8px) rotate(-45deg)}
+ body:not(.ksAlt) .mnav{display:block;pointer-events:auto;position:absolute;left:12px;right:12px;top:calc(100% + 10px);max-height:calc(100vh - 120px);max-height:calc(100dvh - 120px);overflow:auto;overscroll-behavior:contain;padding:6px 14px 18px;border-radius:26px;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);border:1px solid var(--edge);box-shadow:0 30px 60px -30px rgba(20,30,60,.4);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+ body.dark .mnav{background:color-mix(in srgb,#121A27 95%,transparent);box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+ body.mnav-auf .mnav{opacity:1;visibility:visible;transform:none}
+ .mnav details,.mnav .mn-z{border-bottom:1px solid var(--edge)}
+ .mnav summary,.mnav .mn-z{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 8px;font:700 17px 'Mozilla Text',sans-serif;color:var(--text);cursor:pointer;list-style:none}
+ .mnav summary::-webkit-details-marker{display:none}
+ .mnav details.on>summary,.mnav .mn-z.on{color:var(--blue)}
+ .mnav details[open]>summary .chev{transform:rotate(180deg);opacity:.9}
+ .mnav .mn-l{display:grid;gap:2px;padding:0 0 12px}
+ .mnav .mn-l a{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px;border-radius:14px;color:var(--text)}
+ .mnav .mn-l a:hover{background:color-mix(in srgb,var(--blue) 7%,transparent)}
+ .mnav .mn-l b{font:700 15px 'Mozilla Text',sans-serif}
+ .mnav .mn-l small{font:400 13px/1.4 'Mozilla Text',sans-serif;color:var(--muted)}
+ .mnav .mn-l .dd-haupt{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+ .mnav .mn-l .dd-haupt b{color:var(--blue)}
+ .mnav .mn-fuss{padding:18px 0 0}
+ .mnav .mn-fuss .btn{width:100%;justify-content:center;padding:16px 30px;font-size:16px}
+}
+@media(max-width:560px){body:not(.ksAlt) .mbtn{width:40px;height:40px}}
+
+/* ---------- Team-Karte (Portrait 4:5) ---------- */
+.pt-bild{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding:12px;background:linear-gradient(165deg,var(--bg2),var(--bg3));box-shadow:var(--sh);border:1px solid var(--edge)}
+.pt-bild:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 36%,color-mix(in srgb,var(--text) 9%,transparent) 0 15%,transparent 15.6%),radial-gradient(ellipse 46% 32% at 50% 100%,color-mix(in srgb,var(--text) 9%,transparent) 0 98%,transparent 100%)}
+
+/* Portrait mit echtem Foto: Bild füllt 4:5, Silhouette aus */
+.pt-bild.mit-foto{padding:0}
+.pt-bild.mit-foto:before{display:none}
+.pt-bild.mit-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+
+/* ---------- Hero ruhig (Unterseiten): Verlauf, Körnung, stehende Welle ---------- */
+.uhero{position:relative;overflow:hidden;padding:clamp(150px,13vw,190px) 0 clamp(80px,8vw,120px);background:linear-gradient(180deg,#fff 0%,#F4F7FC 55%,#E6EDF8 100%)}
+body.dark .uhero{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#142033 100%)}
+.uhero:before{content:"";position:absolute;inset:0;opacity:.07;mix-blend-mode:multiply;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .15  0 0 0 0 .3  0 0 0 .9 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
+body.dark .uhero:before{mix-blend-mode:screen;opacity:.05}
+.uhero-in{position:relative;z-index:2}
+.uhero h1{max-width:820px;margin-bottom:24px}
+.uhero .lead{max-width:600px}
+.uhero .btns{margin-top:40px}
+/* Varianten: A flache Wellenkante, B Lichtschimmer, C Punktraster */
+.uhero .welle{display:none}
+/* Unterseiten mit Welle: unten Platz, damit die Welle (Abstände wie Startseite) unter den Buttons liegt */
+body.hvA .uhero:has(#cvH){padding-bottom:clamp(170px,16vw,240px)}
+body.hvA .uhero .welle{display:block}
+.uhero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s}
+body.hvB .uhero:after{opacity:1;background:radial-gradient(50% 70% at 86% 40%,rgba(45,108,223,.13),transparent 70%),radial-gradient(45% 60% at 58% 105%,rgba(46,179,41,.11),transparent 70%)}
+body.dark.hvB .uhero:after{background:radial-gradient(50% 70% at 86% 40%,rgba(45,108,223,.26),transparent 70%),radial-gradient(45% 60% at 58% 105%,rgba(46,179,41,.16),transparent 70%)}
+body.hvC .uhero:after{opacity:1;background-image:radial-gradient(rgba(30,60,120,.22) 1.4px,transparent 1.8px);background-size:28px 28px;-webkit-mask-image:radial-gradient(60% 85% at 85% 55%,#000 5%,transparent 80%);mask-image:radial-gradient(60% 85% at 85% 55%,#000 5%,transparent 80%)}
+body.dark.hvC .uhero:after{background-image:radial-gradient(rgba(255,255,255,.2) 1.4px,transparent 1.8px)}
+.krumen{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:14px;color:var(--muted);margin-bottom:34px}
+.krumen a:hover{color:var(--blue)}
+.krumen span{opacity:.5}
+/* ---------- Unterkarten (z. B. Software: DATEV, SelectLine) – führen auf eigene Unterseiten ---------- */
+.ukarten{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.ukarten-1{grid-template-columns:minmax(0,1fr);max-width:640px}
+.uk{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 28px 28px 32px;border-radius:24px;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s,visibility 0s .3s}
+.uk:hover{transform:translateY(-3px)}
+.uk:before{content:"";position:absolute;left:32px;top:-1px;width:40px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1,#2EB329),var(--a2,#2D6CDF))}
+.uk h3{font-size:clamp(22px,2vw,27px);margin-bottom:8px;transition:color .25s}
+.uk:hover h3{color:var(--blue)}
+.uk p{font-size:15px;color:var(--muted)}
+@media(max-width:700px){.ukarten{grid-template-columns:1fr}}
+/* News-Karte (Startseite, News-Übersicht, Beitragsseite) */
+.news-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.nk{display:flex;flex-direction:column;border-radius:26px;overflow:hidden;background:var(--bg);border:1px solid var(--edge);box-shadow:var(--sh);color:var(--text);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.nk:hover{transform:translateY(-4px)}
+.nk-bild{aspect-ratio:16/10;display:grid;place-items:center;padding:16px;background:radial-gradient(80% 90% at 15% 100%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%),radial-gradient(80% 90% at 90% 0%,color-mix(in srgb,var(--blue) 18%,transparent),transparent 70%),var(--bg2)}
+.nk-txt{padding:24px 26px 30px}
+.nk-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.nk-meta .ph,.nk-meta .st-bsp{text-transform:none;letter-spacing:0}
+.nk h3{font-size:19px;margin-bottom:10px;transition:color .25s}
+.nk:hover h3{color:var(--blue)}
+.nk p{font-size:15px;color:var(--muted)}
+@media(max-width:1000px){.news-reihe{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.news-reihe{grid-template-columns:1fr}}
+/* Drei Unterkarten nebeneinander (TI: für wen; Managed Services: Branchen) */
+.ukarten-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1000px){.ukarten-3{grid-template-columns:1fr}}
+
+/* ---------- Abschnitte ---------- */
+.ab{position:relative;padding:clamp(72px,8vw,120px) 0}
+.ab.alt{background:var(--bg2)}
+/* Dunkel: Abschnittsflächen etwas heller (#121A27 statt #0E131C) plus feine Kanten, damit sich Abschnitte wie im Hellen abheben */
+body.dark .ab.alt{box-shadow:inset 0 1px rgba(255,255,255,.06),inset 0 -1px rgba(255,255,255,.06)}
+.kopfzeile{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:clamp(44px,5vw,72px)}
+.kopfzeile .leise,.kopfzeile .lead{max-width:520px}
+.kopfzeile .rechts{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+.glow{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.glow:before,.glow:after{content:"";position:absolute;width:60vw;height:60vw;max-width:900px;max-height:900px;border-radius:50%;filter:blur(10px)}
+.glow:before{left:-18vw;bottom:-30vw;background:radial-gradient(closest-side,rgba(46,179,41,.09),transparent)}
+.glow:after{right:-16vw;top:-22vw;background:radial-gradient(closest-side,rgba(45,108,223,.10),transparent)}
+body.dark .glow:before{background:radial-gradient(closest-side,rgba(46,179,41,.12),transparent)}
+body.dark .glow:after{background:radial-gradient(closest-side,rgba(45,108,223,.18),transparent)}
+canvas.welle{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* ---------- Formular ---------- */
+.feld{display:flex;flex-direction:column;gap:7px}
+.feld label{font:700 13px 'Mozilla Text',sans-serif;color:var(--muted);letter-spacing:.02em}
+.feld input,.feld select,.feld textarea{width:100%;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 80%,transparent);border-radius:16px;padding:14px 16px;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s}
+.feld textarea{min-height:120px;resize:vertical}
+.feld input:focus,.feld select:focus,.feld textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px color-mix(in srgb,var(--blue) 18%,transparent)}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--muted)}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--blue);flex:none}
+
+/* ---------- Kontakt ---------- */
+.kontakt{overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 45%,var(--bg3) 100%)}
+.kontakt .wrap{position:relative;z-index:2}
+.kontakt-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(36px,5vw,72px);padding:clamp(30px,4.6vw,66px);border-radius:38px}
+.kontakt-text .lead{margin:24px 0 30px}
+.fakten{display:grid;gap:16px;margin-top:40px;padding-top:26px;border-top:1px solid var(--edge)}
+.fakten dt{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.fakten dd{font-size:15.5px}
+.kontakt-form{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:start}
+.voll{grid-column:1/-1}
+.check .link-t{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.form-fuss{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
+
+@media(max-width:1000px){.kontakt-in{grid-template-columns:1fr}}
+@media(max-width:560px){.kontakt-form{grid-template-columns:1fr}.kontakt-in{border-radius:28px}}
+
+/* ---------- Footer ---------- */
+.fuss{position:relative;background:var(--bg3);padding:84px 0 30px;font-size:15px;overflow:hidden}
+.fuss:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--text) 12%,transparent),transparent)}
+.fuss-in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.8fr) minmax(0,2.1fr);gap:clamp(40px,5vw,72px)}
+.fuss .lg{height:64px;width:auto;margin-bottom:22px}
+.fuss h4{font:700 13px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.fuss ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fuss a:hover{color:var(--blue)}
+.fuss p{color:var(--muted);line-height:1.6}
+.fuss .mail small{display:block;font-size:12.5px;color:var(--muted);margin-top:-2px}
+/* ---------- Kundenstimmen (gemeinsamer Baustein, Quelle basis/stimmen.json; Leon 23.11.2026) ---------- */
+.st-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.st-kopf h2{margin-bottom:26px}
+.st-liste{border-top:1px solid var(--edge)}
+.st{position:relative;margin:0}
+.st-liste .st{padding:34px 0 32px 64px;border-bottom:1px solid var(--edge)}
+.st-q{position:absolute;left:0;top:40px;width:32px;height:24px;fill:var(--a1,var(--blue));opacity:.55}
+.st blockquote{font:300 clamp(20px,1.75vw,25px)/1.45 Comfortaa,sans-serif;color:var(--text);margin:0 0 18px;letter-spacing:-.005em}
+.st figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font-size:15px}
+.st figcaption b{font-weight:700;color:var(--text)}
+.st figcaption span{color:var(--muted)}
+.st-bsp{font:700 11.5px/1 'Mozilla Text',sans-serif;font-style:normal;color:var(--muted);border:1px dashed color-mix(in srgb,var(--text) 25%,transparent);border-radius:6px;padding:4px 7px;cursor:help}
+/* Startseite: Streifen mit drei Stimmen nebeneinander, Haarlinien statt Kartenraster */
+.stimmen-start{border-top:1px solid var(--edge)}
+.st-streifen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.st-streifen .st{display:flex;flex-direction:column;padding:6px 36px 8px}
+.st-streifen .st:first-child{padding-left:0}
+.st-streifen .st:last-child{padding-right:0}
+.st-streifen .st+.st{border-left:1px solid var(--edge)}
+.st-streifen .st-q{position:static;margin:14px 0 16px}
+.st-streifen blockquote{flex:1;font-size:clamp(18px,1.45vw,21px)}
+.st-streifen figcaption{flex-direction:column;align-items:flex-start;gap:4px}
+.st-streifen .st-bsp{margin-top:6px}
+.st-br{font:700 14px Comfortaa,sans-serif;color:var(--muted)}
+@media(max-width:1000px){.st-in{grid-template-columns:1fr}.st-streifen{grid-template-columns:1fr}.st-streifen .st{padding:26px 0}.st-streifen .st+.st{border-left:0;border-top:1px solid var(--edge)}}
+@media(max-width:560px){.st-liste .st{padding-left:0;padding-top:76px}.st-liste .st-q{top:36px}}
+
+/* ---------- FAQ (gemeinsamer Baustein, je Hauptseite einer Kundengruppe; Leon 20.11.2026) ---------- */
+.faq-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.faq-kopf{position:sticky;top:130px}
+.faq-kopf .lead{margin:24px 0 26px;max-width:380px}
+.faq-liste{border-top:1px solid var(--edge)}
+.faq-liste details{border-bottom:1px solid var(--edge)}
+.faq-liste summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font:700 clamp(18px,1.5vw,21px)/1.35 Comfortaa,sans-serif;transition:color .2s}
+.faq-liste summary::-webkit-details-marker{display:none}
+.faq-liste summary:hover{color:var(--blue)}
+.faq-liste summary:after{content:"";flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--edge);background:no-repeat center/14px linear-gradient(currentColor,currentColor),no-repeat center/2px 14px linear-gradient(currentColor,currentColor);color:var(--text);transition:transform .3s,background-size .3s}
+.faq-liste details[open] summary:after{transform:rotate(180deg);background-size:14px 2px,0 0}
+.faq-liste summary:after{background-size:14px 2px,2px 14px}
+.faq-a{padding:0 58px 26px 0;color:var(--muted);font-size:16px;line-height:1.65}
+.faq-a p+p{margin-top:10px}
+@media(max-width:1000px){.faq-in{grid-template-columns:1fr}.faq-kopf{position:static}}
+/* Kontaktformular: Pflichtfelder (Leon 23.11.2026) */
+.kontakt-form .pf{font-style:normal;color:var(--blue)}
+.kontakt-form label small{font-weight:400;color:var(--muted)}
+.pf-hinweis{font-size:13px;color:var(--muted);margin-top:-4px}
+.kontakt-form .f-zeit[hidden]{display:none}
+
+/* ---------- Leistungen im Detail (Leon 23.11.2026: Bereichsseiten mit mehr Inhalt, ohne zu überladen) ----------
+   Zweistufig: Titel + ein Satz sichtbar, aufgeklappt Ausgangslage, was wir tun, was du davon hast. */
+.ld-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.ld-kopf{position:sticky;top:130px}
+.ld-kopf .lead{margin:24px 0 26px;max-width:400px}
+.ld-liste{border-top:1px solid var(--edge)}
+.ld-liste details{border-bottom:1px solid var(--edge)}
+.ld-liste summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:6px 24px;align-items:center;padding:26px 0}
+.ld-liste summary::-webkit-details-marker{display:none}
+.ld-liste summary h3{font-size:clamp(20px,1.7vw,24px);transition:color .2s}
+.ld-liste summary .ld-k{display:block;grid-column:1;color:var(--muted);font-size:16px;line-height:1.55;max-width:600px}
+.ld-liste summary:hover h3{color:var(--blue)}
+.ld-liste summary:after{content:"";grid-column:2;grid-row:1/span 2;width:34px;height:34px;border-radius:50%;border:1px solid var(--edge);background:no-repeat center/14px 2px linear-gradient(currentColor,currentColor),no-repeat center/2px 14px linear-gradient(currentColor,currentColor);color:var(--text);transition:transform .3s,background-size .3s}
+.ld-liste details[open] summary:after{transform:rotate(180deg);background-size:14px 2px,0 0}
+.ld-a{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 58px 30px 0;border-top:1px solid var(--edge)}
+.ld-a>div{padding:18px 22px 4px 0}
+.ld-a>div+div{padding-left:22px;border-left:1px solid var(--edge)}
+.ld-a h4{font:700 14px/1.3 Comfortaa,sans-serif;color:var(--muted);margin-bottom:8px}
+.ld-a p{font-size:15px;line-height:1.6;color:var(--muted)}
+.ld-a p b{color:var(--text);font-weight:700}
+@media(max-width:1000px){.ld-in{grid-template-columns:1fr}.ld-kopf{position:static}}
+@media(max-width:700px){.ld-a{grid-template-columns:1fr;margin-right:0}.ld-a>div,.ld-a>div+div{padding:16px 0 4px;border-left:0}.ld-a>div+div{border-top:1px solid var(--edge)}}
+
+/* ---------- So starten wir: vier Schritte in echter Reihenfolge (einzige Nummerierung der Seite) ---------- */
+.st-kopf{max-width:720px;margin-bottom:clamp(36px,4vw,56px)}
+.st-kopf .lead{margin-top:22px}
+.st-reihe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--edge)}
+@media(min-width:1001px){.st-reihe:has(> .st-p:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}}
+.st-p{padding:30px clamp(18px,2.4vw,34px) 6px 0}
+.st-p+.st-p{padding-left:clamp(18px,2.4vw,34px);border-left:1px solid var(--edge)}
+.st-p .nr{display:block;margin-bottom:22px}
+.st-p h3{font-size:21px;margin-bottom:10px}
+.st-p p{font-size:15.5px;color:var(--muted);line-height:1.6}
+@media(max-width:1000px){.st-reihe{grid-template-columns:1fr 1fr}.st-p:nth-child(3){padding-left:0;border-left:0}.st-p:nth-child(n+3){border-top:1px solid var(--edge);margin-top:26px}}
+@media(max-width:600px){.st-reihe{grid-template-columns:1fr}.st-p,.st-p+.st-p{padding:24px 0 4px;border-left:0}.st-p+.st-p{border-top:1px solid var(--edge);margin-top:20px}}
+@media(max-width:560px){.faq-a{padding-right:0}}
+.f-shop-k{font:700 14px 'Mozilla Text',sans-serif;color:var(--text);margin:26px 0 10px}
+/* Kontakt im Footer: Telefon und E-Mail nebeneinander, Servicezeiten darunter (Leon 23.11.2026) */
+.f-kontakt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px clamp(24px,3vw,48px)}
+.f-kontakt>div:nth-child(3){grid-column:1/-1;padding-top:18px;border-top:1px solid var(--edge)}
+.f-kontakt>div:nth-child(3) p br{display:none}
+@media(max-width:560px){.f-kontakt{grid-template-columns:1fr}}
+.f-kontakt h5{font:700 14px 'Mozilla Text',sans-serif;color:var(--text);margin-bottom:8px}
+.f-kontakt ul{gap:8px}
+.f-kontakt p{color:var(--text);line-height:1.55}
+/* Eyebrow-Farbe als Umschalter (gilt auf allen Seiten, schlägt die Bereichsfarbe) */
+html body.ebfG .eb{color:#5E6573}
+html body.dark.ebfG .eb{color:#9AA2B0}
+html body.ebfS .eb{color:var(--text)}
+.f-unten{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:64px;padding-top:24px;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent);color:var(--muted);font-size:14px}
+.f-unten nav{display:flex;gap:22px;flex-wrap:wrap}
+.f-unten b{font-family:Comfortaa;font-weight:700;color:var(--text)}
+
+/* ---------- Mockup-Steuerung (nicht Teil der Website), neu 23.11.2026 ----------
+   Unten rechts eine ruhige Leiste (Bearbeiten, Speichern, Einstellungen); die Einstellungen öffnen
+   ein gegliedertes Panel. Beim Bearbeiten erscheint oben ein Hinweis mit "Fertig". */
+.stg{--sg-bg:color-mix(in srgb,var(--bg) 86%,transparent);--sg-rand:color-mix(in srgb,var(--text) 10%,transparent);font:400 14px/1.4 'Mozilla Text',sans-serif;color:var(--text)}
+.stg button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+.stg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.stg-bar{position:fixed;z-index:62;right:20px;bottom:20px;display:flex;align-items:center;gap:4px;padding:6px;border-radius:100px;background:var(--sg-bg);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border:1px solid var(--sg-rand);box-shadow:0 18px 40px -18px rgba(15,25,50,.45)}
+.stg-bar>i{width:1px;height:22px;background:var(--sg-rand);margin:0 4px}
+.stg-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:100px;font-weight:700!important;font-size:14px!important;color:var(--text);transition:background .2s,color .2s}
+.stg-btn:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}
+.stg-btn.prim{background:var(--blue);color:#fff}
+.stg-btn.prim:hover{background:color-mix(in srgb,var(--blue) 88%,#000)}
+.stg-btn.prim{position:relative}
+.stg-btn.prim.dirty:after{content:"";position:absolute;top:7px;right:9px;width:7px;height:7px;border-radius:50%;background:#FFC64B;box-shadow:0 0 0 2px var(--blue)}
+.stg-btn.on{background:color-mix(in srgb,var(--gt) 16%,transparent);color:var(--gt)}
+.stg-btn[aria-expanded=true]{background:var(--text);color:var(--bg)}
+/* Panel */
+.stg-panel{position:fixed;z-index:61;right:20px;bottom:82px;top:20px;width:min(380px,calc(100% - 40px));display:flex;flex-direction:column;border-radius:26px;background:var(--sg-bg);backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);border:1px solid var(--sg-rand);box-shadow:0 30px 70px -30px rgba(15,25,50,.5);opacity:0;transform:translateX(16px);pointer-events:none;visibility:hidden;transition:opacity .22s,transform .22s,visibility 0s .22s}
+.stg.auf .stg-panel{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .22s,transform .22s}
+.stg-kopf{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 14px 24px;border-bottom:1px solid var(--sg-rand)}
+.stg-kopf b{font:700 17px Comfortaa,sans-serif}
+.stg-kopf button{display:grid;place-items:center;width:34px;height:34px;border-radius:50%}
+.stg-kopf button:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}
+.stg-inhalt{flex:1;overflow-y:auto;padding:6px 24px 10px;scrollbar-width:thin}
+.stg-gr{padding:16px 0 14px;border-bottom:1px solid var(--sg-rand)}
+.stg-gr:last-child{border-bottom:0}
+.stg-gr h5{font:700 13px Comfortaa,sans-serif;color:var(--muted);margin:0 0 10px}
+.stg-z{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:40px}
+.stg-z>span{font-size:14px}
+/* Segment-Schalter */
+.seg{display:inline-flex;padding:3px;border-radius:100px;background:color-mix(in srgb,var(--text) 6%,transparent)}
+.seg button{padding:6px 12px;border-radius:100px;font-size:13px;font-weight:700;color:var(--muted);transition:background .2s,color .2s}
+.seg button:hover{color:var(--text)}
+.seg button.on{background:var(--bg);color:var(--text);box-shadow:0 1px 4px rgba(15,25,50,.18)}
+body.dark .seg button.on{background:#2A3140}
+/* Kippschalter */
+.tg{position:relative;width:42px;height:24px;border-radius:100px;background:color-mix(in srgb,var(--text) 16%,transparent)!important;transition:background .2s;flex:none}
+.tg:before{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.tg.on{background:var(--blue)!important}
+.tg.on:before{transform:translateX(18px)}
+.stg select{border:1px solid var(--sg-rand);background:var(--bg);border-radius:100px;padding:7px 12px;font:700 13px 'Mozilla Text',sans-serif;color:var(--text);cursor:pointer}
+/* Regler: Name und Wert oben, Schieber darunter */
+.stg label.sp{display:grid;grid-template-columns:1fr auto auto;align-items:center;column-gap:4px;row-gap:2px;font-size:14px;padding:6px 0}
+.stg label.sp input[type=range]{grid-column:1/-1;width:100%;margin:0;accent-color:var(--blue)}
+.stg .v{font:700 13px 'Mozilla Text',sans-serif;color:var(--text);width:58px;text-align:right;font-variant-numeric:tabular-nums;background:transparent;border:1px solid transparent;border-radius:8px;padding:3px 6px}
+.stg .v:hover{border-color:var(--sg-rand)}
+.stg .v:focus{outline:none;border-color:var(--blue);background:var(--bg)}
+.stg .u{font-size:12px;color:var(--muted);min-width:16px}
+.stg-fuss{display:flex;gap:8px;padding:14px 18px 18px;border-top:1px solid var(--sg-rand)}
+.stg-fuss button{flex:1;padding:11px 14px;border-radius:100px;font-weight:700;font-size:14px;border:1px solid var(--sg-rand)!important}
+.stg-fuss button:hover{background:color-mix(in srgb,var(--text) 6%,transparent)}
+.stg-fuss .prim{background:var(--text);color:var(--bg);border-color:transparent!important}
+.stg-fuss .prim:hover{background:color-mix(in srgb,var(--text) 85%,var(--bg))}
+/* Hinweis beim Bearbeiten */
+.stg-hinweis{position:fixed;z-index:63;left:20px;bottom:20px;transform:translateY(16px);opacity:0;visibility:hidden;pointer-events:none;display:flex;align-items:center;gap:14px;max-width:calc(100% - 460px);white-space:nowrap;padding:8px 8px 8px 20px;border-radius:100px;background:var(--text);color:var(--bg);box-shadow:0 18px 40px -16px rgba(0,0,0,.45);font-size:14px;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s,visibility 0s .3s}
+.stg-hinweis span{opacity:.75}
+body.edit .stg-hinweis{transform:none;opacity:1;visibility:visible;pointer-events:auto;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s}
+.stg-hinweis span{overflow:hidden;text-overflow:ellipsis}
+.stg-hinweis button{padding:8px 16px;border-radius:100px;background:var(--gt);color:#fff!important;font-weight:700}
+body.dark .stg-hinweis button{color:#0B0D10!important}
+@media(max-width:900px){.stg-hinweis{left:10px;bottom:70px;max-width:calc(100% - 20px)}.stg-bar{right:10px;bottom:10px}.stg-btn span{display:none}.stg-btn{padding:10px 12px}.stg-panel{left:10px;right:10px;top:auto;bottom:70px;width:auto;max-height:70vh}.stg-hinweis span{display:none}}
+/* Sprung zur geänderten Stelle: kurz hervorheben */
+.cv-blitz{animation:cvBlitz 1.6s ease-out}
+@keyframes cvBlitz{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--blue) 0%,transparent)}15%{box-shadow:0 0 0 6px color-mix(in srgb,var(--blue) 45%,transparent)}100%{box-shadow:0 0 0 18px color-mix(in srgb,var(--blue) 0%,transparent)}}
+
+/* ---------- Bearbeiten (Mockup): ruhig, nur beim Überfahren/Fokus markiert ---------- */
+body.edit [contenteditable]{outline:none;cursor:text;transition:box-shadow .15s,background .15s}
+body.edit [contenteditable]:hover{box-shadow:0 0 0 2px color-mix(in srgb,var(--blue) 35%,transparent),0 0 0 6px color-mix(in srgb,var(--blue) 8%,transparent)}
+body.edit [contenteditable]:focus{box-shadow:0 0 0 2px var(--blue);background:color-mix(in srgb,var(--blue) 6%,transparent)}
+body.edit [contenteditable]:not(.btn):not(.cta):not(.link){border-radius:6px}
+body.edit .ek:hover,body.edit .nk:hover{transform:none}
+.cv-toast{position:fixed;z-index:80;left:50%;bottom:86px;transform:translate(-50%,12px);opacity:0;pointer-events:none;max-width:min(560px,calc(100% - 32px));background:var(--text);color:var(--bg);font:700 14px/1.45 'Mozilla Text',sans-serif;padding:12px 20px;border-radius:16px;box-shadow:0 18px 40px -16px rgba(0,0,0,.45);transition:opacity .25s,transform .25s;text-align:center}
+.cv-toast.an{opacity:1;transform:translate(-50%,0)}
+/* ---------- Lexikon: Begriffe im Text, Erklärung beim Antippen ---------- */
+/* Lexikon-Begriffe: ohne Unterstreichung, immer im Hover-Blau (Leon, 20.11.2026) */
+.lx{color:var(--blue);cursor:help;transition:color .2s,opacity .2s}
+.lx:hover,.lx:focus-visible,.lx.an{color:var(--blue);opacity:.8;outline:none}
+.lx-pop{position:absolute;z-index:70;width:min(340px,calc(100vw - 32px));padding:18px 20px 16px;border-radius:20px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);border:1px solid var(--edge);box-shadow:var(--sh2),var(--hi);font-size:15px;line-height:1.55;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;pointer-events:none}
+.lx-pop.an{opacity:1;transform:none;pointer-events:auto}
+.lx-pop:before{content:"";position:absolute;left:20px;top:-1px;width:32px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2EB329,#2D6CDF)}
+.lx-pop .lx-k{font:700 11px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.lx-pop b{display:block;font:700 17px Comfortaa,sans-serif;margin-bottom:6px}
+.lx-pop p{color:var(--muted);margin-bottom:10px}
+.lx-pop a{font-weight:700;font-size:14px;color:var(--blue);display:inline-flex;gap:6px;align-items:center}
+
+/* ---------- Social Media im Footer ---------- */
+.sozial{margin-top:24px}
+.sozial h4{margin-bottom:12px}
+.sozial-r{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.sozial-r a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);transition:background .25s,color .25s,border-color .25s}
+.sozial-r a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.sozial-r svg{width:18px;height:18px;fill:currentColor}
+
+/* ---------- Bewegung reduzieren ---------- */
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+
+/* ---------- Mobil ---------- */
+@media(max-width:900px){
+ :root{--gut:18px}
+ .kopfzeile{grid-template-columns:1fr}
+ .fuss-in{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+ body{font-size:16px}
+ .lead{font-size:17.5px}
+ .btns{flex-direction:column;align-items:stretch}
+ .fuss-in{grid-template-columns:1fr}
+}
+
+/* ---------- Cookie-Karte unten links (Abstimmung 24.11.2026, Variante C) ---------- */
+.cc[hidden],.cc [hidden]{display:none!important}
+.cc{position:fixed;left:20px;bottom:20px;z-index:70;width:min(400px,calc(100% - 40px))}
+.cc-box{max-height:calc(100vh - 40px);overflow:auto;border-radius:26px;padding:24px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border:1px solid var(--edge);box-shadow:var(--sh),var(--sh2),var(--hi);animation:ccRein .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes ccRein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cc-t{display:block;font:700 18px Comfortaa,sans-serif;margin-bottom:6px}
+.cc-text{display:block;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.cc-links{display:flex;gap:16px;margin:6px 0 18px}
+.cc-links a{color:var(--blue);text-decoration:underline;text-underline-offset:2px;font-size:13.5px}
+body.dark .cc-links a{color:#9DBDF7}
+.cc-btns{display:flex;flex-direction:column;gap:10px}
+.cc-btn{border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);background:color-mix(in srgb,var(--blue) 10%,var(--bg));color:var(--blue);font:700 15px 'Mozilla Text',sans-serif;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background .2s,color .2s}
+.cc-btn:hover,.cc-btn:focus-visible{background:var(--blue);color:#fff;outline:none}
+body.dark .cc-btn{color:#9DBDF7}
+body.dark .cc-btn:hover{color:#fff}
+.cc-z{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:12px 0;border-bottom:1px solid var(--edge);cursor:pointer}
+.cc-z b{display:block;font-size:15px}
+.cc-z small{display:block;font-size:13.5px;line-height:1.45;color:var(--muted)}
+.cc-z input{width:18px;height:18px;accent-color:var(--blue);flex:none}
+.cc-einst .cc-btns{margin-top:16px}
+@media(max-width:560px){.cc{left:10px;right:10px;bottom:10px;width:auto}.cc-box{padding:20px}}
+/* ---------- Baustein Newsletter-Anmeldung (Karte .nlb, Zeile .nlz) ---------- */
+.nlb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:center;padding:clamp(28px,4.4vw,60px)}
+.nlb h2{margin-bottom:14px}
+.nlb .leise{margin-bottom:14px}
+.nlb-themen{border:0;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.nlb-themen legend{font:700 14.5px 'Mozilla Text',sans-serif;margin-bottom:10px;width:100%}
+.nlb-chip{position:relative;display:inline-flex}
+.nlb-chip input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
+.nlb-chip span{display:inline-block;padding:10px 18px;border-radius:100px;border:1px solid var(--edge);font:700 14.5px 'Mozilla Text',sans-serif;transition:background .2s,border-color .2s,color .2s}
+.nlb-chip input:checked+span{background:color-mix(in srgb,var(--blue) 10%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent);color:var(--blue)}
+.nlb-chip input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.nlb-feld{display:flex;gap:10px}
+.nlb-feld input{flex:1;min-width:0;min-height:52px;padding:0 20px;border-radius:100px;border:1px solid var(--edge);background:var(--bg);color:var(--text);font:400 16px 'Mozilla Text',sans-serif}
+.nlb-feld .btn{flex:none}
+.nlb-fm{display:none;margin-top:8px;font-size:13.5px;color:#C0392B}
+[data-nlb].fehlt .nlb-fm{display:block}
+[data-nlb].fehlt .nlb-feld input{border-color:#C0392B}
+.nlb-hw{display:block;margin-top:10px;font-size:13px;line-height:1.5;color:var(--muted)}
+[data-nlb].gesendet .nlb-form,[data-nlb].gesendet .nlb-feld,[data-nlb].gesendet .nlb-hw,[data-nlb].gesendet .nlb-fm{display:none}
+.nlb-ok{display:flex;gap:16px;align-items:flex-start}
+.nlb-ok[hidden]{display:none}
+.nlb-ok b{display:block;font:700 18px Comfortaa,sans-serif;margin-bottom:4px}
+.nlb-ok span.nlb-ok-t{display:block;color:var(--muted);line-height:1.55;margin-bottom:10px}
+.nlb-brief{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;flex:none;background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blue)}
+.nlb-brief svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nlz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:8px 32px;align-items:center;padding:26px 0;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.nlz-text b{display:block;font:700 18px/1.3 Comfortaa,sans-serif;margin-bottom:4px}
+.nlz-text span{color:var(--muted);font-size:15px}
+.nlz .nlb-fm,.nlz .nlb-hw{grid-column:2}
+.nlz .nlb-ok{grid-column:1/-1}
+.nlz.gesendet .nlz-text{display:none}
+@media(max-width:900px){.nlb,.nlz{grid-template-columns:1fr}.nlz .nlb-fm,.nlz .nlb-hw{grid-column:1}}
+@media(max-width:520px){.nlb-feld{flex-direction:column}.nlb-feld .btn{width:100%}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Baustein kurzer Abschluss (statt Kontaktformular) ---------- */
+.abs{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:clamp(30px,4.2vw,56px)}
+.abs h2{margin-bottom:12px}
+.abs .btns{flex:none}
+.abs-btns{margin-top:22px}
+@media(max-width:800px){.abs{flex-direction:column;align-items:flex-start}}
+/* ---------- Leistungen im Detail ruhiger (Leon 24.11.2026: wirkte durch die Linien verschachtelt) ----------
+   Aufgeklappt: eine weiche Fläche ohne Trennlinien, drei Spalten nur durch Abstand getrennt. Bisher-Ansicht: body.ldAlt */
+body:not(.ldAlt) .ld-a{border-top:0;gap:clamp(18px,2.4vw,34px);margin:0 58px 28px 0;padding:22px 26px;border-radius:20px;background:color-mix(in srgb,var(--blue) 4%,var(--bg))}
+body.dark:not(.ldAlt) .ld-a{background:var(--bg2)}
+body:not(.ldAlt) .ld-a>div,body:not(.ldAlt) .ld-a>div+div{padding:0;border:0}
+body:not(.ldAlt) .ld-liste details[open] summary{padding-bottom:18px}
+@media(max-width:700px){body:not(.ldAlt) .ld-a{margin-right:0;padding:18px 20px}body:not(.ldAlt) .ld-a>div+div{border-top:0;padding-top:4px}}
+/* ---------- Footer schlank (Leon 24.11.2026: zu voll; Spalte "cloudvibe" doppelte das Hauptmenü). Bisher: body.fussAlt ---------- */
+.f-links{display:none}
+body:not(.fussAlt) .fuss{padding-top:68px}
+body:not(.fussAlt) .fuss-in>.f-nav{display:none}
+body:not(.fussAlt) .fuss-in{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+body:not(.fussAlt) .f-links{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:48px;padding-top:24px;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent);font:700 15px 'Mozilla Text',sans-serif}
+body:not(.fussAlt) .f-unten{margin-top:22px;padding-top:0;border-top:0}
+@media(max-width:900px){body:not(.fussAlt) .fuss-in{grid-template-columns:1fr}}
+/* ---------- So starten wir ohne Zahlen, als Zeitleiste auf eigener Fläche (Leon 24.11.2026: Zahlen raus, wirkte Ton in Ton) ---------- */
+.st-p .nr{display:none!important}
+.st-reihe{--stp:clamp(22px,2.6vw,38px);position:relative;border-top:0;padding:34px var(--stp) 30px;border-radius:30px;background:var(--bg);border:1px solid var(--edge);box-shadow:var(--sh),var(--hi)}
+.st-reihe:before{content:"";position:absolute;left:var(--stp);right:var(--stp);top:39px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2EB329,#2D6CDF);opacity:.45}
+.st-p,.st-p+.st-p{position:relative;padding:36px var(--stp) 6px 0;border-left:0}
+.st-p+.st-p{padding-left:var(--stp)}
+.st-p:before{content:"";position:absolute;top:0;left:0;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2.5px solid #2EB329;box-shadow:0 0 0 5px var(--bg)}
+.st-p+.st-p:before{left:var(--stp)}
+.st-p:nth-child(2):before{border-color:#1E96AA}
+.st-p:nth-child(3):before{border-color:#2481C6}
+.st-p:nth-child(4):before,.st-p:nth-child(3):last-child:before{border-color:#2D6CDF}
+.st-p h3{color:var(--text)}
+@media(max-width:1000px){
+ .st-reihe:before{left:calc(var(--stp) + 5px);right:auto;top:34px;bottom:34px;width:2px;height:auto;background:linear-gradient(180deg,#2EB329,#2D6CDF)}
+ .st-reihe{grid-template-columns:1fr!important}
+ .st-p,.st-p+.st-p,.st-p:nth-child(3),.st-p:nth-child(n+3){padding:0 0 26px 34px;margin-top:0;border:0}
+ .st-p:before,.st-p+.st-p:before{left:0;top:5px}
+}
+
+/* ---------- Kundenstimmen als Bühne (Variante, Standard; ?kst=liste zeigt die bisherige Liste) ---------- */
+body:not(.kstListe) .stimmen .st-in{grid-template-columns:1fr;justify-items:center;text-align:center;gap:clamp(26px,3vw,40px)}
+body:not(.kstListe) .stimmen .st-kopf{display:flex;flex-direction:column;align-items:center;position:static}
+body:not(.kstListe) .stimmen .st-kopf h2{margin-bottom:14px}
+body:not(.kstListe) .stimmen .st-liste{border-top:0;max-width:880px;width:100%;display:grid}
+body:not(.kstListe) .stimmen .st-liste .st{grid-area:1/1;padding:0;border:0;display:flex;flex-direction:column;align-items:center;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .45s,transform .45s,visibility .45s}
+body:not(.kstListe) .stimmen .st-liste .st.an{opacity:1;visibility:visible;transform:none}
+body:not(.kstListe) .stimmen .st-q{position:static;width:46px;height:34px;opacity:1;fill:url(#stVerlauf);margin-bottom:22px}
+body:not(.kstListe) .stimmen blockquote{font-size:clamp(24px,2.5vw,34px);line-height:1.4;margin-bottom:24px}
+body:not(.kstListe) .stimmen figcaption{justify-content:center}
+.st-nav{display:none}
+body:not(.kstListe) .stimmen .st-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:8px}
+.st-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--edge);background:var(--bg);color:var(--text);cursor:pointer;font-size:20px;line-height:1}
+.st-nav button:hover{border-color:var(--blue);color:var(--blue)}
+.st-punkte{display:flex;gap:8px}
+.st-punkte i{width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--text) 18%,transparent);cursor:pointer;transition:background .2s,width .2s}
+.st-punkte i.an{width:22px;border-radius:4px;background:var(--blue)}
+/* ---------- Module je Seite an/aus und anordnen (Leon 24.11.2026) ---------- */
+.mod-aus{display:none!important}
+body.modsys main{display:flex;flex-direction:column}
+.stg-info{font-size:12.5px;color:var(--muted);margin:-4px 0 10px}
+.mod-liste{list-style:none;display:flex;flex-direction:column;gap:2px}
+.mod-liste li{display:grid;grid-template-columns:minmax(0,1fr) 28px 28px auto;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--edge);font-size:14px}
+.mod-liste li.zusatz span:after{content:" · Zusatz";color:var(--muted);font-size:12px}
+.mod-liste li.aus span{color:var(--muted)}
+.mod-pf{width:28px;height:28px;border-radius:50%;border:1px solid var(--edge);background:none;color:var(--text);cursor:pointer;font-size:13px}
+.mod-pf:disabled{opacity:.3;cursor:default}
+.mod-pf:not(:disabled):hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.mod-knoepfe{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mod-knoepfe button{font-size:12.5px;padding:7px 12px;border-radius:100px;border:1px solid var(--edge);background:transparent;color:var(--text);cursor:pointer}
+/* ---------- Footer-Konzepte (Leon 24.11.2026) ---------- */
+.fv{display:none}
+body.fussA .fv-a,body.fussAlt .fv-a,body.fussB .fv-b,body.fussC .fv-c,body.fussD .fv-d{display:block}
+.fv .sozial-r{display:flex;gap:10px}
+/* B Minimal */
+.fv-b{padding-top:72px}
+.fb-in{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+.fb-in .lg{margin:0}
+.fb-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px;font:700 15.5px 'Mozilla Text',sans-serif}
+.fb-kontakt{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;color:var(--text)!important}
+.fb-kontakt span{color:var(--muted)}
+.fb-adr{font-size:14px}
+.fv-b .f-unten{margin-top:44px}
+/* C Kontakt-Band */
+.fv-c{padding-top:64px}
+.fc-band{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));gap:14px;align-items:stretch;padding:26px;border-radius:26px;background:var(--bg);border:1px solid var(--edge);box-shadow:var(--sh)}
+.fc-kopf h4{margin-bottom:8px}
+.fc-kopf p{font-size:14px}
+.fc-weg{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:16px 20px;border-radius:18px;background:color-mix(in srgb,var(--blue) 5%,var(--bg));transition:background .2s}
+.fc-weg:hover{background:color-mix(in srgb,var(--blue) 11%,var(--bg))}
+.fc-weg small{font-size:12.5px;color:var(--muted)}
+.fc-weg b{font:700 16px 'Mozilla Text',sans-serif;color:var(--text)}
+.fc-zeile{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:20px 40px;align-items:center;margin-top:44px}
+.fc-zeile .lg{height:52px;margin:0}
+.fc-zeile p{font-size:14px}
+.fc-links{display:flex;flex-wrap:wrap;gap:8px 24px;font:700 14.5px 'Mozilla Text',sans-serif}
+.fv-c .f-unten{margin-top:36px}
+/* D Spalten nach Aufgabe: Wer wir sind, Kontakt, Standorte, Für Kunden (Büro ergänzt, Leon 24.11.2026) */
+.fd-in{display:grid;grid-template-columns:minmax(0,1.25fr) repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px)}
+.fd-in p{margin-bottom:18px;max-width:300px}
+.fd-leise{color:var(--muted)}
+.fv-d .mail small{display:none}
+.fd-adr{gap:14px}
+.fd-adr li{color:var(--text);line-height:1.5}
+.fd-k{display:block;font-size:12.5px;color:var(--muted);margin-bottom:2px}
+@media(max-width:1000px){.fc-band{grid-template-columns:1fr 1fr}.fc-kopf{grid-column:1/-1}.fc-zeile{grid-template-columns:1fr}.fd-in{grid-template-columns:repeat(3,minmax(0,1fr))}.fd-in>div:first-child{grid-column:1/-1}}
+@media(max-width:700px){.fd-in{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.fc-band{grid-template-columns:1fr}}
+@media(max-width:440px){.fd-in{grid-template-columns:1fr}}
+body:not(.fussAlt) .fv-b .f-unten,body:not(.fussAlt) .fv-c .f-unten,body:not(.fussAlt) .fv-d .f-unten{margin-top:44px;padding-top:24px;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
+body:not(.fussAlt) .fv-d .f-unten{margin-top:56px}

@@ -1,0 +1,225 @@
+
+/* ================= Startseite ================= */
+:root{--gx:36px}
+/* Logo-Größe steht zentral in basis.css (gilt für alle Seiten) */
+
+/* ---------- Hero (wie v07: Verlauf, Körnung, bewegte Welle, Milchglas D) ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#F4F7FC 55%,#E6EDF8 100%)}
+body.dark .hero{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#142033 100%)}
+.hero:before{content:"";position:absolute;inset:0;opacity:.07;mix-blend-mode:multiply;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .15  0 0 0 0 .3  0 0 0 .9 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
+body.dark .hero:before{mix-blend-mode:screen;opacity:.05}
+.hero.nograin:before{display:none}
+#cv{position:absolute;inset:0;width:100%;height:100%}
+.hero-in{position:relative;z-index:5;padding:172px 0 44px}
+.tile{position:relative;max-width:620px;padding:34px 30px 32px}
+.tile:before{content:"";position:absolute;inset:-26px calc(var(--gx)*-1);z-index:-1;border-radius:44px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(34px) saturate(1.15);-webkit-backdrop-filter:blur(34px) saturate(1.15);box-shadow:0 36px 80px -46px rgba(20,30,60,.2)}
+/* Dunkel: Kachel durchlässiger und weniger weichgezeichnet, damit die Welle wie im Hellen durchschimmert; feine helle Kante */
+body.dark .tile:before{background:color-mix(in srgb,var(--bg) 50%,transparent);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);box-shadow:0 36px 80px -40px rgba(0,0,0,.8),inset 0 1px rgba(255,255,255,.08),inset 0 0 0 1px rgba(255,255,255,.05)}
+body.dark .ek{background:color-mix(in srgb,var(--bg) 55%,transparent)}
+.tile .eb{font-size:15px;margin-bottom:22px}
+.tile h1{font-size:clamp(34px,3.8vw,56px);margin-bottom:20px}.tile .lead{font-size:18px}
+.uz{max-width:560px}
+.tile .btns{margin-top:32px}
+.tile .ticket{margin-top:18px;padding-top:16px;border-top:1px solid var(--edge)}
+/* Servicezeiten als dezente Info unter "Ticket schreiben" (Variante, Umschalter "Zeiten") */
+.tile .zeiten{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:13.5px;color:var(--muted)}
+.tile .zeiten svg{flex:none;opacity:.8}
+
+/* ---------- Kachel-Einstieg ---------- */
+/* Abstand zur Hero-Kachel größer (Leon, 23.11.2026): sichtbare Lücke ≈ 46 px, bei allen Kachelformen gleich
+   (die Glasfläche der Hero-Kachel ragt 26 px über den Text hinaus, die Wolken-Wölbungen reichen bis an die Oberkante). */
+.einstieg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:72px calc(var(--gx)*-1) 0}
+.ek{position:relative;border-radius:26px;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(28px) saturate(1.2);-webkit-backdrop-filter:blur(28px) saturate(1.2);border:1px solid var(--edge);box-shadow:0 30px 60px -40px rgba(20,30,60,.35),var(--hi);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+body.dark .ek{box-shadow:0 30px 60px -36px rgba(0,0,0,.9),var(--hi)}
+.ek{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:26px 22px 24px 28px;min-height:132px}
+.ek:hover{transform:translateY(-3px);box-shadow:0 40px 70px -42px rgba(20,30,60,.45),var(--hi)}
+.ek-txt h3{font-size:23px;margin-bottom:8px}.ek .go{align-self:flex-end}
+.ek-txt>span{display:block;font-size:15px;line-height:1.45;color:var(--muted)}
+.ek:hover h3{color:var(--blue)}
+.ek h3{transition:color .25s}
+
+/* ---------- Kachelform zur Probe (Leon, 23.11.2026), zweiter Versuch: Umschalter "Kachelform", ?kf=W|L ----------
+   Echte Wolkenform aus einem Stück: Die Kontur jeder Kachel wird per Skript passend zur Größe berechnet
+   (drei Wölbungen oben, unten ruhig gerundet). Gezeichnet als SVG hinter dem Inhalt (Glasfläche, Rand, Schatten),
+   die Unschärfe dahinter ist auf dieselbe Kontur zugeschnitten. W = Wolke, L = Wolke leicht (flachere Wölbungen). */
+.ek-wolke{display:none}
+body.kfW .ek,body.kfL .ek{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;isolation:isolate}
+body.kfW .ek{padding-top:56px}
+body.kfL .ek{padding-top:42px}
+body.kfW .ek:hover,body.kfL .ek:hover{box-shadow:none}
+body.kfW .ek:before,body.kfL .ek:before{content:"";position:absolute;inset:0;z-index:-2;clip-path:var(--wolke);-webkit-backdrop-filter:blur(28px) saturate(1.2);backdrop-filter:blur(28px) saturate(1.2)}
+body.kfW .ek-wolke,body.kfL .ek-wolke{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:-1;overflow:visible;pointer-events:none}
+.ek-wolke path{fill:color-mix(in srgb,var(--bg) 72%,transparent);stroke:var(--edge);stroke-width:1;filter:drop-shadow(0 26px 28px rgba(20,30,60,.16));transition:fill .3s}
+.ek:hover .ek-wolke path{fill:color-mix(in srgb,var(--bg) 86%,transparent)}
+body.dark .ek-wolke path{fill:color-mix(in srgb,#1B2433 70%,transparent);filter:drop-shadow(0 26px 30px rgba(0,0,0,.7))}
+body.dark .ek:hover .ek-wolke path{fill:color-mix(in srgb,#1B2433 86%,transparent)}
+@media(max-width:900px){body.kfW .einstieg,body.kfL .einstieg{gap:30px}}
+
+/* ---------- Folge uns: Leiste am rechten Hero-Rand (Variante) ---------- */
+/* Größe +18 % (Leon, 20.11.2026) */
+.sozial-hero{position:absolute;right:24px;top:50%;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:14px}
+.sh-t{writing-mode:vertical-rl;transform:rotate(180deg);font:700 14.5px Comfortaa,sans-serif;letter-spacing:.04em;color:var(--muted)}
+.sh-l{display:block;width:1px;height:40px;background:color-mix(in srgb,var(--text) 18%,transparent)}
+.sozial-hero a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text);transition:background .25s,color .25s,border-color .25s}
+.sozial-hero a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.sozial-hero svg{width:18px;height:18px;fill:currentColor}
+body.shAus .sozial-hero{display:none}
+@media(max-width:1280px){.sozial-hero{display:none}}
+
+/* Abschnitt 2 entschieden: "So arbeiten wir" (Leon, 23.11.2026). Hero -> Managed Services (hell) -> So arbeiten wir (Fläche) -> Stimmen -> News -> Kontakt */
+.ms{padding-top:clamp(84px,9vw,132px)}
+.ms .glow{display:none}
+
+body.stmAus .stimmen-start{display:none}
+/* "Menschen dahinter" erst mit Fotos (Standard aus). Ist er an, bekommt er die Fläche und die News werden hell,
+   damit der Wechsel hell/Fläche erhalten bleibt (Leon, 23.11.2026). */
+body.tmAus .team{display:none}
+
+
+
+/* ---------- So arbeiten wir ---------- */
+.arbeit-in{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.arbeit-text h2{margin-bottom:26px}
+.arbeit-notiz{max-width:400px;padding-top:20px;border-top:1px solid var(--edge)}
+.arbeit-punkte{display:grid;grid-template-columns:1fr 1fr}
+.ap{padding:30px 34px 34px 0}
+.ap:nth-child(even){padding:30px 0 34px 34px;border-left:1px solid var(--edge)}
+.ap:nth-child(n+3){border-top:1px solid var(--edge)}
+.ap-ic{width:26px;height:26px;fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
+.ap h3{font-size:20px;margin-bottom:10px}
+.ap p{font-size:15.5px;line-height:1.6;color:var(--muted)}
+
+/* ---------- Managed Services ---------- */
+.ms .wrap{position:relative}
+.ms-band{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden}
+.ms-p{position:relative;padding:34px 30px 38px;transition:background .3s}
+.ms-p+.ms-p{border-left:1px solid var(--edge)}
+.ms-p:hover{background:color-mix(in srgb,var(--blue) 5%,transparent)}
+.ms-p h3{font-size:20px;margin-bottom:10px;transition:color .25s}
+.ms-p:hover h3{color:var(--blue)}
+.ms-p p{font-size:15px;line-height:1.55;color:var(--muted)}
+
+/* ---------- Menschen dahinter ---------- */
+.team{padding-bottom:calc(clamp(72px,8vw,120px) + 44px)}
+.team-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,88px);align-items:center}
+.team-text .lead{margin:26px 0 28px}
+.team-hinweis{margin-top:30px;font-size:13.5px}
+.portraits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.pt:nth-child(even){transform:translateY(44px)}
+
+.pt figcaption{display:flex;flex-direction:column;gap:8px;margin-top:16px}.pt figcaption i{display:block;height:9px;border-radius:9px;background:color-mix(in srgb,var(--text) 10%,transparent);width:70%}.pt figcaption i+i{width:46%;opacity:.7}.team-ph{grid-column:1/-1;margin-top:60px;font-size:15px}
+
+/* ---------- News-Teaser ---------- */
+/* News-Karte (.nk) und .news-reihe liegen in basis.css (auch News-Übersicht und Beitragsseite) */
+
+/* ---------- Breiten ---------- */
+@media(max-width:1330px){:root{--gx:0px}.tile{padding:44px 40px 46px}}
+/* Niedrige Bildschirme (Laptops 900/864 px hoch): Hero rückt zusammen, damit Hero-Kachel und die drei Kacheln
+   samt größerem Abstand ganz auf den ersten Bildschirm passen (Leon, 23.11.2026). Ab 1000 px Höhe unverändert. */
+@media(min-width:901px) and (max-height:1000px){
+ .hero-in{padding:clamp(148px,17vh,172px) 0 clamp(22px,3vh,44px)}
+ .tile{padding-top:clamp(22px,3vh,34px);padding-bottom:clamp(20px,2.8vh,32px)}
+ .tile .eb{margin-bottom:clamp(12px,1.6vh,22px)}
+ .tile h1{font-size:clamp(34px,min(3.8vw,5.6vh),56px);margin-bottom:clamp(12px,1.6vh,20px)}
+ .tile .btns{margin-top:clamp(20px,2.6vh,32px)}
+ .tile .ticket{margin-top:clamp(12px,1.5vh,18px);padding-top:clamp(12px,1.5vh,16px)}
+ .einstieg{margin-top:clamp(60px,7.4vh,72px)}
+}
+@media(max-width:1100px){.ek-txt h3{font-size:21px}.ek{padding:26px 20px 24px 24px}}
+@media(max-width:1000px){
+ .team-in,.arbeit-in{grid-template-columns:1fr}
+ .ms-band{grid-template-columns:1fr 1fr}
+ .ms-p:nth-child(3){border-left:0}
+ .ms-p:nth-child(n+3){border-top:1px solid var(--edge)}
+ .news-reihe{grid-template-columns:1fr 1fr}
+ .news-reihe .nk:nth-child(3){display:none}
+}
+@media(max-width:900px){
+ .hero{min-height:0}
+ .hero-in{padding:124px 0 48px}
+ .tile{padding:34px 24px 38px}
+ .tile:before{inset:-14px -6px;border-radius:34px}
+ .einstieg{grid-template-columns:1fr}
+ .ek{min-height:0}
+}
+@media(max-width:560px){
+ .hero-in{padding-top:108px}
+ .ms-band{grid-template-columns:1fr}
+ .ms-p+.ms-p{border-left:0;border-top:1px solid var(--edge)}
+ .news-reihe{grid-template-columns:1fr}
+ .news-reihe .nk:nth-child(3){display:flex}
+ .portraits{grid-template-columns:1fr 1fr;gap:14px}
+ .arbeit-punkte{grid-template-columns:1fr}
+ .ap,.ap:nth-child(even){padding:26px 0 28px;border-left:0}
+ .ap+.ap{border-top:1px solid var(--edge)}
+ .pt:nth-child(even){transform:translateY(28px)}
+ .team{padding-bottom:calc(84px + 28px)}
+}
+
+/* ================= Module zur Probe (Leon 23.11.2026): Reihenfolge und Hintergründe per Skript ================= */
+main{display:flex;flex-direction:column}
+main>section{width:100%}
+.mod-aus{display:none!important}
+main>section.hell{background:var(--bg)}
+main>section.hell .glow{display:none}
+main>section.alt{background:var(--bg2)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* Partner: ruhige Logo-Reihe */
+.logo-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.lr-logo{display:flex;align-items:center;justify-content:center;min-height:120px;padding:24px;font:700 clamp(20px,1.8vw,26px)/1 Comfortaa,sans-serif;letter-spacing:-.01em;color:color-mix(in srgb,var(--text) 46%,transparent);filter:grayscale(1);opacity:.85;transition:opacity .3s,filter .3s,color .3s}
+.lr-logo+.lr-logo{border-left:1px solid var(--edge)}
+.lr-logo:hover{opacity:1;filter:none;color:var(--text)}
+.lr-echt>*{max-height:34px;width:auto}
+/* Kunden: Typo-Reihe */
+.kunden-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--edge)}
+.kd{display:flex;flex-direction:column;gap:6px;padding:28px 24px 30px 0;border-bottom:1px solid var(--edge)}
+.kd:not(:nth-child(3n+1)){padding-left:24px;border-left:1px solid var(--edge)}
+.kd b{font:300 clamp(22px,2vw,30px)/1.15 Comfortaa,sans-serif;letter-spacing:-.02em}
+.kd span{font-size:14px;color:var(--muted)}
+/* KI */
+.ki-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,88px);align-items:start}
+.ki-text{display:flex;flex-direction:column;gap:24px;align-items:flex-start}
+.ki-punkte{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);width:100%}
+.ki-punkte span{flex:1 1 0;padding:16px 18px 16px 0;font:700 15px Comfortaa,sans-serif}
+.ki-punkte span+span{padding-left:18px;border-left:1px solid var(--edge)}
+/* Info fürs Team (PDF) */
+.ti-karte{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center;padding:clamp(30px,4.4vw,60px);border-radius:30px}
+.ti-text{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.ti-text .btn svg{margin-right:8px}
+.ti-vorschau{list-style:none;border-top:1px solid var(--edge)}
+.ti-vorschau li{display:flex;flex-direction:column;gap:3px;padding:16px 0;border-bottom:1px solid var(--edge)}
+.ti-vorschau b{font:700 16px Comfortaa,sans-serif}
+.ti-vorschau span{font-size:14.5px;color:var(--muted)}
+/* Karriere */
+.kt-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,88px);align-items:start}
+.kt-in .btns{margin-top:24px}
+/* Newsletter */
+.newsletter{padding:clamp(56px,6vw,84px) 0}
+.nl-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+.nl-in h2{font-size:clamp(26px,2.4vw,34px);margin-bottom:12px}
+.nl-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 12px}
+.nl-form input{min-height:52px;padding:0 20px;border-radius:100px;border:1px solid var(--edge);background:var(--bg);color:var(--text);font:400 16px 'Mozilla Text',sans-serif}
+.nl-form small{grid-column:1/-1;font-size:13px;color:var(--muted)}
+/* Panel: Module */
+.stg-info{font-size:12.5px;color:var(--muted);margin:-4px 0 10px}
+.mod-liste{list-style:none;display:flex;flex-direction:column;gap:2px}
+.mod-liste li{display:grid;grid-template-columns:minmax(0,1fr) 28px 28px auto;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--edge);font-size:14px}
+.mod-pf{width:28px;height:28px;border-radius:50%;border:1px solid var(--edge);background:none;color:var(--text);cursor:pointer;font-size:13px}
+.mod-pf:disabled{opacity:.3;cursor:default}
+.mod-pf:not(:disabled):hover{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:1000px){.ki-in,.kt-in,.ti-karte,.nl-in{grid-template-columns:1fr}.logo-reihe{grid-template-columns:repeat(3,minmax(0,1fr))}.lr-logo:nth-child(4){border-left:0}.lr-logo:nth-child(n+4){border-top:1px solid var(--edge)}}
+@media(max-width:600px){.logo-reihe{grid-template-columns:1fr 1fr}.lr-logo:nth-child(n){border-left:0;border-top:1px solid var(--edge);min-height:90px}.lr-logo:nth-child(even){border-left:1px solid var(--edge)}.lr-logo:first-child{border-top:0}.kunden-reihe{grid-template-columns:1fr 1fr}.kd:nth-child(n){padding-left:0;border-left:0}.kd:nth-child(even){padding-left:18px;border-left:1px solid var(--edge)}.ki-punkte span{flex-basis:100%;padding-left:0!important;border-left:0!important}.ki-punkte span+span{border-top:1px solid var(--edge)}.nl-form{grid-template-columns:1fr}}
+.lr-echt .logo-maske{display:block;height:30px;width:auto;background:#181A7A;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+body.dark .lr-echt .logo-maske{background:#fff}
+
+/* ---------- Einstellungen: Welle durchschalten statt Regler (Leon 24.11.2026) ---------- */
+.stg-welle{display:grid;gap:6px}
+.stg-welle button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:9px 14px;border-radius:14px;border:1px solid var(--edge);background:transparent;color:var(--text);text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.stg-welle button b{font:700 14px 'Mozilla Text',sans-serif}
+.stg-welle button small{font-size:12.5px;color:var(--muted)}
+.stg-welle button:hover{border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
+.stg-welle button.on{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 7%,transparent)}
+.stg-welle button.on b{color:var(--blue)}
+.stg-welle-nav{display:flex;gap:6px;margin-top:8px}
+.stg-welle-nav button{flex:1;padding:8px 10px;border-radius:100px;border:1px solid var(--edge);background:transparent;color:var(--text);font:700 13px 'Mozilla Text',sans-serif;cursor:pointer}
+.stg-welle-nav button:hover{background:var(--blue);border-color:var(--blue);color:#fff}

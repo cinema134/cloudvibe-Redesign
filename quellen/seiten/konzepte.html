@@ -1,0 +1,683 @@
+<main>
+<!-- ================= Kopf: Titel und Inhaltsübersicht ================= -->
+<section class="uhero ko-hero" id="top">
+ <div class="wrap uhero-in">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span>Konzepte</nav>
+  <h1>Konzepte zur <b>Abstimmung</b>.</h1>
+  <p class="lead">Acht Ideen für den Neuaufbau. Jede hat zwei oder drei Varianten zum Ausprobieren und eine Empfehlung. Alles ist bedienbar, nichts wird verschickt oder gespeichert.</p>
+  <nav class="ko-inhalt glas" aria-label="Inhalt dieser Seite">
+   <ol>
+    <li><a href="#ticket"><span>1</span>Ticket auf zwei Wegen</a></li>
+    <li><a href="#teaminfo"><span>2</span>Info-PDF für dein Team</a></li>
+    <li><a href="#newsletter"><span>3</span>Newsletter</a></li>
+    <li><a href="#kontaktformular"><span>4</span>Kontaktformular</a></li>
+    <li><a href="#cookies"><span>5</span>Cookie-Abfrage</a></li>
+    <li><a href="#ki"><span>6</span>KI als eigener Punkt</a></li>
+    <li><a href="#karriere"><span>7</span>Karriere</a></li>
+    <li><a href="#kopfleiste"><span>8</span>Kopfleiste breit</a></li>
+   </ol>
+  </nav>
+ </div>
+</section>
+
+<!-- ================= 1 Ticket auf zwei Wegen ================= -->
+<section class="ab ko" id="ticket">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 1</div><h2>Ticket auf <b>zwei Wegen</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Heute öffnet „Ticket schreiben“ eine E-Mail an support@cloudvibe.de. Das geht schnell, aber viele Tickets kommen ohne Rückrufnummer, Gerätename oder Fehlerbild an, und wir müssen erst nachfragen. Neu kommt ein geführtes Ticket direkt auf der Seite dazu. Die E-Mail bleibt für alle, die es eilig haben.</p>
+   </div>
+  </div>
+
+  <div class="ko-wahl" role="group" aria-label="Variante Ticket" data-wahl="ticket">
+   <button type="button" data-v="A" class="on">A Auswahl-Dialog</button>
+   <button type="button" data-v="B">B Eigene Seite /support</button>
+  </div>
+
+  <div class="ko-var" data-teil="ticket" data-v="A">
+   <div class="ko-fenster">
+    <div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de</span></div>
+    <div class="ko-fi ta-fi">
+     <div class="ko-sk" aria-hidden="true"><i class="w70"></i><i class="w45"></i><i class="w60 d"></i><i class="w50 d"></i></div>
+     <div class="ta-zeile"><span class="leise">Schon Kunde und etwas klemmt?</span><button type="button" class="btn leise-btn" data-dlg-auf>Ticket schreiben</button></div>
+     <div class="ko-dlg" hidden>
+      <div class="ko-dlg-box" role="dialog" aria-modal="true" aria-labelledby="taT">
+       <button type="button" class="ko-x" data-dlg-zu aria-label="Schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+       <div class="ko-mt" id="taT">Wie möchtest du dein Ticket <b>schicken</b>?</div>
+       <a class="ko-weg" href="mailto:support@cloudvibe.de">
+        <span class="ko-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span><b>Schnell per E-Mail</b><small>Öffnet dein Mailprogramm mit support@cloudvibe.de. Gut, wenn du alles Wichtige selbst hineinschreibst.</small></span>
+        {{PFEIL}}
+       </a>
+       <button type="button" class="ko-weg" data-zum-ticket>
+        <span class="ko-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg></span>
+        <span><b>Geführt, damit wir sofort loslegen können</b><small>Drei kurze Schritte. Wir fragen genau das ab, was wir für die Lösung brauchen.</small></span>
+        {{PFEIL}}
+       </button>
+       <div class="ko-notfall">Bei Notfall anrufen: <a href="tel:{{SUPPORT_TEL}}">Support {{SUPPORT}}</a></div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="ko-erkl">
+    <h3>A: Auswahl direkt am Button</h3>
+    <p>„Ticket schreiben“ bleibt an seiner Stelle. Ein Klick öffnet eine kleine Auswahl: schnell per E-Mail oder geführt auf der Seite. Probier es im Fenster aus.</p>
+    <div class="ko-pk">Spricht dafür</div>
+    <ul><li>Niemand verlässt die Seite, auf der er gerade ist.</li><li>Die Wahl ist sofort klar und dauert eine Sekunde.</li></ul>
+    <div class="ko-pk">Spricht dagegen</div>
+    <ul class="minus"><li>Ein Dialog über der Seite ist ein Schritt mehr für alle, die nur mailen wollen.</li><li>Nicht verlinkbar, zum Beispiel aus dem PDF oder der E-Mail-Signatur.</li></ul>
+   </div>
+  </div>
+
+  <div class="ko-var" data-teil="ticket" data-v="B" hidden>
+   <div class="ko-fenster">
+    <div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de/support</span></div>
+    <div class="ko-fi sp-fi">
+     <div class="mh-krumen">Startseite <span>/</span> Support</div>
+     <div class="ko-mt gross">Wie können wir dir <b>helfen</b>?</div>
+     <div class="ko-ml">Für Kundinnen und Kunden von cloudvibe. Servicezeiten Montag bis Freitag, 8 bis 17 Uhr.</div>
+     <div class="sp-wege">
+      <div class="sp-haupt">
+       <b>Ticket geführt anlegen</b>
+       <span>Drei kurze Schritte mit allem, was wir für die Lösung brauchen. So können wir sofort loslegen.</span>
+       <button type="button" class="btn" data-zum-ticket>Ticket starten</button>
+      </div>
+      <div class="sp-liste">
+       <a href="tel:{{SUPPORT_TEL}}"><span><b>Es ist dringend</b><small>Support {{SUPPORT}}</small></span>{{PFEIL}}</a>
+       <a href="mailto:support@cloudvibe.de"><span><b>Kurz per E-Mail</b><small>support@cloudvibe.de</small></span>{{PFEIL}}</a>
+       <a href="#"><span><b>Fernwartung</b><small>QuickSupport starten</small></span>{{PFEIL}}</a>
+       <a href="#teaminfo"><span><b>Für dein Team</b><small>Kurzanleitung als PDF</small></span>{{PFEIL}}</a>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="ko-erkl">
+    <h3>B: Eine Seite für alles rund um Support</h3>
+    <p>Alle Ticket-Links führen auf /support. Dort stehen das geführte Ticket, die Support-Nummer, die E-Mail, die Fernwartung und die Kurzanleitung an einer Stelle.</p>
+    <div class="ko-pk">Spricht dafür</div>
+    <ul><li>Eine Adresse, die überall passt: Footer, PDF, Signatur, Rechnung.</li><li>Platz für Servicezeiten und Notfallnummer, ohne die Startseite zu füllen.</li></ul>
+    <div class="ko-pk">Spricht dagegen</div>
+    <ul class="minus"><li>Ein Seitenwechsel mehr für alle, die nur schnell mailen wollen.</li></ul>
+   </div>
+  </div>
+
+  <!-- Das geführte Ticket (in beiden Varianten gleich) -->
+  <div class="tk glas" id="tk">
+   <div class="tk-seite">
+    <h3>Das geführte <b>Ticket</b></h3>
+    <p class="leise">In beiden Varianten gleich. Drei Schritte mit allem, was wir für einen schnellen Einstieg brauchen.</p>
+    <ol class="tk-schritte">
+     <li class="on" data-s="1"><span>1</span>Wer bist du</li>
+     <li data-s="2"><span>2</span>Was ist betroffen</li>
+     <li data-s="3"><span>3</span>Zusammenfassung</li>
+    </ol>
+    <div class="tk-notfall">
+     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+     <div><b>Bei Notfall anrufen: Support</b><a href="tel:{{SUPPORT_TEL}}">{{SUPPORT}}</a></div>
+    </div>
+   </div>
+   <form class="tk-form" novalidate>
+    <fieldset class="tk-s" data-s="1">
+     <legend>Wer bist du?</legend>
+     <div class="ko-gitter">
+      <div class="feld"><label for="tk-firma">Firma oder Praxis <span class="ko-pf">*</span></label><input id="tk-firma" data-k="Firma" required autocomplete="organization"><small class="ko-fm">Bitte ausfüllen.</small></div>
+      <div class="feld"><label for="tk-name">Dein Name <span class="ko-pf">*</span></label><input id="tk-name" data-k="Name" required autocomplete="name"><small class="ko-fm">Bitte ausfüllen.</small></div>
+      <div class="feld"><label for="tk-tel">Rückrufnummer <span class="ko-pf">*</span></label><input id="tk-tel" data-k="Rückruf" type="tel" required autocomplete="tel"><small class="ko-fm">Damit wir dich zurückrufen können.</small></div>
+      <div class="feld"><label for="tk-mail">E-Mail <span class="ko-pf">*</span></label><input id="tk-mail" data-k="E-Mail" type="email" required autocomplete="email"><small class="ko-fm">Bitte eine gültige E-Mail-Adresse.</small></div>
+     </div>
+     <div class="tk-akt"><span class="ko-pfl">* Pflichtfeld</span><button type="button" class="btn" data-weiter="2">Weiter{{PFEIL}}</button></div>
+    </fieldset>
+
+    <fieldset class="tk-s" data-s="2" hidden>
+     <legend>Was ist betroffen?</legend>
+     <div class="feld tk-gruppe" data-gruppe="kat">
+      <label>Bereich <span class="ko-pf">*</span></label>
+      <div class="ko-chips">
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="Arbeitsplatz" aria-label="Arbeitsplatz"><span>Arbeitsplatz</span></span>
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="Drucker" aria-label="Drucker"><span>Drucker</span></span>
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="E-Mail" aria-label="E-Mail"><span>E-Mail</span></span>
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="Netzwerk oder Internet" aria-label="Netzwerk oder Internet"><span>Netzwerk oder Internet</span></span>
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="Telefonie" aria-label="Telefonie"><span>Telefonie</span></span>
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="TI oder Kartenterminal" aria-label="TI oder Kartenterminal"><span>TI oder Kartenterminal</span></span>
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="DATEV oder SelectLine" aria-label="DATEV oder SelectLine"><span>DATEV oder SelectLine</span></span>
+       <span class="ko-chip"><input type="radio" name="tk-kat" value="Sonstiges" aria-label="Sonstiges"><span>Sonstiges</span></span>
+      </div>
+      <small class="ko-fm">Bitte einen Bereich wählen.</small>
+     </div>
+     <div class="feld tk-gruppe" data-gruppe="dr">
+      <label>Wie dringend? <span class="ko-pf">*</span></label>
+      <div class="tk-dr">
+       <label class="tk-opt"><input type="radio" name="tk-dr" value="Ein Arbeitsplatz"><b>Ein Arbeitsplatz</b><small>Nur ein Gerät oder eine Person ist betroffen.</small></label>
+       <label class="tk-opt"><input type="radio" name="tk-dr" value="Mehrere Arbeitsplätze"><b>Mehrere Arbeitsplätze</b><small>Ein Teil des Teams kann nicht richtig arbeiten.</small></label>
+       <label class="tk-opt"><input type="radio" name="tk-dr" value="Ganzer Betrieb steht"><b>Ganzer Betrieb steht</b><small>Niemand kann arbeiten.</small></label>
+      </div>
+      <small class="ko-fm">Bitte auswählen.</small>
+      <div class="tk-alarm" hidden>
+       <span>Wenn der ganze Betrieb steht, ruf uns bitte zusätzlich direkt an. Das Ticket kannst du trotzdem abschicken.</span>
+       <a class="btn zw" href="tel:{{SUPPORT_TEL}}">{{TEL}}{{SUPPORT}}</a>
+      </div>
+     </div>
+     <div class="ko-gitter">
+      <div class="feld"><label for="tk-geraet">Gerätename oder Fernwartungs-ID</label><input id="tk-geraet" data-k="Gerät"><small class="ko-tipp">Steht auf dem Aufkleber am Gerät oder im QuickSupport-Fenster.</small></div>
+      <div class="feld"><label for="tk-seit">Seit wann?</label>
+       <select id="tk-seit" data-k="Seit wann"><option value="">Bitte wählen</option><option>Gerade eben</option><option>Seit heute</option><option>Seit ein paar Tagen</option><option>Kommt immer wieder</option></select></div>
+      <div class="feld voll"><label for="tk-text">Was passiert genau? <span class="ko-pf">*</span></label><textarea id="tk-text" data-k="Beschreibung" required placeholder="Zum Beispiel: Beim Drucken kommt die Meldung „Drucker offline“, der Drucker am Empfang zeigt keine Fehler."></textarea><small class="ko-fm">Ein, zwei Sätze helfen uns sehr.</small></div>
+      <div class="feld voll"><label class="tk-datei" for="tk-bild"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.5l-8.6 8.6a5 5 0 0 1-7.1-7.1l8.6-8.6a3.3 3.3 0 0 1 4.7 4.7l-8.6 8.6a1.7 1.7 0 0 1-2.4-2.4l7.9-7.9"/></svg><span class="tk-datei-t">Screenshot anhängen (optional)</span><input id="tk-bild" type="file" accept="image/*"></label></div>
+     </div>
+     <div class="tk-akt"><button type="button" class="btn leise-btn" data-weiter="1">Zurück</button><button type="button" class="btn" data-weiter="3">Weiter{{PFEIL}}</button></div>
+    </fieldset>
+
+    <fieldset class="tk-s" data-s="3" hidden>
+     <legend>Passt alles?</legend>
+     <div class="tk-zus" aria-live="polite"></div>
+     <label class="check tk-ds"><input type="checkbox" id="tk-ds"> <span>Ich bin einverstanden, dass ihr meine Angaben zur Bearbeitung des Tickets verwendet. Mehr dazu in der <a class="link-t" href="#">Datenschutzerklärung</a>. <span class="ko-pf">*</span></span></label>
+     <small class="ko-fm tk-ds-fm">Bitte bestätigen.</small>
+     <div class="tk-akt"><button type="button" class="btn leise-btn" data-weiter="2">Zurück</button><button type="submit" class="btn">Ticket senden</button></div>
+    </fieldset>
+
+    <div class="tk-danke" hidden>
+     <span class="tk-haken" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+     <div class="ko-mt">Danke, dein Ticket ist <b>bei uns</b>.</div>
+     <div class="ko-ml">Mockup: Es wurde nichts verschickt. Im echten Betrieb bekommst du jetzt eine Bestätigung per E-Mail, und wir melden uns unter deiner Rückrufnummer.</div>
+     <button type="button" class="btn leise-btn" data-neu>Neues Ticket</button>
+    </div>
+   </form>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante B. Eine eigene Seite /support ist von überall verlinkbar, bündelt Anrufen, Fernwartung, E-Mail und das geführte Ticket an einer Stelle und kommt ohne Dialog über der Seite aus. Der Button auf der Startseite heißt dann „Support und Ticket“ und führt dorthin.</p></div>
+ </div>
+</section>
+
+<!-- ================= 2 Info-PDF für dein Team ================= -->
+<section class="ab alt ko" id="teaminfo">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 2</div><h2>Info für deine <b>Mitarbeitenden</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Ein kleines Modul auf der Startseite für Bestandskunden: ein PDF, das die Praxis-, Kanzlei- oder Büroleitung ans Team weitergibt oder aushängt. So wissen alle, wie sie uns erreichen und was in ein gutes Ticket gehört. Das spart Rückfragen schon vor dem ersten Anruf.</p>
+   </div>
+  </div>
+
+  <div class="ko-wahl" role="group" aria-label="Variante Info-PDF" data-wahl="pdf">
+   <button type="button" data-v="A" class="on">A Ruhige Zeile</button>
+   <button type="button" data-v="B">B Karte mit Vorschau</button>
+  </div>
+
+  <div class="ko-modul" data-teil="pdf" data-v="A">
+   <div class="pdf-zeile glas">
+    <span class="ko-ic gross"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+    <div>
+     <div class="pdf-t">Du möchtest deinem Team einfach erklären, wie es schnell Hilfe von cloudvibe bekommt?</div>
+     <div class="pdf-s">Eine Seite zum Ausdrucken oder Weiterleiten: Telefon, E-Mail, Fernwartung und was in ein gutes Ticket gehört.</div>
+    </div>
+    <div class="pdf-akt"><button type="button" class="btn" data-pdf><svg class="pf" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF herunterladen</button><span class="ko-hw" hidden>Mockup: Das PDF entsteht nach Freigabe des Inhalts.</span></div>
+   </div>
+  </div>
+
+  <div class="ko-modul" data-teil="pdf" data-v="B" hidden>
+   <div class="pdf-karte glas">
+    <div>
+     <div class="eb">Für dein Team</div>
+     <div class="ko-mt gross">Du möchtest deinem Team einfach erklären, wie es <b>schnell Hilfe</b> von cloudvibe bekommt?</div>
+     <div class="ko-ml">Unsere Kurzanleitung passt auf eine Seite. Ausdrucken, an den Empfang hängen oder ans Team weiterleiten.</div>
+     <div class="btns"><button type="button" class="btn" data-pdf><svg class="pf" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF herunterladen</button><a class="link" href="#pdf-vorschau">Vorschau ansehen{{PFEIL}}</a></div>
+     <span class="ko-hw" hidden>Mockup: Das PDF entsteht nach Freigabe des Inhalts.</span>
+    </div>
+    <div class="pdf-papiere" aria-hidden="true">
+     <div class="pdf-papier"><i class="lg"></i><i class="t"></i><i class="t k"></i><i class="r"></i><i></i><i class="k"></i><i class="r"></i><i></i><i class="k"></i><i class="r"></i><i></i><i class="box"></i></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="pdf-vorschau" id="pdf-vorschau">
+   <div class="pdf-vt">
+    <h3>Vorschau des PDF</h3>
+    <p class="leise">A4 hoch, eine Seite, im Design der cloudvibe-Kundendokumente. Bewusst knapp: Wer im Stress nachschaut, findet in Sekunden die richtige Nummer.</p>
+    <ul class="ko-punkte">
+     <li>Support-Telefon für Dringendes</li>
+     <li>E-Mail an support@cloudvibe.de für alles andere</li>
+     <li>Fernwartung mit QuickSupport in drei Handgriffen</li>
+     <li>Checkliste für ein gutes Ticket</li>
+     <li>Servicezeiten und Adresse</li>
+    </ul>
+   </div>
+   <div class="a4-rahmen">
+    <div class="a4" role="img" aria-label="Vorschau der Kurzanleitung als A4-Seite">
+     <div class="a4-kopf"><img data-logo alt="cloudvibe"><span>Kurzanleitung für dein Team</span></div>
+     <div class="a4-titel">So bekommst du <b>schnell Hilfe</b>.</div>
+     <div class="a4-intro">Für alle im Team. Am besten ausdrucken und dort aufhängen, wo alle es sehen.</div>
+     <div class="a4-wege">
+      <div class="a4-weg"><span class="k">Anrufen</span><div><span class="gross">{{SUPPORT}}</span><span class="s">Wenn es dringend ist oder gar nichts mehr geht.</span></div></div>
+      <div class="a4-weg"><span class="k">E-Mail</span><div><span class="gross">support@cloudvibe.de</span><span class="s">Für alles, was nicht sofort sein muss. Jede Mail wird bei uns zum Ticket.</span></div></div>
+      <div class="a4-weg"><span class="k">Fernwartung</span><div><span class="gross">QuickSupport starten</span><span class="s">Auf cloudvibe.de oben rechts „Fernwartung“ wählen, Programm öffnen und ID und Kennwort nur am Telefon an uns durchgeben.</span></div></div>
+     </div>
+     <div class="a4-check">
+      <div class="a4-ch">Das braucht ein gutes Ticket</div>
+      <div class="a4-liste">
+       <span>Dein Name und eine Rückrufnummer</span>
+       <span>Gerätename oder Fernwartungs-ID</span>
+       <span>Was genau passiert, gern mit Screenshot</span>
+       <span>Seit wann es so ist</span>
+       <span>Wie viele betroffen sind</span>
+      </div>
+     </div>
+     <div class="a4-zeiten"><span>Servicezeiten</span><b>Montag bis Freitag, 8 bis 17 Uhr</b></div>
+     <div class="a4-fuss"><span>cloudvibe GmbH · Von-Monschaw-Str. 12a · 47574 Goch</span><span>cloudvibe.de</span></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante A als ruhige Zeile auf der Startseite zwischen News und Kontakt: Bestandskunden finden sie, Neukunden stört sie nicht. Das PDF zusätzlich auf /support verlinken und Neukunden beim Start per E-Mail schicken.</p></div>
+ </div>
+</section>
+
+<!-- ================= 3 Newsletter ================= -->
+<section class="ab ko" id="newsletter">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 3</div><h2>Newsletter: <b>Konzept und Ablauf</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Ausgearbeitet auf der eigenen <a class="link-t" href="{{LINK:newsletter}}">Newsletter-Seite</a> (24.11.2026): einmal im Monat, vier Rubriken (Sicherheitshinweis, Aus deiner Branche, Kurz erklärt, Aus dem Team), ein allgemeiner Teil für alle und ein Block je gewähltem Bereich. Anmeldung mit Double-Opt-in, unter jeder Ausgabe „Bereiche ändern“ und „Abmelden“, Sonderausgabe nur bei akuten Sicherheitswarnungen. Technisch später Odoo E-Mail-Marketing: Liste „Allgemein“ plus je Bereich eine Liste; Inhalte kommen aus den News-Beiträgen. Die Anmeldung gibt es als Karte (News, Startseiten-Modul) und als schmale Zeile (Ende eines Beitrags).</p>
+   </div>
+  </div>
+
+  <div class="ko-wahl" role="group" aria-label="Variante Newsletter" data-wahl="nl">
+   <button type="button" data-v="A" class="on">A Schmale Zeile</button>
+   <button type="button" data-v="B">B Karte mit Themenwahl</button>
+  </div>
+
+  <div class="ko-modul" data-teil="nl" data-v="A">
+   <form class="nl-zeile nl-form" novalidate>
+    <div>
+     <div class="nl-t">Neues von cloudvibe ins Postfach</div>
+     <div class="nl-s">IT-Sicherheit, TI und Software, kurz erklärt. Abmelden geht jederzeit.</div>
+    </div>
+    <div>
+     <div class="nl-feld"><label class="ko-vh" for="nlA">E-Mail-Adresse</label><input id="nlA" type="email" placeholder="deine@e-mail.de" autocomplete="email"><button class="btn" type="submit">Anmelden</button></div>
+     <div class="nl-hw">Du bekommst zuerst eine E-Mail mit einem Bestätigungslink (Double-Opt-in). Mehr dazu in der <a class="link-t" href="#">Datenschutzerklärung</a>.</div>
+     <div class="ko-ok" hidden></div>
+    </div>
+   </form>
+  </div>
+
+  <div class="ko-modul" data-teil="nl" data-v="B" hidden>
+   <form class="nl-karte glas nl-form" novalidate>
+    <div>
+     <div class="ko-mt gross">Bleib auf dem <b>Laufenden</b>.</div>
+     <div class="ko-ml">Neues zu IT-Sicherheit, Telematikinfrastruktur, DATEV, SelectLine und Microsoft 365. Wähle, was dich betrifft. Abmelden geht jederzeit mit einem Klick.</div>
+    </div>
+    <div class="nl-rechts">
+     <fieldset class="nl-themen">
+      <legend>Welche Themen interessieren dich?</legend>
+      <div class="ko-chips">
+       <span class="ko-chip"><input type="checkbox" name="nl-thema" value="Gesundheitswesen" checked aria-label="Gesundheitswesen"><span><span class="hc">Gesundheitswesen</span></span></span>
+       <span class="ko-chip"><input type="checkbox" name="nl-thema" value="Kanzleien" aria-label="Kanzleien"><span>Kanzleien</span></span>
+       <span class="ko-chip"><input type="checkbox" name="nl-thema" value="Unternehmen" aria-label="Unternehmen"><span>Unternehmen</span></span>
+      </div>
+     </fieldset>
+     <div class="nl-feld"><label class="ko-vh" for="nlB">E-Mail-Adresse</label><input id="nlB" type="email" placeholder="deine@e-mail.de" autocomplete="email"><button class="btn" type="submit">Anmelden</button></div>
+     <div class="nl-hw">Double-Opt-in: Erst nach dem Klick auf den Link in unserer Bestätigungs-E-Mail bist du angemeldet. Mehr dazu in der <a class="link-t" href="#">Datenschutzerklärung</a>.</div>
+     <div class="ko-ok" hidden></div>
+    </div>
+   </form>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Umgesetzt: Karte mit Bereichswahl (B) auf der News-Seite, auf der Newsletter-Seite und im Startseiten-Modul; schmale Zeile (A) am Ende jedes Beitrags. Offen: Wer schreibt, und ab wann geht es los.</p></div>
+ </div>
+</section>
+
+<!-- ================= 4 Kontaktformular ================= -->
+<section class="ab alt ko" id="kontaktformular">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 4</div><h2>Kontaktformular: <b>welche Pflichtfelder</b>?</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Drei offene Fragen: Brauchen wir den Firmennamen? Sollen Vor- und Nachname getrennt sein? Und „Am besten erreichbar“ ergibt nur Sinn, wenn jemand eine Telefonnummer angibt. Beide Varianten sind echte Formulare zum Ausprobieren. Pflichtfelder sind mit * markiert.</p>
+   </div>
+  </div>
+
+  <div class="kf-paar">
+   <div class="kf glas">
+    <div class="kf-kopf">
+     <h3>A: Vollständig</h3>
+     <p>Firma Pflicht, Vor- und Nachname getrennt. Telefon ist freiwillig, „Am besten erreichbar“ erscheint erst, wenn eine Nummer drinsteht.</p>
+    </div>
+    <form class="kf-form" data-kf="A" novalidate>
+     <div class="feld voll"><label for="kaF">Firma oder Praxis <span class="ko-pf">*</span></label><input id="kaF" required autocomplete="organization"><small class="ko-fm">Bitte ausfüllen.</small></div>
+     <div class="feld"><label for="kaV">Vorname <span class="ko-pf">*</span></label><input id="kaV" required autocomplete="given-name"><small class="ko-fm">Bitte ausfüllen.</small></div>
+     <div class="feld"><label for="kaN">Nachname <span class="ko-pf">*</span></label><input id="kaN" required autocomplete="family-name"><small class="ko-fm">Bitte ausfüllen.</small></div>
+     <div class="feld"><label for="kaM">E-Mail <span class="ko-pf">*</span></label><input id="kaM" type="email" required autocomplete="email"><small class="ko-fm">Bitte eine gültige E-Mail-Adresse.</small></div>
+     <div class="feld"><label for="kaT">Telefon <span class="ko-opt">optional</span></label><input id="kaT" type="tel" autocomplete="tel" data-zeigt="kaZw"></div>
+     <div class="feld voll kf-mehr" id="kaZw" hidden><label for="kaZ">Am besten erreichbar</label>
+      <select id="kaZ"><option value="">Bitte wählen</option><option>Vormittags (8 bis 12 Uhr)</option><option>Mittags (12 bis 14 Uhr)</option><option>Nachmittags (14 bis 17 Uhr)</option></select></div>
+     <div class="feld voll"><label for="kaA">Worum geht es? <span class="ko-pf">*</span></label><textarea id="kaA" required></textarea><small class="ko-fm">Ein, zwei Sätze reichen.</small></div>
+     <div class="voll"><label class="check"><input type="checkbox" data-ds> <span>Ich bin einverstanden, dass ihr meine Angaben zur Bearbeitung meiner Anfrage verwendet. Mehr dazu in unserer <a class="link-t" href="#">Datenschutzerklärung</a>. <span class="ko-pf">*</span></span></label><small class="ko-fm">Bitte bestätigen.</small></div>
+     <div class="voll form-fuss"><button class="btn" type="submit">Anfrage senden</button><span class="ko-pfl">* Pflichtfeld · 6 Pflichtangaben</span></div>
+     <div class="voll ko-ok" hidden></div>
+    </form>
+   </div>
+
+   <div class="kf glas">
+    <div class="kf-kopf">
+     <h3>B: Schlank</h3>
+     <p>Ein Namensfeld, Firma freiwillig. Wer zurückgerufen werden möchte, legt den Schalter um, dann erscheinen Telefon und Erreichbarkeit.</p>
+    </div>
+    <form class="kf-form" data-kf="B" novalidate>
+     <div class="feld"><label for="kbN">Name <span class="ko-pf">*</span></label><input id="kbN" required autocomplete="name"><small class="ko-fm">Bitte ausfüllen.</small></div>
+     <div class="feld"><label for="kbF">Firma oder Praxis <span class="ko-opt">optional</span></label><input id="kbF" autocomplete="organization"></div>
+     <div class="feld voll"><label for="kbM">E-Mail <span class="ko-pf">*</span></label><input id="kbM" type="email" required autocomplete="email"><small class="ko-fm">Bitte eine gültige E-Mail-Adresse.</small></div>
+     <label class="voll kf-sw" for="kbR"><span><b>Ich hätte gern einen Rückruf</b><small>Dann brauchen wir deine Nummer.</small></span><input id="kbR" type="checkbox" class="ko-sw" role="switch" data-zeigt="kbRw"></label>
+     <div class="voll ko-gitter kf-mehr" id="kbRw" hidden>
+      <div class="feld"><label for="kbT">Telefon <span class="ko-pf">*</span></label><input id="kbT" type="tel" autocomplete="tel" data-pflicht-wenn="kbR"><small class="ko-fm">Für den Rückruf brauchen wir deine Nummer.</small></div>
+      <div class="feld"><label for="kbZ">Am besten erreichbar</label>
+       <select id="kbZ"><option value="">Egal, wann es passt</option><option>Vormittags (8 bis 12 Uhr)</option><option>Mittags (12 bis 14 Uhr)</option><option>Nachmittags (14 bis 17 Uhr)</option></select></div>
+     </div>
+     <div class="feld voll"><label for="kbA">Worum geht es? <span class="ko-pf">*</span></label><textarea id="kbA" required></textarea><small class="ko-fm">Ein, zwei Sätze reichen.</small></div>
+     <div class="voll"><label class="check"><input type="checkbox" data-ds> <span>Ich bin einverstanden, dass ihr meine Angaben zur Bearbeitung meiner Anfrage verwendet. Mehr dazu in unserer <a class="link-t" href="#">Datenschutzerklärung</a>. <span class="ko-pf">*</span></span></label><small class="ko-fm">Bitte bestätigen.</small></div>
+     <div class="voll form-fuss"><button class="btn" type="submit">Anfrage senden</button><span class="ko-pfl">* Pflichtfeld · 4 Pflichtangaben</span></div>
+     <div class="voll ko-ok" hidden></div>
+    </form>
+   </div>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante B. Jedes Pflichtfeld kostet Anfragen, und für die erste Kontaktaufnahme reicht ein Name. Die Firma ist freiwillig, weil die Branche je Seite schon vorbelegt ist und sich der Rest im Gespräch klärt. Telefon und Erreichbarkeit erscheinen nur, wenn jemand wirklich einen Rückruf möchte. So ist keine Angabe sinnlos.</p></div>
+ </div>
+</section>
+
+<!-- ================= 5 Cookie-Abfrage ================= -->
+<section class="ab ko" id="cookies">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 5</div><h2>Cookie- und <b>Datenschutz-Abfrage</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Beim ersten Besuch fragt die Seite, was sie laden darf. Nach DSGVO und TDDDG muss Ablehnen genauso leicht sein wie Annehmen, deshalb sind alle drei Knöpfe gleich gestaltet. Notwendiges ist immer an, Statistik und externe Medien erst nach Zustimmung. Die Vorführung merkt sich nichts, Neuladen setzt alles zurück.</p>
+   </div>
+  </div>
+
+  <div class="ck-wahlen">
+   <div class="ck-w">
+    <div class="ck-thumb ck-tA" aria-hidden="true"><i class="t-l"></i><i class="t-h"></i><i class="t-h k"></i><i class="t-b"></i></div>
+    <h3>A: Leiste unten</h3>
+    <p>Schmale Milchglas-Leiste über die Breite des Inhalts. Die Seite bleibt sichtbar und bedienbar.</p>
+    <button type="button" class="btn leise-btn" data-ck-zeige="A">Variante A vorführen</button>
+   </div>
+   <div class="ck-w">
+    <div class="ck-thumb ck-tB" aria-hidden="true"><i class="t-l"></i><i class="t-h"></i><i class="t-h k"></i><i class="t-d"></i><i class="t-b"></i></div>
+    <h3>B: Karte in der Mitte</h3>
+    <p>Zentrierte Karte, die Seite dahinter leicht abgedunkelt. Wird sicher gesehen, unterbricht aber den ersten Eindruck.</p>
+    <button type="button" class="btn leise-btn" data-ck-zeige="B">Variante B vorführen</button>
+   </div>
+   <div class="ck-w">
+    <div class="ck-thumb ck-tC" aria-hidden="true"><i class="t-l"></i><i class="t-h"></i><i class="t-h k"></i><i class="t-b"></i></div>
+    <h3>C: Kleine Karte unten links</h3>
+    <p>Kompakt in der Ecke, Knöpfe untereinander. Auf dem Handy wird daraus automatisch eine Leiste unten.</p>
+    <button type="button" class="btn leise-btn" data-ck-zeige="C">Variante C vorführen</button>
+   </div>
+  </div>
+  <div class="ck-status" aria-live="polite">Noch keine Vorführung gestartet.</div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante C. Die kleine Karte verdeckt am wenigsten von Hero, Buttons und Telefonnummer und bleibt trotzdem deutlich sichtbar. Dazu im Footer ein Link „Cookie-Einstellungen“, damit man die Wahl jederzeit ändern kann. Nutzt die Seite am Ende weder Statistik noch externe Medien, kann die Abfrage ganz entfallen.</p></div>
+ </div>
+</section>
+
+<!-- ================= 6 KI als eigener Punkt ================= -->
+<section class="ab alt ko" id="ki">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 6</div><h2>KI als <b>eigener Punkt</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>KI bekommt eine eigene Seite, eigenständig gedacht und formuliert. Hier drei inhaltliche Richtungen. Alle passen zu Praxen, Kanzleien und Mittelstand, weil sie bei Vertraulichkeit anfangen und nicht bei Begeisterung. Keine verspricht etwas, das eine Zertifizierung voraussetzt.</p>
+   </div>
+  </div>
+
+  <div class="ko-wahl" role="group" aria-label="Richtung KI" data-wahl="ki">
+   <button type="button" data-v="A" class="on">A KI, aber sicher</button>
+   <button type="button" data-v="B">B KI im Alltag</button>
+   <button type="button" data-v="C">C KI-Check</button>
+  </div>
+
+  <div class="ko-var ki-var" data-teil="ki" data-v="A">
+   <div class="ko-fenster">
+    <div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de/ki</span></div>
+    <div class="mh mh-a">
+     <div class="mh-leiste" aria-hidden="true"><img data-logo alt="cloudvibe"><span>Kanzleien</span><span>Unternehmen</span><span>Managed Services</span><span class="on">KI sicher nutzen</span><span>News</span></div>
+     <div class="mh-krumen">Startseite <span>/</span> KI sicher nutzen</div>
+     <div class="mh-h">KI nutzen, ohne <b>Vertrauliches</b> preiszugeben.</div>
+     <div class="mh-l">Dein Team arbeitet längst mit KI. Wir sorgen mit Richtlinie, Schulung und einem sauber eingerichteten Microsoft 365 Copilot dafür, dass Patientendaten, Mandantenakten und Firmenwissen dort bleiben, wo sie hingehören.</div>
+     <div class="mh-btns"><span class="m-btn">Gespräch vereinbaren</span><span class="m-btn zw">Anrufen</span></div>
+     <div class="mh-reihe"><span>Richtlinie</span><span>Schulung</span><span>Copilot einrichten</span><span>Datenschutz-Einschätzung</span></div>
+    </div>
+   </div>
+   <div class="ko-erkl">
+    <div class="ki-mp">Menüpunkt</div>
+    <div class="ki-name">KI sicher nutzen</div>
+    <div class="ki-kern">Dein Team nutzt KI ohnehin. Wir sorgen dafür, dass vertrauliche Daten dabei im Haus bleiben.</div>
+    <div class="ko-pk">Abschnittsfolge</div>
+    <ol class="ki-folge">
+     <li>Hero mit Kernbotschaft</li>
+     <li>Wo KI heute schon im Betrieb steckt, oft ohne Absprache</li>
+     <li>Richtlinie: was erlaubt ist und was nicht</li>
+     <li>Schulung fürs Team, auch mit Blick auf die KI-Verordnung der EU</li>
+     <li>Microsoft 365 Copilot einrichten: Copilot sieht alles, was die jeweilige Person sehen darf, deshalb prüfen wir vorher die Berechtigungen</li>
+     <li>Datenschutz-Einschätzung gemeinsam mit deinem Datenschutzbeauftragten</li>
+     <li>Häufige Fragen, dann Kontakt</li>
+    </ol>
+   </div>
+  </div>
+
+  <div class="ko-var ki-var" data-teil="ki" data-v="B" hidden>
+   <div class="ko-fenster">
+    <div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de/ki</span></div>
+    <div class="mh mh-b">
+     <div class="mh-leiste" aria-hidden="true"><img data-logo alt="cloudvibe"><span>Kanzleien</span><span>Unternehmen</span><span>Managed Services</span><span class="on">KI im Alltag</span><span>News</span></div>
+     <div class="mh-krumen">Startseite <span>/</span> KI im Alltag</div>
+     <div class="mh-h">KI für die Handgriffe, die <b>jede Woche</b> Zeit kosten.</div>
+     <div class="mh-l">Wir schauen mit dir auf wiederkehrende Abläufe in Praxis, Kanzlei oder Büro und prüfen, wo ein kleiner KI-Helfer sicher entlasten kann. Und wo besser nicht.</div>
+     <div class="mh-btns"><span class="m-btn">Gespräch vereinbaren</span><span class="m-btn zw">Anrufen</span></div>
+     <div class="mh-beisp">
+      <span><i></i>E-Mails an die richtige Stelle im Team sortieren</span>
+      <span><i></i>Besprechungen kurz zusammenfassen</span>
+      <span><i></i>Antworten auf Standardanfragen vorbereiten</span>
+     </div>
+    </div>
+   </div>
+   <div class="ko-erkl">
+    <div class="ki-mp">Menüpunkt</div>
+    <div class="ki-name">KI im Alltag</div>
+    <div class="ki-kern">Kleine KI-Helfer für wiederkehrende Abläufe, eingerichtet mit denselben Regeln wie der Rest deiner IT.</div>
+    <div class="ko-pk">Abschnittsfolge</div>
+    <ol class="ki-folge">
+     <li>Hero mit Kernbotschaft</li>
+     <li>Beispiele je Bereich: <span class="hc">Gesundheitswesen</span>, Kanzleien, Unternehmen</li>
+     <li>So gehen wir vor: Gespräch, Prüfung, kleiner Versuch, Übergabe</li>
+     <li>Was KI bei uns nicht bekommt: klare Grenzen für vertrauliche Daten</li>
+     <li>Sicherheit im Hintergrund: Richtlinie, Berechtigungen, Schulung</li>
+     <li>Kontakt</li>
+    </ol>
+   </div>
+  </div>
+
+  <div class="ko-var ki-var" data-teil="ki" data-v="C" hidden>
+   <div class="ko-fenster">
+    <div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de/ki-check</span></div>
+    <div class="mh mh-c">
+     <div class="mh-leiste" aria-hidden="true"><img data-logo alt="cloudvibe"><span>Kanzleien</span><span>Unternehmen</span><span>Managed Services</span><span class="on">KI-Check</span><span>News</span></div>
+     <div class="mh-krumen">Startseite <span>/</span> KI-Check</div>
+     <div class="mh-h">Erst verstehen, dann <b>einführen</b>.</div>
+     <div class="mh-l">In einem Termin klären wir, wo KI deinem Betrieb hilft, wo Risiken liegen und welcher Schritt als Nächstes sinnvoll ist. Danach hast du einen schriftlichen Fahrplan.</div>
+     <div class="mh-btns"><span class="m-btn">KI-Check vereinbaren</span><span class="m-btn zw">Anrufen</span></div>
+     <div class="mh-weg"><span>Gespräch</span><span>Bestandsaufnahme</span><span>Fahrplan</span></div>
+    </div>
+   </div>
+   <div class="ko-erkl">
+    <div class="ki-mp">Menüpunkt</div>
+    <div class="ki-name">KI-Check</div>
+    <div class="ki-kern">Ein klarer Einstieg: ein Termin, eine ehrliche Einschätzung, ein Fahrplan.</div>
+    <div class="ko-pk">Abschnittsfolge</div>
+    <ol class="ki-folge">
+     <li>Hero mit Kernbotschaft</li>
+     <li>Was der Check umfasst: genutzte Werkzeuge, Daten, Berechtigungen, Wünsche</li>
+     <li>Was du danach in der Hand hast</li>
+     <li>Für wen er gedacht ist: Praxen, Kanzleien, Unternehmen</li>
+     <li>Häufige Fragen</li>
+     <li>Termin vereinbaren</li>
+    </ol>
+   </div>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Richtung A mit dem Menüpunkt „KI sicher nutzen“. Sie passt am besten zum Schwerpunkt Sicherheit und Vertraulichkeit und ist in allen drei Zielgruppen sofort verständlich. Die Helfer aus B werden darin ein Abschnitt mit Beispielen, der Check aus C das Angebot am Ende der Seite.</p></div>
+ </div>
+</section>
+
+<!-- ================= 7 Karriere ================= -->
+<section class="ab ko" id="karriere">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 7</div><h2>Karriere: <b>Jobs, Ausbildung, Praktikum</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Eine Seite unter „Über uns“. Ruhig wie die Kanzleiseite: kein Stellenbörsen-Look, sondern eine Liste, ein klarer Ablauf und eine Adresse, an die man schreibt. Die Stellen im Mockup sind Beispiele.</p>
+   </div>
+  </div>
+
+  <div class="ko-fenster kr-fenster">
+   <div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de/karriere</span></div>
+   <div class="mh kr-hero">
+    <div class="mh-leiste" aria-hidden="true"><img data-logo alt="cloudvibe"><span>Kanzleien</span><span>Unternehmen</span><span>Managed Services</span><span>News</span><span class="on">Über uns</span></div>
+    <div class="mh-krumen">Startseite <span>/</span> Über uns <span>/</span> Karriere</div>
+    <div class="mh-h">Arbeite an IT, auf die sich <b>andere verlassen</b>.</div>
+    <div class="mh-l">Wir betreuen Arztpraxen, Apotheken, Pflegeeinrichtungen, Kanzleien und Unternehmen. Aus Goch, vor Ort am Niederrhein und per Fernwartung in ganz Deutschland. Dafür suchen wir Menschen, die gern Probleme lösen und gut erklären können.</div>
+    <div class="mh-btns"><a class="m-btn" href="#kr-stellen">Offene Stellen</a><a class="m-btn zw" href="mailto:hire@cloudvibe.de">hire@cloudvibe.de</a></div>
+   </div>
+
+   <div class="kr-ab">
+    <div class="kr-k">Warum cloudvibe</div>
+    <div class="kr-warum">
+     <div><b>Abwechslung mit Sinn</b><span>Heute eine Arztpraxis, morgen eine Kanzlei: TI, DATEV, Microsoft 365 und Netzwerke in echten Betrieben.</span></div>
+     <div><b>Kurze Wege</b><span>Ein Team in Goch. Du sprichst direkt mit denen, die entscheiden.</span></div>
+     <div><b>Kunden, die dich kennen</b><span>Feste Ansprechpartner statt anonymer Warteschlange, auch für dich.</span></div>
+    </div>
+    <div class="kr-ph">[[Platzhalter: Was wir bieten, zum Beispiel Arbeitszeit, Homeoffice, Weiterbildung]]</div>
+   </div>
+
+   <div class="kr-ab kr-alt" id="kr-stellen">
+    <div class="kr-k">Offene Stellen</div>
+    <div class="kr-stellen">
+     <a href="#"><span class="kr-st"><b>IT-Systemadministrator/in (m/w/d)</b><small>Goch · Vollzeit</small></span><em class="st-bsp">Beispiel</em>{{PFEIL}}</a>
+     <a href="#"><span class="kr-st"><b>IT-Support vor Ort am Niederrhein (m/w/d)</b><small>Goch · Vollzeit</small></span><em class="st-bsp">Beispiel</em>{{PFEIL}}</a>
+     <a href="#"><span class="kr-st"><b>Ausbildung Fachinformatiker/in für Systemintegration (m/w/d)</b><small>Goch · Ausbildung</small></span><em class="st-bsp">Beispiel</em>{{PFEIL}}</a>
+     <a href="#"><span class="kr-st"><b>Praktikum IT-Betreuung (m/w/d)</b><small>Goch · Praktikum nach Absprache</small></span><em class="st-bsp">Beispiel</em>{{PFEIL}}</a>
+    </div>
+    <div class="kr-init">Nichts Passendes dabei? Schreib uns trotzdem: <a class="link-t" href="mailto:hire@cloudvibe.de">hire@cloudvibe.de</a></div>
+   </div>
+
+   <div class="kr-ab kr-ausb">
+    <div>
+     <div class="kr-k">Ausbildung</div>
+     <div class="mh-h klein">Fachinformatiker/in für <b>Systemintegration</b>.</div>
+     <div class="mh-l">Du lernst Netzwerke, Server, Arbeitsplätze und IT-Sicherheit nicht nur in der Berufsschule kennen, sondern in echten Praxen, Kanzleien und Unternehmen. Mit einer festen Ansprechperson im Team.</div>
+    </div>
+    <div class="kr-prak">
+     <b>Praktikum</b>
+     <span>Für Schülerinnen, Schüler und Studierende, die IT im Alltag eines Dienstleisters kennenlernen wollen. Zeitraum und Dauer nach Absprache.</span>
+    </div>
+   </div>
+
+   <div class="kr-ab">
+    <div class="kr-k">So bewirbst du dich</div>
+    <div class="kr-ablauf">
+     <div><span class="nr">01</span><b>Schreib uns</b><span>Ein paar Sätze zu dir und dein Lebenslauf an hire@cloudvibe.de.</span></div>
+     <div><span class="nr">02</span><b>Wir melden uns</b><span>Du bekommst eine Rückmeldung von einer echten Person.</span></div>
+     <div><span class="nr">03</span><b>Kennenlernen</b><span>Ein Gespräch in Goch oder per Video.</span></div>
+     <div><span class="nr">04</span><b>Probetag</b><span>Du lernst das Team und den Alltag kennen.</span></div>
+    </div>
+   </div>
+
+   <div class="kr-ab kr-kontakt">
+    <div class="mh-h klein">Fragen vorab? <b>Frag einfach.</b></div>
+    <a class="btn" href="mailto:hire@cloudvibe.de">hire@cloudvibe.de</a>
+   </div>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>So aufbauen und die Stellen in Odoo pflegen, damit ihr sie ohne Webdesign ändern könnt. Jede Stelle bekommt eine eigene kurze Unterseite mit Strukturdaten für Stellenanzeigen bei Google. Ablauf und „Warum cloudvibe“ erst mit echten Angaben füllen, bevor die Seite live geht.</p></div>
+ </div>
+</section>
+
+<!-- ================= 8 Kopfleiste auf breiten Bildschirmen ================= -->
+<section class="ab alt ko" id="kopfleiste">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 8</div><h2>Kopfleiste auf <b>breiten Bildschirmen</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Auf sehr breiten Bildschirmen steht das Logo ganz links, und die Leiste läuft bis zum rechten Rand. Der Inhalt darunter bleibt in der Mitte. Dadurch wirken Kopf und Seite auseinandergezogen. Hier drei Möglichkeiten, jeweils als verkleinerte Ansicht einer 2560 px breiten Seite.</p>
+   </div>
+  </div>
+
+  <div class="br-liste">
+   <div class="br-item">
+    <div class="ko-erkl">
+     <h3>A: Heute, volle Breite</h3>
+     <p>Logo am linken Fensterrand, Leiste bis zum rechten Rand. Die Menüpunkte verteilen sich über die ganze Breite, der Inhalt steht weit davon entfernt in der Mitte.</p>
+    </div>
+    <div class="br-screen br-A" aria-label="Ansicht A, 2560 px breit, verkleinert" role="img"><div class="br-in"></div></div>
+   </div>
+   <div class="br-item">
+    <div class="ko-erkl">
+     <h3>B: Begrenzt und zentriert</h3>
+     <p>Die ganze Seite steht auf einer Spur von höchstens 1440 px in der Mitte, auch Hintergrund und Welle. Das Logo bleibt links am Inhalt, daneben ruhige Fläche.</p>
+    </div>
+    <div class="br-screen br-B" aria-label="Ansicht B, 2560 px breit, verkleinert" role="img"><div class="br-in"></div></div>
+   </div>
+   <div class="br-item">
+    <div class="ko-erkl">
+     <h3>C: Leiste begrenzt, Hintergrund voll</h3>
+     <p>Logo und Leiste auf derselben 1440-px-Spur wie in B. Hintergrund, Verlauf und Welle laufen weiter über die volle Breite.</p>
+    </div>
+    <div class="br-screen br-C" aria-label="Ansicht C, 2560 px breit, verkleinert" role="img"><div class="br-in"></div></div>
+   </div>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante C. Bis 1440 px sieht alles aus wie heute, darüber bleiben Logo und Leiste beim Inhalt, und die Seite wirkt trotzdem großzügig, weil Verlauf und Welle bis an den Rand gehen. Technisch reicht eine Höchstbreite für die Leiste und den Bezugspunkt des Logos, das Design bleibt unverändert.</p></div>
+ </div>
+</section>
+</main>
+
+<!-- ================= Vorführung Cookie-Abfrage (liegt über der Seite, merkt sich nichts) ================= -->
+<div class="ck" id="ck" hidden>
+ <div class="ck-dim"></div>
+ <div class="ck-box" role="dialog" aria-modal="false" aria-labelledby="ckT">
+  <div class="ck-start">
+   <div class="ck-text">
+    <b class="ck-t" id="ckT">Cookies und Datenschutz</b>
+    <span>Wir nutzen notwendige Cookies, damit die Seite funktioniert. Mit deiner Zustimmung kommen Statistik und externe Medien wie Karten oder Videos dazu. Deine Wahl kannst du jederzeit im Footer unter „Cookie-Einstellungen“ ändern.</span>
+    <span class="ck-links"><a href="#">Datenschutz</a><a href="#">Impressum</a></span>
+   </div>
+   <div class="ck-btns">
+    <button type="button" class="ck-btn" data-ck="alle">Alle akzeptieren</button>
+    <button type="button" class="ck-btn" data-ck="noetig">Nur notwendige</button>
+    <button type="button" class="ck-btn" data-ck="einst">Einstellungen</button>
+   </div>
+  </div>
+  <div class="ck-einst" hidden>
+   <b class="ck-t">Einstellungen</b>
+   <div class="ck-zn">
+    <label class="ck-z"><span><b>Notwendig</b><small>Damit die Seite und ihre Formulare funktionieren. Immer aktiv.</small></span><input type="checkbox" class="ko-sw" role="switch" checked disabled aria-label="Notwendig, immer aktiv"></label>
+    <label class="ck-z"><span><b>Statistik</b><small>Zählt Seitenaufrufe, damit wir sehen, welche Inhalte gelesen werden.</small></span><input type="checkbox" class="ko-sw" role="switch" data-ck-k="Statistik" aria-label="Statistik"></label>
+    <label class="ck-z"><span><b>Externe Medien</b><small>Lädt Inhalte wie YouTube-Videos oder Karten. Dabei gehen Daten an diese Anbieter.</small></span><input type="checkbox" class="ko-sw" role="switch" data-ck-k="Externe Medien" aria-label="Externe Medien"></label>
+   </div>
+   <div class="ck-btns">
+    <button type="button" class="ck-btn" data-ck="auswahl">Auswahl speichern</button>
+    <button type="button" class="ck-btn" data-ck="alle">Alle akzeptieren</button>
+    <button type="button" class="ck-btn" data-ck="noetig">Nur notwendige</button>
+   </div>
+  </div>
+ </div>
+</div>

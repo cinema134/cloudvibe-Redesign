@@ -1,0 +1,23 @@
+
+/* ================= Rechtliches: ruhige Textseite ================= */
+.recht-hero{padding-bottom:clamp(56px,6vw,84px)}
+.recht-hero h1{margin-bottom:32px}
+.recht-hero .nf{display:flex;flex-wrap:wrap;gap:10px}
+.recht-hero .nf a{display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 14.5px 'Mozilla Text',sans-serif;transition:border-color .2s,color .2s}
+.recht-hero .nf a:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+.recht{scroll-margin-top:100px}
+.recht-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
+.recht-text{max-width:720px;font-size:17px;line-height:1.7}
+.recht-text>*+*{margin-top:20px}
+.recht-text h3{font-size:21px;margin-top:36px}
+.angaben{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);border-top:1px solid var(--edge)}
+.angaben dt,.angaben dd{padding:16px 0;border-bottom:1px solid var(--edge);margin:0}
+.angaben dt{font:700 15px 'Mozilla Text',sans-serif;color:var(--muted);padding-right:20px}
+.gliederung{padding-left:22px}
+.gliederung li+li{margin-top:6px}
+@media(max-width:800px){
+ .recht-in{grid-template-columns:1fr}
+ .angaben{grid-template-columns:1fr}
+ .angaben dt{border-bottom:0;padding-bottom:0}
+ .angaben dd{padding-top:4px}
+}

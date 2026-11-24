@@ -1,0 +1,102 @@
+<main>
+<!-- ================= Ticket eröffnen: eigene, losgelöste Seite (Leon 23.11.2026). Nur das Formular, keine weiteren Abschnitte. ================= -->
+<section class="uhero tk-hero" id="top">
+ <div class="wrap uhero-in">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:support}}">Support</a><span>/</span>Ticket eröffnen</nav>
+  <h1>Ticket <b>eröffnen</b>.</h1>
+  <p class="lead">Drei kurze Schritte, dann liegt alles bei uns, was wir zum Lösen brauchen. Pflichtfelder sind markiert.</p>
+ </div>
+</section>
+
+<section class="ab tk-ab" id="ticket">
+ <div class="wrap">
+  <div class="tk glas" id="tk">
+   <div class="tk-seite">
+    <ol class="tk-schritte" aria-label="Fortschritt">
+     <li class="on" data-s="1"><span class="tk-nr">01</span><b>Wer bist du?</b></li>
+     <li data-s="2"><span class="tk-nr">02</span><b>Was ist los?</b></li>
+     <li data-s="3"><span class="tk-nr">03</span><b>Prüfen und senden</b></li>
+    </ol>
+   </div>
+
+   <form class="tk-form" novalidate>
+    <fieldset class="tk-s" data-s="1">
+     <legend>Wer bist du?</legend>
+     <div class="tk-gitter">
+      <div class="feld voll"><label for="tk-firma">Firma, Praxis oder Kanzlei <span class="tk-pf">*</span></label><input id="tk-firma" required autocomplete="organization"><small class="tk-fm">Bitte ausfüllen.</small></div>
+      <div class="feld"><label for="tk-vor">Vorname <span class="tk-pf">*</span></label><input id="tk-vor" required autocomplete="given-name"><small class="tk-fm">Bitte ausfüllen.</small></div>
+      <div class="feld"><label for="tk-nach">Nachname <span class="tk-pf">*</span></label><input id="tk-nach" required autocomplete="family-name"><small class="tk-fm">Bitte ausfüllen.</small></div>
+      <div class="feld"><label for="tk-tel">Rückrufnummer <span class="tk-pf">*</span></label><input id="tk-tel" type="tel" required autocomplete="tel"><small class="tk-fm">Damit wir dich zurückrufen können.</small></div>
+      <div class="feld"><label for="tk-mail">E-Mail <span class="tk-pf">*</span></label><input id="tk-mail" type="email" required autocomplete="email"><small class="tk-fm">Bitte eine gültige E-Mail-Adresse.</small></div>
+     </div>
+     <div class="tk-akt"><span class="tk-pfl">* Pflichtfeld</span><button type="button" class="btn" data-weiter="2">Weiter{{PFEIL}}</button></div>
+    </fieldset>
+
+    <fieldset class="tk-s" data-s="2" hidden>
+     <legend>Was ist los?</legend>
+     <div class="feld tk-gruppe" data-gruppe="kat">
+      <label>Was ist betroffen? <span class="tk-pf">*</span></label>
+      <div class="tk-chips">
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="Arbeitsplatz" aria-label="Arbeitsplatz"><span>Arbeitsplatz</span></span>
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="Drucker" aria-label="Drucker"><span>Drucker</span></span>
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="E-Mail" aria-label="E-Mail"><span>E-Mail</span></span>
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="Netzwerk oder Internet" aria-label="Netzwerk oder Internet"><span>Netzwerk oder Internet</span></span>
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="Telefonie" aria-label="Telefonie"><span>Telefonie</span></span>
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="TI oder Kartenterminal" aria-label="TI oder Kartenterminal"><span>TI oder Kartenterminal</span></span>
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="DATEV oder SelectLine" aria-label="DATEV oder SelectLine"><span>DATEV oder SelectLine</span></span>
+       <span class="tk-chip"><input type="radio" name="tk-kat" value="Sonstiges" aria-label="Sonstiges"><span>Sonstiges</span></span>
+      </div>
+      <small class="tk-fm">Bitte einen Bereich wählen.</small>
+     </div>
+     <div class="feld tk-gruppe" data-gruppe="dr">
+      <label>Wie dringend? <span class="tk-pf">*</span></label>
+      <div class="tk-dr">
+       <label class="tk-opt"><input type="radio" name="tk-dr" value="Ein Arbeitsplatz"><b>Ein Arbeitsplatz</b><small>Nur ein Gerät oder eine Person ist betroffen.</small></label>
+       <label class="tk-opt"><input type="radio" name="tk-dr" value="Mehrere Arbeitsplätze"><b>Mehrere Arbeitsplätze</b><small>Ein Teil des Teams kann nicht richtig arbeiten.</small></label>
+       <label class="tk-opt"><input type="radio" name="tk-dr" value="Ganzer Betrieb steht"><b>Ganzer Betrieb steht</b><small>Niemand kann arbeiten.</small></label>
+      </div>
+      <small class="tk-fm">Bitte auswählen.</small>
+      <div class="tk-alarm" hidden>
+       <span>Wenn der ganze Betrieb steht, ruf uns bitte zusätzlich direkt an. Das Ticket kannst du trotzdem abschicken.</span>
+       <a class="btn zw" href="tel:{{SUPPORT_TEL}}">{{TEL}}{{SUPPORT}}</a>
+      </div>
+     </div>
+     <div class="tk-gitter">
+      <div class="feld"><label for="tk-geraet">Gerätename oder Fernwartungs-ID</label><input id="tk-geraet"><small class="tk-tipp">Steht auf dem Aufkleber am Gerät oder im QuickSupport-Fenster.</small></div>
+      <div class="feld"><label for="tk-seit">Seit wann?</label>
+       <select id="tk-seit"><option value="">Bitte wählen</option><option>Gerade eben</option><option>Seit heute</option><option>Seit ein paar Tagen</option><option>Kommt immer wieder</option></select></div>
+      <div class="feld voll"><label for="tk-text">Was passiert genau? <span class="tk-pf">*</span></label><textarea id="tk-text" required placeholder="Zum Beispiel: Beim Drucken kommt die Meldung „Drucker offline“, der Drucker am Empfang zeigt keinen Fehler."></textarea><small class="tk-fm">Ein, zwei Sätze helfen uns sehr.</small></div>
+      <div class="feld voll"><label class="tk-datei" for="tk-bild"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.5l-8.6 8.6a5 5 0 0 1-7.1-7.1l8.6-8.6a3.3 3.3 0 0 1 4.7 4.7l-8.6 8.6a1.7 1.7 0 0 1-2.4-2.4l7.9-7.9"/></svg><span class="tk-datei-t">Screenshot anhängen (optional)</span><input id="tk-bild" type="file" accept="image/*"></label></div>
+     </div>
+     <div class="tk-akt"><button type="button" class="btn leise-btn" data-weiter="1">Zurück</button><button type="button" class="btn" data-weiter="3">Weiter{{PFEIL}}</button></div>
+    </fieldset>
+
+    <fieldset class="tk-s" data-s="3" hidden>
+     <legend>Passt alles?</legend>
+     <div class="tk-zus" aria-live="polite"></div>
+     <label class="check tk-ds"><input type="checkbox" id="tk-ds"> <span>Ich bin einverstanden, dass ihr meine Angaben zur Bearbeitung des Tickets verwendet. Mehr dazu in der <a class="link-t" href="#">Datenschutzerklärung</a>. <span class="tk-pf">*</span></span></label>
+     <small class="tk-fm tk-ds-fm">Bitte bestätigen.</small>
+     <div class="tk-akt"><button type="button" class="btn leise-btn" data-weiter="2">Zurück</button><button type="submit" class="btn">Ticket senden</button></div>
+    </fieldset>
+
+    <div class="tk-danke" hidden tabindex="-1">
+     <span class="tk-haken" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+     <div class="tk-mt">Danke, dein Ticket ist <b>bei uns</b>.</div>
+     <div class="tk-nummer"><span>Deine Ticketnummer</span><b id="tkNr">CV-48217</b></div>
+     <div class="tk-ml" id="tkMl">Du bekommst gleich eine Bestätigung per E-Mail. Wir melden uns unter deiner Rückrufnummer. Den Stand siehst du jederzeit im Kundenportal.</div>
+     <button type="button" class="btn leise-btn" data-neu>Neues Ticket</button>
+    </div>
+   </form>
+  </div>
+  <!-- Kurzanleitung fürs Team (Abstimmung 24.11.2026: nicht auf der Startseite, sondern dort, wo Mitarbeitende ohnehin ein Ticket schreiben) -->
+  <div class="sp-pdf glas">
+   <span class="sp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8z"/><path d="M14 3v5h5M9 13h6M9 16.5h4"/></svg></span>
+   <div class="sp-pdf-t">
+    <b>Das Wichtigste auf einer Seite</b>
+    <span>Die Kurzanleitung für dein Team: Telefon, E-Mail, Fernwartung und was in ein gutes Ticket gehört. Zum Ausdrucken oder Weiterleiten.</span>
+   </div>
+   <a class="btn zw" href="#"><svg class="sp-dl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>PDF herunterladen</a>
+  </div>
+ </div>
+</section>
+</main>

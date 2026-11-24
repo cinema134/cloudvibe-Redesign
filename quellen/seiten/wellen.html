@@ -1,0 +1,27 @@
+<main>
+<!-- ================= Wellen-Varianten (Abstimmung 24.11.2026, Karte Welle): eigene Seite zum Auswählen, noindex ================= -->
+<section class="uhero wv-hero" id="top">
+ <div class="wrap uhero-in">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span>Wellen-Varianten</nav>
+  <h1>Welle im Hero: <b>Varianten zur Auswahl</b>.</h1>
+  <p class="lead">Jede Kachel zeigt die Welle so, wie sie im Startseiten-Hero läuft. Klick auf eine Kachel öffnet sie groß. Mit „Werte kopieren“ schickst du mir die Variante, die dir gefällt, oder mehrere zum Weiterentwickeln.</p>
+ </div>
+</section>
+<section class="ab wv-ab" id="varianten">
+ <div class="wrap">
+  <div class="wv-filter" role="group" aria-label="Gruppe filtern"></div>
+  <div class="wv-raster" id="wvRaster"></div>
+ </div>
+</section>
+</main>
+<div class="wv-gross" id="wvGross" hidden>
+ <canvas id="wvCv" aria-hidden="true"></canvas>
+ <div class="wv-karte glas">
+  <span class="wv-g-gr" id="wvGr"></span>
+  <b class="wv-g-t" id="wvT"></b>
+  <span class="wv-g-b" id="wvB"></span>
+  <span class="wv-g-w" id="wvW"></span>
+  <span class="wv-g-k"><button type="button" class="btn" id="wvKopie">Werte kopieren</button><button type="button" class="btn zw" id="wvMerk">Merken</button></span>
+ </div>
+ <span class="wv-nav"><button type="button" id="wvVor" aria-label="Vorige Variante">‹</button><button type="button" id="wvZu" aria-label="Schließen">×</button><button type="button" id="wvNach" aria-label="Nächste Variante">›</button></span>
+</div>

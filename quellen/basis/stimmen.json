@@ -1,0 +1,40 @@
+{
+  "_hinweis": "Eine Quelle für alle Kundenstimmen. branche: gesundheit | kanzlei | unternehmen; unterbereich: arztpraxis | apotheke | pflege (optional). beispiel: true = fiktiver Kunde mit erfundener Stimme (Abstimmung 24.11.2026: anonyme Referenzen der alten Seite weglassen, durch fiktive Kunden ersetzen), wird auf der Seite als 'Beispiel' markiert und durch echte, schriftlich freigegebene Stimmen ersetzt. Echte Stimme: beispiel weglassen, freigabe mit Datum eintragen, foto optional (Datei in assets/stimmen/).",
+  "stimmen": [
+    {
+      "branche": "gesundheit", "unterbereich": "arztpraxis", "beispiel": true,
+      "zitat": "Die Umstellung auf die neue TI lief an einem Nachmittag. Die Sprechstunde mussten wir dafür nicht unterbrechen.",
+      "name": "Dr. Miriam Kessler", "rolle": "Inhaberin", "betrieb": "Zahnarztpraxis Dr. Kessler", "ort": "Niederrhein"
+    },
+    {
+      "branche": "gesundheit", "unterbereich": "apotheke", "beispiel": true,
+      "zitat": "Wenn etwas hakt, ist sofort jemand per Fernwartung drauf, der unsere Apotheke kennt. Wir müssen nichts zweimal erklären.",
+      "name": "Jonas Brandt", "rolle": "Filialleitung", "betrieb": "Rosen-Apotheke", "ort": "Niederrhein"
+    },
+    {
+      "branche": "gesundheit", "unterbereich": "pflege", "beispiel": true,
+      "zitat": "Für uns zählt, dass die Technik einfach funktioniert. Seit cloudvibe dabei ist, ist IT bei uns kein Thema mehr.",
+      "name": "Sabine Wellmann", "rolle": "Einrichtungsleitung", "betrieb": "Haus am Lindenhof", "ort": "Niederrhein"
+    },
+    {
+      "branche": "kanzlei", "unterbereich": "datev", "beispiel": true,
+      "zitat": "DATEV läuft, die Datensicherung läuft, und wir wissen genau, wen wir anrufen.",
+      "name": "Thomas Reuter", "rolle": "Steuerberater", "betrieb": "Reuter & Partner Steuerberatung", "ort": "Niederrhein"
+    },
+    {
+      "branche": "kanzlei", "beispiel": true,
+      "zitat": "Vertraulichkeit ist für uns nicht verhandelbar. Bei cloudvibe mussten wir das nie erklären.",
+      "name": "Katrin Vogel", "rolle": "Rechtsanwältin", "betrieb": "Kanzlei Vogel", "ort": "Niederrhein"
+    },
+    {
+      "branche": "unternehmen", "beispiel": true,
+      "zitat": "Wir sind kräftig gewachsen, und die IT ist einfach mitgewachsen. Neue Arbeitsplätze standen immer pünktlich bereit.",
+      "name": "Markus Lenz", "rolle": "Geschäftsführer", "betrieb": "Lenz Handelsgesellschaft", "ort": "Niederrhein"
+    },
+    {
+      "branche": "unternehmen", "unterbereich": "selectline", "beispiel": true,
+      "zitat": "Endlich ein Ansprechpartner für alles, von SelectLine bis zur Firewall.",
+      "name": "Petra Albers", "rolle": "Prokuristin", "betrieb": "Albers Großhandel", "ort": "Niederrhein"
+    }
+  ]
+}

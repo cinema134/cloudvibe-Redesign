@@ -1,0 +1,40 @@
+
+/* ================= Login Kundenportal (/login), baut auf ticket.css auf ================= */
+.lg-in{display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:start}
+.lg-karte{padding:clamp(26px,3.6vw,46px);border-radius:34px}
+.lg-form{display:flex;flex-direction:column;gap:18px;outline:none;animation:spRein .3s ease}
+.lg-t{font:300 clamp(26px,2.4vw,34px)/1.15 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:6px}
+.lg-t b{font-weight:700;color:var(--blue)}
+.lg-text{font-size:15.5px;line-height:1.6;color:var(--muted)}
+.lg-text a,.lg-neu a{color:var(--blue);font-weight:700}
+.lg-pw{position:relative;display:block}
+.lg-pw input{padding-right:54px}
+.lg-zeig{position:absolute;right:8px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer}
+.lg-zeig:hover,.lg-zeig[aria-pressed="true"]{color:var(--blue)}
+.lg-zeig svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lg-zeig[aria-pressed="true"] svg path{stroke-dasharray:none}
+.lg-zeile{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 18px}
+.lg-zeile .check{align-items:center}
+.lg-zeile .check input{margin-top:0}
+.lg-link{font:700 14.5px 'Mozilla Text',sans-serif;color:var(--blue)}
+.lg-link:hover{text-decoration:underline;text-underline-offset:3px}
+.lg-btn{width:100%;justify-content:center;margin-top:4px}
+.lg-zurueck{align-self:flex-start}
+.lg-neu{padding-top:18px;border-top:1px solid var(--edge);font-size:14.5px;line-height:1.55;color:var(--muted)}
+.lg-form .tk-haken{margin-bottom:2px}
+
+/* Ohne Anmeldung */
+.lg-ohne{padding-top:clamp(0px,1vw,12px)}
+.lg-ohne h2{margin:0 0 12px}
+.lg-wege{list-style:none;margin-top:28px;border-top:1px solid var(--edge)}
+.lg-wege li{border-bottom:1px solid var(--edge)}
+.lg-wege a{display:flex;align-items:center;gap:18px;padding:18px 0;transition:color .2s}
+.lg-wege a>span:last-child{display:flex;flex-direction:column;gap:2px}
+.lg-wege b{font:700 17px/1.3 Comfortaa,sans-serif}
+.lg-wege small{font-size:14.5px;color:var(--muted)}
+.lg-wege a:hover b{color:var(--blue)}
+.lg-ic-tel{background:var(--gbg)!important;color:var(--gt)!important}
+.lg-ic-tel svg{fill:none!important}
+
+@media(max-width:1000px){.lg-in{grid-template-columns:minmax(0,1fr)}.lg-karte{max-width:620px}}
+@media(max-width:560px){.lg-karte{padding:24px 20px;border-radius:26px}}

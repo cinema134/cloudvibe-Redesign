@@ -1,0 +1,4 @@
+
+/* ================= SelectLine (Vorlagen Arztpraxen + Unternehmen) ================= */
+/* Hero ohne Anlass-Spalte: wie Unternehmen-Hero, aber einspaltig */
+.un-hero .uhero-in{display:block}

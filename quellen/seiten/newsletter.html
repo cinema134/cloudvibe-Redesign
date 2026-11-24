@@ -1,0 +1,168 @@
+<main>
+<!-- ================= Newsletter (Konzept, Leon 24.11.2026: "Newsletter muss mit konzipiert und designt werden") =================
+     Zustände zum Durchklicken: ?nl=bestaetigt (nach Klick auf den Bestätigungslink), ?nl=einstellungen (Link aus der Mail), ?nl=abgemeldet.
+     Hintergrund (später Odoo E-Mail-Marketing): Liste "Allgemein" für alle, dazu je Bereich eine Liste (Gesundheitswesen, Kanzleien, Unternehmen).
+     Monatliche Ausgabe; nur bei akuten Sicherheitswarnungen eine Sonderausgabe. Inhalte stammen aus den News-Beiträgen. -->
+<section class="uhero nl-hero" id="top">
+ <div class="wrap uhero-in">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:news}}">News</a><span>/</span>Newsletter</nav>
+  <div class="nl-zustand" data-zustand="start">
+   <h1>Das Wichtigste aus der IT, <b>einmal im Monat</b>.</h1>
+   <p class="lead">Sicherheitshinweise, Neues aus deiner Branche und ein Begriff, kurz erklärt. Du wählst, welche Bereiche dich betreffen. Keine Werbeflut, kein Fachchinesisch.</p>
+   <div class="btns"><a class="btn" href="#anmelden">Jetzt anmelden</a><a class="btn zw" href="#vorschau">Beispielausgabe ansehen</a></div>
+  </div>
+  <div class="nl-zustand" data-zustand="bestaetigt" hidden>
+   <span class="nl-haken" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+   <h2 class="nl-h1">Danke, <b>du bist dabei</b>.</h2>
+   <p class="lead">Deine Anmeldung ist bestätigt. Die nächste Ausgabe kommt Anfang des Monats. Bis dahin findest du alle Beiträge in den News.</p>
+   <div class="btns"><a class="btn" href="{{LINK:news}}">Zu den News</a><a class="btn zw" href="?nl=einstellungen#einstellungen">Bereiche anpassen</a></div>
+  </div>
+  <div class="nl-zustand" data-zustand="abgemeldet" hidden>
+   <h2 class="nl-h1">Du bist <b>abgemeldet</b>.</h2>
+   <p class="lead">Du bekommst keine Newsletter mehr von uns. Wenn du es dir anders überlegst, kannst du dich jederzeit wieder anmelden.</p>
+   <div class="btns"><a class="btn zw" href="?#anmelden">Wieder anmelden</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Was drinsteht (keine echte Reihenfolge: ohne Nummern, graue Linien) ================= -->
+<section class="ab" id="inhalt">
+ <div class="wrap">
+  <div class="kopfzeile">
+   <div>
+    <div class="eb">Was drinsteht</div>
+    <h2>Vier Rubriken, <b>in fünf Minuten gelesen</b>.</h2>
+   </div>
+   <div class="rechts"><p class="leise">Jede Ausgabe hat einen Teil für alle und einen Teil für deinen Bereich. Was dich nicht betrifft, bekommst du nicht.</p></div>
+  </div>
+  <div class="nl-rubriken">
+   <div class="nl-rub"><svg class="nl-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>Sicherheitshinweis des Monats</h3><p>Eine aktuelle Masche, eine Lücke oder ein Update, das wichtig ist. Mit dem, was du konkret tun solltest.</p><span class="nl-fuer">Für alle</span></div>
+   <div class="nl-rub"><svg class="nl-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg><h3>Aus deiner Branche</h3><p>Neues zur <span class="lx" data-lx="ti">Telematikinfrastruktur</span>, zu DATEV oder SelectLine. Nur der Block, der zu deinem Betrieb passt.</p><span class="nl-fuer">Je nach Auswahl</span></div>
+   <div class="nl-rub"><svg class="nl-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a3 3 0 0 1 3 3v12H7a3 3 0 0 1-3-3z"/><path d="M8 9h6M8 13h6"/></svg><h3>Kurz erklärt</h3><p>Ein Begriff aus unserem <a class="link-t" href="{{LINK:lexikon}}">Lexikon</a> in drei Sätzen. Damit du mitreden kannst, wenn er dir begegnet.</p><span class="nl-fuer">Für alle</span></div>
+   <div class="nl-rub"><svg class="nl-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2 1-3.8 2.5-4.6"/></svg><h3>Aus dem Team</h3><p>Was sich bei cloudvibe tut: neue Gesichter, Termine, Änderungen, die dich betreffen.</p><span class="nl-fuer">Für alle</span></div>
+  </div>
+  <p class="nl-sonder leise"><b>Sonderausgabe nur im Ernstfall:</b> Gibt es eine akute Sicherheitswarnung, die dich betrifft, schreiben wir dir sofort und nicht erst zum Monatsanfang.</p>
+ </div>
+</section>
+
+<!-- ================= Anmeldung ================= -->
+<section class="ab alt" id="anmelden">
+ <div class="wrap">
+  <!--@newsletter-->
+ </div>
+</section>
+
+<!-- ================= Ablauf (echte Reihenfolge, einzige Nummerierung) ================= -->
+<section class="ab start" id="ablauf">
+ <div class="wrap">
+  <div class="st-kopf">
+   <div class="eb">So funktioniert es</div>
+   <h2>Rein mit zwei Klicks, <b>raus mit einem</b>.</h2>
+  </div>
+  <div class="st-reihe">
+   <div class="st-p"><span class="nr">01</span><h3>Eintragen</h3><p>E-Mail-Adresse eingeben und die Bereiche wählen, die dich betreffen.</p></div>
+   <div class="st-p"><span class="nr">02</span><h3>Bestätigen</h3><p>Du bekommst eine E-Mail mit einem Link. Erst mit deinem Klick bist du angemeldet.</p></div>
+   <div class="st-p"><span class="nr">03</span><h3>Lesen</h3><p>Einmal im Monat kommt die neue Ausgabe. Bei akuten Warnungen auch zwischendurch.</p></div>
+   <div class="st-p"><span class="nr">04</span><h3>Ändern oder abmelden</h3><p>Unter jeder Ausgabe stehen zwei Links: Bereiche ändern oder mit einem Klick abmelden.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Beispielausgabe (E-Mail-Vorlage) ================= -->
+<section class="ab alt" id="vorschau">
+ <div class="wrap">
+  <div class="kopfzeile">
+   <div>
+    <div class="eb">Beispielausgabe</div>
+    <h2>So sieht der Newsletter <b>im Postfach aus</b>.</h2>
+   </div>
+   <div class="rechts">
+    <p class="leise">Wähl einen Bereich, um zu sehen, wie sich der Branchenblock ändert.</p>
+    <div class="nf nl-wahl" role="group" aria-label="Bereich der Beispielausgabe">
+     <button type="button" data-bereich="gesundheit" class="on"><span class="hc">{{HC}}</span></button>
+     <button type="button" data-bereich="kanzlei">Kanzleien</button>
+     <button type="button" data-bereich="unternehmen">Unternehmen</button>
+    </div>
+   </div>
+  </div>
+
+  <div class="nl-postfach glas">
+   <div class="nl-pf-kopf">
+    <div class="nl-pf-z"><span>Von</span><b>cloudvibe</b><span class="nl-pf-a">newsletter@cloudvibe.de</span></div>
+    <div class="nl-pf-z"><span>Betreff</span><b class="nl-betreff">Dezember: Phishing vor den Feiertagen und neue TI-Updates</b></div>
+    <div class="nl-pf-z nl-pf-vor"><span>Vorschau</span><span>Was du jetzt tun solltest, kurz erklärt. Dazu: Was ist eigentlich ein NAS?</span></div>
+    <em class="st-bsp">Beispiel</em>
+   </div>
+   <div class="nl-mail">
+    <div class="nl-m-kopf"><img class="lg" src="{{LOGO}}" alt="cloudvibe"><span>Ausgabe Dezember 2026</span></div>
+    <div class="nl-m-block">
+     <b class="nl-m-h">Hallo,</b>
+     <span class="nl-m-p">bevor es in die ruhigen Tage geht, drei Dinge, die sich lohnen. Fünf Minuten Lesezeit.</span>
+    </div>
+    <div class="nl-m-block nl-m-sicher">
+     <span class="nl-m-k">Sicherheitshinweis des Monats</span>
+     <b class="nl-m-h">Gefälschte Paketmails vor den Feiertagen</b>
+     <span class="nl-m-p">Gerade im Dezember kommen viele angebliche Versandmeldungen. Typisch: Zeitdruck, ein Link zur „Sendungsverfolgung“ und eine Absenderadresse, die nicht passt. Im Zweifel nicht klicken und lieber direkt beim Versender nachsehen.</span>
+     <span class="nl-m-link">Woran du Phishing erkennst →</span>
+    </div>
+    <div class="nl-m-block nl-m-branche" data-fuer="gesundheit">
+     <span class="nl-m-k">Für Praxen, Apotheken und Pflege</span>
+     <b class="nl-m-h">TI-Updates zum Jahreswechsel</b>
+     <span class="nl-m-p">Für Konnektoren und Kartenterminals stehen Updates an. Wir spielen sie für dich ein und stimmen den Zeitpunkt vorher mit dir ab, damit die Sprechstunde weiterläuft.</span>
+     <span class="nl-m-link">Mehr zur Telematikinfrastruktur →</span>
+    </div>
+    <div class="nl-m-block nl-m-branche" data-fuer="kanzlei" hidden>
+     <span class="nl-m-k">Für Kanzleien</span>
+     <b class="nl-m-h">DATEV zum Jahreswechsel</b>
+     <span class="nl-m-p">Zum Jahresende kommen bei DATEV wichtige Updates. Wir planen sie so, dass deine Kanzlei im Januar ohne Unterbrechung weiterarbeiten kann.</span>
+     <span class="nl-m-link">Mehr zu DATEV →</span>
+    </div>
+    <div class="nl-m-block nl-m-branche" data-fuer="unternehmen" hidden>
+     <span class="nl-m-k">Für Unternehmen</span>
+     <b class="nl-m-h">Neue Mitarbeitende im Januar?</b>
+     <span class="nl-m-p">Sag uns früh Bescheid, dann stehen Arbeitsplatz, Microsoft 365 und Zugänge am ersten Tag bereit. Und wer geht, verliert seine Zugänge am letzten Tag.</span>
+     <span class="nl-m-link">Mehr zur IT-Betreuung →</span>
+    </div>
+    <div class="nl-m-block">
+     <span class="nl-m-k">Kurz erklärt</span>
+     <b class="nl-m-h">Was ist ein NAS?</b>
+     <span class="nl-m-p">Ein Speichergerät im Netzwerk, auf das mehrere Rechner zugreifen. Praktisch für gemeinsame Daten, aber keine Datensicherung: Dafür braucht es eine getrennte Kopie.</span>
+    </div>
+    <div class="nl-m-block">
+     <span class="nl-m-k">Aus dem Team</span>
+     <span class="nl-m-p">Unsere Zeiten zwischen den Jahren stehen rechtzeitig auf der Supportseite. Bei Notfällen erreichst du uns über die Support-Nummer.</span>
+    </div>
+    <div class="nl-m-cta"><span class="nl-m-btn">Alle Beiträge lesen</span></div>
+    <div class="nl-m-fuss">
+     <span>cloudvibe GmbH · Maria-Niemann-Weg 10 · 47574 Goch</span>
+     <span>Du bekommst diese E-Mail, weil du dich für den Newsletter angemeldet hast.</span>
+     <span><a class="link-t" href="?nl=einstellungen#einstellungen">Bereiche ändern</a> · <a class="link-t" href="?nl=abgemeldet">Abmelden</a> · <a class="link-t" href="{{LINK:recht}}#impressum">Impressum</a></span>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Einstellungen und Abmelden (Ziel der Links unter jeder Ausgabe) ================= -->
+<section class="ab" id="einstellungen">
+ <div class="wrap nl-einst-in">
+  <div>
+   <div class="eb">Einstellungen</div>
+   <h2>Bereiche ändern <b>oder abmelden</b>.</h2>
+   <p class="lead">Diese Seite öffnet sich über den Link unter jeder Ausgabe. Ohne Passwort, ohne Konto.</p>
+  </div>
+  <form class="nl-einst glas" novalidate>
+   <span class="nl-einst-mail">Angemeldet mit <b>praxis@beispiel.de</b></span>
+   <fieldset class="nlb-themen">
+    <legend>Diese Bereiche bekommst du</legend>
+    <span class="nlb-chip"><input type="checkbox" value="gesundheit" checked aria-label="Gesundheitswesen"><span class="hc">{{HC}}</span></span>
+    <span class="nlb-chip"><input type="checkbox" value="kanzlei" aria-label="Kanzleien"><span>Kanzleien</span></span>
+    <span class="nlb-chip"><input type="checkbox" value="unternehmen" aria-label="Unternehmen"><span>Unternehmen</span></span>
+   </fieldset>
+   <small class="nlb-hw">Der allgemeine Teil mit Sicherheitshinweis, „Kurz erklärt“ und „Aus dem Team“ ist immer dabei.</small>
+   <span class="nl-einst-k"><button type="submit" class="btn">Speichern</button><a class="btn leise-btn" href="?nl=abgemeldet">Vom Newsletter abmelden</a></span>
+   <span class="nl-einst-ok" hidden>Gespeichert. Ab der nächsten Ausgabe gilt deine neue Auswahl.</span>
+  </form>
+ </div>
+</section>
+</main>

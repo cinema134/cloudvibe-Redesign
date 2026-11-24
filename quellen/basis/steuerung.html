@@ -1,0 +1,28 @@
+<!-- ================= Mockup-Steuerung (Unterseiten): Leiste + Einstellungs-Panel ================= -->
+<div class="stg" id="stg" aria-label="Mockup-Steuerung">
+ <div class="stg-hinweis" role="status"><b>Bearbeiten aktiv</b><span>Text anklicken und tippen · Enter beendet</span><button type="button" id="edtFertig">Fertig</button></div>
+ <aside class="stg-panel" id="stgPanel" aria-label="Einstellungen">
+  <div class="stg-kopf"><b>Einstellungen</b><button type="button" id="stgZu" aria-label="Einstellungen schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="stg-inhalt">
+   <section class="stg-gr">
+    <h5>Ansicht</h5>
+    <div class="stg-z"><span>Dunkelmodus</span><button type="button" id="dk" class="tg" aria-label="Dunkelmodus"></button></div>
+    <div class="stg-z" data-ziel="#kopf"><span>Kopfleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
+    <div class="stg-z" data-ziel="footer.fuss"><span>Footer</span><div class="seg"><button type="button" data-fuss="a" class="on" title="Schlank: Adresse, Kontakt, Linkzeile">A</button><button type="button" data-fuss="b" title="Minimal: eine ruhige, mittige Spalte">B</button><button type="button" data-fuss="c" title="Kontakt-Band: die drei Wege zu uns oben">C</button><button type="button" data-fuss="d" title="Drei Spalten: Wer wir sind, Kontakt, Für Kunden">D</button></div></div>
+    <div class="stg-z" data-ziel="#top"><span>Hero-Buttons</span><div class="seg"><button type="button" data-hbt="alt">Bisher</button><button type="button" data-hbt="neu" class="on">Reduziert</button></div></div>
+   </section>
+   <section class="stg-gr">
+    <h5>Inhalt</h5>
+    <div class="stg-z" data-ziel=".stimmen"><span>Kundenstimmen</span><div class="seg"><button type="button" data-kst="buehne" class="on">Bühne</button><button type="button" data-kst="liste">Liste</button></div></div>
+    <div class="stg-z" id="stgAz" data-ziel=".bk ul, .fragen"><span>Aufzählung</span><div class="seg"><button type="button" data-az="P">Punkt</button><button type="button" data-az="H">Häkchen</button><button type="button" data-az="S">Strich</button><button type="button" data-az="L">Ohne</button></div></div>
+    <div class="stg-z" data-ziel="main .hc"><span>Begriff</span><select id="begriff" aria-label="Begriff"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
+   </section>
+  </div>
+ </aside>
+ <div class="stg-bar">
+  <button type="button" id="edt" class="stg-btn" title="Texte direkt bearbeiten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg><span>Bearbeiten</span></button>
+  <button type="button" id="sav" class="stg-btn prim" title="Überschreibt diese Datei (Strg+S)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg><span>Speichern</span></button>
+  <i></i>
+  <button type="button" id="barT" class="stg-btn" title="Einstellungen" aria-expanded="false" aria-controls="stgPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Einstellungen</span></button>
+ </div>
+</div>

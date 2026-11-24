@@ -1,0 +1,53 @@
+
+/* ================= Kanzleien (Richtung C Petrol, entschieden 20.11.2026) =================
+   Aufbau wie ein ruhiges Beratungsgespräch: Person früh, Fragen und Antworten, DATEV, Kontakt.
+   Keine Leistungsraster, keine Zahlen. */
+body.kzseite{--a1:#1F5A66;--a2:#3E8C97;--bg2:#F4F7F8}
+body.dark.kzseite{--a1:#6FB3BF;--a2:#4E9AA6;--bg2:#0E1416}
+body.kzseite .eb{color:var(--a1)}
+
+/* Hero: schmaler, Petrol-Siegel */
+.kz-hero{background:linear-gradient(180deg,#FFFFFF 0%,#F3F6F7 100%);padding-bottom:clamp(80px,8vw,110px)}
+body.dark .kz-hero{background:linear-gradient(180deg,#0B0D10,#0E1416)}
+.kz-hero h1{max-width:820px}
+.kz-hero .lead{max-width:600px}
+.kz-hero:after{content:"";position:absolute;inset:auto;opacity:1;width:560px;height:560px;right:-140px;top:50%;transform:translateY(-50%);border-radius:50%;pointer-events:none;border:1px solid color-mix(in srgb,var(--a1) 20%,transparent);outline:1px solid color-mix(in srgb,var(--a1) 12%,transparent);outline-offset:-70px}
+
+/* Ansprechpartner früh */
+.kz-person{padding-top:clamp(64px,7vw,100px)}
+.kz-person-in{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:center}
+.kz-person .lead{margin:24px 0 22px;max-width:600px}
+
+/* Fragen */
+.kz-fragen-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,88px);align-items:start}
+.kz-fragen-kopf{position:sticky;top:130px}
+.kz-fragen-kopf .leise{margin-top:20px}
+.fragen{border-top:1px solid var(--edge)}
+.fr{padding:28px 0 30px;border-bottom:1px solid var(--edge)}
+.fr h3{font-size:clamp(20px,1.7vw,24px);line-height:1.3;margin-bottom:12px;position:relative;padding-left:28px}
+/* Zeichen mittig zur ersten Zeile (vorher saß es zu hoch, Leon 23.11.2026): Mitte der Zeile = 0,65em */
+.fr h3:before{content:"";position:absolute;left:0;top:calc(.65em - 5px);width:10px;height:10px;box-sizing:border-box;border-radius:50%;border:1.5px solid var(--a1)}
+.fr p{color:var(--muted);padding-left:28px;max-width:640px}
+/* Varianten (Umschalter "Aufzählung"): P Kreis (Standard), S kurzer Strich, L ohne Zeichen und ohne Einzug */
+body.azS .fr h3:before{top:calc(.65em - 1px);width:14px;height:2px;border:0;border-radius:2px;background:var(--a1)}
+body.azL .fr h3,body.azL .fr p{padding-left:0}
+body.azL .fr h3:before{display:none}
+body.azP .fr h3:before{background:color-mix(in srgb,var(--a1) 12%,transparent)}
+
+/* DATEV ruhig */
+.datev-band{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 56px;align-items:center;padding:clamp(32px,4.6vw,60px);border-radius:32px;background:var(--bg);border:1px solid color-mix(in srgb,var(--a1) 18%,transparent)}
+body.dark .datev-band{background:#0F1517}
+.datev-band>*{position:relative}
+.datev-band:after{content:"";position:absolute;width:300px;height:300px;right:-90px;bottom:-150px;border-radius:50%;border:1px solid color-mix(in srgb,var(--a1) 18%,transparent);outline:1px solid color-mix(in srgb,var(--a1) 10%,transparent);outline-offset:-40px}
+.datev-text{display:flex;flex-direction:column;gap:14px}
+.kz-refs{margin-top:24px}
+
+@media(max-width:1000px){
+ .kz-fragen-in,.datev-band{grid-template-columns:1fr}
+ .kz-fragen-kopf{position:static}
+}
+@media(max-width:700px){
+ .kz-person-in{grid-template-columns:1fr}
+ .kz-person .pt{max-width:240px}
+ .kz-hero:after{width:360px;height:360px;right:-180px}
+}

@@ -1,0 +1,119 @@
+<main>
+<!-- ================= Karriere (Konzept 7): ruhig, kein Stellenbörsen-Look ================= -->
+<!-- Stellen sind Beispiele (markiert). Später in Odoo pflegen, je Stelle eine Unterseite mit JobPosting-Daten. "Was wir bieten" erst mit echten Angaben ergänzen. -->
+<section class="uhero" id="top">
+ <div class="wrap uhero-in">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:ueber}}">Über uns</a><span>/</span>Karriere</nav>
+  <h1>Arbeite an IT, auf die sich <b>andere verlassen</b>.</h1>
+  <p class="lead">Wir betreuen Arztpraxen, Apotheken, Pflegeeinrichtungen, Kanzleien und Unternehmen. Aus Goch, vor Ort am Niederrhein und per Fernwartung in ganz Deutschland. Dafür suchen wir Menschen, die gern Probleme lösen und gut erklären können.</p>
+  <div class="btns">
+   <a class="btn" href="#stellen">Offene Stellen</a>
+   <a class="btn zw nur-alt" href="mailto:hire@cloudvibe.de">hire@cloudvibe.de</a>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Warum cloudvibe ================= -->
+<section class="ab liegt" id="warum">
+ <div class="wrap">
+  <div class="kopfzeile">
+   <div>
+    <div class="eb">Warum cloudvibe</div>
+    <h2>IT in echten Betrieben, <b>mit kurzen Wegen</b>.</h2>
+   </div>
+  </div>
+  <div class="liegt-raster glas">
+   <div class="lp">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+    <div><h3>Abwechslung mit Sinn</h3><p>Heute eine Arztpraxis, morgen eine Kanzlei: TI, DATEV, Microsoft&nbsp;365 und Netzwerke in echten Betrieben.</p></div>
+   </div>
+   <div class="lp">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2 1-3.8 2.5-4.6"/></svg>
+    <div><h3>Kurze Wege</h3><p>Ein Team in Goch. Du sprichst direkt mit denen, die entscheiden.</p></div>
+   </div>
+   <div class="lp">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
+    <div><h3>Kunden, die dich kennen</h3><p>Feste Ansprechpartner statt anonymer Warteschlange, auch für dich.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Offene Stellen (Beispiele) ================= -->
+<section class="ab alt" id="stellen">
+ <div class="wrap">
+  <div class="kopfzeile">
+   <div>
+    <div class="eb">Offene Stellen</div>
+    <h2>Wen wir <b>gerade suchen</b>.</h2>
+   </div>
+   <div class="rechts">
+    <p class="leise">Nichts Passendes dabei? Schreib uns trotzdem: <a class="link-t" href="mailto:hire@cloudvibe.de">hire@cloudvibe.de</a></p>
+   </div>
+  </div>
+  <!-- Stellen kommen aus den Daten unten (in den Einstellungen unter "Stellenanzeigen" anlegen, ändern, entfernen).
+       Später aus Odoo (Recruiting): je Stelle Titel, Ort, Art, Kurztext, Aufgaben, Profil; jede Stelle eine Unterseite mit JobPosting-Daten. -->
+  <div class="kr-stellen" id="krStellen"></div>
+  <script type="application/json" id="stellen-daten">[
+   {"titel":"IT-Systemadministrator/in (m/w/d)","ort":"Goch","art":"Vollzeit","beispiel":true,
+    "kurz":"Du betreust Server, Netzwerke und Arbeitsplätze unserer Kundinnen und Kunden, per Fernwartung und vor Ort am Niederrhein.",
+    "aufgaben":"Server, Netzwerke und Microsoft 365 einrichten und betreuen\nDatensicherung und Updates im Blick behalten\nAnfragen aus dem Ticketsystem lösen\nKundinnen und Kunden verständlich beraten",
+    "profil":"Abgeschlossene Ausbildung in der IT oder vergleichbare Erfahrung\nErfahrung mit Windows Server und Netzwerken\nFreude daran, Technik einfach zu erklären\nFührerschein Klasse B"},
+   {"titel":"IT-Support vor Ort am Niederrhein (m/w/d)","ort":"Goch","art":"Vollzeit","beispiel":true,
+    "kurz":"Du bist das Gesicht von cloudvibe in Praxen, Kanzleien und Unternehmen und hilfst dort, wo Technik vor Ort gebraucht wird.",
+    "aufgaben":"Arbeitsplätze, Drucker und Netzwerktechnik einrichten\nStörungen vor Ort beheben\nNeue Geräte beim Kunden in Betrieb nehmen",
+    "profil":"Erfahrung im IT-Support\nSorgfältige und freundliche Art\nFührerschein Klasse B"},
+   {"titel":"Ausbildung Fachinformatiker/in für Systemintegration (m/w/d)","ort":"Goch","art":"Ausbildung","beispiel":true,
+    "kurz":"Du lernst Netzwerke, Server, Arbeitsplätze und IT-Sicherheit in echten Praxen, Kanzleien und Unternehmen kennen.",
+    "aufgaben":"Arbeitsplätze und Netzwerke mit dem Team einrichten\nIm Support mitarbeiten und dazulernen\nKundentermine begleiten",
+    "profil":"Guter Schulabschluss\nInteresse an Technik und Menschen\nLust, Dinge auszuprobieren"},
+   {"titel":"Praktikum IT-Betreuung (m/w/d)","ort":"Goch","art":"Praktikum nach Absprache","beispiel":true,
+    "kurz":"Für Schülerinnen, Schüler und Studierende, die IT im Alltag eines Dienstleisters kennenlernen wollen.",
+    "aufgaben":"Das Team im Alltag begleiten\nKleine Aufgaben im Support übernehmen",
+    "profil":"Interesse an IT\nZeitraum nach Absprache"}
+  ]</script> </div>
+</section>
+
+<!-- ================= Ausbildung und Praktikum ================= -->
+<section class="ab ti-kurz" id="ausbildung">
+ <div class="wrap ti-kurz-in">
+  <div>
+   <div class="eb">Ausbildung</div>
+   <h2>Fachinformatiker/in für <b>Systemintegration</b>.</h2>
+  </div>
+  <div class="ti-kurz-text">
+   <p class="lead">Du lernst Netzwerke, Server, Arbeitsplätze und IT-Sicherheit nicht nur in der Berufsschule kennen, sondern in echten Praxen, Kanzleien und Unternehmen. Mit einer festen Ansprechperson im Team.</p>
+   <p class="leise"><b>Praktikum:</b> Für Schülerinnen, Schüler und Studierende, die IT im Alltag eines Dienstleisters kennenlernen wollen. Zeitraum und Dauer nach Absprache.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ================= So bewirbst du dich (echte Reihenfolge, einzige Nummerierung der Seite) ================= -->
+<section class="ab alt start" id="bewerbung">
+ <div class="wrap">
+  <div class="st-kopf">
+   <div class="eb">So bewirbst du dich</div>
+   <h2>Drei Schritte, <b>kein Formular</b>.</h2>
+  </div>
+  <div class="st-reihe">
+   <div class="st-p"><span class="nr">01</span><h3>Schreib uns</h3><p>Ein paar Sätze zu dir und dein Lebenslauf an hire@cloudvibe.de.</p></div>
+   <div class="st-p"><span class="nr">02</span><h3>Wir melden uns</h3><p>Du bekommst eine Rückmeldung von einer echten Person.</p></div>
+   <div class="st-p"><span class="nr">03</span><h3>Kennenlernen</h3><p>Ein Gespräch in Goch oder per Video.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Fragen vorab ================= -->
+<section class="ab kr-kontakt-ab" id="kontakt">
+ <div class="wrap">
+  <div class="kr-kontakt glas">
+   <div>
+    <div class="eb">Fragen vorab?</div>
+    <h2>Frag <b>einfach</b>.</h2>
+    <p class="lead">Schreib uns eine kurze Mail. Wir antworten persönlich.</p>
+   </div>
+   <a class="btn" href="mailto:hire@cloudvibe.de">hire@cloudvibe.de</a>
+  </div>
+ </div>
+</section>
+</main>

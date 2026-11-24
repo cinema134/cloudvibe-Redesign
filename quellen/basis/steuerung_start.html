@@ -1,0 +1,42 @@
+<!-- ================= Mockup-Steuerung (Startseite): Leiste + Einstellungs-Panel ================= -->
+<div class="stg" id="stg" aria-label="Mockup-Steuerung">
+ <div class="stg-hinweis" role="status"><b>Bearbeiten aktiv</b><span>Text anklicken und tippen · Enter beendet</span><button type="button" id="edtFertig">Fertig</button></div>
+ <aside class="stg-panel" id="stgPanel" aria-label="Einstellungen">
+  <div class="stg-kopf"><b>Einstellungen</b><button type="button" id="stgZu" aria-label="Einstellungen schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="stg-inhalt">
+   <section class="stg-gr">
+    <h5>Ansicht</h5>
+    <div class="stg-z"><span>Dunkelmodus</span><button type="button" id="dk" class="tg" aria-label="Dunkelmodus"></button></div>
+    <div class="stg-z" data-ziel="footer.fuss"><span>Footer</span><div class="seg"><button type="button" data-fuss="a" class="on" title="Schlank: Adresse, Kontakt, Linkzeile">A</button><button type="button" data-fuss="b" title="Minimal: eine ruhige, mittige Spalte">B</button><button type="button" data-fuss="c" title="Kontakt-Band: die drei Wege zu uns oben">C</button><button type="button" data-fuss="d" title="Drei Spalten: Wer wir sind, Kontakt, Für Kunden">D</button></div></div>
+    <div class="stg-z" data-ziel="#kopf"><span>Kopfleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>    <div class="stg-z" data-ziel="#top"><span>Körnung im Hero</span><button type="button" id="gr" class="tg on" aria-label="Körnung"></button></div>
+   </section>
+   <section class="stg-gr">
+    <h5>Inhalt</h5>
+    <div class="stg-z" data-ziel=".einstieg"><span>Begriff</span><select id="begriff" aria-label="Begriff"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
+   </section>
+   <!-- Welle: keine Regler mehr, nur Durchschalten zwischen aktueller Linien-Welle und den Bänder-Varianten des Kollegen (Leon 24.11.2026); ?welle=aktuell|seide|ruhig|zart|linien -->
+   <section class="stg-gr" data-ziel="#top">
+    <h5>Welle</h5>
+    <div class="stg-welle" role="group" aria-label="Welle wählen">
+     <button type="button" data-welle="aktuell" class="on"><b>Aktuell</b><small>Feine Linien Grün nach Blau</small></button>
+     <!-- weitere Knöpfe erzeugt startseite.js aus CV.BAENDER (basis.js) -->
+
+    </div>
+    <div class="stg-welle-nav"><button type="button" data-wschritt="-1" aria-label="Vorige Welle">‹ Vorige</button><button type="button" data-wschritt="1" aria-label="Nächste Welle">Nächste ›</button></div>
+   </section>
+   <section class="stg-gr stg-regler" data-ziel="#top">
+    <h5>Logo</h5>
+    <label class="sp">Größe <input id="lgs" type="range" min="30" max="220" value="90"></label>
+    <label class="sp">Abstand <input id="lga" type="range" min="0" max="320" value="70"></label>
+    <div class="stg-z"><span>Logo frei links</span><button type="button" id="lgb" class="tg on" aria-label="Logo frei"></button></div>
+   </section>
+  </div>
+  <div class="stg-fuss"><button type="button" id="rst">Zurücksetzen</button><button type="button" id="cpy" class="prim">Werte kopieren</button></div>
+ </aside>
+ <div class="stg-bar">
+  <button type="button" id="edt" class="stg-btn" title="Texte direkt bearbeiten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg><span>Bearbeiten</span></button>
+  <button type="button" id="sav" class="stg-btn prim" title="Überschreibt diese Datei (Strg+S)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg><span>Speichern</span></button>
+  <i></i>
+  <button type="button" id="barT" class="stg-btn" title="Einstellungen" aria-expanded="false" aria-controls="stgPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Einstellungen</span></button>
+ </div>
+</div>
