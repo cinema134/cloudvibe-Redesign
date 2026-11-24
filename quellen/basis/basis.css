@@ -722,7 +722,8 @@ body .fuss.fv-k,body:not(.fussAlt) .fuss.fv-k{padding:44px 0 22px;font-size:14px
 /* ---------- Heros einheitlich hoch (Leon 24.11.2026: je Reiter unterschiedlich hoch, wirkt beim Durchschalten komisch) ----------
    hhE (Standard): alle Unterseiten-Heros gleich hoch, H1 immer an derselben Stelle, unten eine feste Zone für Welle oder Bereichs-Akzent.
    Funktionsseiten (heroK: Ticket, Login, Kontakt, Lexikon, Rechtliches, Beitrag) einheitlich kompakt. Mehr Inhalt darf den Hero verlängern (min-height). Bisher: ohne hhE. */
-:root{--hh:clamp(560px,87vh,780px);--hhk:clamp(380px,50vh,460px);--hb:clamp(90px,8.5vw,120px)}
+/* Hero füllt wie die Startseite den ersten Bildschirm (Leon 24.11.2026: „Telekonnekt und Co. schon halb im Bild“; Startseite ist Maßstab, kein Umschalter). Bisher clamp(560px,87vh,780px) */
+:root{--hh:max(560px,100vh);--hhk:clamp(380px,50vh,460px);--hb:clamp(90px,8.5vw,120px)}
 body.hhE .uhero{min-height:var(--hh);padding-bottom:var(--hb)!important}
 body.hhE.heroK .uhero{min-height:var(--hhk);padding-bottom:clamp(40px,4vw,60px)!important}
 @media(max-width:700px){:root{--hh:600px;--hhk:380px;--hb:120px}}
