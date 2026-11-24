@@ -3,7 +3,12 @@
   const nl = CV.Q.get('nl');
   const zeige = (z) => document.querySelectorAll('.nl-zustand').forEach((x) => (x.hidden = x.dataset.zustand !== z));
   if (nl === 'bestaetigt' || nl === 'abgemeldet') zeige(nl);
-  if (nl === 'einstellungen') setTimeout(() => document.getElementById('einstellungen').scrollIntoView(), 300);
+  // Einstellungen-Abschnitt ist als Modul aus (Prüfdokument 24.11.2026); über den Link aus der Mail (?nl=einstellungen) trotzdem als Vorschau der Odoo-Seite zeigen
+  if (nl === 'einstellungen') {
+    const e = document.getElementById('einstellungen');
+    e.classList.remove('mod-aus');
+    setTimeout(() => e.scrollIntoView(), 300);
+  }
 
   // Beispielausgabe: Branchenblock je Bereich
   const wahl = document.querySelector('.nl-wahl');

@@ -39,6 +39,36 @@ body.dark .un-hero{background:radial-gradient(55% 75% at 88% 30%,rgba(45,108,223
 .vn-n{position:relative;padding-left:28px}
 .vn-n:before{content:"";position:absolute;left:0;top:.45em;width:12px;height:7px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
 .vn-n b{font-weight:700}
+/* Hero mit Wellenkante (Prüfdokument 24.11.2026): Anlass-Karte etwas dichter, damit die Linien nicht durchschimmern */
+body.unseite .un-hero .anlass{background:color-mix(in srgb,var(--bg) 86%,transparent)}
+
+/* Typisch Mittelstand (Prüfdokument 24.11.2026): Aussagen als Zitat, Antwort darunter, ohne Linien */
+.mt-raster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(44px,5vw,72px) clamp(40px,6vw,96px)}
+.mt-s{font:300 clamp(24px,2.2vw,31px)/1.22 Comfortaa,sans-serif;letter-spacing:-.015em;color:var(--text);margin-bottom:18px;max-width:520px}
+.mt-a{font-size:16px;line-height:1.6;color:var(--muted);max-width:520px}
+
+/* Vorher und nachher, neu (Prüfdokument 24.11.2026): zwei Flächen, Vorher grau und gedämpft, Nachher hell mit blauem Akzent */
+.vn2{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(20px,2.4vw,34px);align-items:center}
+.vn2-f{border-radius:30px;padding:clamp(30px,3.6vw,52px)}
+.vn2-k{display:block;font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:clamp(20px,2.4vw,30px)}
+.vn2 ul{list-style:none;display:flex;flex-direction:column;gap:clamp(20px,2.2vw,28px)}
+.vn2-vorher{background:color-mix(in srgb,var(--text) 5%,var(--bg2));color:var(--muted)}
+.vn2-vorher .vn2-k{color:var(--muted)}
+.vn2-vorher li{font:300 clamp(19px,1.6vw,22px)/1.35 Comfortaa,sans-serif;color:color-mix(in srgb,var(--muted) 85%,transparent)}
+.vn2-nachher{background:var(--bg);border:1px solid color-mix(in srgb,var(--blue) 28%,transparent);box-shadow:0 30px 70px -30px rgba(45,108,223,.35),0 2px 6px rgba(20,23,28,.04);padding:clamp(36px,4.4vw,64px)}
+.vn2-nachher .vn2-k{color:var(--blue)}
+.vn2-nachher li{position:relative;padding-left:38px;font-size:17px;line-height:1.5;color:var(--muted)}
+.vn2-nachher li b{display:block;font:700 clamp(21px,1.8vw,25px)/1.25 Comfortaa,sans-serif;letter-spacing:-.01em;color:var(--text);margin-bottom:4px}
+.vn2-nachher li:before{content:"";position:absolute;left:3px;top:.42em;width:13px;height:7px;border-left:2.5px solid var(--blue);border-bottom:2.5px solid var(--blue);transform:rotate(-45deg)}
+.vn2-pf{position:absolute;left:calc(47.2% + 1px);top:50%;transform:translate(-50%,-50%);z-index:2;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--blue);color:#fff;box-shadow:0 10px 26px -8px rgba(45,108,223,.6)}
+.vn2-pf svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body.dark .vn2-vorher{background:color-mix(in srgb,#fff 4%,var(--bg))}
+body.dark .vn2-nachher{background:color-mix(in srgb,var(--blue) 9%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent);box-shadow:0 30px 70px -30px rgba(45,108,223,.45)}
+
+/* Software: Überschrift als Zweizeiler über die volle Breite (Prüfdokument 24.11.2026) */
+.un-sw-kopf{grid-template-columns:1fr}
+.un-sw-kopf h2{font-size:clamp(32px,3.8vw,56px);line-height:1.1}
+
 /* Hardware */
 .un-hw-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:center}
 .un-hw .lead{margin-top:24px}
@@ -55,6 +85,10 @@ body.dark .un-hero{background:radial-gradient(55% 75% at 88% 30%,rgba(45,108,223
 @media(max-width:1000px){
  .un-hero-in{grid-template-columns:1fr}
  .un-hw-in{grid-template-columns:1fr}
+}
+@media(max-width:800px){
+ .mt-raster,.vn2{grid-template-columns:1fr}
+ .vn2-pf{position:relative;left:auto;top:auto;transform:rotate(90deg);justify-self:center;margin:-34px 0;width:48px;height:48px}
 }
 @media(max-width:700px){
  .vn-kopf{display:none}

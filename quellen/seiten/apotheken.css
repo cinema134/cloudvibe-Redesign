@@ -1,0 +1,21 @@
+
+/* ================= Apotheken (Vorlage Arztpraxen über "stil") ================= */
+/* Was bei uns liegt, Prüfdokument 24.11.2026: nach Orten der Apotheke gegliedert (HV-Tisch, Backoffice, Filialen), ruhige Zeilen statt 3er-Raster */
+.zonen{padding:clamp(8px,1vw,14px) clamp(26px,3.4vw,48px)}
+.zone{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr) minmax(0,1fr);gap:16px clamp(28px,4vw,64px);align-items:start;padding:clamp(28px,3vw,40px) 0}
+.zone+.zone{border-top:1px solid var(--edge)}
+.zone-kopf{display:flex;align-items:center;gap:18px}
+.zone-kopf svg{flex:none;width:56px;height:56px;padding:14px;border-radius:50%;fill:none;stroke:var(--blue);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;background:color-mix(in srgb,var(--blue) 9%,transparent)}
+.zone-kopf h3{font-size:clamp(22px,2vw,27px);font-weight:300;letter-spacing:-.02em}
+.zone>p{color:var(--muted);line-height:1.6;padding-top:6px}
+.zone ul{list-style:none;padding-top:4px}
+.zone li{position:relative;padding:5px 0 5px 28px;font-size:15.5px;line-height:1.5}
+.zone li:before{content:"";position:absolute;left:2px;top:11px;width:11px;height:6px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+@media(max-width:1000px){
+ .zone{grid-template-columns:1fr}
+ .zone>p{padding-top:0}
+}
+@media(max-width:700px){
+ .zonen{padding:4px 22px}
+ .zone-kopf svg{width:48px;height:48px;padding:12px}
+}

@@ -711,7 +711,7 @@ body .fuss.fv-k,body:not(.fussAlt) .fuss.fv-k{padding:44px 0 22px;font-size:14px
 .fv-k ul{gap:5px}
 .fv-k li{color:var(--text);line-height:1.45}
 .fv-k li small,.fv-k .mail small{display:inline;font-size:12.5px;color:var(--muted);margin:0 0 0 4px}
-.fk-unten{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 28px;margin-top:28px;padding-top:16px;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent);font-size:13.5px}
+.fk-unten{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 28px;margin-top:31px;padding-top:16px;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent);font-size:13.5px}
 .fk-links{display:flex;flex-wrap:wrap;gap:6px 22px;font-weight:700}
 .fk-recht{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted)}
 .fk-recht a{color:var(--muted)}
@@ -757,3 +757,66 @@ body.hhE.heroW .uhero + section > .wrap > .kopfzeile{position:absolute!important
 body.hhE.heroW .uhero{padding-top:clamp(112px,9vw,132px);padding-bottom:0!important}
 body.hhE.heroW .uhero .sp-not{margin-top:0}
 body.hhE.heroW .uhero + section{padding-top:clamp(12px,1.6vw,24px)}
+/* ================= Prüfdokument 24.11.2026 (Chat 10) ================= */
+/* Footer K: Bezeichnung (Firmensitz, Büro) über der Adresse */
+.fv-k .fk-sp .fk-adr li small{display:block;margin:0 0 2px!important}
+/* Haupt-Button oben: Ticket (Standard, body.kTicket) oder Termin (bisher) */
+.kopf-r .cta-ticket{display:none}
+body.kTicket .kopf-r .cta-termin{display:none}
+body.kTicket .kopf-r .cta-ticket{display:inline-flex}
+body.kTicket.ohneTicket .kopf-r .cta-ticket{display:none}
+body.kTicket .dd-sup .sup-ticket,body.kTicket .mnav .sup-ticket{display:none}
+body:not(.kTicket) .dd-sup .sup-termin,body:not(.kTicket) .mnav .sup-termin{display:none}
+/* Ticket behält „eröffnen“ so lange wie möglich: wird es eng, erst Support nur als Symbol, dann erst „Ticket“ kurz (Leon 24.11.2026) */
+body.kTicket.kopf-eng .kopf .sup span{display:none}
+body.kTicket.kopf-eng .kopf .sup{padding:0 12px 0 14px}
+body.kTicket.kopf-enger .kopf-r .cta-ticket .tv{display:none}
+@media(min-width:1041px){body.hbR.ohneTermin.kTicket:not(.ohneTicket) .kopf nav.nav-neu{flex:1 1 auto;justify-content:space-between;margin-right:0}}
+/* Kundenstimmen Kompakt (Standard): Überschrift links, eine Stimme rechts, flacher Abschnitt; Bühne/Liste per Umschalter */
+body.kstKompakt .stimmen{padding-top:clamp(52px,5.5vw,76px)!important;padding-bottom:clamp(52px,5.5vw,76px)!important}
+body.kstKompakt .stimmen .st-in{grid-template-columns:minmax(0,4fr) minmax(0,8fr);justify-items:stretch;text-align:left;align-items:center;gap:12px clamp(32px,5vw,80px)}
+body.kstKompakt .stimmen .st-kopf{align-items:flex-start;margin-bottom:0;grid-row:1/3}
+body.kstKompakt .stimmen .st-kopf h2{font-size:clamp(24px,2.3vw,32px);margin-bottom:12px}
+body.kstKompakt .stimmen .st-liste{max-width:none}
+body.kstKompakt .stimmen .st-liste .st{align-items:flex-start}
+body.kstKompakt .stimmen .st-q{width:30px;height:22px;margin-bottom:14px}
+body.kstKompakt .stimmen blockquote{font-size:clamp(19px,1.6vw,23px);line-height:1.45;margin-bottom:14px}
+body.kstKompakt .stimmen figcaption{justify-content:flex-start}
+body.kstKompakt .stimmen .st-nav{grid-column:2;justify-content:flex-start;margin-top:4px}
+body.kstKompakt .stimmen .st-nav button{width:36px;height:36px;font-size:18px}
+@media(max-width:1000px){body.kstKompakt .stimmen .st-in{grid-template-columns:1fr}body.kstKompakt .stimmen .st-kopf{grid-row:auto}body.kstKompakt .stimmen .st-nav{grid-column:1}}
+/* Abläufe als Pfeilband (Prüfdokument 24.11.2026: Strahl mit Linien und Kreisen gefällt nicht, „outside the box“).
+   Jeder Schritt ist ein Pfeil-Segment, das von hell nach kräftig Blau zunimmt: der Fortschritt steckt in der Fläche, nicht in Linien.
+   Bisher (Zeitleiste) per Umschalter „Abläufe“, body.abZl, ?ablauf=zeitleiste */
+body:not(.abZl) .st-reihe{--stp:0px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-columns:none;gap:0 4px;padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+body:not(.abZl) .st-reihe:before{display:none}
+body:not(.abZl) .st-p,body:not(.abZl) .st-p+.st-p{padding:0 18px 0 0;border:0;margin:0}
+body:not(.abZl) .st-p:before{display:none}
+body:not(.abZl) .st-p h3{display:flex;align-items:center;min-height:68px;margin:0 0 20px;padding:0 40px 0 34px;font-size:clamp(17px,1.35vw,19px);color:var(--text);background:color-mix(in srgb,var(--blue) 9%,var(--bg));clip-path:polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%,24px 50%)}
+body:not(.abZl) .st-p:first-child h3{padding-left:24px;border-radius:14px 0 0 14px;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%)}
+body:not(.abZl) .st-p:nth-child(2) h3{background:color-mix(in srgb,var(--blue) 16%,var(--bg))}
+body:not(.abZl) .st-p:nth-child(3) h3{background:color-mix(in srgb,var(--blue) 26%,var(--bg))}
+body:not(.abZl) .st-p:last-child h3{background:var(--blue);color:#fff;border-radius:0 14px 14px 0;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,24px 50%)}
+body:not(.abZl) .st-p:first-child:last-child h3{border-radius:14px;clip-path:none}
+body:not(.abZl) .st-p p{font-size:15.5px;color:var(--muted);line-height:1.6;padding-left:6px}
+body.dark:not(.abZl) .st-p h3{background:color-mix(in srgb,var(--blue) 18%,var(--bg))}
+body.dark:not(.abZl) .st-p:nth-child(2) h3{background:color-mix(in srgb,var(--blue) 30%,var(--bg))}
+body.dark:not(.abZl) .st-p:nth-child(3) h3{background:color-mix(in srgb,var(--blue) 45%,var(--bg))}
+body.dark:not(.abZl) .st-p:last-child h3{background:var(--blue)}
+@media(max-width:900px){
+ body:not(.abZl) .st-reihe{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr!important;gap:0}
+ body:not(.abZl) .st-p,body:not(.abZl) .st-p+.st-p,body:not(.abZl) .st-p:nth-child(n){padding:0 0 18px;border:0;margin:0}
+ body:not(.abZl) .st-p h3,body:not(.abZl) .st-p:first-child h3,body:not(.abZl) .st-p:last-child h3{min-height:56px;margin:0 0 12px;padding:14px 22px 24px;border-radius:14px 14px 0 0;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),50% 100%,0 calc(100% - 12px))}
+ body:not(.abZl) .st-p:last-child h3{padding-bottom:14px;border-radius:14px;clip-path:none}
+}
+/* Termin als eigener ruhiger Button in der Leiste, wenn Ticket der Haupt-Button ist (Leon 24.11.2026: nicht im Support-Menü) */
+.kopf-r .kt-termin{display:none}
+body.kTicket:not(.ohneTermin) .kopf-r .kt-termin{display:inline-flex;align-items:center;height:50px;padding:0 20px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 15px 'Mozilla Text',sans-serif;text-decoration:none;transition:border-color .2s,color .2s}
+body.kTicket .kopf-r .kt-termin:hover{border-color:var(--blue);color:var(--blue)}
+@media(max-width:1180px){body.kTicket:not(.ohneTermin) .kopf-r .kt-termin{height:44px;padding:0 16px;font-size:14.5px}}
+@media(max-width:1040px){body.kTicket .kopf-r .kt-termin{display:none!important}}
+.mnav .mn-termin{display:none}
+body.kTicket .mnav .mn-termin{display:flex}
+
+/* Kompakte Heros (Beitrag, Rechtliches): keine Wellenkante, sie liefe durch die Ueberschrift */
+body.heroK .uhero .welle{display:none!important}

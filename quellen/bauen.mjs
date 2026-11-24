@@ -287,7 +287,12 @@ function baue(id, seite) {
       .replace('<!--@lexikon-->', () => lexikonHtml())
       // Newsletter-Anmeldung: <!--@newsletter--> (Karte mit Themenwahl) oder <!--@newsletter:zeile--> (schmale Zeile); {{NLB}} macht IDs eindeutig
       .replace(/<!--@newsletter(?::(zeile))?-->/g, (_, z) => lies('basis', z ? 'newsletter_zeile.html' : 'newsletter.html').replaceAll('{{NLB}}', String(++nlbNr)))
-      .replace(/<!--@stimmen:(\w+)(?::(\w+))?-->/g, (_, was, kl) => stimmenHtml(was, kl))
+      // :aus = als Modul aus („Kundenstimmen (entfernt)“), :alt-aus = dazu auf Fläche (Prüfdokument 24.11.2026)
+      .replace(/<!--@stimmen:(\w+)(?::([\w-]+))?-->/g, (_, was, kl) => {
+        if (!kl || !/(^|-)aus$/.test(kl)) return stimmenHtml(was, kl);
+        const k = kl === 'aus' ? 'mod-aus' : kl.replace(/-aus$/, '') + ' mod-aus';
+        return stimmenHtml(was, k).replace(/(<section class="[^"]*" id="stimmen")>/, '$1 data-name="Kundenstimmen (entfernt)">');
+      })
       // Unterkarten Software: alle oder nur eine (z. B. <!--@softwarekarten:datev-->)
       .replace(/<!--@softwarekarten(?::(\w+))?-->/g, (_, nur) => {
         // DATEV-Karte führt zur passenden FAQ: Unternehmen (alle Karten) ?fuer=unternehmen, Kanzleien (nur DATEV) Standard Kanzleien

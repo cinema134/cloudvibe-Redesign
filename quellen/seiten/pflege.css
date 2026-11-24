@@ -1,0 +1,20 @@
+
+/* ================= Pflegeeinrichtungen (Vorlage Arztpraxen über "stil") ================= */
+/* Was bei uns liegt, Prüfdokument 24.11.2026: nach Orten im Haus gegliedert. Wohnbereich groß links, Stationszimmer und Verwaltung rechts übereinander */
+.haus{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(16px,2vw,24px)}
+.hb{padding:clamp(28px,3vw,40px)}
+.hb-gross{grid-row:span 2;display:flex;flex-direction:column;background:radial-gradient(90% 70% at 0% 100%,color-mix(in srgb,var(--a1,#2EB329) 10%,transparent),transparent 70%),radial-gradient(80% 60% at 100% 0%,color-mix(in srgb,var(--blue) 9%,transparent),transparent 70%),var(--glass)}
+.hb>svg{display:block;width:52px;height:52px;padding:13px;margin-bottom:22px;border-radius:50%;fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;background:color-mix(in srgb,var(--blue) 9%,transparent)}
+.hb h3{font-size:clamp(21px,1.8vw,25px);margin-bottom:10px}
+.hb-gross h3{font-size:clamp(26px,2.4vw,34px);font-weight:300;letter-spacing:-.02em}
+.hb p{color:var(--muted);line-height:1.6}
+.hb-gross p{font-size:17px;max-width:520px}
+.hb ul{list-style:none;margin-top:auto;padding-top:28px}
+.hb li{position:relative;padding:12px 0 12px 30px;font-size:16px;line-height:1.5}
+.hb li+li{border-top:1px solid var(--edge)}
+.hb li:before{content:"";position:absolute;left:3px;top:19px;width:11px;height:6px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+@media(max-width:900px){
+ .haus{grid-template-columns:1fr}
+ .hb-gross{grid-row:auto}
+}
+@media(max-width:700px){.hb{padding:26px 22px}}

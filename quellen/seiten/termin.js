@@ -1,6 +1,6 @@
 /* Termin vereinbaren: Buchungs-Mockup (alles simuliert, nichts wird gesendet).
    Ablauf: Terminart wählen -> Kalender (nur Werktage, Beispiel-Slots) -> Uhrzeit -> Angaben -> Bestätigung.
-   Zum Prüfen: ?art=erst|ti|check|datev|sl|ki|rueck|kunde, dazu &demo=angaben|fertig */
+   Zum Prüfen: ?art=erst|ti|check|datev|sl|ki|rueck|kunde, dazu &demo=angaben|fertig; Aufbau ?termin=bisher */
 (function () {
   const $ = (i) => document.getElementById(i);
   const bp = $('bp');
@@ -115,6 +115,9 @@
     $('bpLeer').hidden = true; $('bpVoll').hidden = false;
     $('bpArt').textContent = a.n;
     $('bpMeta').textContent = `${a.d} Min · ${a.f.map((f) => FORM[f]).join(', ')}`;
+    // Kompakt: Beschreibung der gewählten Art steht im Buchungsfeld (in der Liste nur Name und Dauer)
+    const p = document.querySelector(`.ta[data-art="${id}"] .ta-text p`);
+    $('bpBesch').textContent = p ? p.textContent.trim() : '';
     // ersten Monat mit freien Tagen zeigen
     st.jahr = start.getFullYear(); st.monat = start.getMonth();
     for (let i = 0; i <= MAX_MONATE; i++) {
@@ -199,13 +202,37 @@
   }
   $('neu').onclick = () => {
     $('sAngaben').reset();
+    if (kompakt()) { waehleArt(st.art || 'erst', false); return; } // Kompakt: Kalender bleibt sichtbar
     st.art = null;
     document.querySelectorAll('.ta').forEach((el) => { el.classList.remove('on'); el.querySelector('.ta-wahl').setAttribute('aria-pressed', 'false'); });
     $('bpVoll').hidden = true; $('bpLeer').hidden = false;
   };
 
+  /* ---- Aufbau Kompakt (Standard) / Bisher (Prüfdokument 24.11.2026: "auf einen Blick die Terminauswahl sehen")
+     Kompakt: schmale Liste links, Kalender der gewählten Art sofort rechts; Umschalter im Panel, ?termin=bisher ---- */
+  const B = document.body;
+  const kompakt = () => B.classList.contains('tmK');
+  function setAufbau(v, merken) {
+    const k = v !== 'bisher';
+    B.classList.toggle('tmK', k);
+    document.querySelectorAll('[data-tm]').forEach((b) => b.classList.toggle('on', (b.dataset.tm === 'kompakt') === k));
+    if (k && !st.art) waehleArt('erst', false); // sofort buchbar: erste Art vorgewählt
+    klebe();
+    if (merken && window.CV) CV.merke('termin', k ? 'kompakt' : 'bisher');
+  }
+  const stg = document.querySelector('#stgPanel .stg-inhalt section:last-child') || document.querySelector('#stgPanel .stg-inhalt');
+  if (stg) {
+    const z = document.createElement('div');
+    z.className = 'stg-z'; z.dataset.ziel = '#terminarten';
+    z.innerHTML = '<span>Terminauswahl</span><div class="seg"><button type="button" data-tm="kompakt" class="on" title="Liste und Kalender auf einen Blick">Kompakt</button><button type="button" data-tm="bisher" title="Bisher: große Liste mit Beschreibungen">Bisher</button></div>';
+    stg.appendChild(z);
+    z.querySelectorAll('[data-tm]').forEach((b) => (b.onclick = () => setAufbau(b.dataset.tm, true)));
+  }
+
   /* ---- Prüfhilfe über Adress-Parameter ---- */
   const Q = new URLSearchParams(location.search), art = Q.get('art');
+  const aufbau = window.CV ? CV.wert('termin', Q.get('termin'), 'kompakt') : (Q.get('termin') || 'kompakt');
+  setAufbau(aufbau, false); // ?art=… wählt danach die gewünschte Art
   if (art && ARTEN[art]) {
     waehleArt(art, false);
     const demo = Q.get('demo');

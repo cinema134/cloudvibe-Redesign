@@ -18,6 +18,27 @@ main [hidden]{display:none!important}
 .sp-zeiten{display:flex;align-items:center;gap:10px;margin-top:18px;padding-left:22px;font-size:15px;color:var(--muted)}
 .sp-zeiten svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
+/* ---------- Neu (Prüfdokument 24.11.2026): drei Wege ganz oben (#hilfe) ----------
+   Notfall und Servicezeiten stecken jetzt im Feld; die bisherige Notfall-Zeile im Hero kommt nur zurück, wenn #hilfe aus ist */
+body:has(#hilfe:not(.mod-aus)) .sp-hero .sp-not,body:has(#hilfe:not(.mod-aus)) .sp-hero .sp-zeiten{display:none}
+.sp-hilfe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
+.sp-h{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,3vw,40px)}
+.sp-h+.sp-h{border-left:1px solid var(--edge)}
+.sp-h-haupt{background:color-mix(in srgb,var(--blue) 4%,transparent)}
+.sp-h .sp-ic{margin-bottom:20px}
+.sp-ic-tel{background:var(--gbg);color:var(--gt)}
+.sp-h h3{font-size:clamp(21px,1.7vw,24px);margin-bottom:10px}
+.sp-h p{font-size:15.5px;line-height:1.6;color:var(--muted);margin-bottom:24px;flex:1}
+.sp-h p b{color:var(--text)}
+.sp-h .btn.leise-btn{padding:14px 22px}
+.sp-hilfe-fuss{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 28px;padding:16px clamp(28px,3vw,40px);border-top:1px solid var(--edge);font-size:15px;color:var(--muted)}
+.sp-zeit{display:inline-flex;align-items:center;gap:10px}
+.sp-zeit svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sp-mail a{font-weight:700;color:var(--text);white-space:nowrap;transition:color .2s}
+.sp-mail a:hover{color:var(--blue)}
+.sp-portal .sp-zugang{margin-top:18px;font-size:15px}
+.sp-portal .sp-portal-t .btns{margin-top:28px}
+
 /* ---------- Drei Wege: ein Milchglas-Feld, Spalten durch Haarlinien getrennt ---------- */
 .sp-wege{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
 .sp-weg{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,3vw,42px)}
@@ -154,6 +175,13 @@ body.dark .tk-fm{color:#FF8D76}
  .sp-weg p{max-width:620px}
  .sp-weg .btn,.sp-weg .link{justify-self:start}
  .sp-gut-liste{grid-template-columns:1fr}
+ .sp-hilfe{grid-template-columns:minmax(0,1fr)}
+ .sp-h+.sp-h{border-left:0;border-top:1px solid var(--edge)}
+ .sp-h{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:22px;padding:24px clamp(22px,3vw,36px)}
+ .sp-h>*{grid-column:2}
+ .sp-h .sp-ic{grid-column:1;grid-row:1/4;margin:0}
+ .sp-h p{margin-bottom:16px;max-width:620px}
+ .sp-h .btn{justify-self:start}
 }
 @media(max-width:1000px){
  .tk{grid-template-columns:minmax(0,1fr)}
@@ -187,4 +215,12 @@ body.dark .tk-fm{color:#FF8D76}
  .pb-z{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
  .pb-n{grid-column:1/-1}
  .sp-portal-t .btns .btn{width:100%}
+ .sp-h{grid-template-columns:40px minmax(0,1fr);column-gap:16px;padding:20px 18px}
+ .sp-h .sp-ic{width:40px;height:40px;border-radius:13px;grid-row:1/3}
+ .sp-h h3{font-size:20px;margin:6px 0 6px}
+ .sp-h p{font-size:15px;margin-bottom:14px}
+ .sp-h .btn{grid-column:1/-1;width:100%;justify-self:stretch}
+ .sp-hilfe-fuss{padding:16px 18px;font-size:14.5px}
+ .sp-zeit{align-items:flex-start}
+ .sp-zeit svg{margin-top:2px}
 }

@@ -6,6 +6,8 @@
   <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span>{{HC}}</nav>
   <h1>IT für Arztpraxen, Apotheken und <b class="nw">Pflege&shy;einrichtungen</b>.</h1>
   <p class="lead">Du kümmerst dich um Patientinnen, Kundschaft und Bewohner. Wir kümmern uns um die IT dahinter, inklusive Anbindung an die <span class="lx" data-lx="ti">Telematikinfrastruktur</span>.</p>
+  <!-- Prüfdokument 24.11.2026: statt der drei Einstiegskarten (Doppelung zum Dropdown) eine leise Zeile mit drei Links -->
+  <p class="gw-wege"><span>Direkt zu</span><a href="{{LINK:arztpraxen}}">Arztpraxen</a><a href="{{LINK:apotheken}}">Apotheken</a><a href="{{LINK:pflege}}">Pflegeeinrichtungen</a></p>
   <div class="btns nur-alt">
    <a class="btn" href="{{LINK:termin}}?art=ti">Termin vereinbaren</a>
    <a class="btn zw" href="#praxis-check">Zum Praxis-Check</a>
@@ -17,8 +19,8 @@
  </div>
 </section>
 
-<!-- ================= Drei Einstiege ================= -->
-<section class="ab einstiege" id="bereiche">
+<!-- ================= Drei Einstiege (Prüfdokument 24.11.2026: als Modul aus, die Bereiche erreicht man über das Dropdown und die Linkzeile im Hero) ================= -->
+<section class="ab einstiege mod-aus" id="bereiche" data-name="Drei Einstiege (bisher)">
  <div class="wrap">
   <div class="drei">
    <a class="bk glas" href="{{LINK:arztpraxen}}">
@@ -114,7 +116,7 @@
    <details name="ld"><summary><h3>IT-Sicherheit und Schulung</h3><span class="ld-k"><span class="lx" data-lx="firewall">Firewall</span>, E-Mail-Security, Richtlinien und ein aufmerksames Team.</span></summary>
     <div class="ld-a"><div><h4>Ausgangslage</h4><p>Die meisten Angriffe beginnen mit einer E-Mail. Gesundheitsdaten sind dabei ein beliebtes Ziel.</p></div><div><h4>Was wir tun</h4><p>Wir schützen Netzwerk und Postfächer, setzen Sicherheitsrichtlinien um und schulen dein Team im Erkennen von <span class="lx" data-lx="phishing">Phishing</span>.</p></div><div><h4>Was du davon hast</h4><p><b>Ein Sicherheitsniveau, das zu deinem Betrieb passt</b>, verständlich erklärt.</p></div></div></details>
    <details name="ld"><summary><h3>Telefonie und E-Mail</h3><span class="ld-k">Erreichbar bleiben, auch wenn viel los ist.</span></summary>
-    <div class="ld-a"><div><h4>Ausgangslage</h4><p>Telefon und Postfach sind der direkte Draht zu Patientinnen, Kundschaft und Angehörigen.</p></div><div><h4>Was wir tun</h4><p>Wir richten Telefonie mit <span class="lx" data-lx="3cx">3CX</span> und deine Postfächer ein und betreuen beides im Alltag.</p></div><div><h4>Was du davon hast</h4><p><b>Telefon, Mail und IT aus einer Hand</b>, ohne zusätzlichen Dienstleister.</p></div></div></details>
+    <div class="ld-a"><div><h4>Ausgangslage</h4><p>Telefon und Postfach sind der direkte Draht zu Patientinnen, Kundschaft und Angehörigen.</p></div><div><h4>Was wir tun</h4><p>Wir richten deine <span class="lx" data-lx="telefonie">Telefonanlage</span> und deine Postfächer ein und betreuen beides im Alltag.</p></div><div><h4>Was du davon hast</h4><p><b>Telefon, Mail und IT aus einer Hand</b>, ohne zusätzlichen Dienstleister.</p></div></div></details>
    <details name="ld"><summary><h3>Fernwartung und vor Ort</h3><span class="ld-k">Deutschlandweit per Fernwartung, vor Ort am Niederrhein.</span></summary>
     <div class="ld-a"><div><h4>Ausgangslage</h4><p>Wenn etwas klemmt, soll es schnell gehen, ohne dass der Betrieb stillsteht.</p></div><div><h4>Was wir tun</h4><p>Die meisten Anliegen lösen wir per <span class="lx" data-lx="fernwartung">Fernwartung</span>. Muss Hardware getauscht werden, kommen wir am Niederrhein vorbei.</p></div><div><h4>Was du davon hast</h4><p><b>Schnelle Hilfe ohne Anfahrt</b>, und wenn nötig jemand, der persönlich vorbeikommt.</p></div></div></details>
   </div>
@@ -139,8 +141,8 @@
  </div>
 </section>
 
-<!-- ================= So starten wir (echte Reihenfolge, einzige Nummerierung der Seite; Leon 24.11.2026). Praxis-Check als leiser Einstieg direkt darunter ================= -->
-<section class="ab alt start" id="start"><span id="praxis-check" class="anker"></span>
+<!-- ================= So starten wir (echte Reihenfolge, einzige Nummerierung der Seite; Leon 24.11.2026). Praxis-Check jetzt als eigener Abschnitt danach (Prüfdokument 24.11.2026) ================= -->
+<section class="ab alt start" id="start">
  <div class="wrap">
   <div class="st-kopf">
    <div class="eb">So starten wir</div>
@@ -153,19 +155,42 @@
    <div class="st-p"><span class="nr gw-neu-nr">03</span><h3>Übernahme</h3><p>Wir übernehmen Zugänge und Betreuung, prüfen die Sicherung und klären offene Baustellen.</p></div>
    <div class="st-p"><span class="nr gw-neu-nr">04</span><h3>Laufender Betrieb</h3><p>Ab jetzt hast du eine feste Ansprechperson und wir kümmern uns, bevor es klemmt.</p></div>
   </div>
-  <div class="st-pc gw-neu">
-   <div><b>Erst einmal prüfen lassen?</b><span>Der Praxis-Check ist ein unverbindlicher erster Schritt: Wir schauen uns Datensicherung, Updates, Zugänge, Firewall und E-Mail-Schutz an und zeigen dir die wichtigsten nächsten Schritte.</span></div>
-   <div class="st-pc-k"><a class="btn zw" href="{{LINK:termin}}?art=check">Praxis-Check anfragen</a><a class="link" href="{{LINK:praxischeck}}">Mehr zum Praxis-Check{{PFEIL}}</a></div>
+ </div>
+</section>
+
+<!-- ================= Praxis-Check IT-Sicherheit als eigener Abschnitt (Prüfdokument 24.11.2026: "So arbeiten wir und Praxis-Check sind zwei Module in eins gequetscht").
+     Links Text und Aktionen, rechts die fünf Prüfbereiche als ruhige Liste. Bisher (?gw=bisher): Karte "praxis-check-bisher" weiter oben ================= -->
+<section class="ab pcx gw-neu" id="praxis-check" data-name="Praxis-Check IT-Sicherheit">
+ <div class="wrap pcx-in">
+  <div class="pcx-text">
+   <div class="eb">Praxis-Check IT-Sicherheit</div>
+   <h2>Erst einmal <b>prüfen lassen</b>?</h2>
+   <p class="lead">Der Praxis-Check ist ein unverbindlicher erster Schritt. Wir schauen uns die wichtigsten Punkte deiner IT-Sicherheit an und zeigen dir verständlich, was als Nächstes zählt.</p>
+   <div class="pcx-k">
+    <a class="btn" href="{{LINK:termin}}?art=check">Praxis-Check anfragen</a>
+    <a class="link" href="{{LINK:praxischeck}}">Mehr zum Praxis-Check{{PFEIL}}</a>
+   </div>
+  </div>
+  <div class="pcx-liste glas">
+   <div class="pcx-titel">Was wir uns ansehen</div>
+   <ul>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg><div><b>Datensicherung</b><span>Läuft sie, und lässt sie sich wiederherstellen?</span></div></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg><div><b>Updates</b><span>Sind Systeme und Programme aktuell?</span></div></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div><b>Zugänge</b><span>Wer hat worauf Zugriff?</span></div></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></svg><div><b><span class="lx" data-lx="firewall">Firewall</span></b><span>Ist das Netzwerk sauber abgesichert?</span></div></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><b>E-Mail-Schutz</b><span>Werden Spam und <span class="lx" data-lx="phishing">Phishing</span> abgefangen?</span></div></li>
+   </ul>
   </div>
  </div>
 </section>
 
 <!-- Ansprechpartner entfernt (Leon 24.11.2026): Menschen nur unter Über uns/Team; später mit mehr Mitarbeitenden je Kundenrichtung wieder sichtbar machen -->
 
-<!--@stimmen:gesundheit-->
+<!-- Kundenstimmen auf Fläche, FAQ hell (Prüfdokument 24.11.2026: durch den neuen Praxis-Check-Abschnitt bleibt der Wechsel hell/Fläche erhalten) -->
+<!--@stimmen:gesundheit:alt-->
 
 <!-- ================= FAQ ================= -->
-<section class="ab alt faq" id="faq">
+<section class="ab faq" id="faq">
  <div class="wrap faq-in">
   <div class="faq-kopf">
    <div class="eb">Häufige Fragen</div>
@@ -174,7 +199,7 @@
    <a class="link" href="#kontakt">Frage stellen{{PFEIL}}</a>
   </div>
   <div class="faq-liste">
-   <details name="faq" open><summary>Was brauche ich für die Anbindung an die TI?</summary><div class="faq-a"><p>Je nach Betrieb einen <span class="lx" data-lx="konnektor">Konnektor</span> oder ein <span class="lx" data-lx="tigateway">TI-Gateway</span>, <span class="lx" data-lx="kartenterminal">Kartenterminals</span>, den Praxis- oder Institutionsausweis (<span class="lx" data-lx="smcb">SMC-B</span>) und eine <span class="lx" data-lx="kim">KIM-Adresse</span>. Was davon du brauchst, klären wir gemeinsam.</p></div></details>
+   <details name="faq"><summary>Was brauche ich für die Anbindung an die TI?</summary><div class="faq-a"><p>Je nach Betrieb einen <span class="lx" data-lx="konnektor">Konnektor</span> oder ein <span class="lx" data-lx="tigateway">TI-Gateway</span>, <span class="lx" data-lx="kartenterminal">Kartenterminals</span>, den Praxis- oder Institutionsausweis (<span class="lx" data-lx="smcb">SMC-B</span>) und eine <span class="lx" data-lx="kim">KIM-Adresse</span>. Was davon du brauchst, klären wir gemeinsam.</p></div></details>
    <details name="faq"><summary>Wie bestelle ich die TI-Ausstattung?</summary><div class="faq-a"><p>Direkt im Telekonnekt-Shop: im Neukunden-Shop, wenn du noch nicht angebunden bist, im Wechsler-Shop, wenn du schon eine Anbindung hast. Wir richten danach alles bei dir ein.</p></div></details>
    <details name="faq"><summary>Ich bin schon angebunden. Kann ich trotzdem wechseln?</summary><div class="faq-a"><p>Ja. Über den Wechsler-Shop wechselst du zu Telekonnekt, wir übernehmen die Umstellung und betreuen die Anbindung danach im laufenden Betrieb.</p></div></details>
    <details name="faq"><summary>Kümmert ihr euch auch um die übrige IT?</summary><div class="faq-a"><p>Ja. Server, Arbeitsplätze, Netzwerk und WLAN, Telefonie, E-Mail-Sicherheit und Datensicherung betreuen wir zusammen mit der TI, damit alles aus einem Guss läuft.</p></div></details>

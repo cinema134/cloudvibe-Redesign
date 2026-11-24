@@ -1,0 +1,14 @@
+
+/* ================= Team ================= */
+/* Hero: drei kurze Fakten unter dem Lead (Prüfdokument 24.11.2026: Hero wirkte trostlos), ruhig mit grauen Trennlinien */
+.th-fakten{list-style:none;display:flex;flex-wrap:wrap;gap:16px 0;margin-top:36px;padding:0;max-width:820px}
+.th-fakten li{display:flex;flex-direction:column;gap:4px;padding:2px 24px;border-left:1px solid var(--edge)}
+.th-fakten li:first-child{padding-left:0;border-left:0}
+.th-fakten b{font:700 15px 'Mozilla Text',sans-serif;color:var(--text)}
+.th-fakten li>span{font-size:14px;color:var(--muted)}
+.uhero .th-fakten+.btns.nur-alt+.tel-zeile{margin-top:26px}
+@media(max-width:700px){
+ .th-fakten{flex-direction:column;gap:0;margin-top:28px}
+ .th-fakten li,.th-fakten li:first-child{padding:12px 0;border-left:0;border-top:1px solid var(--edge)}
+ .th-fakten li:first-child{border-top:0;padding-top:0}
+}

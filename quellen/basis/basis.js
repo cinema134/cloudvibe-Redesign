@@ -474,6 +474,25 @@ const CV = (function () {
     merke('herobtn', v);
   }
   document.querySelectorAll('[data-hbt]').forEach((x) => (x.onclick = () => setHbt(x.dataset.hbt)));
+  /* Haupt-Button oben (Prüfdokument 24.11.2026): Ticket (Standard, Termin dann im Support-Menü) oder Termin (bisher); ?kbtn=termin */
+  function setKbtn(v) {
+    B.classList.toggle('kTicket', v !== 'termin');
+    document.querySelectorAll('[data-kbtn]').forEach((x) => x.classList.toggle('on', x.dataset.kbtn === (v === 'termin' ? 'termin' : 'ticket')));
+    merke('kbtn', v === 'termin' ? 'termin' : 'ticket');
+    if (typeof kopfPasst === 'function') kopfPasst();
+  }
+  document.querySelectorAll('[data-kbtn]').forEach((x) => (x.onclick = () => setKbtn(x.dataset.kbtn)));
+  setKbtn(wert('kbtn', Q.get('kbtn'), 'ticket'));
+  /* Abläufe (So starten wir, So läuft …): Pfeilband (Standard, Prüfdokument 24.11.2026) oder Zeitleiste (bisher); ?ablauf=zeitleiste */
+  function setAblauf(v) {
+    if (v !== 'zeitleiste') v = 'pfeil';
+    B.classList.toggle('abZl', v === 'zeitleiste');
+    document.querySelectorAll('[data-ablauf]').forEach((x) => x.classList.toggle('on', x.dataset.ablauf === v));
+    merke('ablauf', v);
+  }
+  if (!document.querySelector('.st-reihe')) document.querySelectorAll('[data-ablauf]').forEach((x) => x.closest('.stg-z').remove());
+  document.querySelectorAll('[data-ablauf]').forEach((x) => (x.onclick = () => setAblauf(x.dataset.ablauf)));
+  setAblauf(wert('ablauf', Q.get('ablauf'), 'pfeil'));
   setHbt(wert('herobtn', Q.get('herobtn') === 'bisher' ? 'alt' : null, 'neu') === 'alt' ? 'alt' : 'neu');
   /* Kopfleiste rechts (Leon 23.11.2026, Variante A): nur "Support ▾" (Fernwartung als erster Punkt) und "Termin vereinbaren"; kein eigener Fernwartung-Button mehr */
   document.querySelectorAll('.kopf .dd').forEach((d) => {
@@ -504,6 +523,9 @@ const CV = (function () {
     }
     const sup = kr.querySelector('.dd-sup');
     if (sup) h += `<details name="mnav" class="mn-sup"><summary>Support${CH}</summary>${liste(sup)}</details>`;
+    // Bei Haupt-Button Ticket steht Termin mobil als eigene Zeile im Menü (oben in der Leiste ist dafür kein Platz)
+    const kt = kr.querySelector('.kt-termin');
+    if (kt) h += `<a class="mn-z mn-termin" href="${kt.getAttribute('href')}">Termin vereinbaren</a>`;
     // Kein Termin-Button im Menü: "Termin" steht mobil schon in der Leiste (Leon 23.11.2026, keine Dopplung)
     // div statt nav: sonst greifen die Regeln ".kopf nav" der großen Leiste (Fehler v48: Menü als Zeile ab 1041 px sichtbar)
     const p = document.createElement('div');
@@ -610,13 +632,16 @@ const CV = (function () {
       nav.querySelectorAll('i').forEach((p) => (p.onclick = () => zeig(+p.dataset.i)));
       zeig(0);
     });
-    const setKst = (liste) => {
-      B.classList.toggle('kstListe', liste);
-      document.querySelectorAll('[data-kst]').forEach((x) => x.classList.toggle('on', (x.dataset.kst === 'liste') === liste));
-      merke('kst', liste ? 'liste' : 'buehne');
+    // Prüfdokument 24.11.2026 („Bühne nimmt zu viel Raum ein“): Kompakt (Standard) = Überschrift links, eine Stimme rechts, flacher Abschnitt; Bühne und Liste zum Vergleich
+    const setKst = (v) => {
+      if (!['kompakt', 'buehne', 'liste'].includes(v)) v = 'kompakt';
+      B.classList.toggle('kstListe', v === 'liste');
+      B.classList.toggle('kstKompakt', v === 'kompakt');
+      document.querySelectorAll('[data-kst]').forEach((x) => x.classList.toggle('on', x.dataset.kst === v));
+      merke('kst', v);
     };
-    document.querySelectorAll('[data-kst]').forEach((x) => (x.onclick = () => setKst(x.dataset.kst === 'liste')));
-    setKst(wert('kst', Q.get('kst') === 'liste' ? 'liste' : null, 'buehne') === 'liste');
+    document.querySelectorAll('[data-kst]').forEach((x) => (x.onclick = () => setKst(x.dataset.kst)));
+    setKst(wert('kst', Q.get('kst'), 'kompakt'));
   })();
 
   /* ---- Module je Seite (Leon 24.11.2026): Abschnitte ein-/ausblenden und anordnen, Zusatzmodule je Bereich ----
@@ -703,7 +728,7 @@ const CV = (function () {
   const soz = document.querySelector('.fv-a .sozial-r');
   if (soz) document.querySelectorAll('[data-sozial]').forEach((x) => (x.innerHTML = soz.innerHTML));
   function setFuss(v) {
-    if (!['k', 'a', 'b', 'c', 'd', 'bisher'].includes(v)) v = 'k'; // K Kompakt ist Standard (Leon 24.11.2026)
+    if (!['k', 'a'].includes(v)) v = 'k'; // K Kompakt ist Standard (Leon 24.11.2026); nur noch K und A (Prüfdokument 24.11.2026)
     B.classList.remove('fussK', 'fussA', 'fussB', 'fussC', 'fussD', 'fussAlt');
     B.classList.add(v === 'bisher' ? 'fussAlt' : 'fuss' + v.toUpperCase());
     document.querySelectorAll('[data-fuss]').forEach((x) => x.classList.toggle('on', x.dataset.fuss === v || (v === 'bisher' && x.dataset.fuss === 'a')));
@@ -714,9 +739,17 @@ const CV = (function () {
 
   /* ---- Mitlaufende Überschrift (sticky) nur einmal je Seite (Leon 24.11.2026: Doppelung vermeiden) ---- */
   function stickyEinmal(alle) {
-    document.querySelectorAll('.ld-kopf,.faq-kopf,.alltag-kopf').forEach((e, i) => (e.style.position = alle || i === 0 ? '' : 'static'));
+    // Prüfdokument 24.11.2026: nur mitlaufen, wenn der Abschnitt deutlich länger ist als der Bildschirm (sonst lohnt der Effekt nicht)
+    const lang = (e) => { const s = e.closest('section'); return s && s.offsetHeight > innerHeight * 1.5; };
+    let erster = true;
+    document.querySelectorAll('.ld-kopf,.faq-kopf,.alltag-kopf').forEach((e) => {
+      const ja = alle || (erster && lang(e));
+      if (ja) erster = false;
+      e.style.position = ja ? '' : 'static';
+    });
   }
   stickyEinmal(false);
+  document.addEventListener('toggle', () => stickyEinmal(false), true); // aufgeklappt kann ein Abschnitt lang genug werden
 
   /* ---- Fernwartung = direkter Download der QuickSupport-.exe, keine eigene Seite (Leon 24.11.2026) ----
      Link aus seiten.json ("fernwartung"); solange er fehlt (#), startet im Mockup kein Download. Danach kurzer Hinweis, was als Nächstes kommt. */
@@ -860,7 +893,8 @@ const CV = (function () {
   // Erst Stil und Höhe setzen (macht die Wellenfläche sichtbar), dann zeichnen
   if (document.querySelector('.uhero')) {
     const alt = { A: 'bereich', B: 'schimmer', C: 'punkte' }[Q.get('hero')]; // frühere Adresse ?hero=A|B|C
-    setHeroStil(wert('herostil', Q.get('herostil') || alt, 'bereich'));
+    // Standard jetzt Wellenkante je Bereich (Prüfdokument 24.11.2026: ruhige Heros wirken trostlos); „Ruhig je Bereich“ bleibt umschaltbar
+    setHeroStil(wert('herostil', Q.get('herostil') || alt, 'welle'));
     setHeroH(wert('heroh', Q.get('heroh'), 'einheitlich'));
   }
   if ($('cvH')) stillWelle($('cvH'), kanteP, 1.4, kanteZone);

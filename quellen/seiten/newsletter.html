@@ -9,7 +9,7 @@
   <div class="nl-zustand" data-zustand="start">
    <h1>Das Wichtigste aus der IT, <b>einmal im Monat</b>.</h1>
    <p class="lead">Sicherheitshinweise, Neues aus deiner Branche und ein Begriff, kurz erklärt. Du wählst, welche Bereiche dich betreffen. Keine Werbeflut, kein Fachchinesisch.</p>
-   <div class="btns"><a class="btn" href="#anmelden">Jetzt anmelden</a><a class="btn zw" href="#vorschau">Beispielausgabe ansehen</a></div>
+   <div class="btns"><a class="btn" href="#anmelden">Jetzt anmelden</a><a class="btn zw" href="#rubriken">Was drinsteht</a></div>
   </div>
   <div class="nl-zustand" data-zustand="bestaetigt" hidden>
    <span class="nl-haken" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
@@ -25,8 +25,33 @@
  </div>
 </section>
 
-<!-- ================= Was drinsteht (keine echte Reihenfolge: ohne Nummern, graue Linien) ================= -->
-<section class="ab" id="inhalt">
+<!-- ================= Was drinsteht, neu (Prüfdokument 24.11.2026: „Als Info ok, aber nur, wenn das Modul neu aufgebaut wird“) =================
+     Ruhige Liste statt vier Spalten: links Einordnung, rechts die Rubriken gruppiert nach „Für alle“ und „Je nach deiner Auswahl“ -->
+<section class="ab" id="rubriken" data-name="Was drinsteht">
+ <div class="wrap nl-inh">
+  <div class="nl-inh-kopf">
+   <div class="eb">Was drinsteht</div>
+   <h2>Vier Rubriken, <b>in fünf Minuten gelesen</b>.</h2>
+   <p class="leise">Jede Ausgabe hat einen Teil für alle und einen Teil für deinen Bereich. Was dich nicht betrifft, bekommst du nicht.</p>
+   <p class="nl-inh-sonder leise"><b>Sonderausgabe nur im Ernstfall.</b> Gibt es eine akute Sicherheitswarnung, die dich betrifft, schreiben wir dir sofort und nicht erst zum Monatsanfang.</p>
+  </div>
+  <div class="nl-inh-liste">
+   <div class="nl-gr">
+    <span class="nl-gr-k">Für alle</span>
+    <div class="nl-r"><h3>Sicherheitshinweis des Monats</h3><p>Eine aktuelle Masche, eine Lücke oder ein Update, das wichtig ist. Mit dem, was du konkret tun solltest.</p></div>
+    <div class="nl-r"><h3>Kurz erklärt</h3><p>Ein Begriff aus unserem <a class="link-t" href="{{LINK:lexikon}}">Lexikon</a> in drei Sätzen. Damit du mitreden kannst, wenn er dir begegnet.</p></div>
+    <div class="nl-r"><h3>Aus dem Team</h3><p>Was sich bei cloudvibe tut: neue Gesichter, Termine, Änderungen, die dich betreffen.</p></div>
+   </div>
+   <div class="nl-gr">
+    <span class="nl-gr-k">Je nach deiner Auswahl</span>
+    <div class="nl-r"><h3>Aus deiner Branche</h3><p>Neues zur <span class="lx" data-lx="ti">Telematikinfrastruktur</span>, zu DATEV oder SelectLine. Nur der Block, der zu deinem Betrieb passt: <span class="hc">{{HC}}</span>, Kanzleien oder Unternehmen.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Was drinsteht (bisher; keine echte Reihenfolge: ohne Nummern, graue Linien) ================= -->
+<section class="ab mod-aus" id="inhalt" data-name="Was drinsteht (bisher)">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -49,11 +74,13 @@
 <section class="ab alt" id="anmelden">
  <div class="wrap">
   <!--@newsletter-->
+  <!-- Prüfdokument 24.11.2026 (Einstellungen und Abmelden): Standard ist der Abmeldelink in jeder Ausgabe; Odoo E-Mail-Marketing zeigt über denselben Link auch die Seite zum Ändern der Bereiche. Daher nur dieser kurze Hinweis statt eigenem Abschnitt. -->
+  <p class="nl-abmelden leise"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>Abmelden und Bereiche ändern geht jederzeit über den Link in jeder Ausgabe. Ohne Konto, ohne Passwort.</p>
  </div>
 </section>
 
-<!-- ================= Ablauf (echte Reihenfolge, einzige Nummerierung) ================= -->
-<section class="ab start" id="ablauf">
+<!-- ================= Ablauf (entfernt, Prüfdokument 24.11.2026: „unnötig“) ================= -->
+<section class="ab start mod-aus" id="ablauf" data-name="So funktioniert es (entfernt)">
  <div class="wrap">
   <div class="st-kopf">
    <div class="eb">So funktioniert es</div>
@@ -68,8 +95,8 @@
  </div>
 </section>
 
-<!-- ================= Beispielausgabe (E-Mail-Vorlage) ================= -->
-<section class="ab alt" id="vorschau">
+<!-- ================= Beispielausgabe (E-Mail-Vorlage; entfernt, Prüfdokument 24.11.2026: „unnötig“) ================= -->
+<section class="ab alt mod-aus" id="vorschau" data-name="Beispielausgabe (entfernt)">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -143,8 +170,9 @@
  </div>
 </section>
 
-<!-- ================= Einstellungen und Abmelden (Ziel der Links unter jeder Ausgabe) ================= -->
-<section class="ab" id="einstellungen">
+<!-- ================= Einstellungen und Abmelden (bisher; Ziel der Links unter jeder Ausgabe). Prüfdokument 24.11.2026: auf einen Satz bei der Anmeldung reduziert.
+     Mit ?nl=einstellungen blendet newsletter.js den Abschnitt trotzdem ein (Vorschau der Odoo-Seite, die der Link in der Mail öffnet). ================= -->
+<section class="ab mod-aus" id="einstellungen" data-name="Einstellungen und Abmelden (bisher)">
  <div class="wrap nl-einst-in">
   <div>
    <div class="eb">Einstellungen</div>

@@ -1,7 +1,8 @@
 
 /* ================= Über uns und Team (Vorlage Arztpraxen; "So arbeiten wir" und Porträts wie auf der Startseite) ================= */
 /* Auf einen Blick: ruhige Typo-Reihe (.orte aus arztpraxen.css), hier vier Spalten */
-.fakten-ab h2{margin-bottom:clamp(36px,4vw,56px)}
+.fakten-ab>.wrap>h2{margin-bottom:clamp(36px,4vw,56px)}
+.fakten-ab .kopfzeile{margin-bottom:clamp(36px,4vw,56px)}
 .orte-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .orte-4 .ort-n{font-size:clamp(24px,2.1vw,32px)}
 
@@ -32,6 +33,24 @@
 .pt figcaption i{display:block;height:9px;border-radius:9px;background:color-mix(in srgb,var(--text) 10%,transparent);width:70%}
 .pt figcaption i+i{width:46%;opacity:.7}
 .team-raster .kopfzeile{margin-bottom:clamp(36px,4vw,56px)}
+
+/* Über uns: gemeinsamer Abschluss (Prüfdokument 24.11.2026) – links Gesprächsangebot, rechts die weiterführenden Seiten als ruhige Liste */
+.ue-ende-in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:center;padding:clamp(30px,4.4vw,60px)}
+.ue-ende-text h2{margin-bottom:14px}
+.ue-ende-text .leise{font-size:16.5px;max-width:480px}
+.ue-ende-text .btns{margin-top:30px}
+.ue-wege{display:flex;flex-direction:column;padding-left:clamp(28px,4vw,64px);border-left:1px solid var(--edge)}
+.ue-wege-k{font:700 14px 'Mozilla Text',sans-serif;color:var(--muted);margin-bottom:6px}
+.ue-wege a{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;color:inherit}
+.ue-wege a+a{border-top:1px solid var(--edge)}
+.ue-wege b{display:block;font:700 20px/1.25 Comfortaa,sans-serif;transition:color .25s}
+.ue-wege small{display:block;margin-top:4px;font-size:14.5px;color:var(--muted)}
+.ue-wege a:hover b{color:var(--blue)}
+.ue-wege .go{width:40px;height:40px}
+@media(max-width:900px){
+ .ue-ende-in{grid-template-columns:1fr}
+ .ue-wege{padding-left:0;border-left:0;padding-top:24px;border-top:1px solid var(--edge)}
+}
 
 @media(max-width:1000px){
  .arbeit-in{grid-template-columns:1fr}

@@ -18,8 +18,48 @@
  </div>
 </section>
 
+<!-- ================= Hilfe: drei Wege (neu) ================= -->
+<!-- (Prüfdokument 24.11.2026: "Aufbau neu überdenken") Ganz oben, was Kunden in dem Moment brauchen:
+     Fernwartung, Ticket, Anrufen; Notfall-Hinweis beim Anrufen, Servicezeiten und E-Mail als leise Zeile darunter -->
+<section class="ab sp-hilfe-ab" id="hilfe" data-name="Drei Wege zu uns">
+ <div class="wrap">
+  <div class="kopfzeile">
+   <div>
+    <div class="eb">Support</div>
+    <h2>Wie können wir dir <b>helfen</b>?</h2>
+   </div>
+  </div>
+
+  <div class="sp-hilfe glas">
+   <div class="sp-h">
+    <span class="sp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2.5"/><path d="M8.5 20h7M12 16.5V20M9.5 10.2l2 2 3.5-3.7"/></svg></span>
+    <h3>Fernwartung starten</h3>
+    <p>Lade QuickSupport herunter und öffne die Datei. Nenn uns die angezeigte ID, dann schalten wir uns auf.</p>
+    <a class="btn leise-btn" {{FW}}><svg class="sp-dl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>QuickSupport herunterladen</a>
+   </div>
+   <div class="sp-h sp-h-haupt">
+    <span class="sp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v2a2.5 2.5 0 0 0 0 5v2a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-2a2.5 2.5 0 0 0 0-5z"/><path d="M14 5v14" stroke-dasharray="2 2.5"/></svg></span>
+    <h3>Ticket eröffnen</h3>
+    <p>Drei kurze Schritte mit allem, was wir für die Lösung brauchen. So müssen wir nicht erst nachfragen.</p>
+    <a class="btn" href="{{LINK:ticket}}">Ticket eröffnen</a>
+   </div>
+   <div class="sp-h sp-h-tel">
+    <span class="sp-ic sp-ic-tel" aria-hidden="true">{{TEL}}</span>
+    <h3>Anrufen</h3>
+    <p><b>Steht dein Betrieb still?</b> Dann ruf bitte direkt an, so erreichst du uns am schnellsten.</p>
+    <a class="btn zw call" href="tel:{{SUPPORT_TEL}}">{{TEL}}{{SUPPORT}}</a>
+   </div>
+   <div class="sp-hilfe-fuss">
+    <span class="sp-zeit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>Servicezeiten: Montag bis Freitag von 8:00 bis 17:00 Uhr</span>
+    <span class="sp-mail">Es eilt nicht? Schreib an <a href="mailto:support@cloudvibe.de">support@cloudvibe.de</a></span>
+   </div>
+  </div>
+ </div>
+</section>
+
 <!-- ================= Drei Wege ================= -->
-<section class="ab sp-wege-ab" id="wege">
+<!-- (Prüfdokument 24.11.2026: ersetzt durch #hilfe) -->
+<section class="ab sp-wege-ab mod-aus" id="wege" data-name="Drei Wege zu uns (bisher)">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -58,7 +98,8 @@
 </section>
 
 <!-- ================= Was ein gutes Ticket enthält ================= -->
-<section class="ab sp-gut" id="gutes-ticket">
+<!-- (Prüfdokument 24.11.2026: doppelt zum geführten Ticket, das genau diese Angaben abfragt; PDF steht jetzt beim Kundenportal) -->
+<section class="ab sp-gut mod-aus" id="gutes-ticket" data-name="Was ein gutes Ticket enthält (bisher)">
  <div class="wrap">
   <div class="sp-gut-in">
    <div class="sp-gut-kopf">
@@ -85,8 +126,40 @@
  </div>
 </section>
 
+<!-- ================= Kundenportal und Kurzanleitung (neu) ================= -->
+<!-- (Prüfdokument 24.11.2026: zweiter Schritt nach den drei Wegen, Kurzanleitung fürs Team hier statt eigenem Abschnitt) -->
+<section class="ab alt sp-portal" id="portal" data-name="Kundenportal und Kurzanleitung">
+ <div class="wrap">
+  <div class="sp-portal-in">
+   <div class="sp-portal-t">
+    <div class="eb">Kundenportal</div>
+    <h2>Deine Tickets <b>auf einen Blick</b>.</h2>
+    <p class="lead">Im Kundenportal siehst du, welche Tickets offen sind, wer daran arbeitet und was schon erledigt ist.</p>
+    <div class="btns"><a class="btn" href="{{LINK:login}}">Zum Kundenportal{{PFEIL}}</a></div>
+    <p class="leise sp-zugang">Noch keinen Zugang? Sag uns kurz Bescheid, dann richten wir ihn für dich ein.</p>
+   </div>
+   <div class="sp-portal-bild glas" aria-hidden="true">
+    <div class="pb-kopf"><span>Meine Tickets</span><i></i></div>
+    <div class="pb-z"><span class="pb-n">CV-48217</span><span class="pb-t">Drucker am Empfang offline</span><span class="pb-s pb-neu">Neu</span></div>
+    <div class="pb-z"><span class="pb-n">CV-48190</span><span class="pb-t">E-Mail am Laptop Büro 2</span><span class="pb-s pb-lauf">In Bearbeitung</span></div>
+    <div class="pb-z"><span class="pb-n">CV-48102</span><span class="pb-t">Neuer Arbeitsplatz Anmeldung</span><span class="pb-s pb-ok">Erledigt</span></div>
+   </div>
+  </div>
+
+  <div class="sp-pdf glas">
+   <span class="sp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8z"/><path d="M14 3v5h5M9 13h6M9 16.5h4"/></svg></span>
+   <div class="sp-pdf-t">
+    <b>Kurzanleitung für dein Team (PDF)</b>
+    <span>Eine Seite zum Ausdrucken oder Weiterleiten: Telefon, E-Mail, Fernwartung und was in ein gutes Ticket gehört.</span>
+   </div>
+   <a class="btn leise-btn" href="#"><svg class="sp-dl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>PDF herunterladen</a>
+  </div>
+ </div>
+</section>
+
 <!-- ================= Kundenportal ================= -->
-<section class="ab alt sp-portal" id="kundenportal">
+<!-- (Prüfdokument 24.11.2026: ersetzt durch #portal) -->
+<section class="ab alt sp-portal mod-aus" id="kundenportal" data-name="Kundenportal (bisher)">
  <div class="wrap sp-portal-in">
   <div class="sp-portal-t">
    <div class="eb">Kundenportal</div>
@@ -114,10 +187,10 @@
    <a class="link" href="mailto:support@cloudvibe.de">support@cloudvibe.de{{PFEIL}}</a>
   </div>
   <div class="faq-liste">
-   <details name="faq" open><summary>Wie schnell meldet ihr euch?</summary><div class="faq-a"><p>Das hängt davon ab, wie dringend es ist und was in deinem <span class="lx" data-lx="sla">SLA</span> vereinbart ist. Dort steht schwarz auf weiß, wie schnell wir reagieren. Steht der ganze Betrieb still, ruf bitte direkt an: {{SUPPORT}}.</p></div></details>
+   <details name="faq"><summary>Wie schnell meldet ihr euch?</summary><div class="faq-a"><p>Das hängt davon ab, wie dringend es ist und was in deinem <span class="lx" data-lx="sla">SLA</span> vereinbart ist. Dort steht schwarz auf weiß, wie schnell wir reagieren. Steht der ganze Betrieb still, ruf bitte direkt an: {{SUPPORT}}.</p></div></details>
    <details name="faq"><summary>Was mache ich außerhalb der Servicezeiten?</summary><div class="faq-a"><p>Eröffne ein Ticket oder schreib eine E-Mail an support@cloudvibe.de. So liegt dein Anliegen gleich bei uns, und wir kümmern uns ab Beginn der nächsten Servicezeit darum. Ist in deinem Vertrag etwas anderes vereinbart, gilt das.</p></div></details>
    <details name="faq"><summary>Wo sehe ich, wie weit mein Ticket ist?</summary><div class="faq-a"><p>Im Kundenportal. Dort stehen alle deine Tickets mit ihrem aktuellen Stand. Außerdem bekommst du nach dem Absenden eine Bestätigung mit deiner Ticketnummer per E-Mail.</p></div></details>
-   <details name="faq"><summary>Wie starte ich die Fernwartung?</summary><div class="faq-a"><p>Klick oben rechts unter Support auf „Fernwartung starten“. Damit lädst du QuickSupport herunter. Öffne die Datei, sie zeigt dir eine ID. Ruf uns an und nenn uns diese ID, dann schalten wir uns auf deinen Bildschirm. Du siehst die ganze Zeit, was wir tun.</p></div></details>
+   <details name="faq"><summary>Wie starte ich die Fernwartung?</summary><div class="faq-a"><p>Klick oben auf dieser Seite auf „QuickSupport herunterladen“ oder im Menü unter Support auf „Fernwartung starten“. Damit lädst du QuickSupport herunter. Öffne die Datei, sie zeigt dir eine ID. Ruf uns an und nenn uns diese ID, dann schalten wir uns auf deinen Bildschirm. Du siehst die ganze Zeit, was wir tun.</p></div></details>
   </div>
  </div>
 </section>

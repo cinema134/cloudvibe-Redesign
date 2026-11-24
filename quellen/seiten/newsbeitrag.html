@@ -15,6 +15,22 @@
   <article class="artikel">
    <p>Patientendaten, Abrechnung, Termine: Ohne sie steht die Praxis still. Viele verlassen sich darauf, dass die Datensicherung schon läuft. Ob sie im Ernstfall wirklich hilft, merkt man oft erst, wenn es zu spät ist.</p>
 
+   <!-- Prüfdokument 24.11.2026 („muss ggf. auch Bilder abbilden können“): Bild-Baustein .bb in zwei Breiten.
+        .bb = volle Textbreite, .bb.bb-breit = breiter als der Text (bis zur Spalte daneben). Bild später als <img src="…" alt="…"> statt der Beispielfläche. -->
+   <figure class="bb">
+    <div class="bb-bild">
+     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Beispielbild: ruhige Fläche mit feiner Welle als Platzhalter">
+      <defs><linearGradient id="bbv1" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2EB329"/><stop offset=".5" stop-color="#1E96AA"/><stop offset="1" stop-color="#2D6CDF"/></linearGradient></defs>
+      <rect class="bb-grund" width="1600" height="900"/>
+      <g fill="none" stroke="url(#bbv1)" stroke-width="2.2" class="bb-linien">
+       <path d="M-40 640C380 520 760 800 1640 560"/><path d="M-40 652C380 536 760 806 1640 578"/><path d="M-40 664C380 552 760 812 1640 596"/><path d="M-40 676C380 568 760 818 1640 614"/><path d="M-40 688C380 584 760 824 1640 632"/><path d="M-40 700C380 600 760 830 1640 650"/><path d="M-40 712C380 616 760 836 1640 668"/><path d="M-40 724C380 632 760 842 1640 686"/>
+      </g>
+     </svg>
+     <em class="st-bsp">Beispielbild</em>
+    </div>
+    <figcaption>Bildunterschrift in voller Textbreite, zum Beispiel: Sicherungsgerät im Serverschrank einer Praxis.</figcaption>
+   </figure>
+
    <h2>1. Wird wirklich alles gesichert?</h2>
    <p>Die Praxisverwaltung auf dem Server ist meist dabei. Aber was ist mit Bilddaten auf dem <span class="lx" data-lx="nas">NAS</span>, mit E-Mails und Dateien in Microsoft&nbsp;365 oder mit Einstellungen von Geräten?</p>
    <ul>
@@ -26,10 +42,29 @@
    <h2>2. Liegt eine Kopie getrennt vom Netzwerk?</h2>
    <p>Ein Angriff mit Schadsoftware kann alles verschlüsseln, was im Netzwerk erreichbar ist, auch die Sicherung. Deshalb gehört mindestens eine Kopie an einen Ort, auf den ein Angreifer nicht so einfach zugreifen kann.</p>
 
+   <figure class="bb bb-breit">
+    <div class="bb-bild">
+     <svg viewBox="0 0 2100 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Beispielbild in breiter Fassung: ruhige Fläche mit feiner Welle als Platzhalter">
+      <defs><linearGradient id="bbv2" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2EB329"/><stop offset=".5" stop-color="#1E96AA"/><stop offset="1" stop-color="#2D6CDF"/></linearGradient></defs>
+      <rect class="bb-grund" width="2100" height="900"/>
+      <g fill="none" stroke="url(#bbv2)" stroke-width="2.4" class="bb-linien">
+       <path d="M-40 560C520 700 1100 420 2140 600"/><path d="M-40 574C520 712 1100 438 2140 616"/><path d="M-40 588C520 724 1100 456 2140 632"/><path d="M-40 602C520 736 1100 474 2140 648"/><path d="M-40 616C520 748 1100 492 2140 664"/><path d="M-40 630C520 760 1100 510 2140 680"/><path d="M-40 644C520 772 1100 528 2140 696"/><path d="M-40 658C520 784 1100 546 2140 712"/>
+      </g>
+     </svg>
+     <em class="st-bsp">Beispielbild</em>
+    </div>
+    <figcaption>Breite Fassung für Übersichten oder Grafiken, zum Beispiel: So liegt eine Kopie der Sicherung getrennt vom Praxisnetz.</figcaption>
+   </figure>
+
    <h2>3. Wurde die Wiederherstellung schon einmal getestet?</h2>
    <p>Das ist die wichtigste Frage. Eine Sicherung, die sich nicht zurückspielen lässt, hilft nicht. Regelmäßige Tests zeigen, ob die Daten vollständig sind und wie lange die Wiederherstellung dauert.</p>
 
    <div class="merke"><b>Kurz gesagt</b>Prüfe, was gesichert wird, halte eine getrennte Kopie vor und teste die Wiederherstellung. Mit <span class="lx" data-lx="backup">Managed Backup</span> übernehmen wir das für dich.</div>
+
+   <!-- Prüfdokument 24.11.2026 („Neues von cloudvibe ins Postfach“ wirkte nachträglich drangebaut): Newsletter-Zeile jetzt im Beitragsfluss, gleiche Textbreite, ruhige Fläche; alte Zeile darunter als Modul aus (bisher) -->
+   <div class="artikel-nl" id="newsletter-beitrag">
+    <!--@newsletter:zeile-->
+   </div>
   </article>
   <aside class="artikel-seite glas">
    <div class="eb">Mehr dazu</div>
@@ -41,7 +76,7 @@
 </section>
 
 <!-- ================= Newsletter als schmale Zeile am Ende des Beitrags ================= -->
-<section class="ab nl-beitrag">
+<section class="ab nl-beitrag mod-aus" id="nl-zeile" data-name="Newsletter-Zeile (bisher)">
  <div class="wrap">
   <!--@newsletter:zeile-->
  </div>

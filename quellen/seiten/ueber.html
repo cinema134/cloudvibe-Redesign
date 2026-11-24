@@ -13,10 +13,19 @@
  </div>
 </section>
 
-<!-- ================= Kurz und knapp ================= -->
+<!-- Prüfdokument 24.11.2026 („Logischer Aufbau stimmt nicht, Module wirken random“): roter Faden Wer wir sind → Wie wir arbeiten → Mit wem wir arbeiten → Wo du uns findest → Lerne uns kennen; Eyebrows als Wegweiser, ein gemeinsamer Abschluss -->
+<!-- ================= Wer wir sind ================= -->
 <section class="ab fakten-ab" id="fakten">
  <div class="wrap">
-  <h2>cloudvibe <b>auf einen Blick</b>.</h2>
+  <div class="kopfzeile">
+   <div>
+    <div class="eb">Wer wir sind</div>
+    <h2>cloudvibe <b>auf einen Blick</b>.</h2>
+   </div>
+   <div class="rechts">
+    <p class="leise">Technik, Support und Beratung sitzen bei uns in einem Büro. Kurze Wege, damit dein Anliegen nicht hin und her geschoben wird.</p>
+   </div>
+  </div>
   <div class="orte orte-4">
    <div class="ort"><span class="ort-n">Goch</span><span class="ort-a">Sitz und Büro am Niederrhein</span></div>
    <div class="ort"><span class="ort-n">7</span><span class="ort-a">Menschen im Team</span></div>
@@ -31,7 +40,7 @@
  <div class="glow"></div>
  <div class="wrap arbeit-in">
   <div class="arbeit-text">
-   <div class="eb">So arbeiten wir</div>
+   <div class="eb">Wie wir arbeiten</div>
    <h2>Vier Dinge, auf die du <b>dich verlassen kannst</b>.</h2>
   </div>
   <div class="arbeit-punkte">
@@ -92,7 +101,7 @@
 <section class="ab alt ti-kurz" id="standort">
  <div class="wrap ti-kurz-in">
   <div>
-   <div class="eb">Standort</div>
+   <div class="eb">Wo du uns findest</div>
    <h2>Du findest uns <b>in Goch</b>.</h2>
   </div>
   <div class="ti-kurz-text">
@@ -105,8 +114,29 @@
  </div>
 </section>
 
-<!-- ================= Mehr über uns ================= -->
-<section class="ab" id="mehr">
+<!-- ================= Abschluss: Gespräch + weiterführende Seiten in einem Block =================
+     Prüfdokument 24.11.2026: „Mehr über uns“ und „Lust auf ein Gespräch?“ waren nicht aufeinander abgestimmt; jetzt EIN Abschluss, die alten Abschnitte bleiben als Module aus (bisher) -->
+<section class="ab ue-ende" id="abschluss" data-name="Lerne uns kennen">
+ <div class="wrap">
+  <div class="ue-ende-in glas">
+   <div class="ue-ende-text">
+    <div class="eb">Lerne uns kennen</div>
+    <h2>Lust auf ein <b>Gespräch</b>?</h2>
+    <p class="leise">Wir lernen dich und deinen Betrieb gern kennen. Unverbindlich, per Video, Telefon oder vor Ort am Niederrhein.</p>
+    <div class="btns"><a class="btn" href="{{LINK:termin}}?art=erst">Termin vereinbaren</a><a class="btn zw" href="mailto:kontakt@cloudvibe.de">E-Mail schreiben</a></div>
+   </div>
+   <nav class="ue-wege" aria-label="Mehr über uns">
+    <span class="ue-wege-k">Mehr über uns</span>
+    <a href="{{LINK:team}}"><span><b>Team</b><small>Die Menschen hinter cloudvibe.</small></span><span class="go">{{PFEIL}}</span></a>
+    <a href="{{LINK:referenzen}}"><span><b>Referenzen</b><small>Was Kundinnen und Kunden sagen.</small></span><span class="go">{{PFEIL}}</span></a>
+    <a href="{{LINK:karriere}}"><span><b>Karriere</b><small>Jobs und Ausbildung in Goch.</small></span><span class="go">{{PFEIL}}</span></a>
+   </nav>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Mehr über uns (bisher) ================= -->
+<section class="ab mod-aus" id="mehr" data-name="Mehr über uns (bisher)">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -123,5 +153,5 @@
 
 <!-- FAQ entfernt (Leon 23.11.2026): wiederholte nur Inhalte der Seite -->
 
-<!--@abschluss-->
+<!-- „Lust auf ein Gespräch?“ (bisher): der Abschluss-Baustein ist hier nicht mehr eingesetzt; bauen.mjs hängt ihn dadurch automatisch als Zusatzmodul „Kurzer Abschluss (Termin, Kontakt)“ an, anfangs aus. -->
 </main>

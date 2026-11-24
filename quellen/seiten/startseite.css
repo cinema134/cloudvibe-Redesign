@@ -223,3 +223,5 @@ body.dark .lr-echt .logo-maske{background:#fff}
 .stg-welle-nav{display:flex;gap:6px;margin-top:8px}
 .stg-welle-nav button{flex:1;padding:8px 10px;border-radius:100px;border:1px solid var(--edge);background:transparent;color:var(--text);font:700 13px 'Mozilla Text',sans-serif;cursor:pointer}
 .stg-welle-nav button:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+/* Leon 24.11.2026: Ticket steht oben in der Leiste, die Zeile 'Schon Kunde und etwas klemmt?' im Hero ist dann doppelt (bei Haupt-Button Termin bleibt sie) */
+body.kTicket .tile .ticket{display:none}

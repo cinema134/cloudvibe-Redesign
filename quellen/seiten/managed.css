@@ -1,0 +1,61 @@
+
+/* ================= Managed Services (Prüfdokument 24.11.2026) ================= */
+
+/* Hero: Sprungmarken statt Telefonzeile (gleich auf Managed, KI, DATEV) */
+.hsp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 clamp(18px,2vw,28px);max-width:860px;margin-top:clamp(36px,3.6vw,48px)}
+.hsp a{position:relative;display:flex;flex-direction:column;gap:3px;padding:16px 30px 4px 0;border-top:1.5px solid var(--edge);transition:border-color .25s}
+.hsp b{font:700 17px/1.3 Comfortaa,sans-serif;letter-spacing:-.01em;color:var(--text);transition:color .25s}
+.hsp span{font-size:14px;line-height:1.45;color:var(--muted)}
+.hsp .pf{position:absolute;right:2px;top:17px;width:17px;height:17px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg);transition:transform .25s,stroke .25s}
+.hsp a:hover{border-color:var(--blue)}
+.hsp a:hover b{color:var(--blue)}
+.hsp a:hover .pf{stroke:var(--blue);transform:rotate(90deg) translateX(3px)}
+
+/* Was „managed“ heißt: sechs Routinen als ruhiger Text, ohne Symbole und ohne Linien */
+.mg-raster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,4.4vw,64px) clamp(32px,4vw,64px)}
+.mg h3{position:relative;font-size:clamp(20px,1.6vw,23px);margin-bottom:12px;padding-left:22px}
+.mg h3:before{content:"";position:absolute;left:0;top:calc(.6em - 4px);width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.mg p{font-size:15.5px;line-height:1.6;color:var(--muted);padding-left:22px;max-width:360px}
+
+/* Unterschied: zwei Abläufe untereinander, Notfall gedämpft, Managed hell mit blauem Akzent */
+.mgu{display:flex;flex-direction:column;gap:18px}
+.mgu-z{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) minmax(0,220px);gap:18px clamp(24px,3vw,44px);align-items:center;padding:clamp(24px,2.6vw,34px) clamp(26px,3vw,44px);border-radius:26px}
+.mgu-k{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.mgu-f{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.mgu-f li{position:relative;padding:0 26px 0 0;font-size:15.5px;line-height:1.4}
+.mgu-f li:not(:last-child):after{content:"";position:absolute;right:9px;top:.5em;width:7px;height:7px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);opacity:.55}
+.mgu-fazit{font:700 15px/1.4 'Mozilla Text',sans-serif;text-align:right}
+.mgu-not{background:color-mix(in srgb,var(--text) 5%,var(--bg));color:var(--muted)}
+.mgu-not .mgu-fazit{color:var(--muted)}
+.mgu-plan{background:var(--bg);border:1px solid color-mix(in srgb,var(--blue) 28%,transparent);box-shadow:0 24px 60px -30px rgba(45,108,223,.35)}
+.mgu-plan .mgu-k,.mgu-plan .mgu-fazit{color:var(--blue)}
+.mgu-plan .mgu-f li{color:var(--text)}
+.mgu-plan .mgu-f li:after{color:var(--blue);opacity:1}
+body.dark .mgu-not{background:color-mix(in srgb,#fff 4%,var(--bg))}
+body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
+
+/* Was im SLA geregelt ist */
+.mg-sla-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px clamp(40px,6vw,96px);align-items:start}
+.mg-sla .lead{margin-top:24px;max-width:480px}
+.mg-dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,3vw,40px) clamp(28px,3vw,48px);padding-top:8px}
+.mg-dl dt{font:700 clamp(19px,1.5vw,21px)/1.3 Comfortaa,sans-serif;letter-spacing:-.01em;margin-bottom:6px}
+.mg-dl dd{font-size:15.5px;line-height:1.55;color:var(--muted)}
+
+@media(max-width:1100px){
+ .mgu-z{grid-template-columns:1fr}
+ .mgu-fazit{text-align:left}
+}
+@media(max-width:1000px){
+ .mg-raster{grid-template-columns:1fr 1fr}
+ .mg-sla-in{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+ .hsp{grid-template-columns:1fr 1fr;gap:0 18px}
+ .hsp a{padding-bottom:14px}
+ .mg-raster,.mg-dl{grid-template-columns:1fr}
+ .mgu-f{grid-template-columns:1fr;gap:12px}
+ .mgu-f li{padding:0 0 0 22px}
+ .mgu-f li:not(:last-child):after{right:auto;left:0;top:calc(100% + 1px);transform:rotate(135deg)}
+ .mgu-f li:before{content:"";position:absolute;left:3px;top:.5em;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5}
+ .mgu-f li:after{display:none}
+}

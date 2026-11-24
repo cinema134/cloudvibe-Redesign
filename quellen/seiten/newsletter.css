@@ -15,6 +15,23 @@
 .nl-fuer{font:700 13px 'Mozilla Text',sans-serif;color:var(--muted)}
 .nl-sonder{margin-top:28px;padding-top:20px;border-top:1px solid var(--edge)}
 
+/* Was drinsteht, neu (Prüfdokument 24.11.2026): links Einordnung, rechts ruhige Liste, gruppiert nach „Für alle“ / „Je nach deiner Auswahl“ */
+.nl-inh{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.nl-inh-kopf h2{margin-bottom:20px}
+.nl-inh-kopf .leise{font-size:16.5px;max-width:440px}
+.nl-inh-sonder{margin-top:26px;padding-top:20px;border-top:1px solid var(--edge)}
+.nl-inh-sonder b{display:block;color:var(--text);margin-bottom:4px}
+.nl-gr+.nl-gr{margin-top:44px}
+.nl-gr-k{display:block;font:700 14px 'Mozilla Text',sans-serif;color:var(--muted);padding-bottom:14px}
+.nl-r{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:8px 32px;padding:22px 0;border-top:1px solid var(--edge)}
+.nl-gr .nl-r:last-child{border-bottom:1px solid var(--edge)}
+.nl-r h3{font-size:20px;line-height:1.3}
+.nl-r p{font-size:16px;line-height:1.6;color:var(--muted)}
+
+/* Kurzer Hinweis zum Abmelden unter der Anmeldekarte (ersetzt den Abschnitt „Einstellungen und Abmelden“) */
+.nl-abmelden{display:flex;align-items:center;gap:12px;margin:22px auto 0;justify-content:center;text-align:left;font-size:15px}
+.nl-abmelden svg{width:20px;height:20px;flex:none;fill:none;stroke:var(--blue);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
 /* Beispielausgabe im Postfach */
 .nl-wahl{margin-top:14px}
 .nl-postfach{max-width:860px;margin:0 auto;overflow:hidden;padding:0}
@@ -61,6 +78,12 @@ body.dark .nl-m-branche{background:#142033}
  .nl-rub:nth-child(3){padding-left:0;border-left:0}
  .nl-rub:nth-child(n+3){border-top:1px solid var(--edge)}
  .nl-einst-in{grid-template-columns:1fr}
+ .nl-inh{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+ .nl-r{grid-template-columns:1fr}
+ .nl-abmelden{align-items:flex-start;justify-content:flex-start}
+ .nl-abmelden svg{margin-top:2px}
 }
 @media(max-width:600px){
  .nl-rubriken{grid-template-columns:1fr}

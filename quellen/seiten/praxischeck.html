@@ -11,10 +11,52 @@
    <a class="btn" href="{{LINK:termin}}?art=check">Praxis-Check anfragen</a>
    <a class="btn zw call" href="tel:{{SALES_TEL}}">{{TEL}}<span class="cw"><span class="c1">Anrufen</span><span class="c2">{{SALES}}</span></span></a>
   </div>
+  <!-- Prüfdokument 24.11.2026: ein Button mit eigenem Zweck, keine Telefonzeile ("keine Telefonnummer notwendig") -->
   <div class="btns nur-neu">
-   <a class="btn" href="{{LINK:termin}}?art=check">Praxis-Check vereinbaren</a>
+   <a class="btn" href="{{LINK:termin}}?art=check">Praxis-Check anfragen</a>
   </div>
-  <p class="tel-zeile nur-neu">Lieber direkt sprechen? <a href="tel:{{SALES_TEL}}">{{SALES}}</a></p>
+ </div>
+</section>
+
+<!-- ================= Selbsttest (Prüfdokument 24.11.2026: "schneller Selbsttest, der dazu animiert, Daten dazulassen und den Termin für die Erstberatung zu vereinbaren").
+     Acht Ja/Nein-Fragen, Ergebnis sofort in Worten (keine Prozente, keine Punkte), offene Punkte, dann Praxis-Check anfragen oder E-Mail dalassen. Logik in praxischeck.js ================= -->
+<section class="ab alt selbsttest" id="selbsttest" data-name="Selbsttest">
+ <div class="wrap stt-in">
+  <div class="stt-kopf">
+   <div class="eb">Selbsttest</div>
+   <h2>Wie gut ist deine IT <b>aufgestellt</b>?</h2>
+   <p class="lead">Acht kurze Fragen mit Ja oder Nein. Das Ergebnis siehst du sofort, in Worten statt in Punkten.</p>
+   <p class="leise">Unsicher bei einer Frage? Dann antworte lieber mit Nein. Deine Antworten werden nicht gespeichert.</p>
+  </div>
+  <div class="stt-karte glas">
+   <ol class="stt-fragen">
+    <li data-f="sicherung" data-t="Datensicherung außer Haus" data-d="Liegt die einzige Sicherung im selben Raum wie der Server, hilft sie bei Brand, Wasser oder Diebstahl nicht."><span class="stt-q">Wird regelmäßig gesichert, mit einer Kopie außer Haus?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+    <li data-f="wiederherstellung" data-t="Wiederherstellung testen" data-d="Erst ein Test zeigt, ob sich die Daten im Ernstfall wirklich zurückholen lassen."><span class="stt-q">Wurde eine Wiederherstellung schon einmal getestet?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+    <li data-f="updates" data-t="Updates automatisieren" data-d="Veraltete Systeme und Programme sind ein bekanntes Einfallstor für Angriffe."><span class="stt-q">Laufen Updates für Rechner und Programme automatisch?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+    <li data-f="zugaenge" data-t="Eigene Zugänge je Person" data-d="Geteilte Passwörter machen es schwer nachzuvollziehen, wer worauf zugreift, und Zugänge sauber zu entfernen."><span class="stt-q">Hat jede Person im Team einen eigenen Zugang?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+    <li data-f="firewall" data-t="Firewall betreuen lassen" data-d="Eine Firewall schützt nur, wenn sie richtig eingestellt ist und aktuell bleibt."><span class="stt-q">Wird deine <span class="lx" data-lx="firewall">Firewall</span> betreut und aktuell gehalten?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+    <li data-f="mail" data-t="E-Mail-Schutz einrichten" data-d="Die meisten Angriffe beginnen mit einer E-Mail. Ein Filter fängt vieles ab, bevor es im Postfach landet."><span class="stt-q">Werden E-Mails auf Spam und Schadsoftware geprüft?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+    <li data-f="team" data-t="Team schulen" data-d="Wer weiß, woran man Phishing erkennt, klickt seltener auf den falschen Link."><span class="stt-q">Ist dein Team geschult, <span class="lx" data-lx="phishing">Phishing</span> zu erkennen?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+    <li data-f="notfall" data-t="Notfallplan festhalten" data-d="Wenn die IT ausfällt, hilft ein kurzer Plan: wer was tut, wen man anruft und wie der Betrieb weiterläuft."><span class="stt-q">Gibt es einen Notfallplan, falls die IT ausfällt?</span><span class="stt-ab" role="group" aria-label="Antwort"><button type="button" data-a="ja">Ja</button><button type="button" data-a="nein">Nein</button></span></li>
+   </ol>
+   <div class="stt-erg" aria-live="polite">
+    <p class="stt-warte">Beantworte alle Fragen, dann siehst du hier dein Ergebnis.</p>
+    <div class="stt-aus" hidden>
+     <div class="stt-titel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></svg><div><b class="stt-urteil"></b><span class="stt-satz"></span></div></div>
+     <div class="stt-offen-w"><div class="stt-offen-t">Deine offenen Punkte</div><ul class="stt-offen"></ul></div>
+     <div class="stt-weiter">
+      <a class="btn" href="{{LINK:termin}}?art=check">Praxis-Check anfragen</a>
+      <button type="button" class="link stt-neu">Neu beginnen</button>
+     </div>
+     <form class="stt-mail" novalidate>
+      <label for="sttMail">Lieber erst eine E-Mail? Lass deine Adresse da, wir melden uns mit einem Terminvorschlag für die Erstberatung.</label>
+      <div class="stt-feld"><input id="sttMail" type="email" placeholder="deine@praxis.de" autocomplete="email"><button type="submit" class="btn leise-btn">Senden</button></div>
+      <p class="stt-hinweis">Mockup: Es wird nichts gespeichert oder verschickt.</p>
+      <p class="stt-danke" hidden>Danke! Wir melden uns bei dir. (Mockup: Es wurde nichts verschickt.)</p>
+     </form>
+    </div>
+   </div>
+  </div>
  </div>
 </section>
 

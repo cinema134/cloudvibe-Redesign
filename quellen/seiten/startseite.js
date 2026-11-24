@@ -65,11 +65,12 @@
   /* ---- Bewegte Welle im Hero ----
      Keine Wellen-Regler mehr (Leon 24.11.2026): In den Einstellungen wird nur noch durchgeschaltet zwischen
      „Aktuell“ (feine Linien, Werte unten fest) und den Bänder-Varianten aus dem Team (CV.BAENDER in basis.js). ?welle=aktuell|seide|ruhig|zart|linien */
-  // Aktuelle Linien-Welle, Stand Leon 20.–24.11.2026: 30 Linien, Tempo 70 %, Linienstärke 1,35 px, Lage 70 %, Mindestabstand 55 %, Bewegung 140 %
+  // Aktuelle Linien-Welle, Stand Leon 20.–24.11.2026: 30 Linien, Linienstärke 1,35 px, Lage 70 %, Mindestabstand 55 %, Bewegung 140 %
+  // Tempo 84 % (Prüfdokument 24.11.2026: „ca. 20 % mehr Geschwindigkeit“, vorher 70 %)
   const LINIEN = { N: 30, hs: 1, am: 1, wo: 1, lw: 1.35, bp: 0.7, opm: 1, mi: 0.55, bw: 1.4, wl: 1, ng: 0, fb: 0, ra: 0, lv: 0, zb: 0 };
-  const WELLEN = { aktuell: { sp: 70 }, ...CV.BAENDER };
+  const WELLEN = { aktuell: { sp: 84 }, ...CV.BAENDER };
   const REIHE = Object.keys(WELLEN);
-  let welle = 'aktuell', p = LINIEN, speed = 0.7, tt = 0, last = performance.now();
+  let welle = 'aktuell', p = LINIEN, speed = 0.84, tt = 0, last = performance.now();
   const still = matchMedia('(prefers-reduced-motion:reduce)').matches;
   const f = CV.flaeche($('cv'));
   const draw = () => {

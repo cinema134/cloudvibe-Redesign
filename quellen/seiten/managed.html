@@ -1,41 +1,123 @@
 <main>
-<!-- ================= Hero ruhig (ohne Welle, keine Bereichswelt) ================= -->
+<!-- ================= Hero (Prüfdokument 24.11.2026: „sagt nichts aus“, Telefonzeile raus; klare Aussage plus Sprungmarken zu den vier Bereichen) ================= -->
+<!-- bisher: H1 „IT, die einfach läuft.“ -->
 <section class="uhero" id="top">
  <div class="wrap uhero-in">
   <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span>Managed Services</nav>
-  <h1>IT, die einfach <b>läuft</b>.</h1>
-  <p class="lead">Mit <span class="lx" data-lx="ms">Managed Services</span> betreiben wir Datensicherung, Infrastruktur und Sicherheit dauerhaft für dich, statt erst im Notfall zu helfen. Für {{HC}}, Kanzleien und Unternehmen.</p>
+  <h1>Wir betreiben deine IT, <b>nicht&nbsp;nur&nbsp;im&nbsp;Notfall</b>.</h1>
+  <p class="lead"><span class="lx" data-lx="ms">Managed Services</span> heißt: Wir überwachen, aktualisieren und dokumentieren deine Systeme laufend, zu Bedingungen, die im <span class="lx" data-lx="sla">SLA</span> festgehalten sind. Vier Bereiche, einzeln oder zusammen.</p>
   <div class="btns nur-alt">
    <a class="btn" href="{{LINK:termin}}?art=erst">Termin vereinbaren</a>
    <a class="btn zw call" href="tel:{{SALES_TEL}}">{{TEL}}<span class="cw"><span class="c1">Anrufen</span><span class="c2">{{SALES}}</span></span></a>
   </div>
-  <p class="tel-zeile nur-neu">Lieber direkt sprechen? <a href="tel:{{SALES_TEL}}">{{SALES}}</a></p>
+  <nav class="hsp nur-neu" aria-label="Die vier Bereiche">
+   <a href="#backup"><b>Backup</b><span>Sicherung, die geprüft wird</span>{{PFEIL}}</a>
+   <a href="#infrastruktur"><b>Infrastruktur</b><span>Server, Netz, Arbeitsplätze</span>{{PFEIL}}</a>
+   <a href="#hardware"><b>Hardware</b><span>beschafft und eingerichtet</span>{{PFEIL}}</a>
+   <a href="#security"><b>Security</b><span>Richtlinien und Schulung</span>{{PFEIL}}</a>
+  </nav>
  </div>
 </section>
 
 <!-- ================= Vier Bereiche (Leistungen im Detail; Sprungmarken #backup #infrastruktur #hardware #security, von der Startseite verlinkt) ================= -->
+<!-- Prüfdokument 24.11.2026: Texte auf das Konkrete umgestellt (was zum Betrieb gehört), statt die Bereichsseiten zu wiederholen -->
 <section class="ab ld" id="bereiche">
  <div class="wrap ld-in">
   <div class="ld-kopf">
-   <div class="eb">Unsere Leistungen</div>
+   <div class="eb">Die vier Bereiche</div>
    <h2>Vier Bereiche, <b>ein Ansprechpartner</b>.</h2>
-   <p class="lead">Du entscheidest, was wir übernehmen: einen Bereich oder alle vier. Aufklappen zeigt, was jeweils dahintersteckt.</p>
+   <p class="lead">Du entscheidest, was wir übernehmen: einen Bereich oder alle vier. Aufklappen zeigt, was im laufenden Betrieb dazugehört.</p>
   </div>
   <div class="ld-liste">
    <details name="ld" id="backup" open><summary><h3>Managed Backup</h3><span class="ld-k">Datensicherung für <span class="lx" data-lx="nas">NAS</span>, Server, <span class="lx" data-lx="vm">virtuelle Maschinen</span> und Microsoft&nbsp;365.</span></summary>
-    <div class="ld-a"><div><h4>Ausgangslage</h4><p>Ein Defekt, ein Fehler oder ein Angriff, und wichtige Daten sind weg. Oft merkt man erst dann, dass die Sicherung nicht lief.</p></div><div><h4>Was wir tun</h4><p>Wir richten die Sicherung ein, überwachen jeden Lauf und prüfen, dass sich Daten im Ernstfall wiederherstellen lassen.</p></div><div><h4>Was du davon hast</h4><p><b>Daten, die im Ernstfall wieder da sind</b>, ohne dass du selbst nachsehen musst.</p></div></div></details>
-   <details name="ld" id="infrastruktur"><summary><h3>Managed Infrastructure</h3><span class="ld-k"><span class="lx" data-lx="firewall">Firewall</span>, Server, Arbeitsplätze, WLAN, Telefonie und E-Mail-Security im laufenden Betrieb.</span></summary>
-    <div class="ld-a"><div><h4>Ausgangslage</h4><p>IT läuft oft nebenher, bis etwas ausfällt. Dann fehlt die Zeit, die Ursache zu finden.</p></div><div><h4>Was wir tun</h4><p>Wir überwachen die Systeme, spielen Updates ein, betreuen Telefonie mit <span class="lx" data-lx="3cx">3CX</span> und Postfächer und kümmern uns um Auffälligkeiten, bevor sie zum Problem werden.</p></div><div><h4>Was du davon hast</h4><p><b>Weniger Ausfälle</b> und eine Stelle für alle Fragen rund um deine IT.</p></div></div></details>
+    <div class="ld-a"><div><h4>Was dazugehört</h4><p>Ein Sicherungsplan, der festlegt, was wie oft gesichert wird und wie lange es aufbewahrt bleibt.</p></div><div><h4>Im laufenden Betrieb</h4><p>Wir kontrollieren jeden Sicherungslauf, kümmern uns um Fehler und testen regelmäßig, ob sich Daten wiederherstellen lassen.</p></div><div><h4>Was du davon hast</h4><p><b>Eine Sicherung, die nachweislich funktioniert</b>, nicht nur eine, die eingerichtet ist.</p></div></div></details>
+   <details name="ld" id="infrastruktur"><summary><h3>Managed Infrastructure</h3><span class="ld-k"><span class="lx" data-lx="firewall">Firewall</span>, Server, Arbeitsplätze, WLAN, <span class="lx" data-lx="telefonie">Telefonie</span> und E-Mail-Security im laufenden Betrieb.</span></summary>
+    <div class="ld-a"><div><h4>Was dazugehört</h4><p>Alle Systeme stehen in unserer Überwachung und in einer Dokumentation mit Geräten, Zugängen und Lizenzen.</p></div><div><h4>Im laufenden Betrieb</h4><p>Updates und Sicherheitspatches in festen Wartungsfenstern, Auffälligkeiten prüfen wir, bevor sie zum Ausfall werden.</p></div><div><h4>Was du davon hast</h4><p><b>Systeme auf aktuellem Stand</b> und eine Stelle für alle Fragen rund um deine IT.</p></div></div></details>
    <details name="ld" id="hardware"><summary><h3>Hardware &amp; Netzwerke</h3><span class="ld-k">Server, Workstations, Switche und Firewalls, beschafft und eingerichtet.</span></summary>
-    <div class="ld-a"><div><h4>Ausgangslage</h4><p>Neue Technik muss zum Bestehenden passen. Sonst entstehen Insellösungen, die keiner mehr überblickt.</p></div><div><h4>Was wir tun</h4><p>Wir beraten dich, beschaffen die passende Hardware, richten sie ein und binden sie in dein Netzwerk ein.</p></div><div><h4>Was du davon hast</h4><p><b>Technik, die zusammenpasst</b> und mit deinem Betrieb mitwächst.</p></div></div></details>
+    <div class="ld-a"><div><h4>Was dazugehört</h4><p>Beratung, Beschaffung und Einrichtung, abgestimmt auf das, was schon da ist.</p></div><div><h4>Im laufenden Betrieb</h4><p>Neue Geräte kommen direkt in Überwachung und Dokumentation. Wir sagen dir rechtzeitig, wenn etwas ersetzt werden sollte.</p></div><div><h4>Was du davon hast</h4><p><b>Technik, die zusammenpasst</b> und deren Austausch du planen kannst.</p></div></div></details>
    <details name="ld" id="security"><summary><h3>Security &amp; Schulungen</h3><span class="ld-k">Sicherheitsrichtlinien für deinen Betrieb und Schulungen für dein Team.</span></summary>
-    <div class="ld-a"><div><h4>Ausgangslage</h4><p>Die meisten Angriffe beginnen mit einer E-Mail. Technik allein schützt nicht, wenn niemand die Gefahr erkennt.</p></div><div><h4>Was wir tun</h4><p>Wir legen mit dir Sicherheitsrichtlinien und Zugriffsrechte fest und schulen dein Team im Erkennen von <span class="lx" data-lx="phishing">Phishing</span>.</p></div><div><h4>Was du davon hast</h4><p><b>Ein Sicherheitsniveau, das zu deinem Betrieb passt</b>, verständlich erklärt.</p></div></div></details>
+    <div class="ld-a"><div><h4>Was dazugehört</h4><p>Sicherheitsrichtlinien und Zugriffsrechte, die wir mit dir festlegen und schriftlich festhalten.</p></div><div><h4>Im laufenden Betrieb</h4><p>Wir halten Rechte aktuell, wenn Menschen kommen und gehen, und schulen dein Team im Erkennen von <span class="lx" data-lx="phishing">Phishing</span>.</p></div><div><h4>Was du davon hast</h4><p><b>Ein Sicherheitsniveau, das zu deinem Betrieb passt</b> und gepflegt bleibt.</p></div></div></details>
   </div>
  </div>
 </section>
 
-<!-- ================= SLA ================= -->
-<section class="ab alt ti-kurz" id="sla">
+<!-- ================= Was „managed“ konkret heißt (Prüfdokument 24.11.2026: Inhalte, die nur hier stehen) ================= -->
+<section class="ab alt mg-routinen" id="betrieb" data-name="Was managed konkret heißt">
+ <div class="wrap">
+  <div class="kopfzeile">
+   <div>
+    <div class="eb">Was „managed“ heißt</div>
+    <h2>Feste Routinen, <b>auch wenn nichts klemmt</b>.</h2>
+   </div>
+   <div class="rechts">
+    <p class="leise">Hinter Managed Services steckt kein Notdienst, sondern ein laufender Betrieb. Diese Routinen gehören in jedem Bereich dazu.</p>
+   </div>
+  </div>
+  <div class="mg-raster">
+   <div class="mg"><h3>Überwachung</h3><p>Server, Sicherungen, Speicherplatz und Firewall melden sich bei uns, wenn etwas aus dem Rahmen läuft. Oft, bevor du etwas merkst.</p></div>
+   <div class="mg"><h3>Updates und Patches</h3><p>Sicherheitsupdates für Betriebssysteme und Programme spielen wir geplant ein, statt sie liegen zu lassen.</p></div>
+   <div class="mg"><h3>Feste Wartungsfenster</h3><p>Arbeiten, bei denen Systeme kurz stehen, legen wir in vorher abgestimmte Zeiten. Niemand wird mitten in der Arbeit unterbrochen.</p></div>
+   <div class="mg"><h3>Dokumentation</h3><p>Geräte, Zugänge, Lizenzen und Einstellungen sind festgehalten. Dein Betrieb hängt nicht am Wissen einer einzelnen Person.</p></div>
+   <div class="mg"><h3>Berichte</h3><p>Du bekommst regelmäßig einen Überblick, was wir getan haben und wo wir Handlungsbedarf sehen.</p></div>
+   <div class="mg"><h3>Vorausplanung</h3><p>Wir sagen dir rechtzeitig, wenn Geräte, Lizenzen oder Software ersetzt werden sollten. So kommt nichts überraschend.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Unterschied zu Hilfe im Notfall (Prüfdokument 24.11.2026) ================= -->
+<section class="ab mg-unterschied" id="unterschied" data-name="Unterschied zur Hilfe im Notfall">
+ <div class="wrap">
+  <div class="st-kopf">
+   <div class="eb">Der Unterschied</div>
+   <h2>Hilfe im Notfall <b>oder Betrieb mit Plan</b>.</h2>
+   <p class="lead">Beides hat seinen Platz. Der Unterschied zeigt sich, wenn etwas nicht stimmt.</p>
+  </div>
+  <div class="mgu">
+   <div class="mgu-z mgu-not">
+    <span class="mgu-k">Hilfe im Notfall</span>
+    <ol class="mgu-f">
+     <li>Etwas fällt aus</li>
+     <li>Du rufst an</li>
+     <li>Die Ursache wird gesucht</li>
+     <li>Es läuft wieder</li>
+    </ol>
+    <p class="mgu-fazit">Bis dahin steht die Arbeit.</p>
+   </div>
+   <div class="mgu-z mgu-plan">
+    <span class="mgu-k">Managed Services</span>
+    <ol class="mgu-f">
+     <li>Die Überwachung meldet etwas</li>
+     <li>Wir greifen ein</li>
+     <li>Die Ursache wird behoben</li>
+     <li>Du liest es im Bericht</li>
+    </ol>
+    <p class="mgu-fazit">Meist merkst du davon nichts.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Was im SLA geregelt wird (Prüfdokument 24.11.2026; ohne Zeiten und Zahlen) ================= -->
+<section class="ab alt mg-sla" id="sla-inhalt" data-name="Was im SLA geregelt ist">
+ <div class="wrap mg-sla-in">
+  <div>
+   <div class="eb">Was wir zusichern</div>
+   <h2>Was im SLA <b>geregelt ist</b>.</h2>
+   <p class="lead">Das <span class="lx" data-lx="sla">SLA</span> hält schriftlich fest, worauf du dich verlassen kannst. Wir stimmen es auf deinen Betrieb ab, auf Sprechzeiten, Öffnungszeiten oder Bürozeiten.</p>
+  </div>
+  <dl class="mg-dl">
+   <div><dt>Umfang</dt><dd>Welche Systeme und Bereiche wir betreuen.</dd></div>
+   <div><dt>Servicezeiten</dt><dd>Wann wir für dich erreichbar sind.</dd></div>
+   <div><dt>Reaktionszeiten</dt><dd>Wie schnell wir reagieren, gestaffelt nach Dringlichkeit.</dd></div>
+   <div><dt>Wartungsfenster</dt><dd>Wann geplante Arbeiten stattfinden.</dd></div>
+   <div><dt>Meldewege</dt><dd>Wie du uns erreichst: Ticket, Telefon oder E-Mail.</dd></div>
+   <div><dt>Berichte</dt><dd>Was du von uns über den Betrieb erfährst.</dd></div>
+  </dl>
+ </div>
+</section>
+
+<!-- ================= SLA (bisher, Prüfdokument 24.11.2026 ersetzt durch #sla-inhalt) ================= -->
+<section class="ab alt ti-kurz mod-aus" id="sla" data-name="SLA (bisher)">
  <div class="glow"></div>
  <div class="wrap ti-kurz-in">
   <div>
@@ -49,8 +131,25 @@
  </div>
 </section>
 
-<!-- ================= So setzen wir um (echte Reihenfolge, einzige Nummerierung der Seite) ================= -->
-<section class="ab start" id="umsetzung">
+<!-- ================= So übernehmen wir den Betrieb (Prüfdokument 24.11.2026: eigene Schritte statt Wiederholung der Bereichsseiten) ================= -->
+<section class="ab start" id="uebernahme" data-name="So übernehmen wir den Betrieb">
+ <div class="wrap">
+  <div class="st-kopf">
+   <div class="eb">So übernehmen wir den Betrieb</div>
+   <h2>Erst Überblick, <b>dann Routine</b>.</h2>
+   <p class="lead">Bevor die Routinen laufen, verschaffen wir uns einen vollständigen Überblick. Dein Betrieb läuft dabei weiter.</p>
+  </div>
+  <div class="st-reihe">
+   <div class="st-p"><h3>Bestandsaufnahme</h3><p>Wir erfassen Geräte, Zugänge, Lizenzen und Sicherungen.</p></div>
+   <div class="st-p"><h3>Einrichten</h3><p>Überwachung und Sicherung aufsetzen, offene Updates nachholen.</p></div>
+   <div class="st-p"><h3>Dokumentieren</h3><p>Alles Wichtige halten wir fest und stimmen Wartungsfenster und SLA mit dir ab.</p></div>
+   <div class="st-p"><h3>Regelbetrieb</h3><p>Routinen, Berichte und eine feste Ansprechperson. <span class="lx" data-lx="fernwartung">Fernwartung</span> deutschlandweit, vor Ort am Niederrhein.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= So setzen wir um (bisher, Prüfdokument 24.11.2026 ersetzt durch #uebernahme: wiederholte die Bereichsseiten) ================= -->
+<section class="ab start mod-aus" id="umsetzung" data-name="So setzen wir um (bisher)">
  <div class="wrap">
   <div class="st-kopf">
    <div class="eb">So setzen wir um</div>
@@ -85,7 +184,22 @@
  </div>
 </section>
 
-<!--@stimmen:start-->
+<!-- ================= Kundenstimmen (entfernt, Prüfdokument 24.11.2026: „macht hier keinen Sinn“) =================
+     Fest eingetragen, weil der Bau-Platzhalter keine Klasse mit Bindestrich (mod-aus) annimmt und Managed Services kein Stimmen-Zusatzmodul bekommt.
+     Inhalt = Streifen aus basis/stimmen.json (Stand 24.11.2026). -->
+<section class="ab stimmen-start mod-aus" id="stimmen" data-name="Kundenstimmen (entfernt)">
+ <div class="wrap">
+  <div class="kopfzeile">
+   <div><div class="eb">Kundenstimmen</div><h2>Was Praxen, Kanzleien und Unternehmen <b>sagen</b>.</h2></div>
+   <div class="rechts"><a class="link" href="{{LINK:referenzen}}">Alle Referenzen{{PFEIL}}</a></div>
+  </div>
+  <div class="st-streifen">
+<figure class="st"><span class="st-br">{{HC}}</span><svg class="st-q" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V13.6C0 5.9 4.3 1.2 12 0l1.3 3.4C8.6 4.6 6.6 7.3 6.4 11H12v13H0zm19 0V13.6C19 5.9 23.3 1.2 31 0l1 3.4c-4.7 1.2-6.7 3.9-6.9 7.6H31v13H19z"/></svg><blockquote>„Die Umstellung auf die neue TI lief an einem Nachmittag. Die Sprechstunde mussten wir dafür nicht unterbrechen.“</blockquote><figcaption><b>Dr. Miriam Kessler</b><span>Inhaberin, Zahnarztpraxis Dr. Kessler, Niederrhein</span><em class="st-bsp" title="Erfundene Beispielstimme, wird durch eine freigegebene Kundenstimme ersetzt">Beispiel</em></figcaption></figure>
+<figure class="st"><span class="st-br">Kanzleien</span><svg class="st-q" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V13.6C0 5.9 4.3 1.2 12 0l1.3 3.4C8.6 4.6 6.6 7.3 6.4 11H12v13H0zm19 0V13.6C19 5.9 23.3 1.2 31 0l1 3.4c-4.7 1.2-6.7 3.9-6.9 7.6H31v13H19z"/></svg><blockquote>„DATEV läuft, die Datensicherung läuft, und wir wissen genau, wen wir anrufen.“</blockquote><figcaption><b>Thomas Reuter</b><span>Steuerberater, Reuter & Partner Steuerberatung, Niederrhein</span><em class="st-bsp" title="Erfundene Beispielstimme, wird durch eine freigegebene Kundenstimme ersetzt">Beispiel</em></figcaption></figure>
+<figure class="st"><span class="st-br">Unternehmen</span><svg class="st-q" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V13.6C0 5.9 4.3 1.2 12 0l1.3 3.4C8.6 4.6 6.6 7.3 6.4 11H12v13H0zm19 0V13.6C19 5.9 23.3 1.2 31 0l1 3.4c-4.7 1.2-6.7 3.9-6.9 7.6H31v13H19z"/></svg><blockquote>„Wir sind kräftig gewachsen, und die IT ist einfach mitgewachsen. Neue Arbeitsplätze standen immer pünktlich bereit.“</blockquote><figcaption><b>Markus Lenz</b><span>Geschäftsführer, Lenz Handelsgesellschaft, Niederrhein</span><em class="st-bsp" title="Erfundene Beispielstimme, wird durch eine freigegebene Kundenstimme ersetzt">Beispiel</em></figcaption></figure>
+  </div>
+ </div>
+</section>
 
 <!-- FAQ entfernt (Leon 23.11.2026): wiederholte nur Inhalte der Seite -->
 

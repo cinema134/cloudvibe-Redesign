@@ -10,6 +10,10 @@
    <a class="btn" href="{{LINK:termin}}?art=erst">Termin vereinbaren</a>
    <a class="btn zw call" href="tel:{{SALES_TEL}}">{{TEL}}<span class="cw"><span class="c1">Anrufen</span><span class="c2">{{SALES}}</span></span></a>
   </div>
+  <!-- Prüfdokument 24.11.2026: Hero-Buttons auf allen Gesundheitsseiten einheitlich "Reduziert", ein Button mit eigenem Zweck -->
+  <div class="btns nur-neu">
+   <a class="btn" href="{{LINK:termin}}?art=erst">Erstberatung vereinbaren</a>
+  </div>
   <p class="tel-zeile nur-neu">Lieber direkt sprechen? <a href="tel:{{SALES_TEL}}">{{SALES}}</a></p>
  </div>
 </section>
@@ -23,33 +27,30 @@
     <h2>Die ganze IT deines Hauses, <b>ein Ansprechpartner</b>.</h2>
    </div>
    <div class="rechts">
-    <p class="leise">Du musst nicht wissen, wer für was zuständig ist. Arbeitsplätze, mobile Geräte, WLAN und Telefonie liegen bei uns.</p>
+    <p class="leise">Du musst nicht wissen, wer für was zuständig ist. Vom Wohnbereich über das Stationszimmer bis zur Verwaltung liegt die Technik bei uns.</p>
    </div>
   </div>
-  <div class="liegt-raster glas">
-   <div class="lp">
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
-    <div><h3>Arbeitsplätze</h3><p>Rechner im Stationszimmer, in der Pflegedienstleitung und in der Verwaltung, eingerichtet und betreut.</p></div>
+  <!-- Prüfdokument 24.11.2026: "wirkt auf jeder Gesundheitsseite gleich", daher Pflege nach Orten im Haus gegliedert (Wohnbereich groß, Stationszimmer und Verwaltung daneben) statt 3er-Raster -->
+  <div class="haus">
+   <div class="hb hb-gross glas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01"/></svg>
+    <h3>Im Wohnbereich</h3>
+    <p>Dokumentiert wird dort, wo gepflegt wird. Dafür braucht es ein WLAN, das bis ins Zimmer und auf den Flur trägt, und Tablets, die einfach funktionieren.</p>
+    <ul>
+     <li>WLAN im ganzen Haus, getrennt für Team und Gäste</li>
+     <li>Tablets und Smartphones, eingerichtet und zentral verwaltet</li>
+     <li>Sicherer Zugriff auf die Pflegedokumentation</li>
+    </ul>
    </div>
-   <div class="lp">
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
-    <div><h3>Mobile Geräte</h3><p>Tablets und Smartphones für die Dokumentation, eingerichtet und zentral verwaltet.</p></div>
+   <div class="hb glas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+    <h3>Im Stationszimmer</h3>
+    <p>Rechner für Übergabe und Dokumentation, Drucker und eine <span class="lx" data-lx="telefonie">Telefonanlage</span>, über die Angehörige und Praxen dich erreichen.</p>
    </div>
-   <div class="lp">
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01"/></svg>
-    <div><h3>WLAN</h3><p>WLAN, das auch im Wohnbereich und auf dem Flur trägt, getrennt für Team und Gäste.</p></div>
-   </div>
-   <div class="lp">
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="7" rx="2"/><rect x="4" y="14" width="16" height="7" rx="2"/><path d="M8 6.5h.01M8 17.5h.01"/></svg>
-    <div><h3>Server und Netzwerk</h3><p>Server und Netzwerk, auf denen Pflegesoftware und Verwaltung laufen.</p></div>
-   </div>
-   <div class="lp">
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-    <div><h3>Telefonie</h3><p>Telefonie mit <span class="lx" data-lx="3cx">3CX</span>, damit Angehörige und Praxen dich erreichen.</p></div>
-   </div>
-   <div class="lp">
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-    <div><h3>E-Mail-Sicherheit</h3><p>Schutz vor Spam, <span class="lx" data-lx="phishing">Phishing</span> und Schadsoftware im Postfach.</p></div>
+   <div class="hb glas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="7" rx="2"/><rect x="4" y="14" width="16" height="7" rx="2"/><path d="M8 6.5h.01M8 17.5h.01"/></svg>
+    <h3>In der Verwaltung</h3>
+    <p>Server und Netzwerk für Pflegesoftware und Verwaltung, Arbeitsplätze für Pflegedienstleitung und Büro, E-Mail-Schutz vor <span class="lx" data-lx="phishing">Phishing</span>.</p>
    </div>
   </div>
  </div>
@@ -99,16 +100,17 @@
   <div class="kopfzeile">
    <div>
     <div class="eb">So läuft die Betreuung</div>
-    <h2>Persönlich, <b>aus der Ferne und vor Ort</b>.</h2>
+    <h2>Passend zum <b>Schichtbetrieb</b>.</h2>
    </div>
    <div class="rechts">
-    <p class="leise">Erreichbarkeit und Reaktionszeiten halten wir schriftlich im <span class="lx" data-lx="sla">SLA</span> fest, abgestimmt auf die Abläufe deiner Einrichtung.</p>
+    <p class="leise">Du hast eine feste Ansprechperson aus unserem Team in Goch. Erreichbarkeit und Reaktionszeiten halten wir schriftlich im <span class="lx" data-lx="sla">SLA</span> fest, abgestimmt auf die Abläufe deiner Einrichtung.</p>
    </div>
   </div>
-  <div class="ablauf">
-   <div class="ab-p"><h3>Fester Ansprechpartner</h3><p>Du hast eine Person aus unserem Team in Goch, die deine Einrichtung, deine Geräte und deine Abläufe kennt.</p></div>
-   <div class="ab-p"><h3>Fernwartung</h3><p>Die meisten Anliegen lösen wir per <span class="lx" data-lx="fernwartung">Fernwartung</span>, deutschlandweit und ohne Anfahrt. Die Pflege läuft weiter.</p></div>
-   <div class="ab-p"><h3>Vor Ort</h3><p>Wenn Hardware getauscht oder neu eingerichtet werden muss, kommen wir vorbei: Einsätze vor Ort am Niederrhein.</p></div>
+  <!-- Prüfdokument 24.11.2026: "Ist die Betreuung überall gleich?", daher eigener Inhalt für Pflegeeinrichtungen, Gestaltung wie Arztpraxen (.btr, ohne Trennlinien) -->
+  <div class="btr">
+   <div class="btr-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><h3>Rund um die Schichten</h3><p>Pflege kennt kein ruhiges Wochenende. Updates und Wartung planen wir mit dir so, dass Übergabe und Dokumentation nicht gestört werden.</p></div>
+   <div class="btr-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10M10 20v-5h4v5"/></svg><h3>Jeder Wohnbereich</h3><p>WLAN, Arbeitsplätze und Geräte betreuen wir in allen Wohnbereichen nach demselben Standard. Vieles per <span class="lx" data-lx="fernwartung">Fernwartung</span>, vor Ort am Niederrhein.</p></div>
+   <div class="btr-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg><h3>Mobil arbeiten</h3><p>Tablets und Smartphones richten wir ein und verwalten sie zentral, damit dein Team dort dokumentieren kann, wo es gerade ist.</p></div>
   </div>
  </div>
 </section>
@@ -125,7 +127,7 @@
    <a class="link" href="#kontakt">Frage stellen{{PFEIL}}</a>
   </div>
   <div class="faq-liste">
-   <details name="faq" open><summary>Betreut ihr auch unsere Pflegesoftware?</summary><div class="faq-a"><p>Die Software selbst betreut dein Anbieter. Wir kümmern uns um alles, worauf sie läuft: Server, Arbeitsplätze, mobile Geräte und WLAN. Bei Störungen stimmen wir uns direkt mit dem Anbieter ab.</p></div></details>
+   <details name="faq"><summary>Betreut ihr auch unsere Pflegesoftware?</summary><div class="faq-a"><p>Die Software selbst betreut dein Anbieter. Wir kümmern uns um alles, worauf sie läuft: Server, Arbeitsplätze, mobile Geräte und WLAN. Bei Störungen stimmen wir uns direkt mit dem Anbieter ab.</p></div></details>
    <details name="faq"><summary>Wie kommen Tablets und Smartphones sicher ins Netz?</summary><div class="faq-a"><p>Wir richten die Geräte ein, verwalten sie zentral und trennen das Netz für dein Team vom WLAN für Bewohner und Angehörige.</p></div></details>
    <details name="faq"><summary>Warum braucht eine Pflegeeinrichtung die TI?</summary><div class="faq-a"><p>Über die Telematikinfrastruktur tauschst du Daten sicher mit Praxen und Apotheken aus, zum Beispiel über <span class="lx" data-lx="kim">KIM</span>. Welche Anforderungen für deine Einrichtung gelten, klären wir gemeinsam.</p></div></details>
    <details name="faq"><summary>Wir haben mehrere Häuser. Geht das?</summary><div class="faq-a"><p>Ja. Wir betreuen jedes Haus nach demselben Standard und verbinden die Standorte sicher miteinander. Am Niederrhein kommen wir auch vor Ort vorbei.</p></div></details>

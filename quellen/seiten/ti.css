@@ -1,3 +1,5 @@
 
 /* ================= Telematikinfrastruktur (Vorlage Arztpraxen) ================= */
 /* Drei Unterkarten (.ukarten-3) liegen jetzt in basis.css, auch für Managed Services */
+/* Im laufenden Betrieb: Überschrift läuft nicht mit (Prüfdokument 24.11.2026: "scrollen", bei drei Punkten lohnt der Effekt nicht) */
+#betrieb .ld-kopf{position:static!important}

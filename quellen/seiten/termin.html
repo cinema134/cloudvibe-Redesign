@@ -26,7 +26,11 @@
    </div>
   </div>
 
+  <!-- (Prüfdokument 24.11.2026: Terminauswahl auf einen Blick) Standard "Kompakt" (body.tmK): links schmale Liste der 8 Terminarten,
+       rechts sofort Kalender der gewählten Art. "Bisher" per Umschalter im Panel bzw. ?termin=bisher -->
   <div class="buchung">
+   <div class="ta-spalte">
+   <p class="ta-titel">Worum soll es gehen?</p>
    <div class="ta-liste glas" role="list" aria-label="Terminarten">
     <div class="ta" role="listitem" data-art="erst">
      <div class="ta-text"><h3>Erstberatung</h3><p>Wir lernen dich und deinen Betrieb kennen und klären, wobei wir dir helfen können.</p></div>
@@ -69,6 +73,7 @@
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Termin mit deiner Ansprechperson wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
    </div>
+   </div>
 
    <!-- Buchungs-Mockup: alles im Script simuliert, nichts wird gesendet -->
    <div class="bp glas" id="bp" aria-live="polite">
@@ -80,21 +85,25 @@
 
     <div class="bp-voll" id="bpVoll" hidden>
      <div class="bp-kopf">
-      <div><span class="bp-art" id="bpArt"></span><span class="bp-meta" id="bpMeta"></span></div>
+      <div><span class="bp-art" id="bpArt"></span><span class="bp-meta" id="bpMeta"></span><span class="bp-besch" id="bpBesch"></span></div>
       <ol class="bp-weg" aria-label="Fortschritt"><li class="on">Zeit</li><li>Angaben</li><li>Fertig</li></ol>
      </div>
 
-     <!-- Tag und Uhrzeit -->
+     <!-- Tag und Uhrzeit (Kompakt: Kalender links, Uhrzeiten rechts) -->
      <div class="bp-schritt" id="sZeit">
-      <div class="kal-kopf">
-       <button class="kal-nav" type="button" id="kalZur" aria-label="Vorheriger Monat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-       <span class="kal-monat" id="kalMonat"></span>
-       <button class="kal-nav" type="button" id="kalVor" aria-label="Nächster Monat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <div class="bp-kal">
+       <div class="kal-kopf">
+        <button class="kal-nav" type="button" id="kalZur" aria-label="Vorheriger Monat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="kal-monat" id="kalMonat"></span>
+        <button class="kal-nav" type="button" id="kalVor" aria-label="Nächster Monat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+       </div>
+       <div class="kal" id="kal" role="grid" aria-label="Freie Tage"></div>
       </div>
-      <div class="kal" id="kal" role="grid" aria-label="Freie Tage"></div>
-      <div class="zeiten-kopf" id="zeitenKopf">Wähl einen Tag mit freien Zeiten.</div>
-      <div class="zeiten" id="zeiten"></div>
-      <div class="bp-fuss"><button class="btn" type="button" id="zuAngaben" disabled>Weiter</button></div>
+      <div class="bp-uhr">
+       <div class="zeiten-kopf" id="zeitenKopf">Wähl einen Tag mit freien Zeiten.</div>
+       <div class="zeiten" id="zeiten"></div>
+       <div class="bp-fuss"><button class="btn" type="button" id="zuAngaben" disabled>Weiter</button></div>
+      </div>
      </div>
 
      <!-- Angaben -->
@@ -125,10 +134,14 @@
       <p class="bp-fertig-t" id="fertigT"></p>
       <dl class="bp-zus" id="fertigZus"></dl>
       <p class="leise" id="fertigMail"></p>
+      <!-- (Prüfdokument 24.11.2026: FAQ entfernt, Hinweis zum Verschieben/Absagen hierher) -->
+      <p class="leise bp-absage">Musst du den Termin verschieben oder absagen, gib uns bitte so früh wie möglich Bescheid: per E-Mail an <a class="link-t" href="mailto:kontakt@cloudvibe.de">kontakt@cloudvibe.de</a> oder telefonisch unter <a class="link-t" href="tel:{{SALES_TEL}}">{{SALES}}</a>.</p>
       <button class="btn zw" type="button" id="neu">Weiteren Termin buchen</button>
      </div>
     </div>
 
+    <!-- (Prüfdokument 24.11.2026: "So läuft dein Termin" als schlanke Zeile statt eigenem Abschnitt) -->
+    <p class="bp-so"><span class="bp-so-t">So läuft dein Termin:</span> <span><i>1</i>Termin wählen</span> <span><i>2</i>Wir bereiten uns vor</span> <span><i>3</i>Wir sprechen, per Video, Telefon oder vor Ort</span></p>
     <p class="bp-mockup">Vorschau: Die Buchung wird später an das Buchungssystem angebunden. Hier wird nichts gesendet.</p>
    </div>
   </div>
@@ -136,7 +149,8 @@
 </section>
 
 <!-- ================= So läuft dein Termin ================= -->
-<section class="ab alt ablauf-t" id="ablauf">
+<!-- (Prüfdokument 24.11.2026: nimmt zu viel Raum ein, jetzt als Zeile im Buchungsfeld; Abschnitt bleibt im Panel einschaltbar) -->
+<section class="ab alt ablauf-t mod-aus" id="ablauf" data-name="So läuft dein Termin (bisher)">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -156,16 +170,17 @@
 </section>
 
 <!-- ================= FAQ ================= -->
-<section class="ab faq" id="faq">
+<!-- (Prüfdokument 24.11.2026: "macht bei Terminbuchen keinen Sinn", Hinweis Verschieben/Absagen steht jetzt in der Bestätigung) -->
+<section class="ab faq mod-aus" id="faq" data-name="Häufige Fragen (entfernt)">
  <div class="wrap faq-in">
   <div class="faq-kopf">
    <div class="eb">Häufige Fragen</div>
    <h2>Gut zu wissen <b>vor dem Termin</b>.</h2>
    <p class="lead">Deine Frage ist nicht dabei? Schreib uns kurz, wir melden uns.</p>
-   <a class="link" href="{{LINK:kontakt}}">Frage stellen{{PFEIL}}</a>
+   <a class="link" href="mailto:kontakt@cloudvibe.de">Frage stellen{{PFEIL}}</a>
   </div>
   <div class="faq-liste">
-   <details name="faq" open><summary>Kann ich meinen Termin verschieben oder absagen?</summary><div class="faq-a"><p>Ja. Gib uns bitte so früh wie möglich Bescheid, per E-Mail an kontakt@cloudvibe.de oder telefonisch. Dann suchen wir gemeinsam einen neuen Termin.</p></div></details>
+   <details name="faq"><summary>Kann ich meinen Termin verschieben oder absagen?</summary><div class="faq-a"><p>Ja. Gib uns bitte so früh wie möglich Bescheid, per E-Mail an kontakt@cloudvibe.de oder telefonisch. Dann suchen wir gemeinsam einen neuen Termin.</p></div></details>
    <details name="faq"><summary>Was sollte ich vorbereiten?</summary><div class="faq-a"><p>Nichts Besonderes. Hilfreich ist, wenn du in der Anmerkung kurz notierst, worum es geht. Bei Fragen zu einem Programm wie DATEV oder SelectLine hilft ein Bildschirmfoto der Fehlermeldung.</p></div></details>
    <details name="faq"><summary>Wie läuft ein Termin per Video?</summary><div class="faq-a"><p>Du bekommst von uns vorab einen Link zum Gespräch. Du öffnest ihn zur vereinbarten Zeit im Browser oder am Telefon, mehr brauchst du nicht. Klappt etwas nicht, rufen wir dich einfach an.</p></div></details>
    <details name="faq"><summary>Kommt ihr auch zu mir vor Ort?</summary><div class="faq-a"><p>Am Niederrhein ja. Wähl dafür eine Terminart mit „vor Ort“ und gib die Adresse an. Außerhalb des Niederrheins sprechen wir per Video oder Telefon.</p></div></details>

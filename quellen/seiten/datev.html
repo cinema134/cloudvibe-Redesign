@@ -10,12 +10,47 @@
    <a class="btn" href="{{LINK:termin}}?art=datev">DATEV-Termin vereinbaren</a>
    <a class="btn zw call nur-alt" href="tel:{{SALES_TEL}}">{{TEL}}<span class="cw"><span class="c1">Anrufen</span><span class="c2">{{SALES}}</span></span></a>
   </div>
-  <p class="tel-zeile nur-neu">Lieber direkt sprechen? <a href="tel:{{SALES_TEL}}">{{SALES}}</a></p>
+  <!-- Telefonzeile entfernt (Prüfdokument 24.11.2026) -->
  </div>
 </section>
 
-<!-- ================= Was bei uns liegt ================= -->
-<section class="ab liegt" id="leistungen">
+<!-- ================= Was bei uns liegt, neu (Prüfdokument 24.11.2026: andere Darstellung als auf den übrigen Seiten).
+     Drei Ebenen von oben nach unten: DATEV im Alltag, die Technik darunter, die Absicherung ================= -->
+<section class="ab dv-liegt" id="leistungen" data-name="Was bei uns liegt">
+ <div class="wrap dv-liegt-in">
+  <div class="dv-liegt-kopf">
+   <div class="eb">Was bei uns liegt</div>
+   <h2>DATEV und die IT dahinter, <b>ein Ansprechpartner</b>.</h2>
+   <p class="lead">Du kümmerst dich um Mandanten und Zahlen. Wir kümmern uns um alles, was DATEV zum Laufen braucht, Ebene für Ebene.</p>
+  </div>
+  <div class="dv-ebenen glas">
+   <div class="dv-e">
+    <div class="dv-e-k"><span>Ebene 1</span><h3>DATEV im Alltag</h3></div>
+    <dl>
+     <div><dt>Updates</dt><dd>Eingespielt in abgestimmten Wartungsfenstern.</dd></div>
+     <div><dt>Neue Module</dt><dd>Eingerichtet, wenn du DATEV erweiterst.</dd></div>
+     <div><dt>Fragen und Schulung</dt><dd>Hilfe bei Bedienung und Update-Fehlern.</dd></div>
+    </dl>
+   </div>
+   <div class="dv-e">
+    <div class="dv-e-k"><span>Ebene 2</span><h3>Die Technik darunter</h3></div>
+    <dl>
+     <div><dt>Arbeitsplätze und Server</dt><dd>Die Technik, auf der DATEV täglich läuft, eingerichtet und betreut.</dd></div>
+     <div><dt>Wartung und Überwachung</dt><dd>Sicherheitsupdates und ein laufender Blick auf die Systeme.</dd></div>
+    </dl>
+   </div>
+   <div class="dv-e">
+    <div class="dv-e-k"><span>Ebene 3</span><h3>Die Absicherung</h3></div>
+    <dl>
+     <div><dt>Datensicherung</dt><dd>Eine Sicherung, die zu DATEV passt, überwacht und auf Wiederherstellung geprüft.</dd></div>
+    </dl>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= Was bei uns liegt (bisher, Prüfdokument 24.11.2026 ersetzt durch #leistungen) ================= -->
+<section class="ab liegt mod-aus" id="leistungen-bisher" data-name="Was bei uns liegt (bisher)">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -90,10 +125,11 @@
  </div>
 </section>
 
-<!--@stimmen:datev:alt-->
+<!-- Kundenstimmen als Modul aus (Prüfdokument 24.11.2026); FAQ deshalb auf Fläche, damit hell/Fläche wechseln -->
+<!--@stimmen:datev:alt-aus-->
 
 <!-- ================= FAQ ================= -->
-<section class="ab faq" id="faq">
+<section class="ab alt faq" id="faq">
  <div class="wrap faq-in">
   <div class="faq-kopf">
    <div class="eb">Häufige Fragen</div>

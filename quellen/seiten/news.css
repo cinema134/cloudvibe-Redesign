@@ -15,6 +15,14 @@
  .nf button{flex:none}
 }
 
+/* Newsletter-Karte mit Welle im Hintergrund (nur News-Übersicht; Klassen setzt news.js, Prüfdokument 24.11.2026) */
+/* Welle als ruhiges Band am unteren Kartenrand (unter dem Inhalt, damit kein Text auf Linien liegt), oben weich ausgeblendet */
+.nlb-mitwelle{overflow:hidden;isolation:isolate;padding-bottom:calc(clamp(28px,4.4vw,60px) + clamp(70px,7vw,110px))}
+.nlb-mitwelle>.nlb-welle{position:absolute;left:0;right:0;bottom:0;width:100%;height:clamp(170px,17vw,250px);z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(to top,#000 55%,transparent);mask-image:linear-gradient(to top,#000 55%,transparent)}
+.nlb-mitwelle>:not(.nlb-welle){position:relative;z-index:1}
+.nlb-mitwelle .nlb-feld input{background:color-mix(in srgb,var(--bg) 92%,transparent)}
+.nlb-mitwelle .nlb-chip input:not(:checked)+span{background:color-mix(in srgb,var(--bg) 82%,transparent)}
+
 /* ---------- Beitrag ---------- */
 .artikel-hero .nk-meta{margin-bottom:22px}
 .artikel-hero h1{max-width:900px}

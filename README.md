@@ -47,7 +47,6 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 | News | `/news` | `seiten/news.html` | `quellen/seiten/news.html` |
 | News-Beitrag (Muster) | `/news/datensicherung-in-der-praxis` | `seiten/news-datensicherung-in-der-praxis.html` | `quellen/seiten/newsbeitrag.html` |
 | Newsletter | `/news/newsletter` | `seiten/news-newsletter.html` | `quellen/seiten/newsletter.html` |
-| Kontakt | `/kontakt` | `seiten/kontakt.html` | `quellen/seiten/kontakt.html` |
 | Termin vereinbaren | `/termin` | `seiten/termin.html` | `quellen/seiten/termin.html` |
 | Support | `/support` | `seiten/support.html` | `quellen/seiten/support.html` |
 | Ticket eröffnen | `/support/ticket` | `seiten/support-ticket.html` | `quellen/seiten/ticket.html` |
@@ -55,7 +54,7 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 | Lexikon | `/lexikon` | `seiten/lexikon.html` | `quellen/seiten/lexikon.html` |
 | Impressum, Datenschutz, AGB | `/impressum` | `seiten/impressum.html` | `quellen/seiten/recht.html` |
 
-**Hauptmenü:** Gesundheitswesen ▾ (Übersicht, Arztpraxen, Apotheken, Pflegeeinrichtungen, Telematikinfrastruktur, Praxis-Check) · Kanzleien · Unternehmen · Leistungen ▾ (Managed Services, KI sicher nutzen, DATEV, SelectLine; Klick auf „Leistungen“ führt zu Managed Services) · Über uns ▾ (Übersicht, Team, Referenzen, Karriere, News). Rechts: „Support ▾“ (Fernwartung starten, Ticket eröffnen, Anrufen, Kurzanleitung PDF, Kundenportal) und Button „Termin vereinbaren“ (fehlt auf Termin, Support, Ticket, Karriere, Login). Kein Menüpunkt Kontakt.
+**Hauptmenü:** Gesundheitswesen ▾ (Übersicht, Arztpraxen, Apotheken, Pflegeeinrichtungen, Telematikinfrastruktur, Praxis-Check) · Kanzleien · Unternehmen · Leistungen ▾ (Managed Services, KI sicher nutzen, DATEV, SelectLine; Klick auf „Leistungen“ führt zu Managed Services) · Über uns ▾ (Übersicht, Team, Referenzen, Karriere, News). Rechts: „Support ▾“ (Fernwartung starten, Ticket eröffnen, Anrufen, Kurzanleitung PDF, Kundenportal) und Haupt-Button „Ticket eröffnen“, links davon „Termin“ als ruhiger Button (Umschalter `?kbtn=termin` = bisher). Kein Menüpunkt und keine Seite Kontakt: Kontakt-Links sind `mailto:`-Links.
 
 ## Designsystem (verbindlich)
 
@@ -66,7 +65,7 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 - **Buttons:** Haupt Blau ohne Verlauf; „Anrufen“ helle grüne Fläche (Grün nur für Anrufen); andere Zweitbuttons mit Rahmen.
 - **Logo:** immer das Original. Frei links neben der Leiste, 90 px hoch, 70 px Abstand; Logo und Leiste zusammen höchstens 1440 px breit. Wird es eng, misst `basis.js` nach (erst „Termin“ kurz, dann Support als Symbol, nie Überlagerung). Unter 1040 px sitzt das Logo in der Leiste.
 - **Keine Farbverlaufs-Streifen:** keine kurzen Akzentbalken Grün → Blau (an Karten, Kacheln, Tooltips, Listen, Schritten). Funktionslinien neutral grau. Verlauf nur in der Welle und im Zitat-Symbol.
-- **Werkzeugseiten** (Termin, Ticket, Login, Kontakt, Support, Lexikon) ohne Hero: nur das Werkzeug sichtbar, H1 nur für Suchmaschinen und Screenreader.
+- **Werkzeugseiten** (Termin, Ticket, Login, Support, Lexikon) ohne Hero: nur das Werkzeug sichtbar, H1 nur für Suchmaschinen und Screenreader.
 - **Hintergründe** wechseln hell/Fläche, nie zwei gleiche direkt untereinander. Keine flachen Kartenraster, keine aufgesetzten Tags, viel Weißraum.
 - **Welle:** feine Linien Grün → Blau, **bewegt nur im Hero der Startseite** (Canvas, `CV.zeichne` in `basis.js`, Werte in `startseite.js` → `LINIEN`). Unterseiten der Gesundheitswelt haben eine stehende Wellenkante unten im Hero, sonst ruhiger Hero. Nie in Karten oder Abschnitten. Zur Wahl stehen außerdem Bänder-Varianten nach Entwurf eines Kollegen (`CV.BAENDER`, `CV.baender`; Startseite mit `?welle=original|origRuhig|origKraeftig|origOhne|seide|ruhig|zart|linien`); **Standard ist „Aktuell“ (Linien), final noch offen** (siehe `OPTIONEN.md`).
 - **Bereichs-Welten:** gemeinsame Basis, Akzente nur im Detail. Gesundheitswesen Grün → Teal, Kanzleien Petrol, Unternehmen grauer Hero mit Blauschleier. Leistungsseiten neutral.
@@ -83,7 +82,7 @@ Hero (Startseite mit Kacheln; Unterseiten `.uhero` mit Pfad statt Eyebrow) · Te
 
 | Funktion | Seite | Im Mockup | Ziel |
 |---|---|---|---|
-| Kontaktformular | Bereichs-, Leistungsseiten, Kontakt | Vorname, Nachname, Firma, E-Mail, Anliegen Pflicht; Telefon optional; Seite im verdeckten Feld | Odoo CRM (Lead) |
+| Kontaktformular | Bereichs- und Leistungsseiten | Vorname, Nachname, Firma, E-Mail, Anliegen Pflicht; Telefon optional; Seite im verdeckten Feld | Odoo CRM (Lead) |
 | Ticket in 3 Schritten | `/support/ticket` | Prüfung, Dringlichkeit, Screenshot, Danke mit Ticketnummer | Odoo Helpdesk |
 | Termin | `/termin` | 8 Terminarten (`?art=erst|ti|check|datev|sl|ki|rueck|kunde`), Angaben, Bestätigung | Buchungssystem/Odoo Termine (offen) |
 | Newsletter | News, Newsletter, Beitrag | Anmeldung mit Rubriken, Double-Opt-in, Abmelden ohne Konto | Odoo E-Mail-Marketing |

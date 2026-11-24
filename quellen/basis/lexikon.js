@@ -23,4 +23,6 @@ const LEX = {
   datev: { t: 'DATEV', b: 'Software', d: 'Software für Steuerberatung, Rechnungswesen und Lohn, verbreitet in Kanzleien und in der Buchhaltung von Unternehmen.' },
   selectline: { t: 'SelectLine', b: 'Software', d: 'Kaufmännische Software für den Mittelstand, mit Modulen für Warenwirtschaft, Rechnungswesen und Produktion.' },
   '3cx': { t: '3CX', b: 'Technik', d: 'Eine Telefonanlage als Software. Telefoniert wird über das Internet statt über eine klassische Anlage.' },
+  // Prüfdokument 24.11.2026: auf den Seiten keinen Anbieter nennen, sondern hierher verweisen (Partner: 3CX, easybell)
+  telefonie: { t: 'Telefonanlage (Cloud-Telefonie)', b: 'Technik', d: 'Telefonie über das Internet statt über eine klassische Anlage im Keller. Wir richten sie ein und betreuen sie, je nach Bedarf mit <b>3CX</b> als Telefonanlage oder mit <b>easybell</b> als Anbieter.' },
 };
