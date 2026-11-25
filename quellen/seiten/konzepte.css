@@ -703,3 +703,15 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .ko-stand{margin-top:14px;font-size:14.5px;color:var(--muted)}
 .ko-stand b{color:var(--gt)}
 @media(max-width:560px){.ko-orig{margin-left:0}}main section.ko .ko-kopf .eb[data-ent]::after{display:inline-block}
+
+/* Live: Entscheidungen der anderen (claude.ai) */
+.ko-live{margin-top:6px;font-size:13.5px;color:var(--gt)}
+.ko-andere{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding-top:12px;border-top:1px solid var(--edge)}
+.ko-andere-t{font:700 12.5px 'Mozilla Text',sans-serif;color:var(--muted);margin-right:4px}
+.ko-person{display:inline-flex;align-items:center;gap:7px;padding:4px 6px 4px 4px;border-radius:100px;background:var(--bg);border:1px solid var(--edge);font-size:13px}
+.ko-person img{width:22px;height:22px;border-radius:50%;object-fit:cover;background:var(--bg2)}
+.ko-person b{font-weight:700}
+.ko-person-v{color:var(--muted)}
+.ko-person button{border:0;cursor:pointer;font:700 12px 'Mozilla Text',sans-serif;padding:4px 10px;border-radius:100px;background:color-mix(in srgb,var(--blue) 10%,transparent);color:var(--blau-t)}
+.ko-person button:hover{background:var(--blue);color:#fff}
+.ko-gleich{font-size:12px;color:var(--gt);font-weight:700;padding-right:6px}

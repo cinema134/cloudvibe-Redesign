@@ -316,4 +316,75 @@
   if (nav) { const z = document.createElement('div'); z.className = 'ko-stand'; nav.after(z); zaehle(); }
   // Lokal speichern: Entscheidungen in die Datei schreiben
   if (hatCV && CV.beimSpeichern) CV.beimSpeichern((d) => { const s = d.getElementById('ko-entscheidungen'); if (s) { const o = {}; Object.keys(stand).forEach((k) => { if (stand[k]) o[k] = stand[k]; }); s.textContent = JSON.stringify(o); } });
+
+  /* ---- Live auf claude.ai (Leon 25.11.2026): Entscheidungen aller sehen und übernehmen ----
+     Nur wenn die Seite als claude.ai-Artifact mit den Fähigkeiten db und user läuft (sonst bleibt alles wie oben).
+     Ablage: entscheidungen/<eigene id> = { werte: {konzept: variante}, zeit }. Jeder liest alle, schreibt nur die eigene. */
+  const eigene = () => { const o = {}; Object.keys(stand).forEach((k) => { if (stand[k]) o[k] = stand[k]; }); return o; };
+  const live = { db: null, user: null, ich: null, andere: [], schreibt: null };
+  // Eigene Wahl in die gemeinsame Ablage, kurz gebündelt, immer nur ein Schreibvorgang zur Zeit
+  let warte = null, laeuft = false, nochmal = false;
+  async function teile() {
+    if (!live.db || !live.ich) return;
+    if (laeuft) { nochmal = true; return; }
+    laeuft = true;
+    try { await live.db.doc('entscheidungen/' + live.ich).set({ werte: eigene(), zeit: new Date().toISOString() }); }
+    catch (e) { const m = $('.ko-live'); if (m) m.textContent = 'Deine Entscheidung konnte nicht geteilt werden (nur in diesem Browser gespeichert).'; }
+    laeuft = false;
+    if (nochmal) { nochmal = false; teile(); }
+  }
+  secs.forEach((sec) => $$('.ko-ent-b button', sec).forEach((b) => b.addEventListener('click', () => { if (!live.db) return; clearTimeout(warte); warte = setTimeout(teile, 500); })));
+
+  async function zeichneAndere() {
+    const ids = live.andere.map((d) => d.id);
+    const ps = ids.length && live.user ? await live.user.profiles(ids) : {};
+    secs.forEach((sec) => {
+      let box = $('.ko-andere', sec);
+      const wer = live.andere.filter((d) => d.werte && d.werte[sec.id]);
+      if (!wer.length) { if (box) box.remove(); return; }
+      if (!box) { box = document.createElement('div'); box.className = 'ko-andere'; $('.ko-ent', sec).appendChild(box); }
+      box.textContent = '';
+      const t = document.createElement('span'); t.className = 'ko-andere-t'; t.textContent = 'Andere haben entschieden'; box.appendChild(t);
+      wer.forEach((d) => {
+        const v = d.werte[sec.id], p = ps[d.id] || {};
+        const z = document.createElement('span'); z.className = 'ko-person';
+        const img = document.createElement('img'); img.alt = ''; if (p.avatarUrl) img.src = p.avatarUrl; z.appendChild(img);
+        const n = document.createElement('b'); n.textContent = p.name || 'Jemand'; z.appendChild(n);
+        const w = document.createElement('span'); w.className = 'ko-person-v'; w.textContent = v === 'ja' ? 'So umsetzen' : 'Variante ' + v; z.appendChild(w);
+        if (stand[sec.id] !== v) {
+          const u = document.createElement('button'); u.type = 'button'; u.textContent = 'Übernehmen';
+          u.addEventListener('click', () => { const b = $(`.ko-ent-b button[data-ent="${v}"]`, sec); if (b) b.click(); });
+          z.appendChild(u);
+        } else { const g = document.createElement('span'); g.className = 'ko-gleich'; g.textContent = 'wie du'; z.appendChild(g); }
+        box.appendChild(z);
+      });
+    });
+    const m = $('.ko-live');
+    if (m) m.textContent = live.andere.length ? `Live: ${live.andere.length} ${live.andere.length === 1 ? 'weitere Person hat' : 'weitere Personen haben'} entschieden. Deine Wahl sehen die anderen sofort.` : 'Live: Deine Wahl sehen alle, die diese Seite öffnen. Noch hat niemand sonst entschieden.';
+  }
+
+  (async () => {
+    if (!window.claude || typeof window.claude.use !== 'function') return; // GitHub und lokal: ohne Live-Teilen
+    const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    if (!db || !user) return;
+    const ich = await user.id();
+    if (!ich) return;
+    live.db = db; live.user = user; live.ich = ich;
+    const z = $('.ko-stand');
+    if (z) { const m = document.createElement('div'); m.className = 'ko-live'; m.textContent = 'Live: Entscheidungen der anderen werden geladen …'; z.after(m); }
+    // eigene, schon geteilte Wahl übernehmen (z. B. aus einem anderen Browser)
+    try {
+      const s = await db.doc('entscheidungen/' + ich).get();
+      const w = s.exists ? (s.data() || {}).werte || {} : null;
+      if (w) secs.forEach((sec) => { const v = w[sec.id] || ''; if (v !== (stand[sec.id] || '')) { zeige(sec, v); if (hatCV) CV.merke('ko-' + sec.id, v); } });
+    } catch (e) {}
+    const uhr = setTimeout(() => { const m = $('.ko-live'); if (m && !live.geladen) m.textContent = 'Live: Die Entscheidungen der anderen sind gerade nicht erreichbar.'; }, 10000);
+    db.collection('entscheidungen').onSnapshot((snap) => {
+      if (!snap.metadata.fromCache) { live.geladen = true; clearTimeout(uhr); }
+      live.andere = snap.docs.filter((d) => d.id !== ich).map((d) => ({ id: d.id, ...(d.data() || {}) }));
+      zeichneAndere();
+    }, () => { clearTimeout(uhr); const m = $('.ko-live'); if (m) m.textContent = 'Live: Die Entscheidungen der anderen sind gerade nicht erreichbar.'; });
+    // nach eigener Änderung „Übernehmen“/„wie du“ neu setzen
+    secs.forEach((sec) => $$('.ko-ent-b button', sec).forEach((b) => b.addEventListener('click', () => setTimeout(zeichneAndere, 0))));
+  })();
 })();
