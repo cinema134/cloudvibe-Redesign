@@ -3,7 +3,9 @@
 <!-- Umfang des Praxis-Checks ist noch von Leon zu liefern (Zulieferung); Inhalte hier aus der Gesundheitswesen-Seite abgeleitet -->
 <section class="uhero" id="top">
  <canvas class="welle" id="cvH" aria-hidden="true"></canvas>
- <div class="wrap uhero-in">
+ <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel; „Frei“ per Umschalter -->
+ <div class="wrap uhero-in hk hk-solo">
+  <div class="hk-karte glas">
   <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:gesundheitswesen}}">{{HC}}</a><span>/</span>Praxis-Check</nav>
   <h1>Ein ehrlicher Blick auf <b>deine IT-Sicherheit</b>.</h1>
   <p class="lead">Der Praxis-Check ist ein unverbindlicher erster Schritt für Praxen, Apotheken und Pflegeeinrichtungen: Wir schauen uns die wichtigsten Punkte deiner IT-Sicherheit an und sagen dir verständlich, wo du stehst.</p>
@@ -12,8 +14,11 @@
    <a class="btn zw call" href="tel:{{SALES_TEL}}">{{TEL}}<span class="cw"><span class="c1">Anrufen</span><span class="c2">{{SALES}}</span></span></a>
   </div>
   <!-- Prüfdokument 24.11.2026: ein Button mit eigenem Zweck, keine Telefonzeile ("keine Telefonnummer notwendig") -->
+  <!-- Leon 25.11.2026: Hero führt direkt in den Selbsttest (erster Abschnitt), Anfrage als leiser Link -->
   <div class="btns nur-neu">
-   <a class="btn" href="{{LINK:termin}}?art=check">Praxis-Check anfragen</a>
+   <a class="btn" href="#selbsttest">Selbsttest starten</a>
+  </div>
+  <p class="tel-zeile nur-neu">Oder gleich <a href="{{LINK:termin}}?art=check">Praxis-Check anfragen</a></p>
   </div>
  </div>
 </section>

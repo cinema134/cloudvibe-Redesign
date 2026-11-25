@@ -503,6 +503,26 @@ const CV = (function () {
   if (!document.querySelector('.hk-rechts')) document.querySelectorAll('[data-einstieg]').forEach((x) => x.closest('.stg-z').remove());
   document.querySelectorAll('[data-einstieg]').forEach((x) => (x.onclick = () => setEinstieg(x.dataset.einstieg)));
   setEinstieg(wert('einstieg', Q.get('einstieg'), 'raster'));
+  /* Schutz für die rechte Hero-Kachel (Leon 25.11.2026): Einträge, deren Ziel-Abschnitt ausgeblendet ist, verschwinden;
+     sind alle weg oder ist die Kachel im Panel aus (Diese Seite → Einstieg rechts), steht die Text-Kachel allein */
+  function hkPruefen() {
+    const r = document.querySelector('.hk-rechts');
+    if (!r) return;
+    r.querySelectorAll('a.hk-z[href^="#"]').forEach((a) => {
+      const z = document.querySelector(a.getAttribute('href'));
+      const sec = z && (z.closest('main>section') || z);
+      a.hidden = !!(sec && (sec.classList.contains('mod-aus') || sec.hidden));
+    });
+    const leer = !r.querySelector('.hk-z:not([hidden]),.hk-inhalt');
+    B.classList.toggle('hkOhneRechts', leer || B.classList.contains('hkRechtsAus'));
+  }
+  const hkSeite = (location.pathname.split('/').pop() || '').replace(/_v\d+\.html$/, '');
+  function setHkRechts(an) {
+    B.classList.toggle('hkRechtsAus', !an);
+    document.querySelectorAll('[data-hkr]').forEach((x) => x.classList.toggle('on', (x.dataset.hkr === 'an') === an));
+    merke('hkr-' + hkSeite, an ? 'an' : 'aus');
+    hkPruefen();
+  }
   /* Abläufe (So starten wir, So läuft …): Pfeilband (Standard, Prüfdokument 24.11.2026) oder Zeitleiste (bisher); ?ablauf=zeitleiste */
   function setAblauf(v) {
     if (v !== 'zeitleiste') v = 'pfeil';
@@ -716,7 +736,7 @@ const CV = (function () {
           stillWelle(c, { N: 22, hs: 0.9, lw: 1.1, bp: 0.78, opm: 0.38 }, 3.4, 0.5);
         }
       });
-      setTimeout(() => { stickyEinmal(false); wellenNeu(); }, 0);
+      setTimeout(() => { stickyEinmal(false); wellenNeu(); hkPruefen(); }, 0);
     }
     // Gemerkt wird immer (auch wenn es dem Standard entspricht), damit ein Zurück auf Standard eine Team-Vorgabe übersteuert
     function merken() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} if (LOKAL) setDirty(true); }
@@ -1027,6 +1047,16 @@ const CV = (function () {
     if (!g) { g = document.createElement('section'); g.className = 'stg-gr stg-seite'; g.innerHTML = '<h5>Varianten dieser Seite</h5>'; inhSp.prepend(g); }
     g.appendChild(z);
     zeigeReiter(document.querySelector('.stg-reiter .on')?.dataset.reiter || 'seite');
+  }
+  if (document.querySelector('.hk-rechts')) {
+    if (inhSp) {
+      const z = document.createElement('div');
+      z.className = 'stg-z'; z.dataset.ziel = '#top';
+      z.innerHTML = '<span>Einstieg rechts im Hero</span><div class="seg"><button type="button" data-hkr="an" class="on">Zeigen</button><button type="button" data-hkr="aus">Aus</button></div>';
+      panelZeile(z);
+      z.querySelectorAll('[data-hkr]').forEach((x) => (x.onclick = () => setHkRechts(x.dataset.hkr === 'an')));
+    }
+    setHkRechts(wert('hkr-' + hkSeite, null, 'an') === 'an');
   }
   bereit = true;
 

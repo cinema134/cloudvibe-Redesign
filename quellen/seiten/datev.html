@@ -2,7 +2,9 @@
 <!-- ================= Hero ruhig (Unternehmen-Welt: grau mit Blauschleier, ohne Welle) ================= -->
 <!-- Aussagen nach der bisherigen cloudvibe.de/datev-support; kein Partnerstatus genannt -->
 <section class="uhero un-hero" id="top">
- <div class="wrap uhero-in">
+ <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel, rechts Einstieg; „Frei“ per Umschalter -->
+ <div class="wrap uhero-in hk">
+  <div class="hk-karte glas">
   <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:managed}}">Leistungen</a><span>/</span>DATEV</nav>
   <h1>DATEV, <b>sicher&nbsp;betreut</b>.</h1>
   <p class="lead">Für Kanzleien und Unternehmen: Wir betreuen die IT, auf der <span class="lx" data-lx="datev">DATEV</span> läuft, spielen Updates geplant ein und helfen, wenn etwas hakt.</p>
@@ -11,6 +13,12 @@
    <a class="btn zw call nur-alt" href="tel:{{SALES_TEL}}">{{TEL}}<span class="cw"><span class="c1">Anrufen</span><span class="c2">{{SALES}}</span></span></a>
   </div>
   <!-- Telefonzeile entfernt (Prüfdokument 24.11.2026) -->
+  </div>
+  <nav class="hk-rechts glas" aria-label="DATEV für wen">
+   <p class="hk-k">Für wen?</p>
+   <a class="hk-z" href="#faq" data-fuer-wahl="kanzlei"><span class="hk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></span><span><b>Für Kanzleien</b><small>DATEV-Arbeitsplätze, Updates, Fristen</small></span>{{PFEIL}}</a>
+   <a class="hk-z" href="#faq" data-fuer-wahl="unternehmen"><span class="hk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><span><b>Für Unternehmen</b><small>Rechnungswesen und Lohn im Betrieb</small></span>{{PFEIL}}</a>
+  </nav>
  </div>
 </section>
 

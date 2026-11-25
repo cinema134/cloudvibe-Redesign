@@ -2,7 +2,9 @@
 <!-- ================= Hero ruhig mit Wellenkante (Gesundheitswelt) ================= -->
 <section class="uhero" id="top">
  <canvas class="welle" id="cvH" aria-hidden="true"></canvas>
- <div class="wrap uhero-in">
+ <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel, rechts Einstieg; „Frei“ per Umschalter -->
+ <div class="wrap uhero-in hk">
+  <div class="hk-karte glas">
   <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:gesundheitswesen}}">{{HC}}</a><span>/</span>Telematikinfrastruktur</nav>
   <h1>Die TI, <b>einfach angebunden</b>.</h1>
   <p class="lead">Für Arztpraxen, Apotheken und Pflegeeinrichtungen: Gemeinsam mit Telekonnekt bringen wir dich in die <span class="lx" data-lx="ti">Telematikinfrastruktur</span> und halten die Anbindung im Alltag am Laufen.</p>
@@ -15,6 +17,12 @@
    <a class="btn" href="{{LINK:termin}}?art=ti">TI-Beratung vereinbaren</a>
   </div>
   <p class="tel-zeile nur-neu">Lieber direkt sprechen? <a href="tel:{{SALES_TEL}}">{{SALES}}</a></p>
+  </div>
+  <nav class="hk-rechts glas" aria-label="TI-Ausstattung bestellen">
+   <p class="hk-k">Ausstattung bei Telekonnekt</p>
+   <a class="hk-z" href="https://direkt.telekonnekt.de/partner/cloudvibe/praxen" target="_blank" rel="noopener"><span class="hk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span><b>Neu in der TI</b><small>Zum Neukunden-Shop</small></span>{{PFEIL}}</a>
+   <a class="hk-z" href="https://direkt.telekonnekt.de/partner/cloudvibe/praxen/wechsler" target="_blank" rel="noopener"><span class="hk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg></span><span><b>Schon angebunden</b><small>Zum Wechsler-Shop</small></span>{{PFEIL}}</a>
+  </nav>
  </div>
 </section>
 

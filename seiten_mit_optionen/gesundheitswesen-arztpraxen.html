@@ -862,7 +862,7 @@ body.hkAn .hk-karte{padding:clamp(30px,3.4vw,52px) clamp(28px,3.4vw,52px) clamp(
 body.hkAn .hk-karte h1{font-size:clamp(34px,3.6vw,54px);max-width:none}
 body.hkAn .hk-karte .lead{font-size:18px;max-width:none}
 body.hkAn .hk-karte .btns{margin-top:30px}
-body.hkAn .uhero-in.hk:not(.hk-solo) .gw-wege,body.hkAn .uhero-in.hk:not(.hk-solo) .hsp{display:none}
+body.hkAn .uhero-in.hk:not(.hk-solo) .gw-wege{display:none}
 .hk-rechts{display:none}
 body.hkAn .hk-rechts{display:flex;flex-direction:column;padding:22px 18px 14px;align-self:center}
 .hk-k{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 10px 10px}
@@ -938,6 +938,23 @@ body.hkAn .uhero-in.hk:not(.hk-solo) .hk-karte h1{font-size:clamp(32px,3.2vw,48p
 body.hkAn:not(.hkListe) .hk-rechts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .hk-z b{hyphens:auto;overflow-wrap:break-word}
 .hk-z>span:not(.hk-ic){min-width:0}
+/* Rechte Hero-Kachel aus (Panel) oder ohne sichtbare Einträge: Text-Kachel steht allein wie auf Unterseiten */
+body.hkAn.hkOhneRechts .hk-rechts{display:none!important}
+body.hkAn.hkOhneRechts .uhero-in.hk{grid-template-columns:minmax(0,780px)!important}
+.hk-z[hidden]{display:none!important}/* Status-Kachel (Managed Services): als Bild, was laufender Betrieb heißt; immer eine Glaskachel, unabhängig von Raster/Liste */
+body.hkAn .hk-rechts.hk-status{display:block!important;padding:26px 26px 22px!important;background:var(--glass)!important;border:1px solid var(--edge)!important;backdrop-filter:blur(34px) saturate(1.15)!important;-webkit-backdrop-filter:blur(34px) saturate(1.15)!important;box-shadow:var(--sh),var(--hi)!important;align-self:center}
+.hs-kopf{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 14px}
+.hs-kopf b{font:400 20px Comfortaa,sans-serif}
+.hs-kopf span{font:700 11px 'Mozilla Text',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hs-z{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--edge)}
+.hs-ic{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:color-mix(in srgb,var(--blue) 12%,transparent)}
+.hs-ic svg{width:18px;height:18px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hs-z b{font:700 15px 'Mozilla Text',sans-serif}
+.hs-z em{font:700 13px 'Mozilla Text',sans-serif;font-style:normal;color:var(--gt);display:inline-flex;align-items:center;gap:7px}
+.hs-z em:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gt);box-shadow:0 0 0 4px color-mix(in srgb,var(--gt) 18%,transparent)}
+.hs-fuss{margin:10px 0 0;padding-top:12px;border-top:1px solid var(--edge);font-size:13.5px;color:var(--muted)}
+/* Anlass-Kachel Unternehmen nur im Aufbau „Frei“ */
+body.hkAn .nur-frei{display:none!important}body.hkAn .hk-karte .hsp{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:4px 28px!important}
 
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
@@ -1138,7 +1155,9 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
 <!-- ================= Hero ruhig ================= -->
 <section class="uhero" id="top">
  <canvas class="welle" id="cvH" aria-hidden="true"></canvas>
- <div class="wrap uhero-in">
+ <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel; „Frei“ per Umschalter -->
+ <div class="wrap uhero-in hk hk-solo">
+  <div class="hk-karte glas">
   <nav class="krumen" aria-label="Pfad"><a href="index.html">Startseite</a><span>/</span><a href="gesundheitswesen.html"><span class="hc">Gesundheitswesen</span></a><span>/</span>Arztpraxen</nav>
   <h1>Praxis läuft. Wir kümmern uns <b>um&nbsp;den&nbsp;Rest</b>.</h1>
   <p class="lead">Für Arzt- und Zahnarztpraxen: Wir betreuen die IT deiner Praxis, von den Arbeitsplätzen bis zur Anbindung an die <span class="lx" data-lx="ti">Telematikinfrastruktur</span>.</p>
@@ -1151,6 +1170,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
    <a class="btn" href="termin.html?art=erst">Erstberatung vereinbaren</a>
   </div>
   <p class="tel-zeile nur-neu">Lieber direkt sprechen? <a href="tel:+492823890143460">02823 8901434-60</a></p>
+  </div>
  </div>
 </section>
 
@@ -2084,6 +2104,26 @@ const CV = (function () {
   if (!document.querySelector('.hk-rechts')) document.querySelectorAll('[data-einstieg]').forEach((x) => x.closest('.stg-z').remove());
   document.querySelectorAll('[data-einstieg]').forEach((x) => (x.onclick = () => setEinstieg(x.dataset.einstieg)));
   setEinstieg(wert('einstieg', Q.get('einstieg'), 'raster'));
+  /* Schutz für die rechte Hero-Kachel (Leon 25.11.2026): Einträge, deren Ziel-Abschnitt ausgeblendet ist, verschwinden;
+     sind alle weg oder ist die Kachel im Panel aus (Diese Seite → Einstieg rechts), steht die Text-Kachel allein */
+  function hkPruefen() {
+    const r = document.querySelector('.hk-rechts');
+    if (!r) return;
+    r.querySelectorAll('a.hk-z[href^="#"]').forEach((a) => {
+      const z = document.querySelector(a.getAttribute('href'));
+      const sec = z && (z.closest('main>section') || z);
+      a.hidden = !!(sec && (sec.classList.contains('mod-aus') || sec.hidden));
+    });
+    const leer = !r.querySelector('.hk-z:not([hidden]),.hk-inhalt');
+    B.classList.toggle('hkOhneRechts', leer || B.classList.contains('hkRechtsAus'));
+  }
+  const hkSeite = (location.pathname.split('/').pop() || '').replace(/_v\d+\.html$/, '');
+  function setHkRechts(an) {
+    B.classList.toggle('hkRechtsAus', !an);
+    document.querySelectorAll('[data-hkr]').forEach((x) => x.classList.toggle('on', (x.dataset.hkr === 'an') === an));
+    merke('hkr-' + hkSeite, an ? 'an' : 'aus');
+    hkPruefen();
+  }
   /* Abläufe (So starten wir, So läuft …): Pfeilband (Standard, Prüfdokument 24.11.2026) oder Zeitleiste (bisher); ?ablauf=zeitleiste */
   function setAblauf(v) {
     if (v !== 'zeitleiste') v = 'pfeil';
@@ -2297,7 +2337,7 @@ const CV = (function () {
           stillWelle(c, { N: 22, hs: 0.9, lw: 1.1, bp: 0.78, opm: 0.38 }, 3.4, 0.5);
         }
       });
-      setTimeout(() => { stickyEinmal(false); wellenNeu(); }, 0);
+      setTimeout(() => { stickyEinmal(false); wellenNeu(); hkPruefen(); }, 0);
     }
     // Gemerkt wird immer (auch wenn es dem Standard entspricht), damit ein Zurück auf Standard eine Team-Vorgabe übersteuert
     function merken() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} if (LOKAL) setDirty(true); }
@@ -2608,6 +2648,16 @@ const CV = (function () {
     if (!g) { g = document.createElement('section'); g.className = 'stg-gr stg-seite'; g.innerHTML = '<h5>Varianten dieser Seite</h5>'; inhSp.prepend(g); }
     g.appendChild(z);
     zeigeReiter(document.querySelector('.stg-reiter .on')?.dataset.reiter || 'seite');
+  }
+  if (document.querySelector('.hk-rechts')) {
+    if (inhSp) {
+      const z = document.createElement('div');
+      z.className = 'stg-z'; z.dataset.ziel = '#top';
+      z.innerHTML = '<span>Einstieg rechts im Hero</span><div class="seg"><button type="button" data-hkr="an" class="on">Zeigen</button><button type="button" data-hkr="aus">Aus</button></div>';
+      panelZeile(z);
+      z.querySelectorAll('[data-hkr]').forEach((x) => (x.onclick = () => setHkRechts(x.dataset.hkr === 'an')));
+    }
+    setHkRechts(wert('hkr-' + hkSeite, null, 'an') === 'an');
   }
   bereit = true;
 

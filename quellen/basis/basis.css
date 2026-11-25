@@ -848,7 +848,7 @@ body.hkAn .hk-karte{padding:clamp(30px,3.4vw,52px) clamp(28px,3.4vw,52px) clamp(
 body.hkAn .hk-karte h1{font-size:clamp(34px,3.6vw,54px);max-width:none}
 body.hkAn .hk-karte .lead{font-size:18px;max-width:none}
 body.hkAn .hk-karte .btns{margin-top:30px}
-body.hkAn .uhero-in.hk:not(.hk-solo) .gw-wege,body.hkAn .uhero-in.hk:not(.hk-solo) .hsp{display:none}
+body.hkAn .uhero-in.hk:not(.hk-solo) .gw-wege{display:none}
 .hk-rechts{display:none}
 body.hkAn .hk-rechts{display:flex;flex-direction:column;padding:22px 18px 14px;align-self:center}
 .hk-k{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 10px 10px}
@@ -924,3 +924,20 @@ body.hkAn .uhero-in.hk:not(.hk-solo) .hk-karte h1{font-size:clamp(32px,3.2vw,48p
 body.hkAn:not(.hkListe) .hk-rechts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .hk-z b{hyphens:auto;overflow-wrap:break-word}
 .hk-z>span:not(.hk-ic){min-width:0}
+/* Rechte Hero-Kachel aus (Panel) oder ohne sichtbare Einträge: Text-Kachel steht allein wie auf Unterseiten */
+body.hkAn.hkOhneRechts .hk-rechts{display:none!important}
+body.hkAn.hkOhneRechts .uhero-in.hk{grid-template-columns:minmax(0,780px)!important}
+.hk-z[hidden]{display:none!important}/* Status-Kachel (Managed Services): als Bild, was laufender Betrieb heißt; immer eine Glaskachel, unabhängig von Raster/Liste */
+body.hkAn .hk-rechts.hk-status{display:block!important;padding:26px 26px 22px!important;background:var(--glass)!important;border:1px solid var(--edge)!important;backdrop-filter:blur(34px) saturate(1.15)!important;-webkit-backdrop-filter:blur(34px) saturate(1.15)!important;box-shadow:var(--sh),var(--hi)!important;align-self:center}
+.hs-kopf{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 14px}
+.hs-kopf b{font:400 20px Comfortaa,sans-serif}
+.hs-kopf span{font:700 11px 'Mozilla Text',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hs-z{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--edge)}
+.hs-ic{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:color-mix(in srgb,var(--blue) 12%,transparent)}
+.hs-ic svg{width:18px;height:18px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hs-z b{font:700 15px 'Mozilla Text',sans-serif}
+.hs-z em{font:700 13px 'Mozilla Text',sans-serif;font-style:normal;color:var(--gt);display:inline-flex;align-items:center;gap:7px}
+.hs-z em:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gt);box-shadow:0 0 0 4px color-mix(in srgb,var(--gt) 18%,transparent)}
+.hs-fuss{margin:10px 0 0;padding-top:12px;border-top:1px solid var(--edge);font-size:13.5px;color:var(--muted)}
+/* Anlass-Kachel Unternehmen nur im Aufbau „Frei“ */
+body.hkAn .nur-frei{display:none!important}body.hkAn .hk-karte .hsp{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:4px 28px!important}
