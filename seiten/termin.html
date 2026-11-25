@@ -1156,6 +1156,123 @@ body.tmK .kal-kopf{margin-bottom:8px}
  body.tmK .bp-besch{font-size:14px}
  .bp-so-t{flex-basis:100%}
 }
+
+/* ---------- Aufbau Drei Spalten (Standard, body.tm3 + tmK; Leon 25.11.2026, Idee Termin-idee/) ----------
+   Terminart | Tag | Uhrzeit nebeneinander, Terminarten in Gruppen mit Symbol.
+   Gruppenfarben (Leon: auf der Termin-Seite auch Grün): Neu = Blau, Fachthemen = unser Grün, Bestandskunden = Petrol.
+   Kontrast Symbol zu Kachel hell 3,8 bis 6,4 : 1, dunkel 3,6 bis 8,3 : 1 (Grafik mindestens 3 : 1). */
+.ta-ic,.ta-gruppe,.sp-titel,.kal-monate,.weg-w,.kal-tag small{display:none}
+.ta{--ic:var(--blue)}
+.ta[data-g="fach"]{--ic:var(--gt)}
+.ta[data-g="best"]{--ic:#1F5A66}
+body.dark .ta[data-g="best"]{--ic:#6FB3BF}
+
+/* eine Karte: Liste links und Buchungsfeld rechts schließen aneinander an */
+body.tm3 .buchung{grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:0;align-items:stretch}
+body.tm3 .ta-spalte{display:flex;flex-direction:column}
+body.tm3 .ta-titel{display:none}
+body.tm3 .ta-liste{flex:1;display:flex;flex-direction:column;gap:2px;padding:22px 14px 18px;border-radius:30px 0 0 30px;border-right:0;overflow:visible}
+body.tm3 .bp{border-radius:0 30px 30px 0;padding:22px 30px 18px}
+
+/* Spaltentitel: leise, ohne Nummern */
+body.tm3 .sp-titel{display:block;font:700 15px Comfortaa,sans-serif;color:var(--text);margin:0 0 12px}
+body.tm3 .ta-sp{order:0;margin:0 0 6px 10px}
+body.tm3 .ta-gruppe{display:block;font:700 12.5px 'Mozilla Text',sans-serif;letter-spacing:.04em;color:var(--muted);padding:12px 10px 4px}
+body.tm3 .ta-gruppe[data-g="neu"]{order:1}
+body.tm3 .ta[data-art="erst"]{order:2}
+body.tm3 .ta[data-art="rueck"]{order:3}
+body.tm3 .ta-gruppe[data-g="fach"]{order:4}
+body.tm3 .ta[data-art="ti"]{order:5}
+body.tm3 .ta[data-art="check"]{order:6}
+body.tm3 .ta[data-art="datev"]{order:7}
+body.tm3 .ta[data-art="sl"]{order:8}
+body.tm3 .ta[data-art="ki"]{order:9}
+body.tm3 .ta-gruppe[data-g="best"]{order:10}
+body.tm3 .ta[data-art="kunde"]{order:11}
+
+/* Zeilen: Symbol-Kachel + Name + Dauer, ohne Trennlinien, Auswahl als weiche blaue Fläche mit feinem Rand */
+body.tm3 .ta{grid-template-columns:40px minmax(0,1fr);column-gap:14px;row-gap:1px;padding:9px 12px;border:0!important;border-radius:16px}
+body.tm3 .ta-ic{display:grid;place-items:center;grid-column:1;grid-row:1/3;width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--ic) 12%,var(--bg))}
+body.dark.tm3 .ta-ic{background:color-mix(in srgb,var(--ic) 16%,var(--bg))}
+body.tm3 .ta-ic svg{width:20px;height:20px;fill:none;stroke:var(--ic);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body.tm3 .ta-text,body.tm3 .ta-meta{grid-column:2}
+body.tm3 .ta h3{font-size:15.5px}
+body.tm3 .ta-hin{display:none}
+body.tm3 .ta:hover{background:color-mix(in srgb,var(--blue) 5%,transparent)}
+body.tm3 .ta.on{background:color-mix(in srgb,var(--blue) 8%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--blue) 70%,transparent)}
+body.tm3 .ta.on:after{display:none}
+body.tm3 .ta-wahl:focus-visible{outline-offset:-2px;border-radius:16px}
+
+/* Kopf im Buchungsfeld etwas ruhiger */
+body.tm3 .bp-kopf{padding-bottom:14px;margin-bottom:18px}
+
+/* Tag: Monatsleiste mit freien Tagen statt Pfeilen, Tage mit „x frei“ */
+body.tm3 .kal-kopf{display:none}
+body.tm3 .kal-monate{display:flex;gap:4px;padding:4px;margin-bottom:14px;border-radius:18px;background:color-mix(in srgb,var(--text) 5%,transparent)}
+.km{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 4px;border:0;border-radius:14px;background:transparent;color:var(--muted);cursor:pointer;transition:background .2s,color .2s}
+.km b{font:700 14px Comfortaa,sans-serif;color:var(--text)}
+.km span{font-size:12px}
+.km:hover:not(:disabled) b{color:var(--blue)}
+.km.on{background:var(--bg);box-shadow:0 1px 4px rgba(15,25,50,.16)}
+.km.on b{color:var(--blue)}
+body.dark .km.on{background:#2A3140}
+.km:disabled{opacity:.45;cursor:default}
+.km:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+body.tm3 .kal{gap:6px}
+body.tm3 .kal-tag,body.tm3 .kal-leer{height:56px}
+body.tm3 .kal-tag{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:16px}
+body.tm3 .kal-tag small{display:block;font:400 11px 'Mozilla Text',sans-serif;color:var(--muted)}
+body.tm3 .kal-tag.frei:after{display:none}
+body.tm3 .kal-tag.frei{border-color:color-mix(in srgb,var(--blue) 22%,transparent)}
+body.tm3 .kal-tag.frei small{color:color-mix(in srgb,var(--blue) 80%,var(--text))}
+body.tm3 .kal-tag.wahl small{color:#fff}
+
+/* Uhrzeit: Tag groß, Zeiten zweispaltig, Gesprächsweg darunter */
+body.tm3 .zk-tag{display:block;font:700 19px/1.3 Comfortaa,sans-serif;color:var(--text)}
+body.tm3 .zk-info{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+body.tm3 .zeiten{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+body.tm3 .weg-w{display:block;margin-top:22px}
+body.tm3 .weg-w:has(.seg-w:empty){display:none}
+.weg-t{font:700 13px 'Mozilla Text',sans-serif;color:var(--muted);letter-spacing:.02em;margin-bottom:8px}
+body.tm3 .bp-fuss{justify-content:stretch}
+body.tm3 .bp-fuss .btn{width:100%;justify-content:center}
+body.tm3 .bp-form .bp-fuss .btn{width:auto}
+body.tm3 .bp-form .bp-fuss{justify-content:flex-end}
+@media(min-width:1181px){
+ body.tm3 #sZeit{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+ body.tm3 .zeiten-kopf{margin:0 0 14px}
+}
+@media(max-width:1180px) and (min-width:1001px){
+ body.tm3 .buchung{grid-template-columns:minmax(0,300px) minmax(0,1fr)}
+ body.tm3 .bp-uhr .sp-titel{margin-top:22px}
+}
+@media(max-width:1000px){
+ body.tm3 .buchung{grid-template-columns:minmax(0,1fr);gap:18px}
+ body.tm3 .ta-liste{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 6px;border-radius:30px;border-right:1px solid var(--edge)}
+ body.tm3 .ta-liste>.ta-sp,body.tm3 .ta-gruppe{grid-column:1/-1}
+ body.tm3 .bp{border-radius:30px}
+ body.tm3 .bp-uhr .sp-titel{margin-top:22px}
+}
+@media(max-width:560px){
+ body.tm3 .ta-liste{padding:18px 10px 14px}
+ body.tm3 .ta{grid-template-columns:30px minmax(0,1fr);column-gap:9px;padding:8px}
+ body.tm3 .ta-ic{width:30px;height:30px;border-radius:9px}
+ body.tm3 .ta-ic svg{width:16px;height:16px}
+ body.tm3 .ta h3{font-size:13.5px}
+ body.tm3 .ta-gruppe{padding:10px 8px 2px}
+ body.tm3 .kal-tag,body.tm3 .kal-leer{height:52px}
+ body.tm3 .km span{font-size:11px}
+ body.tm3 .zeiten{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+/* Drei Spalten, Nachbesserung: Dauer und Gesprächsweg fließen als eine Zeile; Linie über „Uhrzeit“ statt unter dem Titel */
+body.tm3 .ta-meta{display:block;font-size:13px;line-height:1.45;color:var(--muted)}
+body.tm3 .ta-meta .ta-dauer{font-size:13px}
+body.tm3 .zeiten-kopf{border-top:0;padding-top:0;margin-top:0}
+@media(max-width:1180px){
+ body.tm3 .bp-uhr .sp-titel{margin-top:22px;padding-top:18px;border-top:1px solid var(--edge)}
+ body.tm3 .zeiten{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:560px){body.tm3 .zeiten{grid-template-columns:repeat(3,minmax(0,1fr))!important}}body.tm3 .ta-meta .ta-form:before{content:"\00a0· "}
 </style><script src="../einstellungen.js"></script>
 </head>
 <body class="lgB ohneTermin heroW" data-welt="allgemein">
@@ -1257,52 +1374,65 @@ body.tmK .kal-kopf{margin-bottom:8px}
    </div>
   </div>
 
-  <!-- (Prüfdokument 24.11.2026: Terminauswahl auf einen Blick) Standard "Kompakt" (body.tmK): links schmale Liste der 8 Terminarten,
+  <!-- (Prüfdokument 24.11.2026: Terminauswahl auf einen Blick) Standard "Drei Spalten" (body.tm3, dazu tmK), Vergleich "Kompakt" (body.tmK): links schmale Liste der 8 Terminarten,
        rechts sofort Kalender der gewählten Art. "Bisher" per Umschalter im Panel bzw. ?termin=bisher -->
   <div class="buchung">
    <div class="ta-spalte">
    <p class="ta-titel">Worum soll es gehen?</p>
    <div class="ta-liste glas" role="list" aria-label="Terminarten">
-    <div class="ta" role="listitem" data-art="erst">
+    <div class="ta" role="listitem" data-art="erst" data-g="neu">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/></svg></span>
      <div class="ta-text"><h3>Erstberatung</h3><p>Wir lernen dich und deinen Betrieb kennen und klären, wobei wir dir helfen können.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video oder Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Erstberatung wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="ti">
+    <div class="ta" role="listitem" data-art="ti" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></span>
      <div class="ta-text"><h3>TI-Beratung</h3><p>Für Praxen, Apotheken und Pflege: Wir besprechen deine Anbindung an die <span class="lx" data-lx="ti">Telematikinfrastruktur</span>.</p></div>
      <div class="ta-meta"><span class="ta-dauer">45 Min</span><span class="ta-form">Video, Telefon oder vor Ort</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="TI-Beratung wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="check">
+    <div class="ta" role="listitem" data-art="check" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z M9 12l2 2 4-4"/></svg></span>
      <div class="ta-text"><h3>Praxis-Check IT-Sicherheit</h3><p>Wir schauen uns die IT deiner Praxis an und zeigen dir, wo du gut aufgestellt bist und wo nicht.</p></div>
      <div class="ta-meta"><span class="ta-dauer">60 Min</span><span class="ta-form">Vor Ort am Niederrhein</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Praxis-Check IT-Sicherheit wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="datev">
+    <div class="ta" role="listitem" data-art="datev" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 13h8 M8 17h6"/></svg></span>
      <div class="ta-text"><h3>DATEV-Termin</h3><p>Für Fragen rund um DATEV in deiner Kanzlei oder deinem Unternehmen, auf Wunsch direkt per <span class="lx" data-lx="fernwartung">Fernwartung</span>.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video oder Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="DATEV-Termin wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="sl">
+    <div class="ta" role="listitem" data-art="sl" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6 M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
      <div class="ta-text"><h3>SelectLine-Termin</h3><p>Für Fragen zu SelectLine, von der Einrichtung bis zum Alltag mit der Software.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video oder Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="SelectLine-Termin wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="ki">
+    <div class="ta" role="listitem" data-art="ki" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z M19 17l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
      <div class="ta-text"><h3>KI-Check</h3><p>Wir schauen, wie dein Team KI heute nutzt, und zeigen dir, wie es sicher und mit klaren Regeln geht.</p></div>
      <div class="ta-meta"><span class="ta-dauer">45 Min</span><span class="ta-form">Video, Telefon oder vor Ort</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="KI-Check wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="rueck">
+    <div class="ta" role="listitem" data-art="rueck" data-g="neu">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
      <div class="ta-text"><h3>Rückruf vereinbaren</h3><p>Du wählst die Zeit, wir rufen dich an. Gut, wenn du erst einmal kurz sprechen willst.</p></div>
      <div class="ta-meta"><span class="ta-dauer">15 Min</span><span class="ta-form">Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Rückruf vereinbaren wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta ta-kunde" role="listitem" data-art="kunde">
+    <div class="ta ta-kunde" role="listitem" data-art="kunde" data-g="best">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0 M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></span>
      <div class="ta-text"><span class="ta-hin">Für Bestandskunden</span><h3>Termin mit deiner Ansprechperson</h3><p>Du bist schon Kunde? Dann plan hier einen Termin mit der Person, die dich bei uns betreut.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video, Telefon oder vor Ort</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Termin mit deiner Ansprechperson wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
+    <!-- Drei Spalten (Leon 25.11.2026, Idee Termin-idee/): Spaltentitel und Gruppen, nur in body.tm3 sichtbar; per CSS-order einsortiert -->
+    <p class="sp-titel ta-sp" role="none">Terminart</p>
+    <p class="ta-gruppe" data-g="neu" role="none">Neu bei cloudvibe</p>
+    <p class="ta-gruppe" data-g="fach" role="none">Fachthemen</p>
+    <p class="ta-gruppe" data-g="best" role="none">Für Bestandskunden</p>
    </div>
    </div>
 
@@ -1323,6 +1453,8 @@ body.tmK .kal-kopf{margin-bottom:8px}
      <!-- Tag und Uhrzeit (Kompakt: Kalender links, Uhrzeiten rechts) -->
      <div class="bp-schritt" id="sZeit">
       <div class="bp-kal">
+       <p class="sp-titel">Tag</p>
+       <div class="kal-monate" id="kalMonate" role="group" aria-label="Monat"></div>
        <div class="kal-kopf">
         <button class="kal-nav" type="button" id="kalZur" aria-label="Vorheriger Monat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
         <span class="kal-monat" id="kalMonat"></span>
@@ -1331,8 +1463,10 @@ body.tmK .kal-kopf{margin-bottom:8px}
        <div class="kal" id="kal" role="grid" aria-label="Freie Tage"></div>
       </div>
       <div class="bp-uhr">
+       <p class="sp-titel">Uhrzeit</p>
        <div class="zeiten-kopf" id="zeitenKopf">Wähl einen Tag mit freien Zeiten.</div>
        <div class="zeiten" id="zeiten"></div>
+       <div class="weg-w" id="wegW"><p class="weg-t">Gesprächsweg</p><div class="seg-w" id="wegSeg" role="radiogroup" aria-label="Gesprächsweg"></div></div>
        <div class="bp-fuss"><button class="btn" type="button" id="zuAngaben" disabled>Weiter</button></div>
       </div>
      </div>
@@ -2626,6 +2760,9 @@ const CV = (function () {
   const $ = (i) => document.getElementById(i);
   const bp = $('bp');
   if (!bp) return;
+  const B = document.body;
+  const kompakt = () => B.classList.contains('tmK');
+  const drei = () => B.classList.contains('tm3'); // Drei Spalten (Leon 25.11.2026): Terminart | Tag | Uhrzeit
 
   // Dauer und Form sind Beispiele (Richtwerte), Formen: video, tel, ort
   const ARTEN = {
@@ -2695,18 +2832,53 @@ const CV = (function () {
       const s = slots(d), wahl = st.tag && st.tag.getTime() === d.getTime();
       const cls = ['kal-tag', s.length ? 'frei' : '', wahl ? 'wahl' : '', d.getTime() === heute.getTime() ? 'heute' : ''].filter(Boolean).join(' ');
       const lab = `${WT[w]}, ${t}. ${MONATE[m]}${s.length ? ', ' + s.length + ' freie Zeiten' : ', keine freien Zeiten'}`;
-      h += `<button type="button" class="${cls}" data-t="${t}" aria-label="${lab}"${s.length ? '' : ' disabled'}${wahl ? ' aria-pressed="true"' : ''}>${t}</button>`;
+      h += `<button type="button" class="${cls}" data-t="${t}" aria-label="${lab}"${s.length ? '' : ' disabled'}${wahl ? ' aria-pressed="true"' : ''}>${t}<small aria-hidden="true">${s.length ? s.length + ' frei' : ''}</small></button>`;
     }
     $('kal').innerHTML = h;
+    monate();
+  }
+
+  /* Drei Spalten: Monatsleiste mit Anzahl freier Tage statt Pfeilen */
+  function freieTage(j, m) {
+    let n = 0;
+    const ende = new Date(j, m + 1, 0).getDate();
+    for (let t = 1; t <= ende; t++) { const d = new Date(j, m, t); if (d.getDay() % 6 && slots(d).length) n++; }
+    return n;
+  }
+  function monate() {
+    if (!drei()) return;
+    let h = '';
+    for (let i = 0; i <= MAX_MONATE; i++) {
+      const d = new Date(start.getFullYear(), start.getMonth() + i, 1), j = d.getFullYear(), m = d.getMonth();
+      const n = freieTage(j, m), on = j === st.jahr && m === st.monat;
+      h += `<button type="button" class="km${on ? ' on' : ''}" data-i="${i}" aria-pressed="${on}"${n ? '' : ' disabled'}><b>${MONATE[m]}</b><span>${n ? n + (n === 1 ? ' Tag frei' : ' Tage frei') : 'ausgebucht'}</span></button>`;
+    }
+    $('kalMonate').innerHTML = h;
+  }
+  // Drei Spalten: immer ein Tag gewählt, damit die Uhrzeit-Spalte nie leer ist
+  function autoTag() {
+    if (!drei()) return;
+    if (st.tag && st.tag.getFullYear() === st.jahr && st.tag.getMonth() === st.monat && slots(st.tag).length) return;
+    st.tag = null; st.zeit = null;
+    const ende = new Date(st.jahr, st.monat + 1, 0).getDate();
+    for (let t = 1; t <= ende; t++) { const d = new Date(st.jahr, st.monat, t); if (d.getDay() % 6 && slots(d).length) { st.tag = d; break; } }
   }
 
   function zeiten() {
     const z = $('zeiten');
-    if (!st.tag) { $('zeitenKopf').textContent = 'Wähl einen Tag mit freien Zeiten.'; z.innerHTML = ''; return; }
-    const d = st.tag;
-    $('zeitenKopf').innerHTML = `Freie Zeiten am <b>${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</b>`;
-    z.innerHTML = slots(d).map((t) => `<button type="button" class="zeit${t === st.zeit ? ' wahl' : ''}" data-z="${t}"${t === st.zeit ? ' aria-pressed="true"' : ''}>${t}</button>`).join('');
+    weg();
+    if (!st.tag) { $('zeitenKopf').textContent = 'Wähl einen Tag mit freien Zeiten.'; z.innerHTML = ''; $('zuAngaben').disabled = true; return; }
+    const d = st.tag, s = slots(d);
+    $('zeitenKopf').innerHTML = drei()
+      ? `<span class="zk-tag">${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</span><span class="zk-info">${s.length} ${s.length === 1 ? 'freie Zeit' : 'freie Zeiten'}</span>`
+      : `Freie Zeiten am <b>${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</b>`;
+    z.innerHTML = s.map((t) => `<button type="button" class="zeit${t === st.zeit ? ' wahl' : ''}" data-z="${t}"${t === st.zeit ? ' aria-pressed="true"' : ''}>${t}</button>`).join('');
     $('zuAngaben').disabled = !st.zeit;
+  }
+  // Drei Spalten: Gesprächsweg gleich neben der Uhrzeit wählen (im Formular dann nicht noch einmal)
+  function weg() {
+    if (!drei() || !st.art) { $('wegSeg').innerHTML = ''; return; }
+    $('wegSeg').innerHTML = ARTEN[st.art].f.map((f) => `<label><input type="radio" name="t-weg" value="${f}"${f === st.form ? ' checked' : ''}><span>${FORM[f]}</span></label>`).join('');
   }
 
   /* ---- Schritte ---- */
@@ -2748,14 +2920,14 @@ const CV = (function () {
       for (let t = 1; t <= ende && !hat; t++) { const d = new Date(j, m, t); if (d.getDay() % 6 && slots(d).length) hat = true; }
       if (hat) { const d = new Date(j, m, 1); st.jahr = d.getFullYear(); st.monat = d.getMonth(); break; }
     }
-    kalender(); zeiten(); zeige(0);
+    autoTag(); kalender(); zeiten(); zeige(0);
     if (scrollen && matchMedia('(max-width:1000px)').matches) bp.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function angaben() {
     const a = ARTEN[st.art];
-    $('bpWann').textContent = wannText();
-    $('formArt').hidden = a.f.length < 2;
+    $('bpWann').textContent = wannText() + (drei() ? ', ' + FORM_LANG[st.form] : '');
+    $('formArt').hidden = a.f.length < 2 || drei();
     $('formWahl').innerHTML = a.f.map((f) => `<label><input type="radio" name="t-form" value="${f}"${f === st.form ? ' checked' : ''}><span>${FORM[f]}</span></label>`).join('');
     $('feldAp').hidden = st.art !== 'kunde';
     formFelder();
@@ -2779,6 +2951,14 @@ const CV = (function () {
   });
   $('kalZur').onclick = () => { const d = new Date(st.jahr, st.monat - 1, 1); st.jahr = d.getFullYear(); st.monat = d.getMonth(); kalender(); };
   $('kalVor').onclick = () => { const d = new Date(st.jahr, st.monat + 1, 1); st.jahr = d.getFullYear(); st.monat = d.getMonth(); kalender(); };
+  $('kalMonate').addEventListener('click', (e) => {
+    const b = e.target.closest('.km');
+    if (!b || b.disabled) return;
+    const d = new Date(start.getFullYear(), start.getMonth() + +b.dataset.i, 1);
+    st.jahr = d.getFullYear(); st.monat = d.getMonth();
+    autoTag(); kalender(); zeiten();
+  });
+  $('wegSeg').addEventListener('change', (e) => { st.form = e.target.value; });
   $('kal').addEventListener('click', (e) => {
     const b = e.target.closest('.kal-tag');
     if (!b || b.disabled) return;
@@ -2831,27 +3011,30 @@ const CV = (function () {
 
   /* ---- Aufbau Kompakt (Standard) / Bisher (Prüfdokument 24.11.2026: "auf einen Blick die Terminauswahl sehen")
      Kompakt: schmale Liste links, Kalender der gewählten Art sofort rechts; Umschalter im Panel, ?termin=bisher ---- */
-  const B = document.body;
-  const kompakt = () => B.classList.contains('tmK');
+  // Drei Spalten (Standard, Leon 25.11.2026): body.tm3 zusätzlich zu tmK; ?termin=spalten|kompakt|bisher
   function setAufbau(v, merken) {
+    if (!['spalten', 'kompakt', 'bisher'].includes(v)) v = 'spalten';
     const k = v !== 'bisher';
     B.classList.toggle('tmK', k);
-    document.querySelectorAll('[data-tm]').forEach((b) => b.classList.toggle('on', (b.dataset.tm === 'kompakt') === k));
+    B.classList.toggle('tm3', v === 'spalten');
+    document.querySelectorAll('[data-tm]').forEach((b) => b.classList.toggle('on', b.dataset.tm === v));
+    $('zuAngaben').textContent = v === 'spalten' ? 'Weiter zu deinen Angaben' : 'Weiter';
     if (k && !st.art) waehleArt('erst', false); // sofort buchbar: erste Art vorgewählt
+    else if (st.art && !$('sZeit').hidden) { autoTag(); kalender(); zeiten(); }
     klebe();
-    if (merken && typeof CV !== 'undefined') CV.merke('termin', k ? 'kompakt' : 'bisher');
+    if (merken && typeof CV !== 'undefined') CV.merke('termin', v);
   }
   if (document.getElementById('stgPanel') && typeof CV !== 'undefined' && CV.panelZeile) {
     const z = document.createElement('div');
     z.className = 'stg-z'; z.dataset.ziel = '#terminarten';
-    z.innerHTML = '<span>Terminauswahl</span><div class="seg"><button type="button" data-tm="kompakt" class="on" title="Liste und Kalender auf einen Blick">Kompakt</button><button type="button" data-tm="bisher" title="Bisher: große Liste mit Beschreibungen">Bisher</button></div>';
+    z.innerHTML = '<span>Terminauswahl</span><div class="seg"><button type="button" data-tm="spalten" class="on" title="Terminart, Tag und Uhrzeit nebeneinander">Drei Spalten</button><button type="button" data-tm="kompakt" title="Liste und Kalender auf einen Blick">Kompakt</button><button type="button" data-tm="bisher" title="Bisher: große Liste mit Beschreibungen">Bisher</button></div>';
     CV.panelZeile(z); // Panel-Reiter „Diese Seite“
     z.querySelectorAll('[data-tm]').forEach((b) => (b.onclick = () => setAufbau(b.dataset.tm, true)));
   }
 
   /* ---- Prüfhilfe über Adress-Parameter ---- */
   const Q = new URLSearchParams(location.search), art = Q.get('art');
-  const aufbau = (typeof CV !== 'undefined') ? CV.wert('termin', Q.get('termin'), 'kompakt') : (Q.get('termin') || 'kompakt');
+  const aufbau = (typeof CV !== 'undefined') ? CV.wert('termin', Q.get('termin'), 'spalten') : (Q.get('termin') || 'spalten');
   setAufbau(aufbau, false); // ?art=… wählt danach die gewünschte Art
   if (art && ARTEN[art]) {
     waehleArt(art, false);

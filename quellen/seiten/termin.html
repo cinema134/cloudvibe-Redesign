@@ -26,52 +26,65 @@
    </div>
   </div>
 
-  <!-- (Prüfdokument 24.11.2026: Terminauswahl auf einen Blick) Standard "Kompakt" (body.tmK): links schmale Liste der 8 Terminarten,
+  <!-- (Prüfdokument 24.11.2026: Terminauswahl auf einen Blick) Standard "Drei Spalten" (body.tm3, dazu tmK), Vergleich "Kompakt" (body.tmK): links schmale Liste der 8 Terminarten,
        rechts sofort Kalender der gewählten Art. "Bisher" per Umschalter im Panel bzw. ?termin=bisher -->
   <div class="buchung">
    <div class="ta-spalte">
    <p class="ta-titel">Worum soll es gehen?</p>
    <div class="ta-liste glas" role="list" aria-label="Terminarten">
-    <div class="ta" role="listitem" data-art="erst">
+    <div class="ta" role="listitem" data-art="erst" data-g="neu">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/></svg></span>
      <div class="ta-text"><h3>Erstberatung</h3><p>Wir lernen dich und deinen Betrieb kennen und klären, wobei wir dir helfen können.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video oder Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Erstberatung wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="ti">
+    <div class="ta" role="listitem" data-art="ti" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></span>
      <div class="ta-text"><h3>TI-Beratung</h3><p>Für Praxen, Apotheken und Pflege: Wir besprechen deine Anbindung an die <span class="lx" data-lx="ti">Telematikinfrastruktur</span>.</p></div>
      <div class="ta-meta"><span class="ta-dauer">45 Min</span><span class="ta-form">Video, Telefon oder vor Ort</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="TI-Beratung wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="check">
+    <div class="ta" role="listitem" data-art="check" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z M9 12l2 2 4-4"/></svg></span>
      <div class="ta-text"><h3>Praxis-Check IT-Sicherheit</h3><p>Wir schauen uns die IT deiner Praxis an und zeigen dir, wo du gut aufgestellt bist und wo nicht.</p></div>
      <div class="ta-meta"><span class="ta-dauer">60 Min</span><span class="ta-form">Vor Ort am Niederrhein</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Praxis-Check IT-Sicherheit wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="datev">
+    <div class="ta" role="listitem" data-art="datev" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 13h8 M8 17h6"/></svg></span>
      <div class="ta-text"><h3>DATEV-Termin</h3><p>Für Fragen rund um DATEV in deiner Kanzlei oder deinem Unternehmen, auf Wunsch direkt per <span class="lx" data-lx="fernwartung">Fernwartung</span>.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video oder Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="DATEV-Termin wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="sl">
+    <div class="ta" role="listitem" data-art="sl" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6 M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
      <div class="ta-text"><h3>SelectLine-Termin</h3><p>Für Fragen zu SelectLine, von der Einrichtung bis zum Alltag mit der Software.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video oder Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="SelectLine-Termin wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="ki">
+    <div class="ta" role="listitem" data-art="ki" data-g="fach">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z M19 17l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
      <div class="ta-text"><h3>KI-Check</h3><p>Wir schauen, wie dein Team KI heute nutzt, und zeigen dir, wie es sicher und mit klaren Regeln geht.</p></div>
      <div class="ta-meta"><span class="ta-dauer">45 Min</span><span class="ta-form">Video, Telefon oder vor Ort</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="KI-Check wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta" role="listitem" data-art="rueck">
+    <div class="ta" role="listitem" data-art="rueck" data-g="neu">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
      <div class="ta-text"><h3>Rückruf vereinbaren</h3><p>Du wählst die Zeit, wir rufen dich an. Gut, wenn du erst einmal kurz sprechen willst.</p></div>
      <div class="ta-meta"><span class="ta-dauer">15 Min</span><span class="ta-form">Telefon</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Rückruf vereinbaren wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="ta ta-kunde" role="listitem" data-art="kunde">
+    <div class="ta ta-kunde" role="listitem" data-art="kunde" data-g="best">
+     <span class="ta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0 M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></span>
      <div class="ta-text"><span class="ta-hin">Für Bestandskunden</span><h3>Termin mit deiner Ansprechperson</h3><p>Du bist schon Kunde? Dann plan hier einen Termin mit der Person, die dich bei uns betreut.</p></div>
      <div class="ta-meta"><span class="ta-dauer">30 Min</span><span class="ta-form">Video, Telefon oder vor Ort</span></div>
      <button class="ta-wahl" type="button" aria-pressed="false" aria-label="Termin mit deiner Ansprechperson wählen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
+    <!-- Drei Spalten (Leon 25.11.2026, Idee Termin-idee/): Spaltentitel und Gruppen, nur in body.tm3 sichtbar; per CSS-order einsortiert -->
+    <p class="sp-titel ta-sp" role="none">Terminart</p>
+    <p class="ta-gruppe" data-g="neu" role="none">Neu bei cloudvibe</p>
+    <p class="ta-gruppe" data-g="fach" role="none">Fachthemen</p>
+    <p class="ta-gruppe" data-g="best" role="none">Für Bestandskunden</p>
    </div>
    </div>
 
@@ -92,6 +105,8 @@
      <!-- Tag und Uhrzeit (Kompakt: Kalender links, Uhrzeiten rechts) -->
      <div class="bp-schritt" id="sZeit">
       <div class="bp-kal">
+       <p class="sp-titel">Tag</p>
+       <div class="kal-monate" id="kalMonate" role="group" aria-label="Monat"></div>
        <div class="kal-kopf">
         <button class="kal-nav" type="button" id="kalZur" aria-label="Vorheriger Monat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
         <span class="kal-monat" id="kalMonat"></span>
@@ -100,8 +115,10 @@
        <div class="kal" id="kal" role="grid" aria-label="Freie Tage"></div>
       </div>
       <div class="bp-uhr">
+       <p class="sp-titel">Uhrzeit</p>
        <div class="zeiten-kopf" id="zeitenKopf">Wähl einen Tag mit freien Zeiten.</div>
        <div class="zeiten" id="zeiten"></div>
+       <div class="weg-w" id="wegW"><p class="weg-t">Gesprächsweg</p><div class="seg-w" id="wegSeg" role="radiogroup" aria-label="Gesprächsweg"></div></div>
        <div class="bp-fuss"><button class="btn" type="button" id="zuAngaben" disabled>Weiter</button></div>
       </div>
      </div>

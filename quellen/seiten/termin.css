@@ -199,3 +199,120 @@ body.tmK .kal-kopf{margin-bottom:8px}
  body.tmK .bp-besch{font-size:14px}
  .bp-so-t{flex-basis:100%}
 }
+
+/* ---------- Aufbau Drei Spalten (Standard, body.tm3 + tmK; Leon 25.11.2026, Idee Termin-idee/) ----------
+   Terminart | Tag | Uhrzeit nebeneinander, Terminarten in Gruppen mit Symbol.
+   Gruppenfarben (Leon: auf der Termin-Seite auch Grün): Neu = Blau, Fachthemen = unser Grün, Bestandskunden = Petrol.
+   Kontrast Symbol zu Kachel hell 3,8 bis 6,4 : 1, dunkel 3,6 bis 8,3 : 1 (Grafik mindestens 3 : 1). */
+.ta-ic,.ta-gruppe,.sp-titel,.kal-monate,.weg-w,.kal-tag small{display:none}
+.ta{--ic:var(--blue)}
+.ta[data-g="fach"]{--ic:var(--gt)}
+.ta[data-g="best"]{--ic:#1F5A66}
+body.dark .ta[data-g="best"]{--ic:#6FB3BF}
+
+/* eine Karte: Liste links und Buchungsfeld rechts schließen aneinander an */
+body.tm3 .buchung{grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:0;align-items:stretch}
+body.tm3 .ta-spalte{display:flex;flex-direction:column}
+body.tm3 .ta-titel{display:none}
+body.tm3 .ta-liste{flex:1;display:flex;flex-direction:column;gap:2px;padding:22px 14px 18px;border-radius:30px 0 0 30px;border-right:0;overflow:visible}
+body.tm3 .bp{border-radius:0 30px 30px 0;padding:22px 30px 18px}
+
+/* Spaltentitel: leise, ohne Nummern */
+body.tm3 .sp-titel{display:block;font:700 15px Comfortaa,sans-serif;color:var(--text);margin:0 0 12px}
+body.tm3 .ta-sp{order:0;margin:0 0 6px 10px}
+body.tm3 .ta-gruppe{display:block;font:700 12.5px 'Mozilla Text',sans-serif;letter-spacing:.04em;color:var(--muted);padding:12px 10px 4px}
+body.tm3 .ta-gruppe[data-g="neu"]{order:1}
+body.tm3 .ta[data-art="erst"]{order:2}
+body.tm3 .ta[data-art="rueck"]{order:3}
+body.tm3 .ta-gruppe[data-g="fach"]{order:4}
+body.tm3 .ta[data-art="ti"]{order:5}
+body.tm3 .ta[data-art="check"]{order:6}
+body.tm3 .ta[data-art="datev"]{order:7}
+body.tm3 .ta[data-art="sl"]{order:8}
+body.tm3 .ta[data-art="ki"]{order:9}
+body.tm3 .ta-gruppe[data-g="best"]{order:10}
+body.tm3 .ta[data-art="kunde"]{order:11}
+
+/* Zeilen: Symbol-Kachel + Name + Dauer, ohne Trennlinien, Auswahl als weiche blaue Fläche mit feinem Rand */
+body.tm3 .ta{grid-template-columns:40px minmax(0,1fr);column-gap:14px;row-gap:1px;padding:9px 12px;border:0!important;border-radius:16px}
+body.tm3 .ta-ic{display:grid;place-items:center;grid-column:1;grid-row:1/3;width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--ic) 12%,var(--bg))}
+body.dark.tm3 .ta-ic{background:color-mix(in srgb,var(--ic) 16%,var(--bg))}
+body.tm3 .ta-ic svg{width:20px;height:20px;fill:none;stroke:var(--ic);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body.tm3 .ta-text,body.tm3 .ta-meta{grid-column:2}
+body.tm3 .ta h3{font-size:15.5px}
+body.tm3 .ta-hin{display:none}
+body.tm3 .ta:hover{background:color-mix(in srgb,var(--blue) 5%,transparent)}
+body.tm3 .ta.on{background:color-mix(in srgb,var(--blue) 8%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--blue) 70%,transparent)}
+body.tm3 .ta.on:after{display:none}
+body.tm3 .ta-wahl:focus-visible{outline-offset:-2px;border-radius:16px}
+
+/* Kopf im Buchungsfeld etwas ruhiger */
+body.tm3 .bp-kopf{padding-bottom:14px;margin-bottom:18px}
+
+/* Tag: Monatsleiste mit freien Tagen statt Pfeilen, Tage mit „x frei“ */
+body.tm3 .kal-kopf{display:none}
+body.tm3 .kal-monate{display:flex;gap:4px;padding:4px;margin-bottom:14px;border-radius:18px;background:color-mix(in srgb,var(--text) 5%,transparent)}
+.km{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 4px;border:0;border-radius:14px;background:transparent;color:var(--muted);cursor:pointer;transition:background .2s,color .2s}
+.km b{font:700 14px Comfortaa,sans-serif;color:var(--text)}
+.km span{font-size:12px}
+.km:hover:not(:disabled) b{color:var(--blue)}
+.km.on{background:var(--bg);box-shadow:0 1px 4px rgba(15,25,50,.16)}
+.km.on b{color:var(--blue)}
+body.dark .km.on{background:#2A3140}
+.km:disabled{opacity:.45;cursor:default}
+.km:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+body.tm3 .kal{gap:6px}
+body.tm3 .kal-tag,body.tm3 .kal-leer{height:56px}
+body.tm3 .kal-tag{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:16px}
+body.tm3 .kal-tag small{display:block;font:400 11px 'Mozilla Text',sans-serif;color:var(--muted)}
+body.tm3 .kal-tag.frei:after{display:none}
+body.tm3 .kal-tag.frei{border-color:color-mix(in srgb,var(--blue) 22%,transparent)}
+body.tm3 .kal-tag.frei small{color:color-mix(in srgb,var(--blue) 80%,var(--text))}
+body.tm3 .kal-tag.wahl small{color:#fff}
+
+/* Uhrzeit: Tag groß, Zeiten zweispaltig, Gesprächsweg darunter */
+body.tm3 .zk-tag{display:block;font:700 19px/1.3 Comfortaa,sans-serif;color:var(--text)}
+body.tm3 .zk-info{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+body.tm3 .zeiten{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+body.tm3 .weg-w{display:block;margin-top:22px}
+body.tm3 .weg-w:has(.seg-w:empty){display:none}
+.weg-t{font:700 13px 'Mozilla Text',sans-serif;color:var(--muted);letter-spacing:.02em;margin-bottom:8px}
+body.tm3 .bp-fuss{justify-content:stretch}
+body.tm3 .bp-fuss .btn{width:100%;justify-content:center}
+body.tm3 .bp-form .bp-fuss .btn{width:auto}
+body.tm3 .bp-form .bp-fuss{justify-content:flex-end}
+@media(min-width:1181px){
+ body.tm3 #sZeit{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+ body.tm3 .zeiten-kopf{margin:0 0 14px}
+}
+@media(max-width:1180px) and (min-width:1001px){
+ body.tm3 .buchung{grid-template-columns:minmax(0,300px) minmax(0,1fr)}
+ body.tm3 .bp-uhr .sp-titel{margin-top:22px}
+}
+@media(max-width:1000px){
+ body.tm3 .buchung{grid-template-columns:minmax(0,1fr);gap:18px}
+ body.tm3 .ta-liste{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 6px;border-radius:30px;border-right:1px solid var(--edge)}
+ body.tm3 .ta-liste>.ta-sp,body.tm3 .ta-gruppe{grid-column:1/-1}
+ body.tm3 .bp{border-radius:30px}
+ body.tm3 .bp-uhr .sp-titel{margin-top:22px}
+}
+@media(max-width:560px){
+ body.tm3 .ta-liste{padding:18px 10px 14px}
+ body.tm3 .ta{grid-template-columns:30px minmax(0,1fr);column-gap:9px;padding:8px}
+ body.tm3 .ta-ic{width:30px;height:30px;border-radius:9px}
+ body.tm3 .ta-ic svg{width:16px;height:16px}
+ body.tm3 .ta h3{font-size:13.5px}
+ body.tm3 .ta-gruppe{padding:10px 8px 2px}
+ body.tm3 .kal-tag,body.tm3 .kal-leer{height:52px}
+ body.tm3 .km span{font-size:11px}
+ body.tm3 .zeiten{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+/* Drei Spalten, Nachbesserung: Dauer und Gesprächsweg fließen als eine Zeile; Linie über „Uhrzeit“ statt unter dem Titel */
+body.tm3 .ta-meta{display:block;font-size:13px;line-height:1.45;color:var(--muted)}
+body.tm3 .ta-meta .ta-dauer{font-size:13px}
+body.tm3 .zeiten-kopf{border-top:0;padding-top:0;margin-top:0}
+@media(max-width:1180px){
+ body.tm3 .bp-uhr .sp-titel{margin-top:22px;padding-top:18px;border-top:1px solid var(--edge)}
+ body.tm3 .zeiten{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:560px){body.tm3 .zeiten{grid-template-columns:repeat(3,minmax(0,1fr))!important}}body.tm3 .ta-meta .ta-form:before{content:"\00a0· "}

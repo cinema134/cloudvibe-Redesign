@@ -5,6 +5,9 @@
   const $ = (i) => document.getElementById(i);
   const bp = $('bp');
   if (!bp) return;
+  const B = document.body;
+  const kompakt = () => B.classList.contains('tmK');
+  const drei = () => B.classList.contains('tm3'); // Drei Spalten (Leon 25.11.2026): Terminart | Tag | Uhrzeit
 
   // Dauer und Form sind Beispiele (Richtwerte), Formen: video, tel, ort
   const ARTEN = {
@@ -74,18 +77,53 @@
       const s = slots(d), wahl = st.tag && st.tag.getTime() === d.getTime();
       const cls = ['kal-tag', s.length ? 'frei' : '', wahl ? 'wahl' : '', d.getTime() === heute.getTime() ? 'heute' : ''].filter(Boolean).join(' ');
       const lab = `${WT[w]}, ${t}. ${MONATE[m]}${s.length ? ', ' + s.length + ' freie Zeiten' : ', keine freien Zeiten'}`;
-      h += `<button type="button" class="${cls}" data-t="${t}" aria-label="${lab}"${s.length ? '' : ' disabled'}${wahl ? ' aria-pressed="true"' : ''}>${t}</button>`;
+      h += `<button type="button" class="${cls}" data-t="${t}" aria-label="${lab}"${s.length ? '' : ' disabled'}${wahl ? ' aria-pressed="true"' : ''}>${t}<small aria-hidden="true">${s.length ? s.length + ' frei' : ''}</small></button>`;
     }
     $('kal').innerHTML = h;
+    monate();
+  }
+
+  /* Drei Spalten: Monatsleiste mit Anzahl freier Tage statt Pfeilen */
+  function freieTage(j, m) {
+    let n = 0;
+    const ende = new Date(j, m + 1, 0).getDate();
+    for (let t = 1; t <= ende; t++) { const d = new Date(j, m, t); if (d.getDay() % 6 && slots(d).length) n++; }
+    return n;
+  }
+  function monate() {
+    if (!drei()) return;
+    let h = '';
+    for (let i = 0; i <= MAX_MONATE; i++) {
+      const d = new Date(start.getFullYear(), start.getMonth() + i, 1), j = d.getFullYear(), m = d.getMonth();
+      const n = freieTage(j, m), on = j === st.jahr && m === st.monat;
+      h += `<button type="button" class="km${on ? ' on' : ''}" data-i="${i}" aria-pressed="${on}"${n ? '' : ' disabled'}><b>${MONATE[m]}</b><span>${n ? n + (n === 1 ? ' Tag frei' : ' Tage frei') : 'ausgebucht'}</span></button>`;
+    }
+    $('kalMonate').innerHTML = h;
+  }
+  // Drei Spalten: immer ein Tag gewählt, damit die Uhrzeit-Spalte nie leer ist
+  function autoTag() {
+    if (!drei()) return;
+    if (st.tag && st.tag.getFullYear() === st.jahr && st.tag.getMonth() === st.monat && slots(st.tag).length) return;
+    st.tag = null; st.zeit = null;
+    const ende = new Date(st.jahr, st.monat + 1, 0).getDate();
+    for (let t = 1; t <= ende; t++) { const d = new Date(st.jahr, st.monat, t); if (d.getDay() % 6 && slots(d).length) { st.tag = d; break; } }
   }
 
   function zeiten() {
     const z = $('zeiten');
-    if (!st.tag) { $('zeitenKopf').textContent = 'Wähl einen Tag mit freien Zeiten.'; z.innerHTML = ''; return; }
-    const d = st.tag;
-    $('zeitenKopf').innerHTML = `Freie Zeiten am <b>${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</b>`;
-    z.innerHTML = slots(d).map((t) => `<button type="button" class="zeit${t === st.zeit ? ' wahl' : ''}" data-z="${t}"${t === st.zeit ? ' aria-pressed="true"' : ''}>${t}</button>`).join('');
+    weg();
+    if (!st.tag) { $('zeitenKopf').textContent = 'Wähl einen Tag mit freien Zeiten.'; z.innerHTML = ''; $('zuAngaben').disabled = true; return; }
+    const d = st.tag, s = slots(d);
+    $('zeitenKopf').innerHTML = drei()
+      ? `<span class="zk-tag">${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</span><span class="zk-info">${s.length} ${s.length === 1 ? 'freie Zeit' : 'freie Zeiten'}</span>`
+      : `Freie Zeiten am <b>${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</b>`;
+    z.innerHTML = s.map((t) => `<button type="button" class="zeit${t === st.zeit ? ' wahl' : ''}" data-z="${t}"${t === st.zeit ? ' aria-pressed="true"' : ''}>${t}</button>`).join('');
     $('zuAngaben').disabled = !st.zeit;
+  }
+  // Drei Spalten: Gesprächsweg gleich neben der Uhrzeit wählen (im Formular dann nicht noch einmal)
+  function weg() {
+    if (!drei() || !st.art) { $('wegSeg').innerHTML = ''; return; }
+    $('wegSeg').innerHTML = ARTEN[st.art].f.map((f) => `<label><input type="radio" name="t-weg" value="${f}"${f === st.form ? ' checked' : ''}><span>${FORM[f]}</span></label>`).join('');
   }
 
   /* ---- Schritte ---- */
@@ -127,14 +165,14 @@
       for (let t = 1; t <= ende && !hat; t++) { const d = new Date(j, m, t); if (d.getDay() % 6 && slots(d).length) hat = true; }
       if (hat) { const d = new Date(j, m, 1); st.jahr = d.getFullYear(); st.monat = d.getMonth(); break; }
     }
-    kalender(); zeiten(); zeige(0);
+    autoTag(); kalender(); zeiten(); zeige(0);
     if (scrollen && matchMedia('(max-width:1000px)').matches) bp.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function angaben() {
     const a = ARTEN[st.art];
-    $('bpWann').textContent = wannText();
-    $('formArt').hidden = a.f.length < 2;
+    $('bpWann').textContent = wannText() + (drei() ? ', ' + FORM_LANG[st.form] : '');
+    $('formArt').hidden = a.f.length < 2 || drei();
     $('formWahl').innerHTML = a.f.map((f) => `<label><input type="radio" name="t-form" value="${f}"${f === st.form ? ' checked' : ''}><span>${FORM[f]}</span></label>`).join('');
     $('feldAp').hidden = st.art !== 'kunde';
     formFelder();
@@ -158,6 +196,14 @@
   });
   $('kalZur').onclick = () => { const d = new Date(st.jahr, st.monat - 1, 1); st.jahr = d.getFullYear(); st.monat = d.getMonth(); kalender(); };
   $('kalVor').onclick = () => { const d = new Date(st.jahr, st.monat + 1, 1); st.jahr = d.getFullYear(); st.monat = d.getMonth(); kalender(); };
+  $('kalMonate').addEventListener('click', (e) => {
+    const b = e.target.closest('.km');
+    if (!b || b.disabled) return;
+    const d = new Date(start.getFullYear(), start.getMonth() + +b.dataset.i, 1);
+    st.jahr = d.getFullYear(); st.monat = d.getMonth();
+    autoTag(); kalender(); zeiten();
+  });
+  $('wegSeg').addEventListener('change', (e) => { st.form = e.target.value; });
   $('kal').addEventListener('click', (e) => {
     const b = e.target.closest('.kal-tag');
     if (!b || b.disabled) return;
@@ -210,27 +256,30 @@
 
   /* ---- Aufbau Kompakt (Standard) / Bisher (Prüfdokument 24.11.2026: "auf einen Blick die Terminauswahl sehen")
      Kompakt: schmale Liste links, Kalender der gewählten Art sofort rechts; Umschalter im Panel, ?termin=bisher ---- */
-  const B = document.body;
-  const kompakt = () => B.classList.contains('tmK');
+  // Drei Spalten (Standard, Leon 25.11.2026): body.tm3 zusätzlich zu tmK; ?termin=spalten|kompakt|bisher
   function setAufbau(v, merken) {
+    if (!['spalten', 'kompakt', 'bisher'].includes(v)) v = 'spalten';
     const k = v !== 'bisher';
     B.classList.toggle('tmK', k);
-    document.querySelectorAll('[data-tm]').forEach((b) => b.classList.toggle('on', (b.dataset.tm === 'kompakt') === k));
+    B.classList.toggle('tm3', v === 'spalten');
+    document.querySelectorAll('[data-tm]').forEach((b) => b.classList.toggle('on', b.dataset.tm === v));
+    $('zuAngaben').textContent = v === 'spalten' ? 'Weiter zu deinen Angaben' : 'Weiter';
     if (k && !st.art) waehleArt('erst', false); // sofort buchbar: erste Art vorgewählt
+    else if (st.art && !$('sZeit').hidden) { autoTag(); kalender(); zeiten(); }
     klebe();
-    if (merken && typeof CV !== 'undefined') CV.merke('termin', k ? 'kompakt' : 'bisher');
+    if (merken && typeof CV !== 'undefined') CV.merke('termin', v);
   }
   if (document.getElementById('stgPanel') && typeof CV !== 'undefined' && CV.panelZeile) {
     const z = document.createElement('div');
     z.className = 'stg-z'; z.dataset.ziel = '#terminarten';
-    z.innerHTML = '<span>Terminauswahl</span><div class="seg"><button type="button" data-tm="kompakt" class="on" title="Liste und Kalender auf einen Blick">Kompakt</button><button type="button" data-tm="bisher" title="Bisher: große Liste mit Beschreibungen">Bisher</button></div>';
+    z.innerHTML = '<span>Terminauswahl</span><div class="seg"><button type="button" data-tm="spalten" class="on" title="Terminart, Tag und Uhrzeit nebeneinander">Drei Spalten</button><button type="button" data-tm="kompakt" title="Liste und Kalender auf einen Blick">Kompakt</button><button type="button" data-tm="bisher" title="Bisher: große Liste mit Beschreibungen">Bisher</button></div>';
     CV.panelZeile(z); // Panel-Reiter „Diese Seite“
     z.querySelectorAll('[data-tm]').forEach((b) => (b.onclick = () => setAufbau(b.dataset.tm, true)));
   }
 
   /* ---- Prüfhilfe über Adress-Parameter ---- */
   const Q = new URLSearchParams(location.search), art = Q.get('art');
-  const aufbau = (typeof CV !== 'undefined') ? CV.wert('termin', Q.get('termin'), 'kompakt') : (Q.get('termin') || 'kompakt');
+  const aufbau = (typeof CV !== 'undefined') ? CV.wert('termin', Q.get('termin'), 'spalten') : (Q.get('termin') || 'spalten');
   setAufbau(aufbau, false); // ?art=… wählt danach die gewünschte Art
   if (art && ARTEN[art]) {
     waehleArt(art, false);
