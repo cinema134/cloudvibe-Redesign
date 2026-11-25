@@ -171,7 +171,8 @@
 
   function angaben() {
     const a = ARTEN[st.art];
-    $('bpWann').textContent = wannText() + (drei() ? ', ' + FORM_LANG[st.form] : '');
+    // Drei Spalten: Kopf im Buchungsfeld entfällt, deshalb Terminart hier mit nennen
+    $('bpWann').textContent = drei() ? `${a.n}: ${wannText()}, ${FORM_LANG[st.form]}` : wannText();
     $('formArt').hidden = a.f.length < 2 || drei();
     $('formWahl').innerHTML = a.f.map((f) => `<label><input type="radio" name="t-form" value="${f}"${f === st.form ? ' checked' : ''}><span>${FORM[f]}</span></label>`).join('');
     $('feldAp').hidden = st.art !== 'kunde';
