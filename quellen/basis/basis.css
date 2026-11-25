@@ -946,3 +946,13 @@ body.hkAn .nur-frei{display:none!important}body.hkAn .hk-karte .hsp{display:grid
    --blau-t = Blau als Textfarbe; Buttons, Flächen, Rahmen und die Hervorhebung in großen Überschriften bleiben #2D6CDF. */
 body.dark{--blau-t:#5B8EF0}
 body.dark :is(h1,h2,.mh-h,.ko-mt,.bp-fertig-t,.kx-h) b{color:var(--blue)}
+/* Hero je Seite abschaltbar (Leon 25.11.2026, body.heroAus): nur Abstand unter der Kopfleiste bleibt.
+   Die H1 bleibt unsichtbar für Suchmaschinen und Screenreader erhalten, alles andere im Hero ist aus. */
+body.heroAus main>:is(.uhero,.hero){min-height:0!important;height:auto!important;padding:clamp(112px,9vw,132px) 0 0!important;margin:0!important;background:none!important;overflow:hidden}
+body.heroAus main>:is(.uhero,.hero):before,body.heroAus main>:is(.uhero,.hero):after{display:none!important}
+body.heroAus main>:is(.uhero,.hero)>canvas,body.heroAus main>:is(.uhero,.hero) .welle{display:none!important}
+body.heroAus main>:is(.uhero,.hero)>*{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+body.heroAus main>:is(.uhero,.hero)>* *{visibility:hidden}
+body.heroAus main>:is(.uhero,.hero) h1,body.heroAus main>:is(.uhero,.hero) h1 *{visibility:visible}
+/* erster sichtbarer Abschnitt nach dem Hero (ausgeblendete Module davor zählen nicht) */
+body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(12px,1.6vw,24px)}

@@ -1058,6 +1058,25 @@ const CV = (function () {
     }
     setHkRechts(wert('hkr-' + hkSeite, null, 'an') === 'an');
   }
+  /* Hero je Seite abschaltbar (Leon 25.11.2026): Diese Seite → „Hero (erster Bildschirm)“ Zeigen | Aus, je Seite gemerkt (hero-<datei>), ?hero=aus.
+     Aus = nur Abstand unter der Kopfleiste, die H1 bleibt für Suchmaschinen und Screenreader erhalten. Werkzeugseiten haben ohnehin keinen Hero. */
+  const heroEl = document.querySelector('main>.uhero,main>.hero');
+  if (heroEl && !B.classList.contains('heroW')) {
+    function setHero(an, merken) {
+      B.classList.toggle('heroAus', !an);
+      document.querySelectorAll('[data-heroan]').forEach((x) => x.classList.toggle('on', (x.dataset.heroan === 'an') === an));
+      if (merken) merke('hero-' + hkSeite, an ? 'an' : 'aus');
+      setTimeout(() => { if (typeof wellenNeu === 'function') wellenNeu(); }, 0);
+    }
+    if (inhSp) {
+      const z = document.createElement('div');
+      z.className = 'stg-z'; z.dataset.ziel = '#top';
+      z.innerHTML = '<span>Hero (erster Bildschirm)</span><div class="seg"><button type="button" data-heroan="an" class="on">Zeigen</button><button type="button" data-heroan="aus">Aus</button></div>';
+      panelZeile(z);
+      z.querySelectorAll('[data-heroan]').forEach((x) => (x.onclick = () => setHero(x.dataset.heroan === 'an', true)));
+    }
+    setHero(wert('hero-' + hkSeite, Q.get('hero'), 'an') !== 'aus', false);
+  }
   bereit = true;
 
   return { $, Q, panelZeile, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),

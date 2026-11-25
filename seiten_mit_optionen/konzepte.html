@@ -960,6 +960,16 @@ body.hkAn .nur-frei{display:none!important}body.hkAn .hk-karte .hsp{display:grid
    --blau-t = Blau als Textfarbe; Buttons, Flächen, Rahmen und die Hervorhebung in großen Überschriften bleiben #2D6CDF. */
 body.dark{--blau-t:#5B8EF0}
 body.dark :is(h1,h2,.mh-h,.ko-mt,.bp-fertig-t,.kx-h) b{color:var(--blue)}
+/* Hero je Seite abschaltbar (Leon 25.11.2026, body.heroAus): nur Abstand unter der Kopfleiste bleibt.
+   Die H1 bleibt unsichtbar für Suchmaschinen und Screenreader erhalten, alles andere im Hero ist aus. */
+body.heroAus main>:is(.uhero,.hero){min-height:0!important;height:auto!important;padding:clamp(112px,9vw,132px) 0 0!important;margin:0!important;background:none!important;overflow:hidden}
+body.heroAus main>:is(.uhero,.hero):before,body.heroAus main>:is(.uhero,.hero):after{display:none!important}
+body.heroAus main>:is(.uhero,.hero)>canvas,body.heroAus main>:is(.uhero,.hero) .welle{display:none!important}
+body.heroAus main>:is(.uhero,.hero)>*{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+body.heroAus main>:is(.uhero,.hero)>* *{visibility:hidden}
+body.heroAus main>:is(.uhero,.hero) h1,body.heroAus main>:is(.uhero,.hero) h1 *{visibility:visible}
+/* erster sichtbarer Abschnitt nach dem Hero (ausgeblendete Module davor zählen nicht) */
+body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(12px,1.6vw,24px)}
 /* ================= Konzepte (Vergleichs- und Abstimmungsseite, noindex) =================
    Acht Konzept-Ideen mit Varianten als bedienbare Mini-Mockups. Präfix ko-, damit nichts mit anderen Seiten kollidiert. */
 main [hidden],.ck[hidden],.ck [hidden]{display:none!important}
@@ -1643,7 +1653,28 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .kx-weg>i b{font-size:12.5px}
 .kx-weg>i small{grid-column:1}
 .kx-weg>i em{grid-column:2;grid-row:1/3;align-self:center;font-style:normal;font-weight:700;font-size:11px;padding:3px 10px;border-radius:100px;color:var(--muted);background:color-mix(in srgb,var(--text) 6%,transparent)}
-.kx-weg>i.bleibt em{color:var(--gt);background:var(--gbg)}</style><script src="../einstellungen.js"></script>
+.kx-weg>i.bleibt em{color:var(--gt);background:var(--gbg)}
+/* Entscheidungen und Original-Link (Leon 25.11.2026) */
+.ko-ent{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:22px;padding:14px 18px;border-radius:20px;background:color-mix(in srgb,var(--text) 4%,transparent);max-width:1000px}
+.ko-ent-t{font:700 13.5px Comfortaa,sans-serif}
+.ko-ent-b{display:inline-flex;flex-wrap:wrap;gap:6px}
+.ko-ent-b button{border:1px solid var(--edge);background:var(--bg);cursor:pointer;font:700 13px 'Mozilla Text',sans-serif;color:var(--muted);padding:7px 14px;border-radius:100px;transition:background .2s,color .2s,border-color .2s}
+.ko-ent-b button:hover{color:var(--text);border-color:color-mix(in srgb,var(--text) 25%,transparent)}
+.ko-ent-b button.on{background:var(--gbg);border-color:transparent;color:var(--gt)}
+.ko-ent-b button.offen.on{background:var(--bg);color:var(--text);border-color:var(--edge)}
+.ko-ent-b button:focus-visible,.ko-orig:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.ko-orig{display:inline-flex;align-items:center;gap:7px;margin-left:auto;font:700 14px 'Mozilla Text',sans-serif;color:var(--blau-t)}
+.ko-orig[hidden]{display:none}
+.ko-orig svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ko-orig:hover span{text-decoration:underline;text-underline-offset:3px}
+.ko .eb[data-ent]::after{content:attr(data-ent);margin-left:12px;padding:3px 11px;border-radius:100px;background:var(--gbg);color:var(--gt);font:700 12px 'Mozilla Text',sans-serif;letter-spacing:0;text-transform:none}
+.ko-wahl button.ent::after{content:" ✓";color:var(--gt)}
+.ko-wahl button.on.ent::after{color:inherit}
+.ko-inhalt li[data-ent] a::after{content:"✓";margin-left:auto;padding-left:8px;color:var(--gt);font-weight:700}
+.ko-stand{margin-top:14px;font-size:14.5px;color:var(--muted)}
+.ko-stand b{color:var(--gt)}
+@media(max-width:560px){.ko-orig{margin-left:0}}main section.ko .ko-kopf .eb[data-ent]::after{display:inline-block}
+</style><script src="../einstellungen.js"></script>
 </head>
 <body class="lgB " data-welt="allgemein">
 <header class="kopf" id="kopf">
@@ -3278,7 +3309,7 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
     <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Ein zweiter Blauton, der nur im Dunkelmodus vorkommt.</li></ul></div>
   </div>
 
-  <div class="ko-empf"><b>Entschieden</b><p>Variante B (Leon, 25.11.2026), auf allen Seiten umgesetzt. Lesbarkeit geht vor, und der hellere Ton greift nur dort, wo kleine Schrift auf Dunkel steht. Die Regel „Blau in Hell und Dunkel gleich“ gilt dann weiter für Buttons und Überschriften.</p></div>
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante B, auf allen Seiten umgesetzt. Lesbarkeit geht vor, und der hellere Ton greift nur dort, wo kleine Schrift auf Dunkel steht. Die Regel „Blau in Hell und Dunkel gleich“ gilt dann weiter für Buttons und Überschriften.</p></div>
  </div>
 </section>
 
@@ -3439,6 +3470,9 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
  </div>
 </section>
 
+<!-- Entscheidungen (Leon 25.11.2026): Startwerte aus dem Projektstand; im Browser bzw. beim Speichern der Datei überschreibbar -->
+<script type="application/json" id="ko-entscheidungen">{"ticket":"B","kontaktformular":"A","cookies":"C","kopfleiste":"C","dunkelblau":"B"}</script>
+<div id="ko-links" hidden data-startseite="index.html" data-gesundheitswesen="gesundheitswesen.html" data-arztpraxen="gesundheitswesen-arztpraxen.html" data-kanzleien="kanzleien.html" data-unternehmen="unternehmen.html" data-datev="leistungen-datev.html" data-ki="ki-sicher-nutzen.html" data-karriere="ueber-uns-karriere.html" data-newsletter="news-newsletter.html" data-newsbeitrag="news-datensicherung-in-der-praxis.html" data-termin="termin.html" data-support="support.html" data-wellen="wellen-varianten.html"></div>
 </main>
 
 <!-- ================= Vorführung Cookie-Abfrage (liegt über der Seite, merkt sich nichts) ================= -->
@@ -4707,6 +4741,25 @@ const CV = (function () {
     }
     setHkRechts(wert('hkr-' + hkSeite, null, 'an') === 'an');
   }
+  /* Hero je Seite abschaltbar (Leon 25.11.2026): Diese Seite → „Hero (erster Bildschirm)“ Zeigen | Aus, je Seite gemerkt (hero-<datei>), ?hero=aus.
+     Aus = nur Abstand unter der Kopfleiste, die H1 bleibt für Suchmaschinen und Screenreader erhalten. Werkzeugseiten haben ohnehin keinen Hero. */
+  const heroEl = document.querySelector('main>.uhero,main>.hero');
+  if (heroEl && !B.classList.contains('heroW')) {
+    function setHero(an, merken) {
+      B.classList.toggle('heroAus', !an);
+      document.querySelectorAll('[data-heroan]').forEach((x) => x.classList.toggle('on', (x.dataset.heroan === 'an') === an));
+      if (merken) merke('hero-' + hkSeite, an ? 'an' : 'aus');
+      setTimeout(() => { if (typeof wellenNeu === 'function') wellenNeu(); }, 0);
+    }
+    if (inhSp) {
+      const z = document.createElement('div');
+      z.className = 'stg-z'; z.dataset.ziel = '#top';
+      z.innerHTML = '<span>Hero (erster Bildschirm)</span><div class="seg"><button type="button" data-heroan="an" class="on">Zeigen</button><button type="button" data-heroan="aus">Aus</button></div>';
+      panelZeile(z);
+      z.querySelectorAll('[data-heroan]').forEach((x) => (x.onclick = () => setHero(x.dataset.heroan === 'an', true)));
+    }
+    setHero(wert('hero-' + hkSeite, Q.get('hero'), 'an') !== 'aus', false);
+  }
   bereit = true;
 
   return { $, Q, panelZeile, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
@@ -4944,5 +4997,92 @@ const CV = (function () {
     if ('ResizeObserver' in window) new ResizeObserver(skal).observe(s); else addEventListener('resize', skal);
   });
 })();
-</script>
+
+/* ================= Entscheidungen und „Im Original ansehen“ (Leon 25.11.2026) =================
+   Je Konzept: Variante wählen → Konzept ist als entschieden markiert (Abzeichen an der Eyebrow, Haken in der Übersicht, Zähler oben).
+   Gespeichert wie alle Einstellungen: im Browser (CV.merke, Schlüssel ko-<id>), lokal mit „Speichern“ in der Datei (#ko-entscheidungen),
+   für alle mit „Für alle festlegen“. Startwerte stehen in #ko-entscheidungen. Keine neuen p/li/h-Elemente (Speichern vergleicht deren Anzahl). */
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const hatCV = typeof CV !== 'undefined';
+  let start = {};
+  try { start = JSON.parse(($('#ko-entscheidungen') || {}).textContent || '{}'); } catch (e) {}
+  const links = ($('#ko-links') || {}).dataset || {};
+  // Originalseite je Konzept und Variante: [Seite, Zusatz an der Adresse]; _ = für alle Varianten gleich
+  const O = {
+    ticket: { A: ['startseite', ''], B: ['support', ''] }, teaminfo: { _: ['support', ''] }, newsletter: { _: ['newsletter', ''] },
+    cookies: { _: ['startseite', ''] }, ki: { _: ['ki', ''] }, karriere: { _: ['karriere', ''] }, kopfleiste: { _: ['startseite', ''] },
+    terminauswahl: { A: ['termin', '?termin=spalten'], B: ['termin', '?termin=kompakt'], C: ['termin', '?termin=bisher'] },
+    vorwahl: { _: ['termin', ''] }, supportmail: { _: ['support', ''] },
+    hauptbutton: { A: ['startseite', '?kbtn=ticket'], B: ['startseite', '?kbtn=termin'] },
+    heroaufbau: { A: ['kanzleien', '?heroauf=kachel'], B: ['kanzleien', '?heroauf=bisher'] },
+    einstiege: { A: ['gesundheitswesen', '?einstieg=raster'], B: ['gesundheitswesen', '?einstieg=liste'] },
+    herobuttons: { A: ['arztpraxen', ''], B: ['arztpraxen', '?herobtn=bisher'] }, kurzkoepfe: { _: ['newsbeitrag', ''] },
+    ablaeufe: { A: ['gesundheitswesen', '?ablauf=pfeil'], B: ['gesundheitswesen', '?ablauf=zeitleiste'] },
+    stimmen: { A: ['gesundheitswesen', '?kst=kompakt'], B: ['gesundheitswesen', '?kst=buehne'], C: ['gesundheitswesen', '?kst=liste'] },
+    aufzaehlung: { A: ['arztpraxen', '?az=L'], B: ['arztpraxen', '?az=P'], C: ['arztpraxen', '?az=H'], D: ['arztpraxen', '?az=S'] },
+    footer: { A: ['startseite', '?fuss=k'], B: ['startseite', '?fuss=a'] }, menschen: { _: ['startseite', ''] }, telefonie: { _: ['unternehmen', ''] },
+    dunkelblau: { A: ['arztpraxen', '?dunkel=1'], B: ['arztpraxen', '?dunkel=1'] }, datevfaq: { _: ['datev', '?fuer=unternehmen#faq'] },
+    welle: { A: ['startseite', '?welle=aktuell'], B: ['wellen', ''] },
+    begriff: { A: ['gesundheitswesen', '?begriff=Gesundheitswesen'], B: ['gesundheitswesen', '?begriff=Healthcare'] },
+  };
+  // Konzepte ohne Varianten-Umschalter: Varianten von Hand, sonst nur „So umsetzen“
+  const OPT = { kontaktformular: ['A', 'B'], cookies: ['A', 'B', 'C'], kopfleiste: ['A', 'B', 'C'] };
+  const stand = {};
+  const secs = $$('main > section.ko');
+
+  function zaehle() {
+    const n = secs.filter((s) => stand[s.id]).length;
+    const z = $('.ko-stand'); if (z) z.innerHTML = `<b>${n} von ${secs.length}</b> Konzepten entschieden`;
+  }
+  function zeige(sec, v) {
+    const id = sec.id, w = $('[data-wahl]', sec);
+    stand[id] = v || '';
+    sec.classList.toggle('ko-ent-ja', !!v);
+    const eb = $('.ko-kopf .eb', sec);
+    const lab = v === 'ja' ? 'Entschieden' : v ? 'Entschieden: ' + v : '';
+    if (eb) { if (v) eb.dataset.ent = lab; else delete eb.dataset.ent; }
+    $$('.ko-ent-b button', sec).forEach((b) => { b.classList.toggle('on', b.dataset.ent === (v || '')); b.setAttribute('aria-pressed', b.dataset.ent === (v || '')); });
+    if (w) $$('button', w).forEach((b) => b.classList.toggle('ent', b.dataset.v === v));
+    const a = $(`.ko-inhalt a[href="#${id}"]`); if (a && a.parentElement) { if (v) a.parentElement.dataset.ent = '1'; else delete a.parentElement.dataset.ent; }
+    zaehle();
+  }
+  function orig(sec) {
+    const o = O[sec.id], a = $('.ko-orig', sec);
+    if (!a) return;
+    const w = $('[data-wahl]', sec), cur = w ? ($('button.on', w) || {}).dataset?.v : null;
+    const z = o && (o[cur] || o._ || o[Object.keys(o)[0]]);
+    if (!z || !links[z[0]]) { a.hidden = true; return; }
+    a.hidden = false;
+    a.href = links[z[0]] + z[1];
+    $('span', a).textContent = cur && o[cur] ? `Variante ${cur} im Original ansehen` : 'Im Original ansehen';
+  }
+
+  secs.forEach((sec) => {
+    const id = sec.id, w = $('[data-wahl]', sec);
+    const opts = w ? $$('button', w).map((b) => [b.dataset.v, b.textContent.trim()]) : (OPT[id] || ['ja']).map((v) => [v, v === 'ja' ? 'So umsetzen' : 'Variante ' + v]);
+    const box = document.createElement('div');
+    box.className = 'ko-ent';
+    box.innerHTML = `<span class="ko-ent-t">Deine Entscheidung</span><span class="ko-ent-b" role="group" aria-label="Entscheidung">${opts.map(([v, t]) => `<button type="button" data-ent="${v}">${t}</button>`).join('')}<button type="button" data-ent="" class="offen">Noch offen</button></span><a class="ko-orig" target="_blank" rel="noopener" hidden><span>Im Original ansehen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>`;
+    $('.wrap', sec).appendChild(box);
+    $$('.ko-ent-b button', box).forEach((b) => b.addEventListener('click', () => {
+      const v = b.dataset.ent;
+      zeige(sec, v);
+      if (hatCV) { CV.merke('ko-' + id, v); if (CV.geaendert) CV.geaendert(); }
+      if (v && v !== 'ja' && w) { const vb = $(`button[data-v="${v}"]`, w); if (vb) vb.click(); }
+    }));
+    if (w) $$('button', w).forEach((b) => b.addEventListener('click', () => setTimeout(() => orig(sec), 0)));
+    const v = hatCV ? CV.wert('ko-' + id, null, start[id] || '') : start[id] || '';
+    zeige(sec, v);
+    // entschiedene Variante zuerst zeigen (außer die Adresse nennt eine andere)
+    if (v && v !== 'ja' && w && !new URLSearchParams(location.search).get(w.dataset.wahl)) { const vb = $(`button[data-v="${v}"]`, w); if (vb) vb.click(); }
+    orig(sec);
+  });
+  // Zähler unter der Übersicht
+  const nav = $('.ko-inhalt');
+  if (nav) { const z = document.createElement('div'); z.className = 'ko-stand'; nav.after(z); zaehle(); }
+  // Lokal speichern: Entscheidungen in die Datei schreiben
+  if (hatCV && CV.beimSpeichern) CV.beimSpeichern((d) => { const s = d.getElementById('ko-entscheidungen'); if (s) { const o = {}; Object.keys(stand).forEach((k) => { if (stand[k]) o[k] = stand[k]; }); s.textContent = JSON.stringify(o); } });
+})();</script>
 </body></html>

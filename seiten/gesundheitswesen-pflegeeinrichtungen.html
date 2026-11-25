@@ -960,6 +960,16 @@ body.hkAn .nur-frei{display:none!important}body.hkAn .hk-karte .hsp{display:grid
    --blau-t = Blau als Textfarbe; Buttons, Flächen, Rahmen und die Hervorhebung in großen Überschriften bleiben #2D6CDF. */
 body.dark{--blau-t:#5B8EF0}
 body.dark :is(h1,h2,.mh-h,.ko-mt,.bp-fertig-t,.kx-h) b{color:var(--blue)}
+/* Hero je Seite abschaltbar (Leon 25.11.2026, body.heroAus): nur Abstand unter der Kopfleiste bleibt.
+   Die H1 bleibt unsichtbar für Suchmaschinen und Screenreader erhalten, alles andere im Hero ist aus. */
+body.heroAus main>:is(.uhero,.hero){min-height:0!important;height:auto!important;padding:clamp(112px,9vw,132px) 0 0!important;margin:0!important;background:none!important;overflow:hidden}
+body.heroAus main>:is(.uhero,.hero):before,body.heroAus main>:is(.uhero,.hero):after{display:none!important}
+body.heroAus main>:is(.uhero,.hero)>canvas,body.heroAus main>:is(.uhero,.hero) .welle{display:none!important}
+body.heroAus main>:is(.uhero,.hero)>*{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+body.heroAus main>:is(.uhero,.hero)>* *{visibility:hidden}
+body.heroAus main>:is(.uhero,.hero) h1,body.heroAus main>:is(.uhero,.hero) h1 *{visibility:visible}
+/* erster sichtbarer Abschnitt nach dem Hero (ausgeblendete Module davor zählen nicht) */
+body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(12px,1.6vw,24px)}
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
 
@@ -2638,6 +2648,25 @@ const CV = (function () {
       z.querySelectorAll('[data-hkr]').forEach((x) => (x.onclick = () => setHkRechts(x.dataset.hkr === 'an')));
     }
     setHkRechts(wert('hkr-' + hkSeite, null, 'an') === 'an');
+  }
+  /* Hero je Seite abschaltbar (Leon 25.11.2026): Diese Seite → „Hero (erster Bildschirm)“ Zeigen | Aus, je Seite gemerkt (hero-<datei>), ?hero=aus.
+     Aus = nur Abstand unter der Kopfleiste, die H1 bleibt für Suchmaschinen und Screenreader erhalten. Werkzeugseiten haben ohnehin keinen Hero. */
+  const heroEl = document.querySelector('main>.uhero,main>.hero');
+  if (heroEl && !B.classList.contains('heroW')) {
+    function setHero(an, merken) {
+      B.classList.toggle('heroAus', !an);
+      document.querySelectorAll('[data-heroan]').forEach((x) => x.classList.toggle('on', (x.dataset.heroan === 'an') === an));
+      if (merken) merke('hero-' + hkSeite, an ? 'an' : 'aus');
+      setTimeout(() => { if (typeof wellenNeu === 'function') wellenNeu(); }, 0);
+    }
+    if (inhSp) {
+      const z = document.createElement('div');
+      z.className = 'stg-z'; z.dataset.ziel = '#top';
+      z.innerHTML = '<span>Hero (erster Bildschirm)</span><div class="seg"><button type="button" data-heroan="an" class="on">Zeigen</button><button type="button" data-heroan="aus">Aus</button></div>';
+      panelZeile(z);
+      z.querySelectorAll('[data-heroan]').forEach((x) => (x.onclick = () => setHero(x.dataset.heroan === 'an', true)));
+    }
+    setHero(wert('hero-' + hkSeite, Q.get('hero'), 'an') !== 'aus', false);
   }
   bereit = true;
 

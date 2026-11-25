@@ -229,3 +229,91 @@
     if ('ResizeObserver' in window) new ResizeObserver(skal).observe(s); else addEventListener('resize', skal);
   });
 })();
+
+/* ================= Entscheidungen und „Im Original ansehen“ (Leon 25.11.2026) =================
+   Je Konzept: Variante wählen → Konzept ist als entschieden markiert (Abzeichen an der Eyebrow, Haken in der Übersicht, Zähler oben).
+   Gespeichert wie alle Einstellungen: im Browser (CV.merke, Schlüssel ko-<id>), lokal mit „Speichern“ in der Datei (#ko-entscheidungen),
+   für alle mit „Für alle festlegen“. Startwerte stehen in #ko-entscheidungen. Keine neuen p/li/h-Elemente (Speichern vergleicht deren Anzahl). */
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const hatCV = typeof CV !== 'undefined';
+  let start = {};
+  try { start = JSON.parse(($('#ko-entscheidungen') || {}).textContent || '{}'); } catch (e) {}
+  const links = ($('#ko-links') || {}).dataset || {};
+  // Originalseite je Konzept und Variante: [Seite, Zusatz an der Adresse]; _ = für alle Varianten gleich
+  const O = {
+    ticket: { A: ['startseite', ''], B: ['support', ''] }, teaminfo: { _: ['support', ''] }, newsletter: { _: ['newsletter', ''] },
+    cookies: { _: ['startseite', ''] }, ki: { _: ['ki', ''] }, karriere: { _: ['karriere', ''] }, kopfleiste: { _: ['startseite', ''] },
+    terminauswahl: { A: ['termin', '?termin=spalten'], B: ['termin', '?termin=kompakt'], C: ['termin', '?termin=bisher'] },
+    vorwahl: { _: ['termin', ''] }, supportmail: { _: ['support', ''] },
+    hauptbutton: { A: ['startseite', '?kbtn=ticket'], B: ['startseite', '?kbtn=termin'] },
+    heroaufbau: { A: ['kanzleien', '?heroauf=kachel'], B: ['kanzleien', '?heroauf=bisher'] },
+    einstiege: { A: ['gesundheitswesen', '?einstieg=raster'], B: ['gesundheitswesen', '?einstieg=liste'] },
+    herobuttons: { A: ['arztpraxen', ''], B: ['arztpraxen', '?herobtn=bisher'] }, kurzkoepfe: { _: ['newsbeitrag', ''] },
+    ablaeufe: { A: ['gesundheitswesen', '?ablauf=pfeil'], B: ['gesundheitswesen', '?ablauf=zeitleiste'] },
+    stimmen: { A: ['gesundheitswesen', '?kst=kompakt'], B: ['gesundheitswesen', '?kst=buehne'], C: ['gesundheitswesen', '?kst=liste'] },
+    aufzaehlung: { A: ['arztpraxen', '?az=L'], B: ['arztpraxen', '?az=P'], C: ['arztpraxen', '?az=H'], D: ['arztpraxen', '?az=S'] },
+    footer: { A: ['startseite', '?fuss=k'], B: ['startseite', '?fuss=a'] }, menschen: { _: ['startseite', ''] }, telefonie: { _: ['unternehmen', ''] },
+    dunkelblau: { A: ['arztpraxen', '?dunkel=1'], B: ['arztpraxen', '?dunkel=1'] }, datevfaq: { _: ['datev', '?fuer=unternehmen#faq'] },
+    welle: { A: ['startseite', '?welle=aktuell'], B: ['wellen', ''] },
+    begriff: { A: ['gesundheitswesen', '?begriff=Gesundheitswesen'], B: ['gesundheitswesen', '?begriff=Healthcare'] },
+  };
+  // Konzepte ohne Varianten-Umschalter: Varianten von Hand, sonst nur „So umsetzen“
+  const OPT = { kontaktformular: ['A', 'B'], cookies: ['A', 'B', 'C'], kopfleiste: ['A', 'B', 'C'] };
+  const stand = {};
+  const secs = $$('main > section.ko');
+
+  function zaehle() {
+    const n = secs.filter((s) => stand[s.id]).length;
+    const z = $('.ko-stand'); if (z) z.innerHTML = `<b>${n} von ${secs.length}</b> Konzepten entschieden`;
+  }
+  function zeige(sec, v) {
+    const id = sec.id, w = $('[data-wahl]', sec);
+    stand[id] = v || '';
+    sec.classList.toggle('ko-ent-ja', !!v);
+    const eb = $('.ko-kopf .eb', sec);
+    const lab = v === 'ja' ? 'Entschieden' : v ? 'Entschieden: ' + v : '';
+    if (eb) { if (v) eb.dataset.ent = lab; else delete eb.dataset.ent; }
+    $$('.ko-ent-b button', sec).forEach((b) => { b.classList.toggle('on', b.dataset.ent === (v || '')); b.setAttribute('aria-pressed', b.dataset.ent === (v || '')); });
+    if (w) $$('button', w).forEach((b) => b.classList.toggle('ent', b.dataset.v === v));
+    const a = $(`.ko-inhalt a[href="#${id}"]`); if (a && a.parentElement) { if (v) a.parentElement.dataset.ent = '1'; else delete a.parentElement.dataset.ent; }
+    zaehle();
+  }
+  function orig(sec) {
+    const o = O[sec.id], a = $('.ko-orig', sec);
+    if (!a) return;
+    const w = $('[data-wahl]', sec), cur = w ? ($('button.on', w) || {}).dataset?.v : null;
+    const z = o && (o[cur] || o._ || o[Object.keys(o)[0]]);
+    if (!z || !links[z[0]]) { a.hidden = true; return; }
+    a.hidden = false;
+    a.href = links[z[0]] + z[1];
+    $('span', a).textContent = cur && o[cur] ? `Variante ${cur} im Original ansehen` : 'Im Original ansehen';
+  }
+
+  secs.forEach((sec) => {
+    const id = sec.id, w = $('[data-wahl]', sec);
+    const opts = w ? $$('button', w).map((b) => [b.dataset.v, b.textContent.trim()]) : (OPT[id] || ['ja']).map((v) => [v, v === 'ja' ? 'So umsetzen' : 'Variante ' + v]);
+    const box = document.createElement('div');
+    box.className = 'ko-ent';
+    box.innerHTML = `<span class="ko-ent-t">Deine Entscheidung</span><span class="ko-ent-b" role="group" aria-label="Entscheidung">${opts.map(([v, t]) => `<button type="button" data-ent="${v}">${t}</button>`).join('')}<button type="button" data-ent="" class="offen">Noch offen</button></span><a class="ko-orig" target="_blank" rel="noopener" hidden><span>Im Original ansehen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>`;
+    $('.wrap', sec).appendChild(box);
+    $$('.ko-ent-b button', box).forEach((b) => b.addEventListener('click', () => {
+      const v = b.dataset.ent;
+      zeige(sec, v);
+      if (hatCV) { CV.merke('ko-' + id, v); if (CV.geaendert) CV.geaendert(); }
+      if (v && v !== 'ja' && w) { const vb = $(`button[data-v="${v}"]`, w); if (vb) vb.click(); }
+    }));
+    if (w) $$('button', w).forEach((b) => b.addEventListener('click', () => setTimeout(() => orig(sec), 0)));
+    const v = hatCV ? CV.wert('ko-' + id, null, start[id] || '') : start[id] || '';
+    zeige(sec, v);
+    // entschiedene Variante zuerst zeigen (außer die Adresse nennt eine andere)
+    if (v && v !== 'ja' && w && !new URLSearchParams(location.search).get(w.dataset.wahl)) { const vb = $(`button[data-v="${v}"]`, w); if (vb) vb.click(); }
+    orig(sec);
+  });
+  // Zähler unter der Übersicht
+  const nav = $('.ko-inhalt');
+  if (nav) { const z = document.createElement('div'); z.className = 'ko-stand'; nav.after(z); zaehle(); }
+  // Lokal speichern: Entscheidungen in die Datei schreiben
+  if (hatCV && CV.beimSpeichern) CV.beimSpeichern((d) => { const s = d.getElementById('ko-entscheidungen'); if (s) { const o = {}; Object.keys(stand).forEach((k) => { if (stand[k]) o[k] = stand[k]; }); s.textContent = JSON.stringify(o); } });
+})();
