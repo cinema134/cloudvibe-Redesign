@@ -23,11 +23,11 @@ const TEL = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=
 
 // Übergabe fürs Coding (Leon 24.11.2026): node bauen.mjs --uebergabe
 // schreibt jede Seite ohne Mockup-Steuerung mit sprechendem Namen nach Uebergabe_Coding/seiten/ (Pfad /a/b -> a-b.html, / -> index.html),
-// dazu sitemap.html und die Quellen. Abstimmungsseiten ohne Pfad (Konzepte, Welten, Wellen) bleiben draußen. Mockup/ bleibt unberührt.
+// dazu sitemap.html und die Quellen. Abstimmungsseiten ohne Pfad (Welten, Wellen) bleiben draußen, Konzepte nur mit Optionen. Mockup/ bleibt unberührt.
 const UEB = process.argv.includes('--uebergabe');
 const UZ = path.join(Q, '..', '..', 'Uebergabe_Coding');
-// Wellen-Varianten (Auswahlwerkzeug) nur in seiten_mit_optionen
-const uebName = (id) => { const s = cfg.seiten[id]; if (id === 'wellen') return 'wellen-varianten.html'; return s && s.pfad ? (s.pfad === '/' ? 'index' : s.pfad.slice(1).replaceAll('/', '-')) + '.html' : null; };
+// Konzepte zur Abstimmung nur in seiten_mit_optionen (Leon 25.11.2026: ersetzt die Wellen-Varianten auf GitHub)
+const uebName = (id) => { const s = cfg.seiten[id]; if (id === 'konzepte') return 'konzepte.html'; return s && s.pfad ? (s.pfad === '/' ? 'index' : s.pfad.slice(1).replaceAll('/', '-')) + '.html' : null; };
 
 // Dateiname der aktuellen Version einer Seite (für Links zwischen den Mockups)
 const dateiVon = (id) => {
@@ -325,7 +325,7 @@ ${body}
     const ohne = mit.replace(/<!-- =+ Mockup-Steuerung[\s\S]*?(?=<script>const BEGRIFF_START)/, '');
     if (ohne === mit) throw new Error(uebName(id) + ': Mockup-Steuerung nicht gefunden');
     for (const [ord, h] of [['seiten', ohne], ['seiten_mit_optionen', mit]]) {
-      if (id === 'wellen' && ord === 'seiten') continue;
+      if (id === 'konzepte' && ord === 'seiten') continue;
       fs.mkdirSync(path.join(UZ, ord), { recursive: true });
       fs.writeFileSync(path.join(UZ, ord, uebName(id)), h);
     }
@@ -377,7 +377,7 @@ if (UEB) {
 <a class="k" href="seiten_mit_optionen/index.html"><b>Website mit Optionen</b><span>Mit Einstellungs-Panel: Welle, Footer, Module und mehr umschalten, Texte bearbeiten, alles wird im Browser gespeichert</span></a>
 <a class="k" href="seiten/index.html"><b>Website</b><span>So, wie Besucher sie sehen (mit dem für alle festgelegten Stand)</span></a>
 <a class="k" href="sitemap.html"><b>Sitemap und Seiteninhalte</b><span>Alle Seiten mit Aufbau, Buttons und offenen Punkten</span></a>
-<a class="k" href="seiten_mit_optionen/wellen-varianten.html"><b>Wellen-Varianten</b><span>Alle Wellen im Vergleich, groß ansehen</span></a>
+<a class="k" href="seiten_mit_optionen/konzepte.html"><b>Konzepte zur Abstimmung</b><span>Offene Entscheidungen mit Varianten zum Ausprobieren, Vor- und Nachteilen und einer Empfehlung</span></a>
 </main></body></html>
 `);
   // Quellen für die KI: Bausteine, Seitenteile, Assets, Konfiguration und Bauskript
