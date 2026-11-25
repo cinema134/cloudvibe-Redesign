@@ -112,11 +112,16 @@
   function zeiten() {
     const z = $('zeiten');
     weg();
-    if (!st.tag) { $('zeitenKopf').textContent = 'Wähl einen Tag mit freien Zeiten.'; z.innerHTML = ''; $('zuAngaben').disabled = true; return; }
+    if (!st.tag) {
+      // Drei Spalten: ohne Tag ist der Monat ausgebucht (sonst wäre der erste freie Tag gewählt)
+      $('zeitenKopf').textContent = drei() ? 'In diesem Monat ist nichts mehr frei. Wähl einen anderen Monat.' : 'Wähl einen Tag mit freien Zeiten.';
+      z.innerHTML = ''; $('zuAngaben').disabled = true; return;
+    }
     const d = st.tag, s = slots(d);
     $('zeitenKopf').innerHTML = drei()
       ? `<span class="zk-tag">${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</span><span class="zk-info">${s.length} ${s.length === 1 ? 'freie Zeit' : 'freie Zeiten'}</span>`
       : `Freie Zeiten am <b>${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</b>`;
+    z.classList.toggle('viele', s.length > 8); // Drei Spalten: ab 9 Zeiten dreispaltig, damit die Spalte nicht zu lang wird
     z.innerHTML = s.map((t) => `<button type="button" class="zeit${t === st.zeit ? ' wahl' : ''}" data-z="${t}"${t === st.zeit ? ' aria-pressed="true"' : ''}>${t}</button>`).join('');
     $('zuAngaben').disabled = !st.zeit;
   }
@@ -186,6 +191,9 @@
     // Telefon ist Pflicht, wenn wir anrufen
     $('t-tel').required = st.form === 'tel';
   }
+
+  // Gruppen ohne Terminart (oder deren Arten alle fehlen) nicht als leere Überschrift zeigen
+  document.querySelectorAll('.ta-gruppe').forEach((g) => { g.hidden = !document.querySelector(`.ta[data-g="${g.dataset.g}"]`); });
 
   /* ---- Ereignisse ---- */
   document.querySelectorAll('.ta').forEach((el) => {

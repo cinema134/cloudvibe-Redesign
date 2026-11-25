@@ -1177,18 +1177,15 @@ body.tm3 .bp{border-radius:0 30px 30px 0;padding:22px 30px 18px}
 /* Spaltentitel: leise, ohne Nummern */
 body.tm3 .sp-titel{display:block;font:700 15px Comfortaa,sans-serif;color:var(--text);margin:0 0 12px}
 body.tm3 .ta-sp{order:0;margin:0 0 6px 10px}
+
 body.tm3 .ta-gruppe{display:block;font:700 12.5px 'Mozilla Text',sans-serif;letter-spacing:.04em;color:var(--muted);padding:12px 10px 4px}
+/* Reihenfolge nach Gruppe (data-g), innerhalb der Gruppe wie im HTML: neue Terminart nur mit data-g anlegen, sie landet automatisch in ihrer Gruppe */
 body.tm3 .ta-gruppe[data-g="neu"]{order:1}
-body.tm3 .ta[data-art="erst"]{order:2}
-body.tm3 .ta[data-art="rueck"]{order:3}
-body.tm3 .ta-gruppe[data-g="fach"]{order:4}
-body.tm3 .ta[data-art="ti"]{order:5}
-body.tm3 .ta[data-art="check"]{order:6}
-body.tm3 .ta[data-art="datev"]{order:7}
-body.tm3 .ta[data-art="sl"]{order:8}
-body.tm3 .ta[data-art="ki"]{order:9}
-body.tm3 .ta-gruppe[data-g="best"]{order:10}
-body.tm3 .ta[data-art="kunde"]{order:11}
+body.tm3 .ta[data-g="neu"]{order:2}
+body.tm3 .ta-gruppe[data-g="fach"]{order:3}
+body.tm3 .ta[data-g="fach"]{order:4}
+body.tm3 .ta-gruppe[data-g="best"]{order:5}
+body.tm3 .ta[data-g="best"]{order:6}
 
 /* Zeilen: Symbol-Kachel + Name + Dauer, ohne Trennlinien, Auswahl als weiche blaue Fläche mit feinem Rand */
 body.tm3 .ta{grid-template-columns:40px minmax(0,1fr);column-gap:14px;row-gap:1px;padding:9px 12px;border:0!important;border-radius:16px}
@@ -1281,7 +1278,9 @@ body.tm3 .bp-kopf,body.tm3 .bp-so{display:none}
 body.tm3 .bp-so+.bp-mockup{margin-top:20px;padding-top:14px;border-top:1px dashed var(--edge)}
 body.tm3 .ta.on .ta-text p{display:block;grid-column:2;font-size:13px;line-height:1.45;color:var(--muted);margin-top:5px;max-width:none}
 body.tm3 .ta-text p .lx{pointer-events:none}body.tm3 .ta-ic{align-self:start}
-@media(max-width:560px){body.tm3 .ta.on .ta-text p{display:none}}</style><script src="../einstellungen.js"></script>
+@media(max-width:560px){body.tm3 .ta.on .ta-text p{display:none}}/* Robust bei mehr oder weniger Einträgen: leere Gruppe ohne Überschrift, ab 9 Uhrzeiten drei Spalten */
+body.tm3 .ta-gruppe[hidden]{display:none}
+@media(min-width:1181px){body.tm3 .zeiten.viele{grid-template-columns:repeat(3,minmax(0,1fr))!important}}</style><script src="../einstellungen.js"></script>
 </head>
 <body class="lgB ohneTermin heroW" data-welt="allgemein">
 <header class="kopf" id="kopf">
@@ -2875,11 +2874,16 @@ const CV = (function () {
   function zeiten() {
     const z = $('zeiten');
     weg();
-    if (!st.tag) { $('zeitenKopf').textContent = 'Wähl einen Tag mit freien Zeiten.'; z.innerHTML = ''; $('zuAngaben').disabled = true; return; }
+    if (!st.tag) {
+      // Drei Spalten: ohne Tag ist der Monat ausgebucht (sonst wäre der erste freie Tag gewählt)
+      $('zeitenKopf').textContent = drei() ? 'In diesem Monat ist nichts mehr frei. Wähl einen anderen Monat.' : 'Wähl einen Tag mit freien Zeiten.';
+      z.innerHTML = ''; $('zuAngaben').disabled = true; return;
+    }
     const d = st.tag, s = slots(d);
     $('zeitenKopf').innerHTML = drei()
       ? `<span class="zk-tag">${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</span><span class="zk-info">${s.length} ${s.length === 1 ? 'freie Zeit' : 'freie Zeiten'}</span>`
       : `Freie Zeiten am <b>${WT[d.getDay()]}, ${d.getDate()}. ${MONATE[d.getMonth()]}</b>`;
+    z.classList.toggle('viele', s.length > 8); // Drei Spalten: ab 9 Zeiten dreispaltig, damit die Spalte nicht zu lang wird
     z.innerHTML = s.map((t) => `<button type="button" class="zeit${t === st.zeit ? ' wahl' : ''}" data-z="${t}"${t === st.zeit ? ' aria-pressed="true"' : ''}>${t}</button>`).join('');
     $('zuAngaben').disabled = !st.zeit;
   }
@@ -2949,6 +2953,9 @@ const CV = (function () {
     // Telefon ist Pflicht, wenn wir anrufen
     $('t-tel').required = st.form === 'tel';
   }
+
+  // Gruppen ohne Terminart (oder deren Arten alle fehlen) nicht als leere Überschrift zeigen
+  document.querySelectorAll('.ta-gruppe').forEach((g) => { g.hidden = !document.querySelector(`.ta[data-g="${g.dataset.g}"]`); });
 
   /* ---- Ereignisse ---- */
   document.querySelectorAll('.ta').forEach((el) => {
