@@ -917,6 +917,28 @@ main>section.modwelle>.wrap{position:relative;z-index:1}
 .stg-z>.seg button{padding-left:9px!important;padding-right:9px!important}
 .stg-z>span{min-width:0}
 
+/* Einstiege rechts als 2x2-Raster (Leon 25.11.2026, Variante 3, „nicht zu voll“): kein äußerer Kasten,
+   vier ruhige Glasfelder gleich hoch wie die Text-Kachel, Pfeil nur leise oben rechts. Liste per Umschalter (body.hkListe, ?einstieg=liste) */
+body.hkAn:not(.hkListe) .uhero-in.hk:not(.hk-solo){grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:stretch}
+body.hkAn:not(.hkListe) .hk-rechts{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:14px;padding:0;background:none!important;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;align-self:stretch}
+body.hkAn:not(.hkListe) .hk-k{grid-column:1/-1;margin:0 4px -2px}
+body.hkAn:not(.hkListe) .hk-z{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:12px;padding:22px 22px 20px;border-radius:24px;background:var(--glass);backdrop-filter:blur(30px) saturate(1.15);-webkit-backdrop-filter:blur(30px) saturate(1.15);border:1px solid var(--edge)!important;box-shadow:var(--sh),var(--hi);transition:transform .2s,border-color .2s}
+body.hkAn:not(.hkListe) .hk-z+.hk-z{border-top:1px solid var(--edge)}
+body.hkAn:not(.hkListe) .hk-z:hover{background:var(--glass);border-color:color-mix(in srgb,var(--a1,var(--blue)) 45%,transparent)!important;transform:translateY(-2px)}
+body.hkAn:not(.hkListe) .hk-z .hk-ic{margin-bottom:auto}
+body.hkAn:not(.hkListe) .hk-z b{font-size:19px}
+body.hkAn:not(.hkListe) .hk-z .pf{position:absolute;top:22px;right:20px;opacity:.55}
+body.hkAn:not(.hkListe) .hk-z:hover .pf{opacity:1}
+@media(max-width:1000px){body.hkAn:not(.hkListe) .hk-rechts{grid-template-rows:auto}body.hkAn:not(.hkListe) .hk-z{min-height:150px}}
+@media(max-width:600px){body.hkAn:not(.hkListe) .hk-rechts{gap:10px}body.hkAn:not(.hkListe) .hk-z{min-height:128px;padding:16px 14px 14px;border-radius:20px}body.hkAn:not(.hkListe) .hk-z b{font-size:16px}body.hkAn:not(.hkListe) .hk-z small{display:none}body.hkAn:not(.hkListe) .hk-z .pf{top:16px;right:14px}}body.hkAn:not(.hkListe) .uhero-in.hk:not(.hk-solo){align-items:center}
+body.hkAn:not(.hkListe) .hk-rechts{grid-template-rows:auto auto auto;align-self:center}
+body.hkAn:not(.hkListe) .hk-z{min-height:172px}
+body.hkAn .uhero-in.hk:not(.hk-solo) .hk-karte h1{font-size:clamp(32px,3.2vw,48px)}
+@media(max-width:1000px){body.hkAn .uhero-in.hk:not(.hk-solo),body.hkAn:not(.hkListe) .uhero-in.hk:not(.hk-solo){grid-template-columns:minmax(0,1fr)}}
+body.hkAn:not(.hkListe) .hk-rechts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.hk-z b{hyphens:auto;overflow-wrap:break-word}
+.hk-z>span:not(.hk-ic){min-width:0}
+
 /* ================= Kanzleien (Richtung C Petrol, entschieden 20.11.2026) =================
    Aufbau wie ein ruhiges Beratungsgespräch: Person früh, Fragen und Antworten, DATEV, Kontakt.
    Keine Leistungsraster, keine Zahlen. */
@@ -1966,6 +1988,16 @@ const CV = (function () {
   if (!document.querySelector('.uhero-in.hk')) document.querySelectorAll('[data-heroauf]').forEach((x) => x.closest('.stg-z').remove());
   document.querySelectorAll('[data-heroauf]').forEach((x) => (x.onclick = () => setHeroAuf(x.dataset.heroauf)));
   setHeroAuf(wert('heroauf', Q.get('heroauf'), 'kachel'));
+  /* Einstiege rechts im Hero (Leon 25.11.2026): Raster 2x2 (Standard) oder Liste; ?einstieg=liste */
+  function setEinstieg(v) {
+    if (v !== 'liste') v = 'raster';
+    B.classList.toggle('hkListe', v === 'liste');
+    document.querySelectorAll('[data-einstieg]').forEach((x) => x.classList.toggle('on', x.dataset.einstieg === v));
+    merke('einstieg', v);
+  }
+  if (!document.querySelector('.hk-rechts')) document.querySelectorAll('[data-einstieg]').forEach((x) => x.closest('.stg-z').remove());
+  document.querySelectorAll('[data-einstieg]').forEach((x) => (x.onclick = () => setEinstieg(x.dataset.einstieg)));
+  setEinstieg(wert('einstieg', Q.get('einstieg'), 'raster'));
   /* Abläufe (So starten wir, So läuft …): Pfeilband (Standard, Prüfdokument 24.11.2026) oder Zeitleiste (bisher); ?ablauf=zeitleiste */
   function setAblauf(v) {
     if (v !== 'zeitleiste') v = 'pfeil';

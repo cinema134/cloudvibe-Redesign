@@ -493,6 +493,16 @@ const CV = (function () {
   if (!document.querySelector('.uhero-in.hk')) document.querySelectorAll('[data-heroauf]').forEach((x) => x.closest('.stg-z').remove());
   document.querySelectorAll('[data-heroauf]').forEach((x) => (x.onclick = () => setHeroAuf(x.dataset.heroauf)));
   setHeroAuf(wert('heroauf', Q.get('heroauf'), 'kachel'));
+  /* Einstiege rechts im Hero (Leon 25.11.2026): Raster 2x2 (Standard) oder Liste; ?einstieg=liste */
+  function setEinstieg(v) {
+    if (v !== 'liste') v = 'raster';
+    B.classList.toggle('hkListe', v === 'liste');
+    document.querySelectorAll('[data-einstieg]').forEach((x) => x.classList.toggle('on', x.dataset.einstieg === v));
+    merke('einstieg', v);
+  }
+  if (!document.querySelector('.hk-rechts')) document.querySelectorAll('[data-einstieg]').forEach((x) => x.closest('.stg-z').remove());
+  document.querySelectorAll('[data-einstieg]').forEach((x) => (x.onclick = () => setEinstieg(x.dataset.einstieg)));
+  setEinstieg(wert('einstieg', Q.get('einstieg'), 'raster'));
   /* Abläufe (So starten wir, So läuft …): Pfeilband (Standard, Prüfdokument 24.11.2026) oder Zeitleiste (bisher); ?ablauf=zeitleiste */
   function setAblauf(v) {
     if (v !== 'zeitleiste') v = 'pfeil';
