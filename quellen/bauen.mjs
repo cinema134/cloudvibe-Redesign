@@ -310,7 +310,7 @@ function baue(id, seite) {
 <style>${css}</style></head>
 <body class="lgB ${seite.body || ''}${seite.hero === 'kompakt' ? ' heroK' : seite.hero === 'werkzeug' ? ' heroW' : ''}" data-welt="${WELT[id] || 'allgemein'}">
 ${body}
-<script>const BEGRIFF_START=${JSON.stringify(cfg.begriff)};</script>
+<script>const BEGRIFF_START=${JSON.stringify(cfg.begriff)};const CV_SEITE_ID=${JSON.stringify(id)};const CV_SEITEN=${JSON.stringify(Object.entries(cfg.seiten).filter(([k, s]) => s.pfad && k !== 'startseite').map(([k, s]) => ({ id: k, t: s.titel, e: s.eltern || '', f: dateiVon(k) })))};</script>
 <script>${js}</script>
 </body></html>`;
   html = ersetze(html, seite, id);

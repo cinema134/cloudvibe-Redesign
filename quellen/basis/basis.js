@@ -1077,6 +1077,57 @@ const CV = (function () {
     }
     setHero(wert('hero-' + hkSeite, Q.get('hero'), 'an') !== 'aus', false);
   }
+  /* Seiten ausblenden (Leon 25.11.2026): Design → „Seiten“. Ausgeblendete Seiten verschwinden aus Menü, mobilem Menü, Footer und
+     aus Links und Buttons im Inhalt (das umgebende li bzw. der Link selbst). Gilt auf allen Seiten (Option seitenAus = Liste der IDs),
+     „Für alle festlegen“ übernimmt sie. Die Startseite ist immer an. Öffnet man eine ausgeblendete Seite, erscheint ein Hinweis. */
+  const SEITEN_ROH = typeof CV_SEITEN !== 'undefined' ? CV_SEITEN : [];
+  // Reihenfolge im Panel: Hauptseite, darunter ihre Unterseiten
+  const SEITEN = SEITEN_ROH.filter((s) => !s.e || !SEITEN_ROH.some((p) => p.id === s.e)).flatMap((p) => [p, ...SEITEN_ROH.filter((c) => c.e === p.id)]);
+  const seiteDatei = (h) => (h || '').split(/[?#]/)[0].split('/').pop();
+  function setSeitenAus(liste, merken) {
+    liste = (Array.isArray(liste) ? liste : []).filter((x) => SEITEN.some((s) => s.id === x));
+    const aus = new Set(SEITEN.filter((s) => liste.includes(s.id) || liste.includes(s.e)).map((s) => seiteDatei(s.f)));
+    document.querySelectorAll('.sAus').forEach((e) => e.classList.remove('sAus'));
+    document.querySelectorAll('a[href]').forEach((a) => {
+      if (a.closest('.stg') || !aus.has(seiteDatei(a.getAttribute('href')))) return;
+      // im Menü/Footer das ganze li (bei Dropdowns samt Unterpunkten), sonst nur der Link oder Button
+      const li = a.closest('li');
+      (li && li.querySelector('a[href]') === a ? li : a).classList.add('sAus');
+    });
+    // Abschnitte, die nur auf ausgeblendete Seiten verweisen (z. B. Karriere oder News auf der Startseite), verschwinden mit
+    document.querySelectorAll('main>section:not(.uhero,.hero)').forEach((sec) => {
+      if (!sec.querySelector('.sAus')) return;
+      const rest = [...sec.querySelectorAll('a[href]')].some((a) => !a.closest('.sAus'));
+      if (!rest) sec.classList.add('sAus');
+    });
+    document.querySelectorAll('[data-seite-an]').forEach((b) => { const an = !liste.includes(b.dataset.seiteAn); b.classList.toggle('on', an); b.setAttribute('aria-pressed', an); });
+    // Unterseiten einer ausgeblendeten Hauptseite sind mit aus (Schalter grau)
+    document.querySelectorAll('[data-seite-an]').forEach((b) => { const s = SEITEN.find((x) => x.id === b.dataset.seiteAn); b.closest('.stg-z').classList.toggle('stg-mit-aus', !!(s && s.e && liste.includes(s.e))); });
+    const hier = typeof CV_SEITE_ID !== 'undefined' && SEITEN.find((s) => s.id === CV_SEITE_ID);
+    const hw = $('seiteAusHinweis');
+    const istAus = !!(hier && (liste.includes(hier.id) || liste.includes(hier.e)));
+    if (istAus && stg && !hw) { const d = document.createElement('div'); d.id = 'seiteAusHinweis'; d.className = 'seite-aus'; d.innerHTML = '<b>Diese Seite ist ausgeblendet.</b><span>Sie erscheint in keinem Menü und keinem Link. Wieder einblenden unter Einstellungen → Design → Seiten.</span>'; B.appendChild(d); }
+    if (!istAus && hw) hw.remove();
+    if (merken) merke('seitenAus', liste);
+    if (typeof hkPruefen === 'function') hkPruefen();
+  }
+  if (SEITEN.length) {
+    if (inhSp) {
+      const g = document.createElement('section');
+      g.className = 'stg-gr stg-seiten'; g.dataset.tab = 'design';
+      g.innerHTML = '<h5>Seiten</h5><div class="stg-tipp">Was noch nicht gebraucht wird, ausschalten: Die Seite verschwindet aus Menü, Footer und allen Links.</div>' +
+        SEITEN.map((s) => `<div class="stg-z${s.e ? ' stg-unter' : ''}"><span>${s.t}</span><button type="button" class="tg on" data-seite-an="${s.id}" aria-pressed="true" aria-label="${s.t} anzeigen"></button></div>`).join('');
+      inhSp.appendChild(g);
+      g.querySelectorAll('[data-seite-an]').forEach((b) => (b.onclick = () => {
+        const cur = [].concat(wert('seitenAus', null, []) || []);
+        const id = b.dataset.seiteAn, i = cur.indexOf(id);
+        if (i >= 0) cur.splice(i, 1); else cur.push(id);
+        setSeitenAus(cur, true);
+      }));
+    }
+    const qs = Q.get('seitenaus');
+    setSeitenAus(qs != null ? qs.split(',').filter(Boolean) : wert('seitenAus', null, []), false);
+  }
   bereit = true;
 
   return { $, Q, panelZeile, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
