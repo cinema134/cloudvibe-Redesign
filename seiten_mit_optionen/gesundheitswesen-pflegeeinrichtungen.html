@@ -846,6 +846,77 @@ body.modsys main>section.modbg-f{background:var(--bg2)!important}
 .stg-inhalt{overflow-x:hidden}
 .mod-liste .mod-bg{padding:0 4px;width:48px}
 
+/* Dropdowns milchiger (Leon 25.11.2026: zu durchsichtig, Hintergrund scheint scharf durch).
+   Ursache: Die Leiste (.kopf .w) hatte selbst backdrop-filter; darin verschachtelte Dropdowns koennen dann nicht weichzeichnen.
+   Loesung: Milchglas der Leiste auf ein Pseudo-Element verlegen, Dropdowns deckender und staerker weichgezeichnet. */
+.kopf .w{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;isolation:isolate}
+.kopf .w:before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:color-mix(in srgb,var(--bg) 66%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+.kopf .dd-m{background:color-mix(in srgb,var(--bg) 86%,transparent)!important;backdrop-filter:blur(40px) saturate(1.2)!important;-webkit-backdrop-filter:blur(40px) saturate(1.2)!important}
+body.dark .kopf .dd-m{background:color-mix(in srgb,#121A27 90%,transparent)!important}
+/* ================= Hero-Aufbau „Kachel“ (Leon 25.11.2026): Tiefe wie auf der Startseite =================
+   Text in einer Milchglas-Kachel (.hk-karte), rechts auf Haupt-/Leistungsseiten eine zweite Kachel mit Einstiegen (.hk-rechts).
+   Unterseiten nur Kachel (.hk-solo). Bisher: body ohne .hkAn (Umschalter „Hero-Aufbau“, ?heroauf=bisher). */
+body.hkAn .uhero-in.hk{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.85fr);gap:clamp(22px,2.6vw,36px);align-items:center}
+body.hkAn .uhero-in.hk-solo{grid-template-columns:minmax(0,780px)}
+body.hkAn .hk-karte{padding:clamp(30px,3.4vw,52px) clamp(28px,3.4vw,52px) clamp(28px,3vw,44px)}
+body.hkAn .hk-karte h1{font-size:clamp(34px,3.6vw,54px);max-width:none}
+body.hkAn .hk-karte .lead{font-size:18px;max-width:none}
+body.hkAn .hk-karte .btns{margin-top:30px}
+body.hkAn .uhero-in.hk:not(.hk-solo) .gw-wege,body.hkAn .uhero-in.hk:not(.hk-solo) .hsp{display:none}
+.hk-rechts{display:none}
+body.hkAn .hk-rechts{display:flex;flex-direction:column;padding:22px 18px 14px;align-self:center}
+.hk-k{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 10px 10px}
+.hk-z{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 10px;border-radius:18px;color:var(--text);text-decoration:none;transition:background .2s}
+.hk-z+.hk-z{border-top:1px solid var(--edge)}
+.hk-z:hover{background:color-mix(in srgb,var(--a1,var(--blue)) 8%,transparent)}
+.hk-z:hover+.hk-z,.hk-z:hover{border-top-color:transparent}
+.hk-z b{display:block;font:400 18px/1.25 Comfortaa,sans-serif;color:var(--text)}
+.hk-z small{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+.hk-ic{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:color-mix(in srgb,var(--a1,var(--blue)) 13%,transparent)}
+.hk-ic svg{width:20px;height:20px;fill:none;stroke:var(--a1,var(--blue));stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hk-z .pf{width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.8;transition:transform .2s,stroke .2s}
+.hk-z:hover .pf{transform:translateX(3px);stroke:var(--a1,var(--blue))}
+@media(max-width:1000px){body.hkAn .uhero-in.hk{grid-template-columns:1fr}}
+@media(max-width:600px){body.hkAn .hk-karte{padding:26px 22px 24px}body.hkAn .hk-rechts{padding:16px 10px 8px}}
+/* ================= Einstellungsfenster neu (Leon 25.11.2026): Reiter, Abschnitts-Zeilen mit Hintergrund und Welle ================= */
+.stg-reiter{display:flex;gap:4px;margin:12px 18px 2px;padding:4px;border-radius:100px;background:color-mix(in srgb,var(--text) 6%,transparent)}
+.stg-reiter button{flex:1;padding:9px 10px;border-radius:100px;font:700 13.5px 'Mozilla Text',sans-serif!important;color:var(--muted)!important;transition:background .2s,color .2s}
+.stg-reiter button.on{background:var(--bg);color:var(--text)!important;box-shadow:0 2px 8px -3px rgba(15,25,50,.25)}
+.stg-reiter button[hidden]{display:none}
+.stg-gr[hidden]{display:none}
+.stg-inhalt>.stg-gr:not([hidden])~.stg-gr:not([hidden]){border-top:1px solid var(--sg-rand)}
+.stg-gr{border-bottom:0!important}
+.stg-gr h5{font:700 12px 'Mozilla Text',sans-serif!important;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* Abschnitts-Zeilen: oben Name und Anzeigen, darunter Reihenfolge, Hintergrund, Welle */
+.mod-liste li.mz{display:block;padding:10px 0 12px;border-bottom:1px solid var(--edge)}
+.mz-kopf{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mz-n{font:700 14px 'Mozilla Text',sans-serif;line-height:1.3}
+.mod-liste li.mz.zusatz .mz-n:after{content:" · Zusatz";font-weight:400;color:var(--muted);font-size:12px}
+.mod-liste li.mz.aus .mz-n{color:var(--muted);font-weight:400}
+.mz-wahl{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+.mod-liste li.mz.aus .mz-wahl{display:none}
+.mz-pf{display:inline-flex;border:1px solid var(--sg-rand);border-radius:100px;overflow:hidden}
+.mz-pf button{width:28px;height:26px;font-size:13px!important;color:var(--text)!important}
+.mz-pf button+button{border-left:1px solid var(--sg-rand)!important}
+.mz-pf button:disabled{opacity:.3;cursor:default}
+.mz-bg.seg{padding:2px}
+.mz-bg.seg button{padding:4px 9px;font-size:12px!important}
+.mz-welle{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px 0 8px;border-radius:100px;border:1px solid var(--sg-rand)!important;font:700 12px 'Mozilla Text',sans-serif!important;color:var(--muted)!important}
+.mz-welle svg{width:16px;height:16px}
+.mz-welle.on{background:color-mix(in srgb,var(--blue) 12%,transparent);border-color:var(--blue)!important;color:var(--blue)!important}
+/* Welle im Abschnitt: ruhig unten, Inhalt liegt darüber */
+main>section.modwelle{overflow:hidden}
+main>section>canvas.mw{display:none;z-index:0}
+main>section.modwelle>canvas.mw{display:block}
+main>section.modwelle>.wrap{position:relative;z-index:1}
+/* Hero-Kachel: Akzente etwas kräftiger */
+.hk-ic{background:color-mix(in srgb,var(--a1,var(--blue)) 18%,transparent)}
+.hk-ic svg{stroke-width:1.9}
+.hk-k{color:var(--a1,var(--blue))}.stg-z{gap:10px}
+.stg-z>.seg{flex:none}
+.stg-z>.seg button{padding-left:9px!important;padding-right:9px!important}
+.stg-z>span{min-width:0}
+
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
 
@@ -1438,24 +1509,31 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
  <aside class="stg-panel" id="stgPanel" aria-label="Einstellungen">
   <div class="stg-kopf"><b>Einstellungen</b><button type="button" id="stgZu" aria-label="Einstellungen schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="stg-inhalt">
-   <section class="stg-gr">
-    <h5>Ansicht</h5>
-    <div class="stg-z"><span>Dunkelmodus</span><button type="button" id="dk" class="tg" aria-label="Dunkelmodus"></button></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Kopfleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Haupt-Button oben</span><div class="seg"><button type="button" data-kbtn="ticket" class="on" title="Ticket eröffnen als Button, Termin im Support-Menü">Ticket</button><button type="button" data-kbtn="termin" title="Bisher: Termin vereinbaren als Button">Termin</button></div></div>
-    <div class="stg-z" data-ziel="footer.fuss"><span>Footer</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">K</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">A</button></div></div>
-    <!-- Heros (Leon 24.11.2026): Höhe, Stil und Wellenart umschaltbar; Wellenart gilt auf allen Seiten (auch Startseite und Kontaktblock) -->
-    <div class="stg-z" data-ziel="#top"><span>Hero-Höhe</span><div class="seg"><button type="button" data-heroh="einheitlich" class="on">Einheitlich</button><button type="button" data-heroh="bisher">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="#top"><span>Hero-Stil</span><select id="heroStil" aria-label="Hero-Stil"><option value="welle">Wellenkante je Bereich</option><option value="bereich">Ruhig je Bereich (bisher)</option><option value="ruhig">Ruhig</option><option value="schimmer">Schimmer</option><option value="punkte">Punkte</option></select></div>
-    <div class="stg-z" data-ziel="#top"><span>Wellenart</span><select id="welleArt" aria-label="Wellenart"></select></div>
-    <div class="stg-z" data-ziel="#top"><span>Hero-Buttons</span><div class="seg"><button type="button" data-hbt="alt">Bisher</button><button type="button" data-hbt="neu" class="on">Reduziert</button></div></div>
+   <!-- Panel neu (Leon 25.11.2026): Reiter „Diese Seite“ (Abschnitte, Varianten der Seite) · „Design“ (gilt auf allen Seiten) · „Sichern“; Benennung nach dem, was man auf der Seite sieht -->
+   <section class="stg-gr" data-tab="design">
+    <h5>Darstellung</h5>
+    <div class="stg-z"><span>Dunkler Modus</span><button type="button" id="dk" class="tg" aria-label="Dunkler Modus"></button></div>
+    <div class="stg-z" data-ziel="main .hc"><span>Wort für den Bereich</span><select id="begriff" aria-label="Wort für den Bereich"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
    </section>
-   <section class="stg-gr">
-    <h5>Inhalt</h5>
+   <section class="stg-gr" data-tab="design">
+    <h5>Kopf und Fuß</h5>
+    <div class="stg-z" data-ziel="#kopf"><span>Menüleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
+    <div class="stg-z" data-ziel="#kopf"><span>Blauer Button oben</span><div class="seg"><button type="button" data-kbtn="ticket" class="on" title="Ticket eröffnen als blauer Button, Termin als eigener Button daneben">Ticket</button><button type="button" data-kbtn="termin" title="Bisher: Termin vereinbaren als blauer Button">Termin</button></div></div>
+    <div class="stg-z" data-ziel="footer.fuss"><span>Fußzeile</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">Kompakt</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">Spalten</button></div></div>
+   </section>
+   <section class="stg-gr" data-tab="design">
+    <h5>Erster Bildschirm (Hero)</h5>
+    <div class="stg-z" data-ziel="#top"><span>Aufbau</span><div class="seg"><button type="button" data-heroauf="kachel" class="on" title="Text in Milchglas-Kachel wie auf der Startseite, rechts Einstiege">Kachel</button><button type="button" data-heroauf="bisher" title="Bisher: Text frei auf dem Hintergrund">Frei</button></div></div>
+    <div class="stg-z" data-ziel="#top"><span>Höhe</span><div class="seg"><button type="button" data-heroh="einheitlich" class="on" title="Füllt den ersten Bildschirm">Bildschirm</button><button type="button" data-heroh="bisher" title="Bisher: so hoch wie der Inhalt">Inhalt</button></div></div>
+    <div class="stg-z" data-ziel="#top"><span>Hintergrund</span><select id="heroStil" aria-label="Hintergrund im ersten Bildschirm"><option value="welle">Wellenkante je Bereich</option><option value="bereich">Ruhig je Bereich (bisher)</option><option value="ruhig">Ruhig</option><option value="schimmer">Schimmer</option><option value="punkte">Punkte</option></select></div>
+    <div class="stg-z" data-ziel="#top"><span>Form der Welle</span><select id="welleArt" aria-label="Form der Welle"></select></div>
+    <div class="stg-z" data-ziel="#top"><span>Buttons</span><div class="seg"><button type="button" data-hbt="neu" class="on" title="Ein Button mit eigenem Zweck, Anrufen als leise Zeile">Ein Zweck</button><button type="button" data-hbt="alt" title="Bisher: Termin und Anrufen als Buttons">Bisher</button></div></div>
+   </section>
+   <section class="stg-gr" data-tab="design">
+    <h5>Bausteine</h5>
     <div class="stg-z" data-ziel=".stimmen"><span>Kundenstimmen</span><div class="seg"><button type="button" data-kst="kompakt" class="on">Kompakt</button><button type="button" data-kst="buehne">Bühne</button><button type="button" data-kst="liste">Liste</button></div></div>
-    <div class="stg-z" data-ziel=".st-reihe"><span>Abläufe</span><div class="seg"><button type="button" data-ablauf="pfeil" class="on" title="Pfeilband: Schritte als Pfeile, die zum Ziel kräftiger werden">Pfeilband</button><button type="button" data-ablauf="zeitleiste" title="Bisher: Zeitleiste mit Linie und Punkten">Zeitleiste</button></div></div>
-    <div class="stg-z" id="stgAz" data-ziel=".bk ul, .fragen"><span>Aufzählung</span><div class="seg"><button type="button" data-az="P">Punkt</button><button type="button" data-az="H">Häkchen</button><button type="button" data-az="S">Strich</button><button type="button" data-az="L">Ohne</button></div></div>
-    <div class="stg-z" data-ziel="main .hc"><span>Begriff</span><select id="begriff" aria-label="Begriff"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
+    <div class="stg-z" data-ziel=".st-reihe"><span>Abläufe</span><div class="seg"><button type="button" data-ablauf="pfeil" class="on" title="Pfeilband: Schritte als Pfeile, die zum Ziel kräftiger werden">Pfeile</button><button type="button" data-ablauf="zeitleiste" title="Bisher: Zeitleiste mit Linie und Punkten">Zeitleiste</button></div></div>
+    <div class="stg-z" id="stgAz" data-ziel=".bk ul, .fragen"><span>Aufzählungszeichen</span><div class="seg"><button type="button" data-az="P">Punkt</button><button type="button" data-az="H">Haken</button><button type="button" data-az="S">Strich</button><button type="button" data-az="L">Ohne</button></div></div>
    </section>
   </div>
  </aside>
@@ -1982,6 +2060,16 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-kbtn]').forEach((x) => (x.onclick = () => setKbtn(x.dataset.kbtn)));
   setKbtn(wert('kbtn', Q.get('kbtn'), 'ticket'));
+  /* Hero-Aufbau (Leon 25.11.2026): Kachel (Standard, Milchglas-Kachel + rechte Einstiegskachel) oder Bisher; ?heroauf=bisher. Nur wo die Seite .hk hat */
+  function setHeroAuf(v) {
+    if (v !== 'bisher') v = 'kachel';
+    B.classList.toggle('hkAn', v === 'kachel');
+    document.querySelectorAll('[data-heroauf]').forEach((x) => x.classList.toggle('on', x.dataset.heroauf === v));
+    merke('heroauf', v);
+  }
+  if (!document.querySelector('.uhero-in.hk')) document.querySelectorAll('[data-heroauf]').forEach((x) => x.closest('.stg-z').remove());
+  document.querySelectorAll('[data-heroauf]').forEach((x) => (x.onclick = () => setHeroAuf(x.dataset.heroauf)));
+  setHeroAuf(wert('heroauf', Q.get('heroauf'), 'kachel'));
   /* Abläufe (So starten wir, So läuft …): Pfeilband (Standard, Prüfdokument 24.11.2026) oder Zeitleiste (bisher); ?ablauf=zeitleiste */
   function setAblauf(v) {
     if (v !== 'zeitleiste') v = 'pfeil';
@@ -2185,8 +2273,17 @@ const CV = (function () {
         m.el.classList.toggle('modbg-f', w === 'f');
         if (w === 'h') m.el.classList.remove('alt');
         if (w === 'f') m.el.classList.add('alt');
+        // Welle im Modul (Leon 25.11.2026): feine Linien als ruhiger Grund unten im Abschnitt, je Modul ein/aus
+        const mitWelle = !!(st.welle || {})[m.id];
+        m.el.classList.toggle('modwelle', mitWelle);
+        if (mitWelle && !m.el.querySelector(':scope>canvas.mw')) {
+          const c = document.createElement('canvas');
+          c.className = 'welle mw'; c.setAttribute('aria-hidden', 'true');
+          m.el.prepend(c);
+          stillWelle(c, { N: 22, hs: 0.9, lw: 1.1, bp: 0.78, opm: 0.38 }, 3.4, 0.5);
+        }
       });
-      setTimeout(() => stickyEinmal(false), 0);
+      setTimeout(() => { stickyEinmal(false); wellenNeu(); }, 0);
     }
     // Gemerkt wird immer (auch wenn es dem Standard entspricht), damit ein Zurück auf Standard eine Team-Vorgabe übersteuert
     function merken() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} if (LOKAL) setDirty(true); }
@@ -2204,32 +2301,37 @@ const CV = (function () {
       st.o.forEach((id, i) => {
         const m = M.find((x) => x.id === id), an = st.an.includes(id);
         const li = document.createElement('li');
-        li.className = (m.z ? 'zusatz ' : '') + (an ? '' : 'aus');
-        li.innerHTML = '<span></span><button type="button" class="mod-pf" aria-label="nach oben"' + (i ? '' : ' disabled') + '>↑</button><button type="button" class="mod-pf" aria-label="nach unten"' + (i === st.o.length - 1 ? ' disabled' : '') + '>↓</button><button type="button" class="mod-bg"></button><button type="button" class="tg' + (an ? ' on' : '') + '" aria-label="ein/aus"></button>';
-        li.querySelector('span').textContent = m.n;
-        const b = [...li.querySelectorAll('button')];
-        // Hintergrund-Knopf: Auto → Hell → Fläche → Auto
-        const bk = b.splice(2, 1)[0], w = (st.bg || {})[id] || '';
-        bk.dataset.bg = w || 'a'; bk.textContent = BG[w][0]; bk.title = BG[w][1]; bk.setAttribute('aria-label', BG[w][1]);
-        bk.onclick = () => { const n = { '': 'h', h: 'f', f: '' }[w]; st.bg = { ...(st.bg || {}) }; if (n) st.bg[id] = n; else delete st.bg[id]; anwenden(); merken(); liste(); zeig(); };
+        li.className = 'mz' + (m.z ? ' zusatz' : '') + (an ? '' : ' aus');
+        // Zeile (Leon 25.11.2026, Panel neu): oben Name + Ein/Aus, darunter Reihenfolge, Hintergrund und Welle
+        const w = (st.bg || {})[id] || '', mw = !!(st.welle || {})[id];
+        li.innerHTML = '<div class="mz-kopf"><span class="mz-n"></span><button type="button" class="tg' + (an ? ' on' : '') + '" aria-label="Anzeigen"></button></div>' +
+          '<div class="mz-wahl"><span class="mz-pf"><button type="button" aria-label="nach oben"' + (i ? '' : ' disabled') + '>↑</button><button type="button" aria-label="nach unten"' + (i === st.o.length - 1 ? ' disabled' : '') + '>↓</button></span>' +
+          '<span class="seg mz-bg" role="group" aria-label="Hintergrund">' + Object.entries(BG).map(([k, [t, ti]]) => '<button type="button" data-v="' + k + '" title="' + ti + '"' + (k === w ? ' class="on"' : '') + '>' + t + '</button>').join('') + '</span>' +
+          '<button type="button" class="mz-welle' + (mw ? ' on' : '') + '" title="Welle im Hintergrund dieses Moduls" aria-pressed="' + mw + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15c3.5 0 3.5-6 7-6s3.5 6 7 6 3.5-6 6-6"/></svg>Welle</button></div>';
+        li.querySelector('.mz-n').textContent = m.n;
         const zeig = () => { if (st.an.includes(id)) m.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
-        b[0].onclick = () => { st.o.splice(i - 1, 0, st.o.splice(i, 1)[0]); anwenden(); merken(); liste(); zeig(); };
-        b[1].onclick = () => { st.o.splice(i + 1, 0, st.o.splice(i, 1)[0]); anwenden(); merken(); liste(); zeig(); };
-        b[2].onclick = () => { an ? (st.an = st.an.filter((x) => x !== id)) : st.an.push(id); anwenden(); merken(); liste(); zeig(); };
+        const neu = () => { anwenden(); merken(); liste(); zeig(); };
+        const [hoch, runter] = li.querySelectorAll('.mz-pf button');
+        hoch.onclick = () => { st.o.splice(i - 1, 0, st.o.splice(i, 1)[0]); neu(); };
+        runter.onclick = () => { st.o.splice(i + 1, 0, st.o.splice(i, 1)[0]); neu(); };
+        li.querySelector('.mz-kopf .tg').onclick = () => { an ? (st.an = st.an.filter((x) => x !== id)) : st.an.push(id); neu(); };
+        li.querySelectorAll('.mz-bg button').forEach((x) => (x.onclick = () => { st.bg = { ...(st.bg || {}) }; if (x.dataset.v) st.bg[id] = x.dataset.v; else delete st.bg[id]; neu(); }));
+        li.querySelector('.mz-welle').onclick = () => { st.welle = { ...(st.welle || {}) }; if (mw) delete st.welle[id]; else st.welle[id] = 1; neu(); };
         ol.appendChild(li);
       });
     }
     if (inhalt && !document.querySelector('.stg-module')) {
       const gr = document.createElement('section');
       gr.className = 'stg-gr stg-module';
-      gr.innerHTML = '<h5>Module</h5><p class="stg-info">Abschnitte dieser Seite ein- und ausblenden und mit den Pfeilen anordnen. Der Knopf „Auto/Hell/Fläche“ legt den Hintergrund je Modul fest. „Zusatz“ sind passende Module, die hier noch nicht stehen. „Speichern“ schreibt den Aufbau in die Datei.</p><ol class="mod-liste"></ol><div class="mod-knoepfe"><button type="button" data-mk="kopie">Aufbau kopieren</button><button type="button" data-mk="std">Zurücksetzen</button></div>';
+      gr.innerHTML = '<h5>Abschnitte dieser Seite</h5><p class="stg-info">Je Abschnitt: anzeigen, mit ↑ ↓ verschieben, Hintergrund wählen (Auto wechselt selbst hell und Fläche) und eine Welle dazuschalten. „Zusatz“ sind passende Abschnitte, die hier noch nicht stehen.</p><ol class="mod-liste"></ol><div class="mod-knoepfe"><button type="button" data-mk="kopie">Aufbau kopieren</button><button type="button" data-mk="std">Zurücksetzen</button></div>';
       inhalt.insertBefore(gr, inhalt.children[1] || null);
       ol = gr.querySelector('.mod-liste');
       // Zurücksetzen: auf den für alle festgelegten Aufbau (einstellungen.js), sonst auf den Standard der Seite
       gr.querySelector('[data-mk="std"]').onclick = () => { st = JSON.parse(JSON.stringify((EINST.module && EINST.module[seite]) || STD)); anwenden(); try { localStorage.removeItem(KEY); } catch (e) {} liste(); };
       gr.querySelector('[data-mk="kopie"]').onclick = async (e) => {
         const bgt = Object.entries(st.bg || {}).filter(([x]) => st.an.includes(x)).map(([x, v]) => x + '=' + (v === 'h' ? 'hell' : 'fläche'));
-        const txt = seite + ': ' + st.o.filter((x) => st.an.includes(x)).join(', ') + (bgt.length ? ' · Hintergrund: ' + bgt.join(', ') : '');
+        const wt = Object.keys(st.welle || {}).filter((x) => st.an.includes(x));
+        const txt = seite + ': ' + st.o.filter((x) => st.an.includes(x)).join(', ') + (bgt.length ? ' · Hintergrund: ' + bgt.join(', ') : '') + (wt.length ? ' · Welle: ' + wt.join(', ') : '');
         try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Kopiert'; } catch (x) { prompt('Aufbau:', txt); }
         setTimeout(() => (e.target.textContent = 'Aufbau kopieren'), 1500);
       };
@@ -2461,9 +2563,41 @@ const CV = (function () {
     gr.querySelector('[data-sp="alle"]').onclick = fuerAlle;
     gr.querySelector('[data-sp="weg"]').onclick = meineWeg;
   }
+
+  /* ---- Einstellungsfenster in drei Reitern (Leon 25.11.2026: neu konzipieren, Benennung neu ordnen) ----
+     „Diese Seite“: Abschnitte (Module) und Varianten nur dieser Seite · „Design“: was auf allen Seiten gilt · „Sichern“: Speichern für alle.
+     Seitenskripte, die später Zeilen ergänzen, nutzen CV.panelZeile(z) (landet unter „Diese Seite“). */
+  const REITER = [['seite', 'Diese Seite'], ['design', 'Design'], ['sichern', 'Sichern']];
+  const reiterVon = (g) => g.dataset.tab || (g.matches('.stg-module,.stg-seite,.stg-stellen') ? 'seite' : g.matches('.stg-sichern') ? 'sichern' : 'design');
+  let zeigeReiter = () => {};
+  if (inhSp) {
+    const leiste = document.createElement('div');
+    leiste.className = 'stg-reiter'; leiste.setAttribute('role', 'tablist');
+    leiste.innerHTML = REITER.map(([k, t]) => `<button type="button" role="tab" data-reiter="${k}">${t}</button>`).join('');
+    inhSp.before(leiste);
+    zeigeReiter = (k) => {
+      const hat = (r) => [...inhSp.querySelectorAll(':scope>section')].some((g) => reiterVon(g) === r && g.querySelector('.stg-z,li,.mod-knoepfe,.stg-welle,label'));
+      if (!hat(k)) k = 'design';
+      leiste.querySelectorAll('button').forEach((b) => { b.classList.toggle('on', b.dataset.reiter === k); b.setAttribute('aria-selected', b.dataset.reiter === k); b.hidden = !hat(b.dataset.reiter); });
+      inhSp.querySelectorAll(':scope>section').forEach((g) => (g.hidden = reiterVon(g) !== k));
+      try { localStorage.setItem('cloudvibe-reiter', k); } catch (e) {}
+    };
+    leiste.onclick = (e) => { const b = e.target.closest('[data-reiter]'); if (b) zeigeReiter(b.dataset.reiter); };
+    let start = 'seite';
+    try { start = localStorage.getItem('cloudvibe-reiter') || 'seite'; } catch (e) {}
+    setTimeout(() => zeigeReiter(start), 0); // nach den Seitenskripten, die noch Zeilen ergänzen
+  }
+  // Zeile für „Diese Seite“ (z. B. Termin: Terminauswahl); legt die Gruppe bei Bedarf an
+  function panelZeile(z) {
+    if (!inhSp) return;
+    let g = inhSp.querySelector('.stg-seite');
+    if (!g) { g = document.createElement('section'); g.className = 'stg-gr stg-seite'; g.innerHTML = '<h5>Varianten dieser Seite</h5>'; inhSp.prepend(g); }
+    g.appendChild(z);
+    zeigeReiter(document.querySelector('.stg-reiter .on')?.dataset.reiter || 'seite');
+  }
   bereit = true;
 
-  return { $, Q, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
+  return { $, Q, panelZeile, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
     beimSpeichern: (f) => vorSpeichern.push(f), geaendert: () => setDirty(true) };
 })();
 

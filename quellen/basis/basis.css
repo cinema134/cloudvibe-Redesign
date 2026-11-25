@@ -831,3 +831,74 @@ body.modsys main>section.modbg-h{background:var(--bg)!important}
 body.modsys main>section.modbg-f{background:var(--bg2)!important}
 .stg-inhalt{overflow-x:hidden}
 .mod-liste .mod-bg{padding:0 4px;width:48px}
+
+/* Dropdowns milchiger (Leon 25.11.2026: zu durchsichtig, Hintergrund scheint scharf durch).
+   Ursache: Die Leiste (.kopf .w) hatte selbst backdrop-filter; darin verschachtelte Dropdowns koennen dann nicht weichzeichnen.
+   Loesung: Milchglas der Leiste auf ein Pseudo-Element verlegen, Dropdowns deckender und staerker weichgezeichnet. */
+.kopf .w{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;isolation:isolate}
+.kopf .w:before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:color-mix(in srgb,var(--bg) 66%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+.kopf .dd-m{background:color-mix(in srgb,var(--bg) 86%,transparent)!important;backdrop-filter:blur(40px) saturate(1.2)!important;-webkit-backdrop-filter:blur(40px) saturate(1.2)!important}
+body.dark .kopf .dd-m{background:color-mix(in srgb,#121A27 90%,transparent)!important}
+/* ================= Hero-Aufbau „Kachel“ (Leon 25.11.2026): Tiefe wie auf der Startseite =================
+   Text in einer Milchglas-Kachel (.hk-karte), rechts auf Haupt-/Leistungsseiten eine zweite Kachel mit Einstiegen (.hk-rechts).
+   Unterseiten nur Kachel (.hk-solo). Bisher: body ohne .hkAn (Umschalter „Hero-Aufbau“, ?heroauf=bisher). */
+body.hkAn .uhero-in.hk{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.85fr);gap:clamp(22px,2.6vw,36px);align-items:center}
+body.hkAn .uhero-in.hk-solo{grid-template-columns:minmax(0,780px)}
+body.hkAn .hk-karte{padding:clamp(30px,3.4vw,52px) clamp(28px,3.4vw,52px) clamp(28px,3vw,44px)}
+body.hkAn .hk-karte h1{font-size:clamp(34px,3.6vw,54px);max-width:none}
+body.hkAn .hk-karte .lead{font-size:18px;max-width:none}
+body.hkAn .hk-karte .btns{margin-top:30px}
+body.hkAn .uhero-in.hk:not(.hk-solo) .gw-wege,body.hkAn .uhero-in.hk:not(.hk-solo) .hsp{display:none}
+.hk-rechts{display:none}
+body.hkAn .hk-rechts{display:flex;flex-direction:column;padding:22px 18px 14px;align-self:center}
+.hk-k{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 10px 10px}
+.hk-z{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 10px;border-radius:18px;color:var(--text);text-decoration:none;transition:background .2s}
+.hk-z+.hk-z{border-top:1px solid var(--edge)}
+.hk-z:hover{background:color-mix(in srgb,var(--a1,var(--blue)) 8%,transparent)}
+.hk-z:hover+.hk-z,.hk-z:hover{border-top-color:transparent}
+.hk-z b{display:block;font:400 18px/1.25 Comfortaa,sans-serif;color:var(--text)}
+.hk-z small{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+.hk-ic{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:color-mix(in srgb,var(--a1,var(--blue)) 13%,transparent)}
+.hk-ic svg{width:20px;height:20px;fill:none;stroke:var(--a1,var(--blue));stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hk-z .pf{width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.8;transition:transform .2s,stroke .2s}
+.hk-z:hover .pf{transform:translateX(3px);stroke:var(--a1,var(--blue))}
+@media(max-width:1000px){body.hkAn .uhero-in.hk{grid-template-columns:1fr}}
+@media(max-width:600px){body.hkAn .hk-karte{padding:26px 22px 24px}body.hkAn .hk-rechts{padding:16px 10px 8px}}
+/* ================= Einstellungsfenster neu (Leon 25.11.2026): Reiter, Abschnitts-Zeilen mit Hintergrund und Welle ================= */
+.stg-reiter{display:flex;gap:4px;margin:12px 18px 2px;padding:4px;border-radius:100px;background:color-mix(in srgb,var(--text) 6%,transparent)}
+.stg-reiter button{flex:1;padding:9px 10px;border-radius:100px;font:700 13.5px 'Mozilla Text',sans-serif!important;color:var(--muted)!important;transition:background .2s,color .2s}
+.stg-reiter button.on{background:var(--bg);color:var(--text)!important;box-shadow:0 2px 8px -3px rgba(15,25,50,.25)}
+.stg-reiter button[hidden]{display:none}
+.stg-gr[hidden]{display:none}
+.stg-inhalt>.stg-gr:not([hidden])~.stg-gr:not([hidden]){border-top:1px solid var(--sg-rand)}
+.stg-gr{border-bottom:0!important}
+.stg-gr h5{font:700 12px 'Mozilla Text',sans-serif!important;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* Abschnitts-Zeilen: oben Name und Anzeigen, darunter Reihenfolge, Hintergrund, Welle */
+.mod-liste li.mz{display:block;padding:10px 0 12px;border-bottom:1px solid var(--edge)}
+.mz-kopf{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mz-n{font:700 14px 'Mozilla Text',sans-serif;line-height:1.3}
+.mod-liste li.mz.zusatz .mz-n:after{content:" · Zusatz";font-weight:400;color:var(--muted);font-size:12px}
+.mod-liste li.mz.aus .mz-n{color:var(--muted);font-weight:400}
+.mz-wahl{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+.mod-liste li.mz.aus .mz-wahl{display:none}
+.mz-pf{display:inline-flex;border:1px solid var(--sg-rand);border-radius:100px;overflow:hidden}
+.mz-pf button{width:28px;height:26px;font-size:13px!important;color:var(--text)!important}
+.mz-pf button+button{border-left:1px solid var(--sg-rand)!important}
+.mz-pf button:disabled{opacity:.3;cursor:default}
+.mz-bg.seg{padding:2px}
+.mz-bg.seg button{padding:4px 9px;font-size:12px!important}
+.mz-welle{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px 0 8px;border-radius:100px;border:1px solid var(--sg-rand)!important;font:700 12px 'Mozilla Text',sans-serif!important;color:var(--muted)!important}
+.mz-welle svg{width:16px;height:16px}
+.mz-welle.on{background:color-mix(in srgb,var(--blue) 12%,transparent);border-color:var(--blue)!important;color:var(--blue)!important}
+/* Welle im Abschnitt: ruhig unten, Inhalt liegt darüber */
+main>section.modwelle{overflow:hidden}
+main>section>canvas.mw{display:none;z-index:0}
+main>section.modwelle>canvas.mw{display:block}
+main>section.modwelle>.wrap{position:relative;z-index:1}
+/* Hero-Kachel: Akzente etwas kräftiger */
+.hk-ic{background:color-mix(in srgb,var(--a1,var(--blue)) 18%,transparent)}
+.hk-ic svg{stroke-width:1.9}
+.hk-k{color:var(--a1,var(--blue))}.stg-z{gap:10px}
+.stg-z>.seg{flex:none}
+.stg-z>.seg button{padding-left:9px!important;padding-right:9px!important}
+.stg-z>span{min-width:0}

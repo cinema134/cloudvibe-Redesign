@@ -4,20 +4,25 @@
  <aside class="stg-panel" id="stgPanel" aria-label="Einstellungen">
   <div class="stg-kopf"><b>Einstellungen</b><button type="button" id="stgZu" aria-label="Einstellungen schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="stg-inhalt">
-   <section class="stg-gr">
-    <h5>Ansicht</h5>
-    <div class="stg-z"><span>Dunkelmodus</span><button type="button" id="dk" class="tg" aria-label="Dunkelmodus"></button></div>
-    <div class="stg-z" data-ziel="footer.fuss"><span>Footer</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">K</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">A</button></div></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Kopfleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Haupt-Button oben</span><div class="seg"><button type="button" data-kbtn="ticket" class="on" title="Ticket eröffnen als Button, Termin im Support-Menü">Ticket</button><button type="button" data-kbtn="termin" title="Bisher: Termin vereinbaren als Button">Termin</button></div></div>    <div class="stg-z" data-ziel="#top"><span>Körnung im Hero</span><button type="button" id="gr" class="tg on" aria-label="Körnung"></button></div>
+   <!-- Panel neu (Leon 25.11.2026): Reiter „Diese Seite“ · „Design“ · „Sichern“, Benennung nach dem, was man auf der Seite sieht -->
+   <section class="stg-gr" data-tab="design">
+    <h5>Darstellung</h5>
+    <div class="stg-z"><span>Dunkler Modus</span><button type="button" id="dk" class="tg" aria-label="Dunkler Modus"></button></div>
+    <div class="stg-z" data-ziel=".einstieg"><span>Wort für den Bereich</span><select id="begriff" aria-label="Wort für den Bereich"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
    </section>
-   <section class="stg-gr">
-    <h5>Inhalt</h5>
-    <div class="stg-z" data-ziel=".einstieg"><span>Begriff</span><select id="begriff" aria-label="Begriff"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
+   <section class="stg-gr" data-tab="design">
+    <h5>Kopf und Fuß</h5>
+    <div class="stg-z" data-ziel="#kopf"><span>Menüleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
+    <div class="stg-z" data-ziel="#kopf"><span>Blauer Button oben</span><div class="seg"><button type="button" data-kbtn="ticket" class="on" title="Ticket eröffnen als blauer Button, Termin als eigener Button daneben">Ticket</button><button type="button" data-kbtn="termin" title="Bisher: Termin vereinbaren als blauer Button">Termin</button></div></div>
+    <div class="stg-z" data-ziel="footer.fuss"><span>Fußzeile</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">Kompakt</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">Spalten</button></div></div>
+   </section>
+   <section class="stg-gr" data-tab="design">
+    <h5>Erster Bildschirm (Hero)</h5>
+    <div class="stg-z" data-ziel="#top"><span>Körnung</span><button type="button" id="gr" class="tg on" aria-label="Körnung"></button></div>
    </section>
    <!-- Welle: keine Regler mehr, nur Durchschalten zwischen aktueller Linien-Welle und den Bänder-Varianten des Kollegen (Leon 24.11.2026); ?welle=aktuell|seide|ruhig|zart|linien -->
-   <section class="stg-gr" data-ziel="#top">
-    <h5>Welle</h5>
+   <section class="stg-gr" data-tab="design" data-ziel="#top">
+    <h5>Welle im ersten Bildschirm</h5>
     <div class="stg-welle" role="group" aria-label="Welle wählen">
      <button type="button" data-welle="aktuell" class="on"><b>Aktuell</b><small>Feine Linien Grün nach Blau</small></button>
      <!-- weitere Knöpfe erzeugt startseite.js aus CV.BAENDER (basis.js) -->
@@ -25,7 +30,7 @@
     </div>
     <div class="stg-welle-nav"><button type="button" data-wschritt="-1" aria-label="Vorige Welle">‹ Vorige</button><button type="button" data-wschritt="1" aria-label="Nächste Welle">Nächste ›</button></div>
    </section>
-   <section class="stg-gr stg-regler" data-ziel="#top">
+   <section class="stg-gr stg-regler" data-tab="design" data-ziel="#top">
     <h5>Logo</h5>
     <label class="sp">Größe <input id="lgs" type="range" min="30" max="220" value="90"></label>
     <label class="sp">Abstand <input id="lga" type="range" min="0" max="320" value="70"></label>

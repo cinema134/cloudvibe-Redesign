@@ -4,24 +4,31 @@
  <aside class="stg-panel" id="stgPanel" aria-label="Einstellungen">
   <div class="stg-kopf"><b>Einstellungen</b><button type="button" id="stgZu" aria-label="Einstellungen schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="stg-inhalt">
-   <section class="stg-gr">
-    <h5>Ansicht</h5>
-    <div class="stg-z"><span>Dunkelmodus</span><button type="button" id="dk" class="tg" aria-label="Dunkelmodus"></button></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Kopfleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Haupt-Button oben</span><div class="seg"><button type="button" data-kbtn="ticket" class="on" title="Ticket eröffnen als Button, Termin im Support-Menü">Ticket</button><button type="button" data-kbtn="termin" title="Bisher: Termin vereinbaren als Button">Termin</button></div></div>
-    <div class="stg-z" data-ziel="footer.fuss"><span>Footer</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">K</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">A</button></div></div>
-    <!-- Heros (Leon 24.11.2026): Höhe, Stil und Wellenart umschaltbar; Wellenart gilt auf allen Seiten (auch Startseite und Kontaktblock) -->
-    <div class="stg-z" data-ziel="#top"><span>Hero-Höhe</span><div class="seg"><button type="button" data-heroh="einheitlich" class="on">Einheitlich</button><button type="button" data-heroh="bisher">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="#top"><span>Hero-Stil</span><select id="heroStil" aria-label="Hero-Stil"><option value="welle">Wellenkante je Bereich</option><option value="bereich">Ruhig je Bereich (bisher)</option><option value="ruhig">Ruhig</option><option value="schimmer">Schimmer</option><option value="punkte">Punkte</option></select></div>
-    <div class="stg-z" data-ziel="#top"><span>Wellenart</span><select id="welleArt" aria-label="Wellenart"></select></div>
-    <div class="stg-z" data-ziel="#top"><span>Hero-Buttons</span><div class="seg"><button type="button" data-hbt="alt">Bisher</button><button type="button" data-hbt="neu" class="on">Reduziert</button></div></div>
+   <!-- Panel neu (Leon 25.11.2026): Reiter „Diese Seite“ (Abschnitte, Varianten der Seite) · „Design“ (gilt auf allen Seiten) · „Sichern“; Benennung nach dem, was man auf der Seite sieht -->
+   <section class="stg-gr" data-tab="design">
+    <h5>Darstellung</h5>
+    <div class="stg-z"><span>Dunkler Modus</span><button type="button" id="dk" class="tg" aria-label="Dunkler Modus"></button></div>
+    <div class="stg-z" data-ziel="main .hc"><span>Wort für den Bereich</span><select id="begriff" aria-label="Wort für den Bereich"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
    </section>
-   <section class="stg-gr">
-    <h5>Inhalt</h5>
+   <section class="stg-gr" data-tab="design">
+    <h5>Kopf und Fuß</h5>
+    <div class="stg-z" data-ziel="#kopf"><span>Menüleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
+    <div class="stg-z" data-ziel="#kopf"><span>Blauer Button oben</span><div class="seg"><button type="button" data-kbtn="ticket" class="on" title="Ticket eröffnen als blauer Button, Termin als eigener Button daneben">Ticket</button><button type="button" data-kbtn="termin" title="Bisher: Termin vereinbaren als blauer Button">Termin</button></div></div>
+    <div class="stg-z" data-ziel="footer.fuss"><span>Fußzeile</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">Kompakt</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">Spalten</button></div></div>
+   </section>
+   <section class="stg-gr" data-tab="design">
+    <h5>Erster Bildschirm (Hero)</h5>
+    <div class="stg-z" data-ziel="#top"><span>Aufbau</span><div class="seg"><button type="button" data-heroauf="kachel" class="on" title="Text in Milchglas-Kachel wie auf der Startseite, rechts Einstiege">Kachel</button><button type="button" data-heroauf="bisher" title="Bisher: Text frei auf dem Hintergrund">Frei</button></div></div>
+    <div class="stg-z" data-ziel="#top"><span>Höhe</span><div class="seg"><button type="button" data-heroh="einheitlich" class="on" title="Füllt den ersten Bildschirm">Bildschirm</button><button type="button" data-heroh="bisher" title="Bisher: so hoch wie der Inhalt">Inhalt</button></div></div>
+    <div class="stg-z" data-ziel="#top"><span>Hintergrund</span><select id="heroStil" aria-label="Hintergrund im ersten Bildschirm"><option value="welle">Wellenkante je Bereich</option><option value="bereich">Ruhig je Bereich (bisher)</option><option value="ruhig">Ruhig</option><option value="schimmer">Schimmer</option><option value="punkte">Punkte</option></select></div>
+    <div class="stg-z" data-ziel="#top"><span>Form der Welle</span><select id="welleArt" aria-label="Form der Welle"></select></div>
+    <div class="stg-z" data-ziel="#top"><span>Buttons</span><div class="seg"><button type="button" data-hbt="neu" class="on" title="Ein Button mit eigenem Zweck, Anrufen als leise Zeile">Ein Zweck</button><button type="button" data-hbt="alt" title="Bisher: Termin und Anrufen als Buttons">Bisher</button></div></div>
+   </section>
+   <section class="stg-gr" data-tab="design">
+    <h5>Bausteine</h5>
     <div class="stg-z" data-ziel=".stimmen"><span>Kundenstimmen</span><div class="seg"><button type="button" data-kst="kompakt" class="on">Kompakt</button><button type="button" data-kst="buehne">Bühne</button><button type="button" data-kst="liste">Liste</button></div></div>
-    <div class="stg-z" data-ziel=".st-reihe"><span>Abläufe</span><div class="seg"><button type="button" data-ablauf="pfeil" class="on" title="Pfeilband: Schritte als Pfeile, die zum Ziel kräftiger werden">Pfeilband</button><button type="button" data-ablauf="zeitleiste" title="Bisher: Zeitleiste mit Linie und Punkten">Zeitleiste</button></div></div>
-    <div class="stg-z" id="stgAz" data-ziel=".bk ul, .fragen"><span>Aufzählung</span><div class="seg"><button type="button" data-az="P">Punkt</button><button type="button" data-az="H">Häkchen</button><button type="button" data-az="S">Strich</button><button type="button" data-az="L">Ohne</button></div></div>
-    <div class="stg-z" data-ziel="main .hc"><span>Begriff</span><select id="begriff" aria-label="Begriff"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
+    <div class="stg-z" data-ziel=".st-reihe"><span>Abläufe</span><div class="seg"><button type="button" data-ablauf="pfeil" class="on" title="Pfeilband: Schritte als Pfeile, die zum Ziel kräftiger werden">Pfeile</button><button type="button" data-ablauf="zeitleiste" title="Bisher: Zeitleiste mit Linie und Punkten">Zeitleiste</button></div></div>
+    <div class="stg-z" id="stgAz" data-ziel=".bk ul, .fragen"><span>Aufzählungszeichen</span><div class="seg"><button type="button" data-az="P">Punkt</button><button type="button" data-az="H">Haken</button><button type="button" data-az="S">Strich</button><button type="button" data-az="L">Ohne</button></div></div>
    </section>
   </div>
  </aside>

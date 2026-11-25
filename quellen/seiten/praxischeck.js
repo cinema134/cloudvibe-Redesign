@@ -59,7 +59,7 @@
   });
 
   // Beim Speichern (Bearbeiten-Modus) den Test im Ausgangszustand ablegen, nicht mit Leons Probe-Antworten
-  if (window.CV && CV.beimSpeichern) CV.beimSpeichern((doc) => {
+  if ((typeof CV !== 'undefined') && CV.beimSpeichern) CV.beimSpeichern((doc) => {
     const s = doc.getElementById('selbsttest');
     if (!s) return;
     s.querySelectorAll('.stt-fragen li').forEach((li) => li.removeAttribute('data-antwort'));

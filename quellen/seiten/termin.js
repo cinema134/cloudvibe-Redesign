@@ -218,20 +218,19 @@
     document.querySelectorAll('[data-tm]').forEach((b) => b.classList.toggle('on', (b.dataset.tm === 'kompakt') === k));
     if (k && !st.art) waehleArt('erst', false); // sofort buchbar: erste Art vorgewählt
     klebe();
-    if (merken && window.CV) CV.merke('termin', k ? 'kompakt' : 'bisher');
+    if (merken && typeof CV !== 'undefined') CV.merke('termin', k ? 'kompakt' : 'bisher');
   }
-  const stg = document.querySelector('#stgPanel .stg-inhalt section:last-child') || document.querySelector('#stgPanel .stg-inhalt');
-  if (stg) {
+  if (document.getElementById('stgPanel') && typeof CV !== 'undefined' && CV.panelZeile) {
     const z = document.createElement('div');
     z.className = 'stg-z'; z.dataset.ziel = '#terminarten';
     z.innerHTML = '<span>Terminauswahl</span><div class="seg"><button type="button" data-tm="kompakt" class="on" title="Liste und Kalender auf einen Blick">Kompakt</button><button type="button" data-tm="bisher" title="Bisher: große Liste mit Beschreibungen">Bisher</button></div>';
-    stg.appendChild(z);
+    CV.panelZeile(z); // Panel-Reiter „Diese Seite“
     z.querySelectorAll('[data-tm]').forEach((b) => (b.onclick = () => setAufbau(b.dataset.tm, true)));
   }
 
   /* ---- Prüfhilfe über Adress-Parameter ---- */
   const Q = new URLSearchParams(location.search), art = Q.get('art');
-  const aufbau = window.CV ? CV.wert('termin', Q.get('termin'), 'kompakt') : (Q.get('termin') || 'kompakt');
+  const aufbau = (typeof CV !== 'undefined') ? CV.wert('termin', Q.get('termin'), 'kompakt') : (Q.get('termin') || 'kompakt');
   setAufbau(aufbau, false); // ?art=… wählt danach die gewünschte Art
   if (art && ARTEN[art]) {
     waehleArt(art, false);

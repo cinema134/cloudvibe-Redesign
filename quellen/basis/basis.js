@@ -483,6 +483,16 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-kbtn]').forEach((x) => (x.onclick = () => setKbtn(x.dataset.kbtn)));
   setKbtn(wert('kbtn', Q.get('kbtn'), 'ticket'));
+  /* Hero-Aufbau (Leon 25.11.2026): Kachel (Standard, Milchglas-Kachel + rechte Einstiegskachel) oder Bisher; ?heroauf=bisher. Nur wo die Seite .hk hat */
+  function setHeroAuf(v) {
+    if (v !== 'bisher') v = 'kachel';
+    B.classList.toggle('hkAn', v === 'kachel');
+    document.querySelectorAll('[data-heroauf]').forEach((x) => x.classList.toggle('on', x.dataset.heroauf === v));
+    merke('heroauf', v);
+  }
+  if (!document.querySelector('.uhero-in.hk')) document.querySelectorAll('[data-heroauf]').forEach((x) => x.closest('.stg-z').remove());
+  document.querySelectorAll('[data-heroauf]').forEach((x) => (x.onclick = () => setHeroAuf(x.dataset.heroauf)));
+  setHeroAuf(wert('heroauf', Q.get('heroauf'), 'kachel'));
   /* Abläufe (So starten wir, So läuft …): Pfeilband (Standard, Prüfdokument 24.11.2026) oder Zeitleiste (bisher); ?ablauf=zeitleiste */
   function setAblauf(v) {
     if (v !== 'zeitleiste') v = 'pfeil';
@@ -686,8 +696,17 @@ const CV = (function () {
         m.el.classList.toggle('modbg-f', w === 'f');
         if (w === 'h') m.el.classList.remove('alt');
         if (w === 'f') m.el.classList.add('alt');
+        // Welle im Modul (Leon 25.11.2026): feine Linien als ruhiger Grund unten im Abschnitt, je Modul ein/aus
+        const mitWelle = !!(st.welle || {})[m.id];
+        m.el.classList.toggle('modwelle', mitWelle);
+        if (mitWelle && !m.el.querySelector(':scope>canvas.mw')) {
+          const c = document.createElement('canvas');
+          c.className = 'welle mw'; c.setAttribute('aria-hidden', 'true');
+          m.el.prepend(c);
+          stillWelle(c, { N: 22, hs: 0.9, lw: 1.1, bp: 0.78, opm: 0.38 }, 3.4, 0.5);
+        }
       });
-      setTimeout(() => stickyEinmal(false), 0);
+      setTimeout(() => { stickyEinmal(false); wellenNeu(); }, 0);
     }
     // Gemerkt wird immer (auch wenn es dem Standard entspricht), damit ein Zurück auf Standard eine Team-Vorgabe übersteuert
     function merken() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} if (LOKAL) setDirty(true); }
@@ -705,32 +724,37 @@ const CV = (function () {
       st.o.forEach((id, i) => {
         const m = M.find((x) => x.id === id), an = st.an.includes(id);
         const li = document.createElement('li');
-        li.className = (m.z ? 'zusatz ' : '') + (an ? '' : 'aus');
-        li.innerHTML = '<span></span><button type="button" class="mod-pf" aria-label="nach oben"' + (i ? '' : ' disabled') + '>↑</button><button type="button" class="mod-pf" aria-label="nach unten"' + (i === st.o.length - 1 ? ' disabled' : '') + '>↓</button><button type="button" class="mod-bg"></button><button type="button" class="tg' + (an ? ' on' : '') + '" aria-label="ein/aus"></button>';
-        li.querySelector('span').textContent = m.n;
-        const b = [...li.querySelectorAll('button')];
-        // Hintergrund-Knopf: Auto → Hell → Fläche → Auto
-        const bk = b.splice(2, 1)[0], w = (st.bg || {})[id] || '';
-        bk.dataset.bg = w || 'a'; bk.textContent = BG[w][0]; bk.title = BG[w][1]; bk.setAttribute('aria-label', BG[w][1]);
-        bk.onclick = () => { const n = { '': 'h', h: 'f', f: '' }[w]; st.bg = { ...(st.bg || {}) }; if (n) st.bg[id] = n; else delete st.bg[id]; anwenden(); merken(); liste(); zeig(); };
+        li.className = 'mz' + (m.z ? ' zusatz' : '') + (an ? '' : ' aus');
+        // Zeile (Leon 25.11.2026, Panel neu): oben Name + Ein/Aus, darunter Reihenfolge, Hintergrund und Welle
+        const w = (st.bg || {})[id] || '', mw = !!(st.welle || {})[id];
+        li.innerHTML = '<div class="mz-kopf"><span class="mz-n"></span><button type="button" class="tg' + (an ? ' on' : '') + '" aria-label="Anzeigen"></button></div>' +
+          '<div class="mz-wahl"><span class="mz-pf"><button type="button" aria-label="nach oben"' + (i ? '' : ' disabled') + '>↑</button><button type="button" aria-label="nach unten"' + (i === st.o.length - 1 ? ' disabled' : '') + '>↓</button></span>' +
+          '<span class="seg mz-bg" role="group" aria-label="Hintergrund">' + Object.entries(BG).map(([k, [t, ti]]) => '<button type="button" data-v="' + k + '" title="' + ti + '"' + (k === w ? ' class="on"' : '') + '>' + t + '</button>').join('') + '</span>' +
+          '<button type="button" class="mz-welle' + (mw ? ' on' : '') + '" title="Welle im Hintergrund dieses Moduls" aria-pressed="' + mw + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15c3.5 0 3.5-6 7-6s3.5 6 7 6 3.5-6 6-6"/></svg>Welle</button></div>';
+        li.querySelector('.mz-n').textContent = m.n;
         const zeig = () => { if (st.an.includes(id)) m.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
-        b[0].onclick = () => { st.o.splice(i - 1, 0, st.o.splice(i, 1)[0]); anwenden(); merken(); liste(); zeig(); };
-        b[1].onclick = () => { st.o.splice(i + 1, 0, st.o.splice(i, 1)[0]); anwenden(); merken(); liste(); zeig(); };
-        b[2].onclick = () => { an ? (st.an = st.an.filter((x) => x !== id)) : st.an.push(id); anwenden(); merken(); liste(); zeig(); };
+        const neu = () => { anwenden(); merken(); liste(); zeig(); };
+        const [hoch, runter] = li.querySelectorAll('.mz-pf button');
+        hoch.onclick = () => { st.o.splice(i - 1, 0, st.o.splice(i, 1)[0]); neu(); };
+        runter.onclick = () => { st.o.splice(i + 1, 0, st.o.splice(i, 1)[0]); neu(); };
+        li.querySelector('.mz-kopf .tg').onclick = () => { an ? (st.an = st.an.filter((x) => x !== id)) : st.an.push(id); neu(); };
+        li.querySelectorAll('.mz-bg button').forEach((x) => (x.onclick = () => { st.bg = { ...(st.bg || {}) }; if (x.dataset.v) st.bg[id] = x.dataset.v; else delete st.bg[id]; neu(); }));
+        li.querySelector('.mz-welle').onclick = () => { st.welle = { ...(st.welle || {}) }; if (mw) delete st.welle[id]; else st.welle[id] = 1; neu(); };
         ol.appendChild(li);
       });
     }
     if (inhalt && !document.querySelector('.stg-module')) {
       const gr = document.createElement('section');
       gr.className = 'stg-gr stg-module';
-      gr.innerHTML = '<h5>Module</h5><p class="stg-info">Abschnitte dieser Seite ein- und ausblenden und mit den Pfeilen anordnen. Der Knopf „Auto/Hell/Fläche“ legt den Hintergrund je Modul fest. „Zusatz“ sind passende Module, die hier noch nicht stehen. „Speichern“ schreibt den Aufbau in die Datei.</p><ol class="mod-liste"></ol><div class="mod-knoepfe"><button type="button" data-mk="kopie">Aufbau kopieren</button><button type="button" data-mk="std">Zurücksetzen</button></div>';
+      gr.innerHTML = '<h5>Abschnitte dieser Seite</h5><p class="stg-info">Je Abschnitt: anzeigen, mit ↑ ↓ verschieben, Hintergrund wählen (Auto wechselt selbst hell und Fläche) und eine Welle dazuschalten. „Zusatz“ sind passende Abschnitte, die hier noch nicht stehen.</p><ol class="mod-liste"></ol><div class="mod-knoepfe"><button type="button" data-mk="kopie">Aufbau kopieren</button><button type="button" data-mk="std">Zurücksetzen</button></div>';
       inhalt.insertBefore(gr, inhalt.children[1] || null);
       ol = gr.querySelector('.mod-liste');
       // Zurücksetzen: auf den für alle festgelegten Aufbau (einstellungen.js), sonst auf den Standard der Seite
       gr.querySelector('[data-mk="std"]').onclick = () => { st = JSON.parse(JSON.stringify((EINST.module && EINST.module[seite]) || STD)); anwenden(); try { localStorage.removeItem(KEY); } catch (e) {} liste(); };
       gr.querySelector('[data-mk="kopie"]').onclick = async (e) => {
         const bgt = Object.entries(st.bg || {}).filter(([x]) => st.an.includes(x)).map(([x, v]) => x + '=' + (v === 'h' ? 'hell' : 'fläche'));
-        const txt = seite + ': ' + st.o.filter((x) => st.an.includes(x)).join(', ') + (bgt.length ? ' · Hintergrund: ' + bgt.join(', ') : '');
+        const wt = Object.keys(st.welle || {}).filter((x) => st.an.includes(x));
+        const txt = seite + ': ' + st.o.filter((x) => st.an.includes(x)).join(', ') + (bgt.length ? ' · Hintergrund: ' + bgt.join(', ') : '') + (wt.length ? ' · Welle: ' + wt.join(', ') : '');
         try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Kopiert'; } catch (x) { prompt('Aufbau:', txt); }
         setTimeout(() => (e.target.textContent = 'Aufbau kopieren'), 1500);
       };
@@ -962,8 +986,40 @@ const CV = (function () {
     gr.querySelector('[data-sp="alle"]').onclick = fuerAlle;
     gr.querySelector('[data-sp="weg"]').onclick = meineWeg;
   }
+
+  /* ---- Einstellungsfenster in drei Reitern (Leon 25.11.2026: neu konzipieren, Benennung neu ordnen) ----
+     „Diese Seite“: Abschnitte (Module) und Varianten nur dieser Seite · „Design“: was auf allen Seiten gilt · „Sichern“: Speichern für alle.
+     Seitenskripte, die später Zeilen ergänzen, nutzen CV.panelZeile(z) (landet unter „Diese Seite“). */
+  const REITER = [['seite', 'Diese Seite'], ['design', 'Design'], ['sichern', 'Sichern']];
+  const reiterVon = (g) => g.dataset.tab || (g.matches('.stg-module,.stg-seite,.stg-stellen') ? 'seite' : g.matches('.stg-sichern') ? 'sichern' : 'design');
+  let zeigeReiter = () => {};
+  if (inhSp) {
+    const leiste = document.createElement('div');
+    leiste.className = 'stg-reiter'; leiste.setAttribute('role', 'tablist');
+    leiste.innerHTML = REITER.map(([k, t]) => `<button type="button" role="tab" data-reiter="${k}">${t}</button>`).join('');
+    inhSp.before(leiste);
+    zeigeReiter = (k) => {
+      const hat = (r) => [...inhSp.querySelectorAll(':scope>section')].some((g) => reiterVon(g) === r && g.querySelector('.stg-z,li,.mod-knoepfe,.stg-welle,label'));
+      if (!hat(k)) k = 'design';
+      leiste.querySelectorAll('button').forEach((b) => { b.classList.toggle('on', b.dataset.reiter === k); b.setAttribute('aria-selected', b.dataset.reiter === k); b.hidden = !hat(b.dataset.reiter); });
+      inhSp.querySelectorAll(':scope>section').forEach((g) => (g.hidden = reiterVon(g) !== k));
+      try { localStorage.setItem('cloudvibe-reiter', k); } catch (e) {}
+    };
+    leiste.onclick = (e) => { const b = e.target.closest('[data-reiter]'); if (b) zeigeReiter(b.dataset.reiter); };
+    let start = 'seite';
+    try { start = localStorage.getItem('cloudvibe-reiter') || 'seite'; } catch (e) {}
+    setTimeout(() => zeigeReiter(start), 0); // nach den Seitenskripten, die noch Zeilen ergänzen
+  }
+  // Zeile für „Diese Seite“ (z. B. Termin: Terminauswahl); legt die Gruppe bei Bedarf an
+  function panelZeile(z) {
+    if (!inhSp) return;
+    let g = inhSp.querySelector('.stg-seite');
+    if (!g) { g = document.createElement('section'); g.className = 'stg-gr stg-seite'; g.innerHTML = '<h5>Varianten dieser Seite</h5>'; inhSp.prepend(g); }
+    g.appendChild(z);
+    zeigeReiter(document.querySelector('.stg-reiter .on')?.dataset.reiter || 'seite');
+  }
   bereit = true;
 
-  return { $, Q, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
+  return { $, Q, panelZeile, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
     beimSpeichern: (f) => vorSpeichern.push(f), geaendert: () => setDirty(true) };
 })();
