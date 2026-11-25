@@ -648,7 +648,7 @@ body:not(.kstListe) .stimmen .st-nav{display:flex;align-items:center;justify-con
 body.modsys main{display:flex;flex-direction:column}
 .stg-info{font-size:12.5px;color:var(--muted);margin:-4px 0 10px}
 .mod-liste{list-style:none;display:flex;flex-direction:column;gap:2px}
-.mod-liste li{display:grid;grid-template-columns:minmax(0,1fr) 28px 28px auto;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--edge);font-size:14px}
+.mod-liste li{display:grid;grid-template-columns:minmax(0,1fr) 22px 22px 48px auto;gap:4px;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--edge);font-size:14px}
 .mod-liste li.zusatz span:after{content:" · Zusatz";color:var(--muted);font-size:12px}
 .mod-liste li.aus span{color:var(--muted)}
 .mod-pf{width:28px;height:28px;border-radius:50%;border:1px solid var(--edge);background:none;color:var(--text);cursor:pointer;font-size:13px}
@@ -821,3 +821,13 @@ body.kTicket .mnav .mn-termin{display:flex}
 
 /* Kompakte Heros (Beitrag, Rechtliches): keine Wellenkante, sie liefe durch die Ueberschrift */
 body.heroK .uhero .welle{display:none!important}
+
+/* Hintergrund je Modul (Leon 25.11.2026): Knopf Auto/Hell/Flaeche in der Modul-Liste, uebersteuert auch Abschnitte mit eigenem Hintergrund */
+.mod-bg{height:26px;border-radius:100px;border:1px solid var(--sg-rand)!important;font:700 11.5px 'Mozilla Text',sans-serif!important;color:var(--muted)!important;padding:0 6px}
+.mod-bg[data-bg=h]{background:#fff!important;color:#14171C!important}
+.mod-bg[data-bg=f]{background:var(--bg2)!important;color:var(--text)!important;border-color:var(--blue)!important}
+body.dark .mod-bg[data-bg=h]{background:#0B0D10!important;color:#fff!important}
+body.modsys main>section.modbg-h{background:var(--bg)!important}
+body.modsys main>section.modbg-f{background:var(--bg2)!important}
+.stg-inhalt{overflow-x:hidden}
+.mod-liste .mod-bg{padding:0 4px;width:48px}

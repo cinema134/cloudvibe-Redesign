@@ -662,7 +662,7 @@ body:not(.kstListe) .stimmen .st-nav{display:flex;align-items:center;justify-con
 body.modsys main{display:flex;flex-direction:column}
 .stg-info{font-size:12.5px;color:var(--muted);margin:-4px 0 10px}
 .mod-liste{list-style:none;display:flex;flex-direction:column;gap:2px}
-.mod-liste li{display:grid;grid-template-columns:minmax(0,1fr) 28px 28px auto;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--edge);font-size:14px}
+.mod-liste li{display:grid;grid-template-columns:minmax(0,1fr) 22px 22px 48px auto;gap:4px;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--edge);font-size:14px}
 .mod-liste li.zusatz span:after{content:" · Zusatz";color:var(--muted);font-size:12px}
 .mod-liste li.aus span{color:var(--muted)}
 .mod-pf{width:28px;height:28px;border-radius:50%;border:1px solid var(--edge);background:none;color:var(--text);cursor:pointer;font-size:13px}
@@ -835,6 +835,16 @@ body.kTicket .mnav .mn-termin{display:flex}
 
 /* Kompakte Heros (Beitrag, Rechtliches): keine Wellenkante, sie liefe durch die Ueberschrift */
 body.heroK .uhero .welle{display:none!important}
+
+/* Hintergrund je Modul (Leon 25.11.2026): Knopf Auto/Hell/Flaeche in der Modul-Liste, uebersteuert auch Abschnitte mit eigenem Hintergrund */
+.mod-bg{height:26px;border-radius:100px;border:1px solid var(--sg-rand)!important;font:700 11.5px 'Mozilla Text',sans-serif!important;color:var(--muted)!important;padding:0 6px}
+.mod-bg[data-bg=h]{background:#fff!important;color:#14171C!important}
+.mod-bg[data-bg=f]{background:var(--bg2)!important;color:var(--text)!important;border-color:var(--blue)!important}
+body.dark .mod-bg[data-bg=h]{background:#0B0D10!important;color:#fff!important}
+body.modsys main>section.modbg-h{background:var(--bg)!important}
+body.modsys main>section.modbg-f{background:var(--bg2)!important}
+.stg-inhalt{overflow-x:hidden}
+.mod-liste .mod-bg{padding:0 4px;width:48px}
 
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
@@ -2180,6 +2190,7 @@ const CV = (function () {
     if (!st) st = JSON.parse(JSON.stringify(STD));
     st.o = st.o.filter((x) => STD.o.includes(x)).concat(STD.o.filter((x) => !st.o.includes(x)));
     const istStd = () => JSON.stringify(st.o) === JSON.stringify(STD.o) && JSON.stringify([...st.an].sort()) === JSON.stringify([...STD.an].sort());
+    const BG = { '': ['Auto', 'Hintergrund automatisch (wechselt hell/Fläche)'], h: ['Hell', 'Hintergrund hell'], f: ['Fläche', 'Hintergrund Fläche'] };
     // Abschnitte mit eigenem Hintergrund behalten ihn; die übrigen wechseln hell/Fläche, sobald vom Standard abgewichen wird
     const EIGEN = '.kontakt,.einstiege,.tk,.abs-ab,.stimmen-start';
     function anwenden() {
@@ -2190,6 +2201,15 @@ const CV = (function () {
       vor.forEach((m) => {
         if (m.el.classList.contains('mod-aus') || m.el.matches(EIGEN)) return;
         m.el.classList.toggle('alt', istStd() ? m.alt : k % 2 === 1); k++;
+      });
+      // Hintergrund je Modul selbst wählen (Leon 25.11.2026): Auto (wie bisher) | Hell | Fläche; übersteuert den automatischen Wechsel
+      const bg = st.bg || {};
+      M.forEach((m) => {
+        const w = bg[m.id];
+        m.el.classList.toggle('modbg-h', w === 'h');
+        m.el.classList.toggle('modbg-f', w === 'f');
+        if (w === 'h') m.el.classList.remove('alt');
+        if (w === 'f') m.el.classList.add('alt');
       });
       setTimeout(() => stickyEinmal(false), 0);
     }
@@ -2210,9 +2230,13 @@ const CV = (function () {
         const m = M.find((x) => x.id === id), an = st.an.includes(id);
         const li = document.createElement('li');
         li.className = (m.z ? 'zusatz ' : '') + (an ? '' : 'aus');
-        li.innerHTML = '<span></span><button type="button" class="mod-pf" aria-label="nach oben"' + (i ? '' : ' disabled') + '>↑</button><button type="button" class="mod-pf" aria-label="nach unten"' + (i === st.o.length - 1 ? ' disabled' : '') + '>↓</button><button type="button" class="tg' + (an ? ' on' : '') + '" aria-label="ein/aus"></button>';
+        li.innerHTML = '<span></span><button type="button" class="mod-pf" aria-label="nach oben"' + (i ? '' : ' disabled') + '>↑</button><button type="button" class="mod-pf" aria-label="nach unten"' + (i === st.o.length - 1 ? ' disabled' : '') + '>↓</button><button type="button" class="mod-bg"></button><button type="button" class="tg' + (an ? ' on' : '') + '" aria-label="ein/aus"></button>';
         li.querySelector('span').textContent = m.n;
-        const b = li.querySelectorAll('button');
+        const b = [...li.querySelectorAll('button')];
+        // Hintergrund-Knopf: Auto → Hell → Fläche → Auto
+        const bk = b.splice(2, 1)[0], w = (st.bg || {})[id] || '';
+        bk.dataset.bg = w || 'a'; bk.textContent = BG[w][0]; bk.title = BG[w][1]; bk.setAttribute('aria-label', BG[w][1]);
+        bk.onclick = () => { const n = { '': 'h', h: 'f', f: '' }[w]; st.bg = { ...(st.bg || {}) }; if (n) st.bg[id] = n; else delete st.bg[id]; anwenden(); merken(); liste(); zeig(); };
         const zeig = () => { if (st.an.includes(id)) m.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
         b[0].onclick = () => { st.o.splice(i - 1, 0, st.o.splice(i, 1)[0]); anwenden(); merken(); liste(); zeig(); };
         b[1].onclick = () => { st.o.splice(i + 1, 0, st.o.splice(i, 1)[0]); anwenden(); merken(); liste(); zeig(); };
@@ -2223,13 +2247,14 @@ const CV = (function () {
     if (inhalt && !document.querySelector('.stg-module')) {
       const gr = document.createElement('section');
       gr.className = 'stg-gr stg-module';
-      gr.innerHTML = '<h5>Module</h5><p class="stg-info">Abschnitte dieser Seite ein- und ausblenden und mit den Pfeilen anordnen. „Zusatz“ sind passende Module, die hier noch nicht stehen. „Speichern“ schreibt den Aufbau in die Datei.</p><ol class="mod-liste"></ol><div class="mod-knoepfe"><button type="button" data-mk="kopie">Aufbau kopieren</button><button type="button" data-mk="std">Zurücksetzen</button></div>';
+      gr.innerHTML = '<h5>Module</h5><p class="stg-info">Abschnitte dieser Seite ein- und ausblenden und mit den Pfeilen anordnen. Der Knopf „Auto/Hell/Fläche“ legt den Hintergrund je Modul fest. „Zusatz“ sind passende Module, die hier noch nicht stehen. „Speichern“ schreibt den Aufbau in die Datei.</p><ol class="mod-liste"></ol><div class="mod-knoepfe"><button type="button" data-mk="kopie">Aufbau kopieren</button><button type="button" data-mk="std">Zurücksetzen</button></div>';
       inhalt.insertBefore(gr, inhalt.children[1] || null);
       ol = gr.querySelector('.mod-liste');
       // Zurücksetzen: auf den für alle festgelegten Aufbau (einstellungen.js), sonst auf den Standard der Seite
       gr.querySelector('[data-mk="std"]').onclick = () => { st = JSON.parse(JSON.stringify((EINST.module && EINST.module[seite]) || STD)); anwenden(); try { localStorage.removeItem(KEY); } catch (e) {} liste(); };
       gr.querySelector('[data-mk="kopie"]').onclick = async (e) => {
-        const txt = seite + ': ' + st.o.filter((x) => st.an.includes(x)).join(', ');
+        const bgt = Object.entries(st.bg || {}).filter(([x]) => st.an.includes(x)).map(([x, v]) => x + '=' + (v === 'h' ? 'hell' : 'fläche'));
+        const txt = seite + ': ' + st.o.filter((x) => st.an.includes(x)).join(', ') + (bgt.length ? ' · Hintergrund: ' + bgt.join(', ') : '');
         try { await navigator.clipboard.writeText(txt); e.target.textContent = 'Kopiert'; } catch (x) { prompt('Aufbau:', txt); }
         setTimeout(() => (e.target.textContent = 'Aufbau kopieren'), 1500);
       };
