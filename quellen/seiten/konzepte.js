@@ -262,6 +262,7 @@
   // Konzepte ohne Varianten-Umschalter: Varianten von Hand, sonst nur „So umsetzen“
   const OPT = { kontaktformular: ['A', 'B'], cookies: ['A', 'B', 'C'], kopfleiste: ['A', 'B', 'C'] };
   const stand = {};
+  const eigene0 = () => { const o = {}; Object.keys(stand).forEach((k) => { if (stand[k]) o[k] = stand[k]; }); return o; };
   const secs = $$('main > section.ko');
 
   function zaehle() {
@@ -314,6 +315,28 @@
   // Zähler unter der Übersicht
   const nav = $('.ko-inhalt');
   if (nav) { const z = document.createElement('div'); z.className = 'ko-stand'; nav.after(z); zaehle(); }
+  /* „Meine Entscheidungen senden“ (Leon 25.11.2026): Wer auf GitHub oder lokal entschieden hat, schickt seine schon getroffene Wahl
+     (aus dem Browser-Speicher) per E-Mail, ohne neu zu entscheiden. Die Mail enthält eine lesbare Liste und eine Code-Zeile,
+     die Claude in die Live-Ablage übernimmt. Auf claude.ai (live) ausgeblendet, dort wird ohnehin geteilt. */
+  if (nav) {
+    const w = document.createElement('div'); w.className = 'ko-senden';
+    w.innerHTML = '<button type="button" class="ko-senden-b">Meine Auswahl senden</button><span class="ko-senden-t">Lädt eine Datei mit allem, was du entschieden und eingestellt hast, und öffnet eine fertige E-Mail dazu.</span>';
+    ($('.ko-stand') || nav).after(w);
+    $('.ko-senden-b', w).addEventListener('click', () => {
+      const o = eigene0();
+      const ids = Object.keys(o);
+      if (!ids.length && !(hatCV && CV.meineSenden)) { $('.ko-senden-t', w).textContent = 'Du hast in diesem Browser noch nichts entschieden.'; return; }
+      const zeilen = secs.filter((s) => o[s.id]).map((s) => {
+        const nr = ((($('.ko-kopf .eb', s) || {}).textContent || '').match(/\d+/) || [''])[0];
+        const h2 = (($('.ko-kopf h2', s) || {}).textContent || s.id).trim();
+        return `Konzept ${nr} ${h2}: ${o[s.id] === 'ja' ? 'So umsetzen' : 'Variante ' + o[s.id]}`;
+      });
+      if (hatCV && CV.meineSenden) { CV.meineSenden(zeilen); $('.ko-senden-t', w).textContent = 'Datei heruntergeladen und E-Mail geöffnet: Datei anhängen und absenden.'; return; }
+      const text = `Meine Entscheidungen auf der Konzepte-Seite (${ids.length} von ${secs.length}):\n\n${zeilen.join('\n')}\n\nCode für die Übernahme (bitte nicht ändern):\nCV-ENTSCHEIDUNGEN ${JSON.stringify(o)}\n`;
+      location.href = 'mailto:?subject=' + encodeURIComponent('cloudvibe Konzepte: meine Entscheidungen') + '&body=' + encodeURIComponent(text);
+      $('.ko-senden-t', w).textContent = 'E-Mail geöffnet. Empfänger eintragen und absenden.';
+    });
+  }
   // Lokal speichern: Entscheidungen in die Datei schreiben
   if (hatCV && CV.beimSpeichern) CV.beimSpeichern((d) => { const s = d.getElementById('ko-entscheidungen'); if (s) { const o = {}; Object.keys(stand).forEach((k) => { if (stand[k]) o[k] = stand[k]; }); s.textContent = JSON.stringify(o); } });
 
@@ -349,7 +372,7 @@
         const v = d.werte[sec.id], p = ps[d.id] || {};
         const z = document.createElement('span'); z.className = 'ko-person';
         const img = document.createElement('img'); img.alt = ''; if (p.avatarUrl) img.src = p.avatarUrl; z.appendChild(img);
-        const n = document.createElement('b'); n.textContent = p.name || 'Jemand'; z.appendChild(n);
+        const n = document.createElement('b'); n.textContent = p.name || d.name || 'Jemand'; z.appendChild(n);
         const w = document.createElement('span'); w.className = 'ko-person-v'; w.textContent = v === 'ja' ? 'So umsetzen' : 'Variante ' + v; z.appendChild(w);
         if (stand[sec.id] !== v) {
           const u = document.createElement('button'); u.type = 'button'; u.textContent = 'Übernehmen';
@@ -370,6 +393,7 @@
     const ich = await user.id();
     if (!ich) return;
     live.db = db; live.user = user; live.ich = ich;
+    { const sw = $('.ko-senden'); if (sw) sw.hidden = true; }
     const z = $('.ko-stand');
     if (z) { const m = document.createElement('div'); m.className = 'ko-live'; m.textContent = 'Live: Entscheidungen der anderen werden geladen …'; z.after(m); }
     // eigene, schon geteilte Wahl übernehmen (z. B. aus einem anderen Browser)

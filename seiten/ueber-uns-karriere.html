@@ -976,6 +976,34 @@ body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:n
 .stg-seiten .stg-unter>span{padding-left:14px;color:var(--muted)}
 .stg-seiten .stg-mit-aus{opacity:.45}
 .seite-aus{position:fixed;left:50%;top:92px;transform:translateX(-50%);z-index:60;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;max-width:min(92vw,640px);padding:10px 18px;border-radius:16px;background:var(--phbg);color:var(--phtx);border:1px solid var(--phln);font-size:13.5px;box-shadow:var(--sh2)}
+/* Cookie-Abfrage als Leiste unten (Leon 25.11.2026, Konzept 5 Variante A): Milchglas-Leiste über die Inhaltsbreite,
+   Text links, Knöpfe rechts nebeneinander; die Seite bleibt sichtbar und bedienbar. Bisher (Karte unten links): ?cc=karte */
+body.ccL .cc{left:50%;right:auto;bottom:20px;transform:translateX(-50%);width:min(1240px,calc(100% - 40px))}
+body.ccL:has(#stg) .cc{bottom:92px}
+body.ccL .cc-box{padding:18px 20px 18px 28px;border-radius:24px}
+body.ccL .cc-start{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:32px;align-items:center}
+body.ccL .cc-start>.cc-t,body.ccL .cc-start>.cc-text,body.ccL .cc-start>.cc-links{grid-column:1}
+body.ccL .cc-start>.cc-btns{grid-column:2;grid-row:1/4}
+body.ccL .cc-t{font-size:16px;margin-bottom:3px}
+body.ccL .cc-text{font-size:14px;line-height:1.5;max-width:720px}
+body.ccL .cc-links{margin:4px 0 0}
+body.ccL .cc-btns{flex-direction:row;gap:8px}
+body.ccL .cc-btn{padding:11px 18px;font-size:14px;white-space:nowrap}
+body.ccL .cc-einst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px}
+body.ccL .cc-einst[hidden]{display:none!important}
+body.ccL .cc-einst>.cc-t,body.ccL .cc-einst>.cc-btns{grid-column:1/-1}
+body.ccL .cc-einst .cc-btns{justify-content:flex-end}
+@media(max-width:900px){
+ body.ccL .cc-start{grid-template-columns:1fr}
+ body.ccL .cc-start>.cc-btns{grid-column:1;grid-row:auto;margin-top:12px;flex-wrap:wrap}
+ body.ccL .cc-einst{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+ body.ccL .cc{bottom:10px;width:calc(100% - 20px)}
+ body.ccL:has(#stg) .cc{bottom:78px}
+ body.ccL .cc-box{padding:16px 18px}
+ body.ccL .cc-btns{flex-direction:column}
+}
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
 
@@ -1518,7 +1546,7 @@ body.stelle-an .stelle-ansicht{display:block}
   <nav class="fk-links" aria-label="Wichtige Seiten"><a href="termin.html">Termin vereinbaren</a><a href="ueber-uns-karriere.html">Karriere</a><a href="news-newsletter.html">Newsletter</a><a href="lexikon.html">Lexikon</a></nav>
   <nav class="fk-recht" aria-label="Service"><span>© 2026 cloudvibe GmbH</span><a href="login.html">Login</a><a href="impressum.html#impressum">Impressum</a><a href="impressum.html#datenschutz">Datenschutz</a><a href="impressum.html#agb">AGB</a><a href="#" data-cc-auf>Cookie-Einstellungen</a></nav>
  </div>
-</footer><!-- Cookie-Abfrage als kleine Karte unten links (Abstimmung 24.11.2026, Konzept 5 Variante C).
+</footer><!-- Cookie-Abfrage: Leiste unten (Leon 25.11.2026, Konzept 5 Variante A); bisherige Karte unten links per ?cc=karte.
      Ohne Statistik und externe Medien entfällt sie live ganz. Im Mockup einmal je Sitzung, ?cookie=aus blendet sie aus. -->
 <div class="cc" id="cc" hidden>
  <div class="cc-box" role="dialog" aria-modal="false" aria-labelledby="ccT">
@@ -2374,6 +2402,15 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-fuss]').forEach((x) => (x.onclick = () => setFuss(x.dataset.fuss)));
   setFuss(String(wert('fuss', Q.get('fuss'), 'k')).toLowerCase());
+  /* Cookie-Abfrage: Leiste unten (Leon 25.11.2026, Konzept 5 Variante A, Standard) oder bisherige Karte unten links; ?cc=karte */
+  function setCcArt(v) {
+    if (v !== 'karte') v = 'leiste';
+    B.classList.toggle('ccL', v === 'leiste');
+    document.querySelectorAll('[data-cc-art]').forEach((x) => x.classList.toggle('on', x.dataset.ccArt === v));
+    merke('ccart', v);
+  }
+  document.querySelectorAll('[data-cc-art]').forEach((x) => (x.onclick = () => setCcArt(x.dataset.ccArt)));
+  setCcArt(wert('ccart', Q.get('cc'), 'leiste'));
 
   /* ---- Mitlaufende Überschrift (sticky) nur einmal je Seite (Leon 24.11.2026: Doppelung vermeiden) ---- */
   function stickyEinmal(alle) {
@@ -2575,14 +2612,36 @@ const CV = (function () {
     } catch (e) {}
     location.href = location.pathname; // ohne Adress-Optionen neu laden
   }
+  /* „Meine Auswahl senden“ (Leon 25.11.2026): alles, was diese Person in diesem Browser eingestellt hat (Konzept-Entscheidungen,
+     Design-Schalter, Seiten aus, Hero aus, Module je Seite, bearbeitete Texte), als Datei herunterladen und eine E-Mail mit Kurzfassung öffnen.
+     Nur die eigene Auswahl (nicht das für alle Festgelegte); Claude übernimmt die Datei bzw. den Code in die Live-Konzepte. */
+  function meineSenden(zeilen) {
+    texteMerken();
+    const datum = new Date().toISOString().slice(0, 10);
+    const daten = { art: 'cloudvibe-auswahl-einer-person', stand: new Date().toLocaleString('de-DE'), optionen: { ...MEIN }, module: alleModule(), texte: gemerkt('cloudvibe-texte-') };
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(daten, null, 2)], { type: 'application/json' }));
+    a.download = 'cloudvibe-meine-auswahl-' + datum + '.json';
+    a.click();
+    const ko = Object.keys(MEIN).filter((k) => k.startsWith('ko-') && MEIN[k]);
+    const kurz = zeilen && zeilen.length ? zeilen : ko.map((k) => k.slice(3) + ': ' + MEIN[k]);
+    const nMod = Object.keys(daten.module).length, nTxt = Object.keys(daten.texte).length;
+    const text = 'Meine Auswahl für die neue cloudvibe-Website.\n\nBitte die eben heruntergeladene Datei „' + a.download + '“ anhängen, sie enthält alles: '
+      + 'Entscheidungen zu den Konzepten, Design-Schalter, ausgeblendete Seiten, Module je Seite (' + nMod + ' Seiten) und bearbeitete Texte (' + nTxt + ' Seiten).\n\n'
+      + (kurz.length ? 'Entscheidungen zu den Konzepten (' + kurz.length + '):\n' + kurz.join('\n') + '\n\n' : 'Zu den Konzepten habe ich noch nichts entschieden.\n\n')
+      + 'Code für die Übernahme der Konzept-Entscheidungen:\nCV-ENTSCHEIDUNGEN ' + JSON.stringify(Object.fromEntries(ko.map((k) => [k.slice(3), MEIN[k]]))) + '\n';
+    setTimeout(() => { location.href = 'mailto:?subject=' + encodeURIComponent('cloudvibe Website: meine Auswahl') + '&body=' + encodeURIComponent(text); }, 400);
+    toast('Datei heruntergeladen und E-Mail geöffnet: Datei anhängen, Empfänger eintragen, absenden.', 8000);
+  }
   const inhSp = document.querySelector('#stgPanel .stg-inhalt');
   if (inhSp) {
     const gr = document.createElement('section');
     gr.className = 'stg-gr stg-sichern';
     const team = EINST.stand ? 'Für alle festgelegt am ' + EINST.stand + '.' : 'Für alle ist noch nichts festgelegt, es gilt der Standard.';
-    gr.innerHTML = '<h5>Speichern</h5><p class="stg-info">' + (LOKAL ? 'Einstellungen werden in diesem Browser gemerkt und gelten auf allen Seiten; Texte schreibt „Speichern“ in die Datei. ' : 'Einstellungen und Textänderungen (Bearbeiten) werden automatisch im Speicher dieses Browsers gemerkt und gelten auf allen Seiten, auch nach dem Neuladen. ') + team + ' Mit „Für alle festlegen“ lädst du die Datei <b>einstellungen.js</b> mit allem herunter. Im Hauptordner auf GitHub hochgeladen, sehen alle Besucher diesen Stand.</p><div class="mod-knoepfe"><button type="button" data-sp="alle">Für alle festlegen</button><button type="button" data-sp="weg">Meine Auswahl zurücksetzen</button></div>';
+    gr.innerHTML = '<h5>Speichern</h5><p class="stg-info">' + (LOKAL ? 'Einstellungen werden in diesem Browser gemerkt und gelten auf allen Seiten; Texte schreibt „Speichern“ in die Datei. ' : 'Einstellungen und Textänderungen (Bearbeiten) werden automatisch im Speicher dieses Browsers gemerkt und gelten auf allen Seiten, auch nach dem Neuladen. ') + team + ' Mit „Für alle festlegen“ lädst du die Datei <b>einstellungen.js</b> mit allem herunter. Im Hauptordner auf GitHub hochgeladen, sehen alle Besucher diesen Stand.</p><div class="mod-knoepfe"><button type="button" data-sp="senden" title="Datei mit deiner ganzen Auswahl und eine fertige E-Mail, zum Beispiel an Leon">Meine Auswahl senden</button><button type="button" data-sp="alle">Für alle festlegen</button><button type="button" data-sp="weg">Meine Auswahl zurücksetzen</button></div>';
     inhSp.appendChild(gr);
     gr.querySelector('[data-sp="alle"]').onclick = fuerAlle;
+    gr.querySelector('[data-sp="senden"]').onclick = () => meineSenden();
     gr.querySelector('[data-sp="weg"]').onclick = meineWeg;
   }
 
@@ -2699,7 +2758,7 @@ const CV = (function () {
   }
   bereit = true;
 
-  return { $, Q, panelZeile, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
+  return { $, Q, panelZeile, meineSenden, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
     beimSpeichern: (f) => vorSpeichern.push(f), geaendert: () => setDirty(true) };
 })();
 

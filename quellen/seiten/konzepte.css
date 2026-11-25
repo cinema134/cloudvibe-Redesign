@@ -715,3 +715,10 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .ko-person button{border:0;cursor:pointer;font:700 12px 'Mozilla Text',sans-serif;padding:4px 10px;border-radius:100px;background:color-mix(in srgb,var(--blue) 10%,transparent);color:var(--blau-t)}
 .ko-person button:hover{background:var(--blue);color:#fff}
 .ko-gleich{font-size:12px;color:var(--gt);font-weight:700;padding-right:6px}
+/* „Meine Entscheidungen senden“ */
+.ko-senden{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px}
+.ko-senden[hidden]{display:none}
+.ko-senden-b{border:1px solid var(--edge);background:var(--bg);cursor:pointer;font:700 14px 'Mozilla Text',sans-serif;color:var(--text);padding:9px 18px;border-radius:100px}
+.ko-senden-b:hover{border-color:var(--blue);color:var(--blau-t)}
+.ko-senden-b:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.ko-senden-t{font-size:13.5px;color:var(--muted)}

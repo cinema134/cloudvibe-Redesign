@@ -805,6 +805,15 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-fuss]').forEach((x) => (x.onclick = () => setFuss(x.dataset.fuss)));
   setFuss(String(wert('fuss', Q.get('fuss'), 'k')).toLowerCase());
+  /* Cookie-Abfrage: Leiste unten (Leon 25.11.2026, Konzept 5 Variante A, Standard) oder bisherige Karte unten links; ?cc=karte */
+  function setCcArt(v) {
+    if (v !== 'karte') v = 'leiste';
+    B.classList.toggle('ccL', v === 'leiste');
+    document.querySelectorAll('[data-cc-art]').forEach((x) => x.classList.toggle('on', x.dataset.ccArt === v));
+    merke('ccart', v);
+  }
+  document.querySelectorAll('[data-cc-art]').forEach((x) => (x.onclick = () => setCcArt(x.dataset.ccArt)));
+  setCcArt(wert('ccart', Q.get('cc'), 'leiste'));
 
   /* ---- Mitlaufende Überschrift (sticky) nur einmal je Seite (Leon 24.11.2026: Doppelung vermeiden) ---- */
   function stickyEinmal(alle) {
@@ -1006,14 +1015,36 @@ const CV = (function () {
     } catch (e) {}
     location.href = location.pathname; // ohne Adress-Optionen neu laden
   }
+  /* „Meine Auswahl senden“ (Leon 25.11.2026): alles, was diese Person in diesem Browser eingestellt hat (Konzept-Entscheidungen,
+     Design-Schalter, Seiten aus, Hero aus, Module je Seite, bearbeitete Texte), als Datei herunterladen und eine E-Mail mit Kurzfassung öffnen.
+     Nur die eigene Auswahl (nicht das für alle Festgelegte); Claude übernimmt die Datei bzw. den Code in die Live-Konzepte. */
+  function meineSenden(zeilen) {
+    texteMerken();
+    const datum = new Date().toISOString().slice(0, 10);
+    const daten = { art: 'cloudvibe-auswahl-einer-person', stand: new Date().toLocaleString('de-DE'), optionen: { ...MEIN }, module: alleModule(), texte: gemerkt('cloudvibe-texte-') };
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(daten, null, 2)], { type: 'application/json' }));
+    a.download = 'cloudvibe-meine-auswahl-' + datum + '.json';
+    a.click();
+    const ko = Object.keys(MEIN).filter((k) => k.startsWith('ko-') && MEIN[k]);
+    const kurz = zeilen && zeilen.length ? zeilen : ko.map((k) => k.slice(3) + ': ' + MEIN[k]);
+    const nMod = Object.keys(daten.module).length, nTxt = Object.keys(daten.texte).length;
+    const text = 'Meine Auswahl für die neue cloudvibe-Website.\n\nBitte die eben heruntergeladene Datei „' + a.download + '“ anhängen, sie enthält alles: '
+      + 'Entscheidungen zu den Konzepten, Design-Schalter, ausgeblendete Seiten, Module je Seite (' + nMod + ' Seiten) und bearbeitete Texte (' + nTxt + ' Seiten).\n\n'
+      + (kurz.length ? 'Entscheidungen zu den Konzepten (' + kurz.length + '):\n' + kurz.join('\n') + '\n\n' : 'Zu den Konzepten habe ich noch nichts entschieden.\n\n')
+      + 'Code für die Übernahme der Konzept-Entscheidungen:\nCV-ENTSCHEIDUNGEN ' + JSON.stringify(Object.fromEntries(ko.map((k) => [k.slice(3), MEIN[k]]))) + '\n';
+    setTimeout(() => { location.href = 'mailto:?subject=' + encodeURIComponent('cloudvibe Website: meine Auswahl') + '&body=' + encodeURIComponent(text); }, 400);
+    toast('Datei heruntergeladen und E-Mail geöffnet: Datei anhängen, Empfänger eintragen, absenden.', 8000);
+  }
   const inhSp = document.querySelector('#stgPanel .stg-inhalt');
   if (inhSp) {
     const gr = document.createElement('section');
     gr.className = 'stg-gr stg-sichern';
     const team = EINST.stand ? 'Für alle festgelegt am ' + EINST.stand + '.' : 'Für alle ist noch nichts festgelegt, es gilt der Standard.';
-    gr.innerHTML = '<h5>Speichern</h5><p class="stg-info">' + (LOKAL ? 'Einstellungen werden in diesem Browser gemerkt und gelten auf allen Seiten; Texte schreibt „Speichern“ in die Datei. ' : 'Einstellungen und Textänderungen (Bearbeiten) werden automatisch im Speicher dieses Browsers gemerkt und gelten auf allen Seiten, auch nach dem Neuladen. ') + team + ' Mit „Für alle festlegen“ lädst du die Datei <b>einstellungen.js</b> mit allem herunter. Im Hauptordner auf GitHub hochgeladen, sehen alle Besucher diesen Stand.</p><div class="mod-knoepfe"><button type="button" data-sp="alle">Für alle festlegen</button><button type="button" data-sp="weg">Meine Auswahl zurücksetzen</button></div>';
+    gr.innerHTML = '<h5>Speichern</h5><p class="stg-info">' + (LOKAL ? 'Einstellungen werden in diesem Browser gemerkt und gelten auf allen Seiten; Texte schreibt „Speichern“ in die Datei. ' : 'Einstellungen und Textänderungen (Bearbeiten) werden automatisch im Speicher dieses Browsers gemerkt und gelten auf allen Seiten, auch nach dem Neuladen. ') + team + ' Mit „Für alle festlegen“ lädst du die Datei <b>einstellungen.js</b> mit allem herunter. Im Hauptordner auf GitHub hochgeladen, sehen alle Besucher diesen Stand.</p><div class="mod-knoepfe"><button type="button" data-sp="senden" title="Datei mit deiner ganzen Auswahl und eine fertige E-Mail, zum Beispiel an Leon">Meine Auswahl senden</button><button type="button" data-sp="alle">Für alle festlegen</button><button type="button" data-sp="weg">Meine Auswahl zurücksetzen</button></div>';
     inhSp.appendChild(gr);
     gr.querySelector('[data-sp="alle"]').onclick = fuerAlle;
+    gr.querySelector('[data-sp="senden"]').onclick = () => meineSenden();
     gr.querySelector('[data-sp="weg"]').onclick = meineWeg;
   }
 
@@ -1130,6 +1161,6 @@ const CV = (function () {
   }
   bereit = true;
 
-  return { $, Q, panelZeile, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
+  return { $, Q, panelZeile, meineSenden, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),
     beimSpeichern: (f) => vorSpeichern.push(f), geaendert: () => setDirty(true) };
 })();
