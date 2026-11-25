@@ -10,7 +10,7 @@
 .bk{position:relative}
 .bk-txt{flex:1;padding:40px 32px 0}
 .bk h3{font-size:clamp(24px,2.1vw,30px);margin-bottom:12px;transition:color .25s}
-.bk:hover h3{color:var(--blue)}
+.bk:hover h3{color:var(--blau-t)}
 .bk p{font-size:15.5px;color:var(--muted);margin-bottom:22px}
 .bk ul{list-style:none;border-top:1px solid var(--edge)}
 .bk li{position:relative;padding:11px 0 11px 22px;border-bottom:1px solid var(--edge);font-size:15px;line-height:1.45}
@@ -40,7 +40,7 @@ body.dark .logo-maske{background:#fff}
 .shop:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
 .shop-k{font:700 14px Comfortaa,sans-serif;color:var(--a1);margin-bottom:12px}
 .shop h3{font-size:clamp(20px,1.6vw,23px);margin-bottom:10px;white-space:nowrap;transition:color .25s}
-.shop:hover h3{color:var(--blue)}
+.shop:hover h3{color:var(--blau-t)}
 .shop p{flex:1;font-size:15px;line-height:1.55;color:var(--muted);margin-bottom:22px}
 .shop .ext{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
 .shop:hover .ext{transform:translate(2px,-2px)}
@@ -121,7 +121,7 @@ body.hvA .uhero:has(#cvH):has(+ .einstiege:not(.mod-aus)){padding-bottom:clamp(2
 .gw-wege a{position:relative;font-weight:700;color:var(--text);transition:color .2s}
 .gw-wege a+a{margin-left:28px}
 .gw-wege a+a:before{content:"";position:absolute;left:-16px;top:50%;width:4px;height:4px;margin-top:-2px;border-radius:50%;background:color-mix(in srgb,var(--text) 28%,transparent)}
-.gw-wege a:hover{color:var(--blue)}
+.gw-wege a:hover{color:var(--blau-t)}
 @media(max-width:700px){.gw-wege a,.gw-wege a+a{margin-left:0;margin-right:18px}.gw-wege span{margin-right:12px}.gw-wege a+a:before{display:none}}
 /* Ohne Einstiegskarten folgt Telekonnekt direkt auf den Hero: etwas mehr Luft */
 .einstiege.mod-aus + .tk{padding-top:clamp(56px,6vw,96px)}

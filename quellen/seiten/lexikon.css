@@ -9,12 +9,12 @@
 .lx-suche input{flex:1;min-width:0;border:0;background:none;color:var(--text);font:400 17px 'Mozilla Text',sans-serif;outline:none}
 .lx-abc{display:flex;flex-wrap:wrap;gap:4px;padding-top:18px;border-top:1px solid var(--edge)}
 .lx-abc a,.lx-abc span{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;font:700 15px Comfortaa,sans-serif}
-.lx-abc a{color:var(--blue)}
+.lx-abc a{color:var(--blau-t)}
 .lx-abc a:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
 .lx-abc span{color:color-mix(in srgb,var(--text) 25%,transparent)}
 .lx-gruppe{display:grid;grid-template-columns:90px minmax(0,1fr);gap:24px;padding:28px 0;border-top:1px solid var(--edge);scroll-margin-top:100px}
 .lx-gruppe[hidden]{display:none}
-.lx-bst{font:300 clamp(40px,4vw,56px)/1 Comfortaa,sans-serif;color:var(--blue)}
+.lx-bst{font:300 clamp(40px,4vw,56px)/1 Comfortaa,sans-serif;color:var(--blau-t)}
 .lx-gruppe dl{margin:0;display:grid}
 .lx-eintrag{padding:14px 0 18px;scroll-margin-top:110px;border-radius:14px;transition:background .6s}
 .lx-eintrag+.lx-eintrag{border-top:1px solid var(--edge)}

@@ -20,7 +20,7 @@
 /* Partner: verlinkte Felder */
 .lp-link{color:inherit;transition:background .25s}
 .lp-link:hover{background:color-mix(in srgb,var(--blue) 5%,transparent)}
-.lp-link:hover h3{color:var(--blue)}
+.lp-link:hover h3{color:var(--blau-t)}
 
 /* Standort */
 .adressen{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%}
@@ -45,7 +45,7 @@
 .ue-wege a+a{border-top:1px solid var(--edge)}
 .ue-wege b{display:block;font:700 20px/1.25 Comfortaa,sans-serif;transition:color .25s}
 .ue-wege small{display:block;margin-top:4px;font-size:14.5px;color:var(--muted)}
-.ue-wege a:hover b{color:var(--blue)}
+.ue-wege a:hover b{color:var(--blau-t)}
 .ue-wege .go{width:40px;height:40px}
 @media(max-width:900px){
  .ue-ende-in{grid-template-columns:1fr}

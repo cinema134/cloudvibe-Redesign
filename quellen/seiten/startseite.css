@@ -35,7 +35,7 @@ body.dark .ek{box-shadow:0 30px 60px -36px rgba(0,0,0,.9),var(--hi)}
 .ek:hover{transform:translateY(-3px);box-shadow:0 40px 70px -42px rgba(20,30,60,.45),var(--hi)}
 .ek-txt h3{font-size:23px;margin-bottom:8px}.ek .go{align-self:flex-end}
 .ek-txt>span{display:block;font-size:15px;line-height:1.45;color:var(--muted)}
-.ek:hover h3{color:var(--blue)}
+.ek:hover h3{color:var(--blau-t)}
 .ek h3{transition:color .25s}
 
 /* ---------- Kachelform zur Probe (Leon, 23.11.2026), zweiter Versuch: Umschalter "Kachelform", ?kf=W|L ----------
@@ -96,7 +96,7 @@ body.tmAus .team{display:none}
 .ms-p+.ms-p{border-left:1px solid var(--edge)}
 .ms-p:hover{background:color-mix(in srgb,var(--blue) 5%,transparent)}
 .ms-p h3{font-size:20px;margin-bottom:10px;transition:color .25s}
-.ms-p:hover h3{color:var(--blue)}
+.ms-p:hover h3{color:var(--blau-t)}
 .ms-p p{font-size:15px;line-height:1.55;color:var(--muted)}
 
 /* ---------- Menschen dahinter ---------- */
@@ -219,7 +219,7 @@ body.dark .lr-echt .logo-maske{background:#fff}
 .stg-welle button small{font-size:12.5px;color:var(--muted)}
 .stg-welle button:hover{border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
 .stg-welle button.on{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 7%,transparent)}
-.stg-welle button.on b{color:var(--blue)}
+.stg-welle button.on b{color:var(--blau-t)}
 .stg-welle-nav{display:flex;gap:6px;margin-top:8px}
 .stg-welle-nav button{flex:1;padding:8px 10px;border-radius:100px;border:1px solid var(--edge);background:transparent;color:var(--text);font:700 13px 'Mozilla Text',sans-serif;cursor:pointer}
 .stg-welle-nav button:hover{background:var(--blue);border-color:var(--blue);color:#fff}

@@ -3,7 +3,7 @@
 /* Filter: ruhige Pillen in einer Zeile, auf schmalen Bildschirmen seitlich wischbar */
 .nf{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:clamp(32px,3.6vw,48px)}
 .nf button{height:42px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 14.5px 'Mozilla Text',sans-serif;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
-.nf button:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+.nf button:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blau-t)}
 .nf button.on{background:var(--blue);border-color:var(--blue);color:#fff}
 .nf-trenn{width:1px;height:24px;background:var(--edge);margin:0 6px}
 .news-alle{row-gap:28px}
@@ -34,7 +34,7 @@
 .artikel ul{padding-left:22px}
 .artikel li+li{margin-top:8px}
 .artikel .merke{margin-top:36px;padding:26px 28px;border-radius:22px;border:1px solid var(--edge);background:var(--bg2)}
-.artikel .merke b{display:block;font:700 15px 'Mozilla Text',sans-serif;color:var(--blue);margin-bottom:6px}
+.artikel .merke b{display:block;font:700 15px 'Mozilla Text',sans-serif;color:var(--blau-t);margin-bottom:6px}
 .artikel-seite{position:sticky;top:130px;display:flex;flex-direction:column;gap:18px;padding:26px 24px;border-radius:24px}
 .artikel-seite .eb{margin:0}
 .artikel-seite p{font-size:15px;color:var(--muted)}

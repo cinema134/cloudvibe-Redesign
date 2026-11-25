@@ -8,7 +8,7 @@
 .hsp span{font-size:14px;line-height:1.45;color:var(--muted)}
 .hsp .pf{position:absolute;right:2px;top:17px;width:17px;height:17px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg);transition:transform .25s,stroke .25s}
 .hsp a:hover{border-color:var(--blue)}
-.hsp a:hover b{color:var(--blue)}
+.hsp a:hover b{color:var(--blau-t)}
 .hsp a:hover .pf{stroke:var(--blue);transform:rotate(90deg) translateX(3px)}
 
 /* Was „managed“ heißt: sechs Routinen als ruhiger Text, ohne Symbole und ohne Linien */
@@ -28,9 +28,9 @@
 .mgu-not{background:color-mix(in srgb,var(--text) 5%,var(--bg));color:var(--muted)}
 .mgu-not .mgu-fazit{color:var(--muted)}
 .mgu-plan{background:var(--bg);border:1px solid color-mix(in srgb,var(--blue) 28%,transparent);box-shadow:0 24px 60px -30px rgba(45,108,223,.35)}
-.mgu-plan .mgu-k,.mgu-plan .mgu-fazit{color:var(--blue)}
+.mgu-plan .mgu-k,.mgu-plan .mgu-fazit{color:var(--blau-t)}
 .mgu-plan .mgu-f li{color:var(--text)}
-.mgu-plan .mgu-f li:after{color:var(--blue);opacity:1}
+.mgu-plan .mgu-f li:after{color:var(--blau-t);opacity:1}
 body.dark .mgu-not{background:color-mix(in srgb,#fff 4%,var(--bg))}
 body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
 

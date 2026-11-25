@@ -23,7 +23,7 @@ body.dark .un-hero{background:radial-gradient(55% 75% at 88% 30%,rgba(45,108,223
 .al:first-of-type{border-top:0}
 .al:hover{background:color-mix(in srgb,var(--a1) 6%,transparent)}
 .al b{display:block;font:700 17px/1.3 Comfortaa,sans-serif;letter-spacing:-.01em;transition:color .25s}
-.al:hover b{color:var(--blue)}
+.al:hover b{color:var(--blau-t)}
 .al small{display:block;font-size:14px;color:var(--muted);margin-top:3px}
 .al .go{width:38px;height:38px}
 
@@ -31,7 +31,7 @@ body.dark .un-hero{background:radial-gradient(55% 75% at 88% 30%,rgba(45,108,223
 .vn{border-top:1px solid var(--edge)}
 .vn-kopf,.vn-z{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:0 48px}
 .vn-kopf span{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:18px 0 12px}
-.vn-kopf span:last-child{color:var(--blue)}
+.vn-kopf span:last-child{color:var(--blau-t)}
 .vn-z{border-top:1px solid var(--edge);padding:24px 0}
 .vn-v{color:var(--muted);position:relative;padding-left:26px}
 /* Strich gleich stark wie das Häkchen (2 px, Leon 23.11.2026) */
@@ -56,7 +56,7 @@ body.unseite .un-hero .anlass{background:color-mix(in srgb,var(--bg) 86%,transpa
 .vn2-vorher .vn2-k{color:var(--muted)}
 .vn2-vorher li{font:300 clamp(19px,1.6vw,22px)/1.35 Comfortaa,sans-serif;color:color-mix(in srgb,var(--muted) 85%,transparent)}
 .vn2-nachher{background:var(--bg);border:1px solid color-mix(in srgb,var(--blue) 28%,transparent);box-shadow:0 30px 70px -30px rgba(45,108,223,.35),0 2px 6px rgba(20,23,28,.04);padding:clamp(36px,4.4vw,64px)}
-.vn2-nachher .vn2-k{color:var(--blue)}
+.vn2-nachher .vn2-k{color:var(--blau-t)}
 .vn2-nachher li{position:relative;padding-left:38px;font-size:17px;line-height:1.5;color:var(--muted)}
 .vn2-nachher li b{display:block;font:700 clamp(21px,1.8vw,25px)/1.25 Comfortaa,sans-serif;letter-spacing:-.01em;color:var(--text);margin-bottom:4px}
 .vn2-nachher li:before{content:"";position:absolute;left:3px;top:.42em;width:13px;height:7px;border-left:2.5px solid var(--blue);border-bottom:2.5px solid var(--blue);transform:rotate(-45deg)}

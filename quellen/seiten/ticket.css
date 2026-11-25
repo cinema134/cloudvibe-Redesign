@@ -2,7 +2,7 @@
 /* ================= Support (/support) ================= */
 main [hidden]{display:none!important}
 @keyframes spRein{from{opacity:0;transform:translateY(6px)}}
-.sp-ic{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;flex:none;background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blue)}
+.sp-ic{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;flex:none;background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blau-t)}
 .sp-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- Hero: Notfall-Zeile und Servicezeiten ---------- */
@@ -13,7 +13,7 @@ main [hidden]{display:none!important}
 .sp-not-t b{font:700 17px/1.3 Comfortaa,sans-serif}
 .sp-not-t span{font-size:15.5px;color:var(--muted)}
 .sp-not-t a{font-weight:700;color:var(--text);white-space:nowrap}
-.sp-not-t a:hover{color:var(--blue)}
+.sp-not-t a:hover{color:var(--blau-t)}
 .sp-not .btn{flex:none}
 .sp-zeiten{display:flex;align-items:center;gap:10px;margin-top:18px;padding-left:22px;font-size:15px;color:var(--muted)}
 .sp-zeiten svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -26,7 +26,7 @@ main [hidden]{display:none!important}
 .sp-weg-haupt:before{content:none} /* Verlaufs-Streifen entfernt */
 .sp-weg .sp-ic{margin-bottom:22px}
 .sp-hin{font:700 13px Comfortaa,sans-serif;color:var(--muted);margin-bottom:8px}
-.sp-weg-haupt .sp-hin{color:var(--blue)}
+.sp-weg-haupt .sp-hin{color:var(--blau-t)}
 .sp-weg h3{font-size:clamp(21px,1.7vw,24px);margin-bottom:10px}
 .sp-weg p{font-size:15.5px;line-height:1.6;color:var(--muted);margin-bottom:26px;flex:1}
 .sp-weg .link{overflow-wrap:anywhere}
@@ -41,7 +41,7 @@ main [hidden]{display:none!important}
 .tk-nr{display:inline-flex;align-items:center;gap:12px;font:700 15px/1 Comfortaa,sans-serif;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--muted)}
 .tk-nr:after{content:"";width:38px;height:2px;border-radius:2px;background:var(--edge);transition:background .2s}
 .tk-schritte li.on{color:var(--text)}
-.tk-schritte li.on .tk-nr{color:var(--blue)}
+.tk-schritte li.on .tk-nr{color:var(--blau-t)}
 .tk-schritte li.on .tk-nr:after{background:var(--blue)}
 .tk-schritte li.fertig .tk-nr{color:var(--gt)}
 .tk-schritte li.fertig .tk-nr:after{background:var(--gt);opacity:.5}
@@ -54,7 +54,7 @@ main [hidden]{display:none!important}
 .tk-form legend{font:700 clamp(20px,1.8vw,24px) Comfortaa,sans-serif;margin-bottom:22px;padding:0}
 .tk-gitter{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .tk-gitter .voll{grid-column:1/-1}
-.tk-pf{color:var(--blue);font-weight:700}
+.tk-pf{color:var(--blau-t);font-weight:700}
 .tk-pfl{font-size:13.5px;color:var(--muted)}
 .tk-tipp{font-size:13px;color:var(--muted);line-height:1.4}
 .tk-fm{display:none;font-size:13px;font-weight:700;color:#B8402A}
@@ -68,7 +68,7 @@ body.dark .tk-fm{color:#FF8D76}
 .tk-chip input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
 .tk-chip>span{display:inline-flex;align-items:center;padding:9px 16px;border-radius:100px;border:1px solid var(--edge);background:var(--bg);font-size:15px;font-weight:700;color:var(--muted);transition:border-color .2s,color .2s,background .2s}
 .tk-chip:hover>span{color:var(--text)}
-.tk-chip input:checked+span{border-color:var(--blue);color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--bg))}
+.tk-chip input:checked+span{border-color:var(--blue);color:var(--blau-t);background:color-mix(in srgb,var(--blue) 8%,var(--bg))}
 .tk-chip input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
 .tk-gruppe{margin-bottom:22px}
 .tk-gruppe>label{margin-bottom:4px}
@@ -80,14 +80,14 @@ body.dark .tk-fm{color:#FF8D76}
 .tk-opt small{display:block;font-size:13px;line-height:1.4;color:var(--muted)}
 .tk-opt:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent)}
 .tk-opt:has(input:checked){border-color:var(--blue);background:color-mix(in srgb,var(--blue) 6%,var(--bg))}
-.tk-opt:has(input:checked) b{color:var(--blue)}
+.tk-opt:has(input:checked) b{color:var(--blau-t)}
 .tk-opt:has(input:focus-visible){outline:2px solid var(--blue);outline-offset:2px}
 .tk-alarm{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;margin-top:12px;padding:14px 14px 14px 20px;border-radius:20px;background:var(--bg2);border:1px solid var(--edge);font-size:15px;animation:spRein .3s ease}
 .sp-ticket .tk-alarm{background:var(--bg)}
 .tk-alarm span{flex:1 1 260px}
 .tk-alarm .btn{padding:12px 20px;font-size:15px}
 .tk-datei{position:relative;display:flex!important;align-items:center;gap:12px;padding:15px 18px;border:1px dashed color-mix(in srgb,var(--text) 24%,transparent);border-radius:16px;cursor:pointer;font:700 15px 'Mozilla Text',sans-serif!important;color:var(--muted)!important;letter-spacing:0!important;transition:border-color .2s,color .2s}
-.tk-datei:hover{border-color:var(--blue);color:var(--blue)!important}
+.tk-datei:hover{border-color:var(--blue);color:var(--blau-t)!important}
 .tk-datei svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tk-datei input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .tk-datei-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -103,7 +103,7 @@ body.dark .tk-fm{color:#FF8D76}
 .tk-haken{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--gbg);color:var(--gt);margin-bottom:20px}
 .tk-haken svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .tk-mt{font:300 clamp(24px,2.2vw,30px)/1.2 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:20px}
-.tk-mt b{font-weight:700;color:var(--blue)}
+.tk-mt b{font-weight:700;color:var(--blau-t)}
 .tk-nummer{display:inline-flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:14px 20px;border-radius:18px;background:color-mix(in srgb,var(--blue) 6%,transparent);margin-bottom:18px}
 .tk-nummer span{font-size:14px;color:var(--muted)}
 .tk-nummer b{font:700 20px Comfortaa,sans-serif;letter-spacing:.04em;color:var(--text);font-variant-numeric:tabular-nums}
@@ -136,12 +136,12 @@ body.dark .tk-fm{color:#FF8D76}
 .pb-n{font:700 13px Comfortaa,sans-serif;color:var(--muted);font-variant-numeric:tabular-nums}
 .pb-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pb-s{font-weight:700;font-size:12.5px;padding:4px 10px;border-radius:100px;white-space:nowrap}
-.pb-neu{color:var(--blue);background:color-mix(in srgb,var(--blue) 9%,transparent)}
+.pb-neu{color:var(--blau-t);background:color-mix(in srgb,var(--blue) 9%,transparent)}
 .pb-lauf{color:var(--muted);border:1px solid var(--edge)}
 .pb-ok{color:var(--gt);background:var(--gbg)}
 
 /* ---------- FAQ und Schlusszeile ---------- */
-.faq-a .link-t{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.faq-a .link-t{color:var(--blau-t);text-decoration:underline;text-underline-offset:2px}
 .sp-neu{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:clamp(56px,6vw,88px);padding-top:28px;border-top:1px solid var(--edge);font-size:16px;color:var(--muted)}
 
 /* ---------- Breiten ---------- */

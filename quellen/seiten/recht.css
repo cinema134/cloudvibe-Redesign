@@ -4,7 +4,7 @@
 .recht-hero h1{margin-bottom:32px}
 .recht-hero .nf{display:flex;flex-wrap:wrap;gap:10px}
 .recht-hero .nf a{display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 14.5px 'Mozilla Text',sans-serif;transition:border-color .2s,color .2s}
-.recht-hero .nf a:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+.recht-hero .nf a:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blau-t)}
 .recht{scroll-margin-top:100px}
 .recht-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
 .recht-text{max-width:720px;font-size:17px;line-height:1.7}

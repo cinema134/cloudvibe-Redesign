@@ -27,7 +27,7 @@ const TEL = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=
 const UEB = process.argv.includes('--uebergabe');
 const UZ = path.join(Q, '..', '..', 'Uebergabe_Coding');
 // Konzepte zur Abstimmung nur in seiten_mit_optionen (Leon 25.11.2026: ersetzt die Wellen-Varianten auf GitHub)
-const uebName = (id) => { const s = cfg.seiten[id]; if (id === 'konzepte') return 'konzepte.html'; return s && s.pfad ? (s.pfad === '/' ? 'index' : s.pfad.slice(1).replaceAll('/', '-')) + '.html' : null; };
+const uebName = (id) => { const s = cfg.seiten[id]; if (id === 'konzepte') return 'konzepte.html'; if (id === 'wellen') return 'wellen-varianten.html'; /* ohne Link auf der Startseite, nur Ziel aus Konzept 25 */ return s && s.pfad ? (s.pfad === '/' ? 'index' : s.pfad.slice(1).replaceAll('/', '-')) + '.html' : null; };
 
 // Dateiname der aktuellen Version einer Seite (für Links zwischen den Mockups)
 const dateiVon = (id) => {
@@ -325,7 +325,7 @@ ${body}
     const ohne = mit.replace(/<!-- =+ Mockup-Steuerung[\s\S]*?(?=<script>const BEGRIFF_START)/, '');
     if (ohne === mit) throw new Error(uebName(id) + ': Mockup-Steuerung nicht gefunden');
     for (const [ord, h] of [['seiten', ohne], ['seiten_mit_optionen', mit]]) {
-      if (id === 'konzepte' && ord === 'seiten') continue;
+      if ((id === 'konzepte' || id === 'wellen') && ord === 'seiten') continue;
       fs.mkdirSync(path.join(UZ, ord), { recursive: true });
       fs.writeFileSync(path.join(UZ, ord, uebName(id)), h);
     }

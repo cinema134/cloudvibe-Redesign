@@ -36,7 +36,7 @@ body.dark{
  --phbg:#2A2110;--phtx:#F2C66D;--phln:#7A5A20;
 }
 /* abgeleitete Werte am body berechnen, damit sie im Dunkelmodus mitgehen */
-body{--gbg:color-mix(in srgb,var(--accent) 14%,var(--bg));--edge:color-mix(in srgb,var(--text) 9%,transparent);--glass:color-mix(in srgb,var(--bg) 72%,transparent)}
+body{--blau-t:var(--blue);--gbg:color-mix(in srgb,var(--accent) 14%,var(--bg));--edge:color-mix(in srgb,var(--text) 9%,transparent);--glass:color-mix(in srgb,var(--bg) 72%,transparent)}
 body.dark{--gbg:color-mix(in srgb,var(--accent) 22%,var(--bg));--edge:color-mix(in srgb,var(--text) 11%,transparent)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:110px}
@@ -50,7 +50,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3,h4{font-family:Comfortaa,'Mozilla Text',sans-serif;font-weight:300;letter-spacing:-.02em}
 h1{font-size:clamp(38px,4.5vw,66px);line-height:1.07}
 h2{font-size:clamp(30px,3.3vw,48px);line-height:1.12}
-h1 b,h2 b{font-weight:700;color:var(--blue)}
+h1 b,h2 b{font-weight:700;color:var(--blau-t)}
 h3{font-weight:700;letter-spacing:-.01em;line-height:1.2}
 .eb{font:700 13px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:14px;align-items:center;margin-bottom:24px}
 .eb:before{content:"";width:40px;height:1.5px;background:var(--text);flex:none}
@@ -82,9 +82,9 @@ body:not(.hbR) .nur-neu{display:none!important}
 .tel-zeile{margin-top:26px;font-size:16px;color:var(--muted)}
 .uhero .btns+.tel-zeile,.uhero .btns.nur-alt+.btns+.tel-zeile{margin-top:22px}
 .tel-zeile a:not(.link){font-weight:700;color:var(--text);white-space:nowrap;transition:color .2s}
-.tel-zeile a:not(.link):hover{color:var(--blue)}
+.tel-zeile a:not(.link):hover{color:var(--blau-t)}
 body.hbR .btn.zw:not(.call){background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--edge)}
-body.hbR .btn.zw:not(.call):hover{color:var(--blue);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--blue) 45%,transparent)}
+body.hbR .btn.zw:not(.call):hover{color:var(--blau-t);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--blue) 45%,transparent)}
 /* Termin-Button oben auf Seiten ausblenden, wo er nicht passt (Termin, Support, Ticket, Karriere: body.ohneTermin) */
 body.hbR.ohneTermin .kopf-r .cta-termin{display:none}
 @media(min-width:1041px){body.hbR.ohneTermin .kopf nav.nav-neu{flex:0 1 auto;justify-content:flex-start;gap:clamp(22px,2.4vw,40px);margin-right:auto}}
@@ -94,7 +94,7 @@ body.hbR.ohneTermin .kopf-r .cta-termin{display:none}
 @media(hover:hover){.call:hover .c1,.call:focus-visible .c1,.call.open .c1{max-width:0;opacity:0}.call:hover .c2,.call:focus-visible .c2,.call.open .c2{max-width:230px;opacity:1}}
 /* Leiser Pillen-Button (z. B. Ticket schreiben): nur Kante, kein Farbfeld */
 .btn.leise-btn{background:transparent;color:var(--text);border:1px solid var(--edge);padding:12px 22px;font-size:15px}
-.btn.leise-btn:hover{border-color:var(--blue);color:var(--blue);box-shadow:none}
+.btn.leise-btn:hover{border-color:var(--blue);color:var(--blau-t);box-shadow:none}
 .ticket{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:22px}
 .ticket .leise{font-size:14.5px}
 
@@ -104,7 +104,7 @@ body.hbR.ohneTermin .kopf-r .cta-termin{display:none}
 .mail .c1{max-width:160px}.mail .c2{max-width:0;opacity:0}
 @media(hover:hover){.mail:hover .c1,.mail:focus-visible .c1{max-width:0;opacity:0}.mail:hover .c2,.mail:focus-visible .c2{max-width:230px;opacity:1}}
 .pf{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:transform .25s}
-.link{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--blue)}
+.link{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--blau-t)}
 .link:hover .pf{transform:translateX(4px)}
 /* runder Pfeil-Knopf */
 .go{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;flex:none;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);transition:background .25s,color .25s,border-color .25s,transform .25s}
@@ -112,7 +112,7 @@ body.hbR.ohneTermin .kopf-r .cta-termin{display:none}
 a:hover>.go,a:hover .go{background:var(--blue);border-color:var(--blue);color:#fff}
 
 /* ---------- Aufzählungs-Zahlen (01, 02 ...): kleine Zahl in Comfortaa mit grün-blauer Linie ---------- */
-.nr{display:inline-flex;align-items:center;gap:14px;font:700 17px/1 Comfortaa,sans-serif;letter-spacing:.08em;color:var(--blue);font-variant-numeric:tabular-nums}
+.nr{display:inline-flex;align-items:center;gap:14px;font:700 17px/1 Comfortaa,sans-serif;letter-spacing:.08em;color:var(--blau-t);font-variant-numeric:tabular-nums}
 /* Linie an den Schrittzahlen entfernt (Abstimmung 24.11.2026, Leon: Nein) */
 /* ---------- Milchglas ---------- */
 .glas{position:relative;border-radius:30px;background:var(--glass);backdrop-filter:blur(34px) saturate(1.15);-webkit-backdrop-filter:blur(34px) saturate(1.15);border:1px solid var(--edge);box-shadow:var(--sh),var(--hi)}
@@ -127,7 +127,7 @@ a:hover>.go,a:hover .go{background:var(--blue);border-color:var(--blue);color:#f
 .kopf nav a{display:inline-flex;align-items:center;gap:4px;position:relative;padding:6px 0}
 .kopf nav a:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .kopf nav a:hover:after,.kopf nav a.on:after{transform:scaleX(1)}
-.kopf nav a.on{color:var(--blue)}
+.kopf nav a.on{color:var(--blau-t)}
 .chev{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
 .kopf .cta{font:700 15px 'Mozilla Text',sans-serif;background:var(--blue);color:#fff;border-radius:100px;padding:14px 26px;flex:none;transition:box-shadow .25s}
 .kopf .cta:hover{box-shadow:0 12px 26px -12px rgba(45,108,223,.8)}
@@ -168,13 +168,13 @@ body.dark .kopf .dd-m{background:color-mix(in srgb,#121A27 92%,transparent);box-
 .kopf .dd-m b{font:700 15px 'Mozilla Text',sans-serif;transition:color .2s}
 .kopf .dd-m small{font:400 13px/1.4 'Mozilla Text',sans-serif;color:var(--muted)}
 .kopf .dd-m a:hover{background:color-mix(in srgb,var(--blue) 7%,transparent)}
-.kopf .dd-m a:hover b{color:var(--blue)}
+.kopf .dd-m a:hover b{color:var(--blau-t)}
 .kopf .dd-m .dd-haupt{background:color-mix(in srgb,var(--blue) 8%,transparent)}
-.kopf .dd-m .dd-haupt b{color:var(--blue)}
+.kopf .dd-m .dd-haupt b{color:var(--blau-t)}
 .kopf-r{display:flex;align-items:center;gap:10px;flex:none}
 .kopf-r .dd-m{left:auto;right:-6px}
 .kopf .sup{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 16px 0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 15px 'Mozilla Text',sans-serif;cursor:pointer;transition:border-color .2s,color .2s}
-.kopf .sup:hover,.kopf .dd.auf .sup{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+.kopf .sup:hover,.kopf .dd.auf .sup{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blau-t)}
 .kopf .sup>svg:first-child{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 /* Platz: neue Leiste hat rechts zwei Elemente, daher weniger Außenabstand im Menü; schmaler wird "Support" zum Symbol */
 .kopf nav.nav-neu{margin:0 clamp(6px,1.4vw,26px);gap:clamp(12px,1.6vw,28px);min-width:0}
@@ -200,7 +200,7 @@ body.kopf-enger .kopf .sup{padding:0 12px 0 14px}
  /* Mobil-Leiste: Logo, Termin, Menü. Support steht nur im Menü (mit Fernwartung zuerst), keine Dopplung (Leon 23.11.2026) */
  body:not(.ksAlt) .kopf-r .dd-rechts{display:none}
  body:not(.ksAlt) .mbtn{display:inline-flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);cursor:pointer;transition:border-color .2s,color .2s}
- .mbtn:hover,body.mnav-auf .mbtn{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blue)}
+ .mbtn:hover,body.mnav-auf .mbtn{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blau-t)}
  .mbtn span{display:block;width:18px;height:1.8px;border-radius:2px;background:currentColor;transition:transform .25s,opacity .2s}
  body.mnav-auf .mbtn span:nth-child(1){transform:translateY(5.8px) rotate(45deg)}
  body.mnav-auf .mbtn span:nth-child(2){opacity:0}
@@ -211,7 +211,7 @@ body.kopf-enger .kopf .sup{padding:0 12px 0 14px}
  .mnav details,.mnav .mn-z{border-bottom:1px solid var(--edge)}
  .mnav summary,.mnav .mn-z{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 8px;font:700 17px 'Mozilla Text',sans-serif;color:var(--text);cursor:pointer;list-style:none}
  .mnav summary::-webkit-details-marker{display:none}
- .mnav details.on>summary,.mnav .mn-z.on{color:var(--blue)}
+ .mnav details.on>summary,.mnav .mn-z.on{color:var(--blau-t)}
  .mnav details[open]>summary .chev{transform:rotate(180deg);opacity:.9}
  .mnav .mn-l{display:grid;gap:2px;padding:0 0 12px}
  .mnav .mn-l a{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px;border-radius:14px;color:var(--text)}
@@ -219,7 +219,7 @@ body.kopf-enger .kopf .sup{padding:0 12px 0 14px}
  .mnav .mn-l b{font:700 15px 'Mozilla Text',sans-serif}
  .mnav .mn-l small{font:400 13px/1.4 'Mozilla Text',sans-serif;color:var(--muted)}
  .mnav .mn-l .dd-haupt{background:color-mix(in srgb,var(--blue) 8%,transparent)}
- .mnav .mn-l .dd-haupt b{color:var(--blue)}
+ .mnav .mn-l .dd-haupt b{color:var(--blau-t)}
  .mnav .mn-fuss{padding:18px 0 0}
  .mnav .mn-fuss .btn{width:100%;justify-content:center;padding:16px 30px;font-size:16px}
 }
@@ -254,7 +254,7 @@ body.dark.hvB .uhero:after{background:radial-gradient(50% 70% at 86% 40%,rgba(45
 body.hvC .uhero:after{opacity:1;background-image:radial-gradient(rgba(30,60,120,.22) 1.4px,transparent 1.8px);background-size:28px 28px;-webkit-mask-image:radial-gradient(60% 85% at 85% 55%,#000 5%,transparent 80%);mask-image:radial-gradient(60% 85% at 85% 55%,#000 5%,transparent 80%)}
 body.dark.hvC .uhero:after{background-image:radial-gradient(rgba(255,255,255,.2) 1.4px,transparent 1.8px)}
 .krumen{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:14px;color:var(--muted);margin-bottom:34px}
-.krumen a:hover{color:var(--blue)}
+.krumen a:hover{color:var(--blau-t)}
 .krumen span{opacity:.5}
 /* ---------- Unterkarten (z. B. Software: DATEV, SelectLine) – führen auf eigene Unterseiten ---------- */
 .ukarten{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
@@ -263,7 +263,7 @@ body.dark.hvC .uhero:after{background-image:radial-gradient(rgba(255,255,255,.2)
 .uk:hover{transform:translateY(-3px)}
 .uk:before{content:none} /* Verlaufs-Streifen entfernt (Leon 24.11.2026) */
 .uk h3{font-size:clamp(22px,2vw,27px);margin-bottom:8px;transition:color .25s}
-.uk:hover h3{color:var(--blue)}
+.uk:hover h3{color:var(--blau-t)}
 .uk p{font-size:15px;color:var(--muted)}
 @media(max-width:700px){.ukarten{grid-template-columns:1fr}}
 /* News-Karte (Startseite, News-Übersicht, Beitragsseite) */
@@ -275,7 +275,7 @@ body.dark.hvC .uhero:after{background-image:radial-gradient(rgba(255,255,255,.2)
 .nk-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 .nk-meta .ph,.nk-meta .st-bsp{text-transform:none;letter-spacing:0}
 .nk h3{font-size:19px;margin-bottom:10px;transition:color .25s}
-.nk:hover h3{color:var(--blue)}
+.nk:hover h3{color:var(--blau-t)}
 .nk p{font-size:15px;color:var(--muted)}
 @media(max-width:1000px){.news-reihe{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.news-reihe{grid-template-columns:1fr}}
@@ -318,7 +318,7 @@ canvas.welle{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 .fakten dd{font-size:15.5px}
 .kontakt-form{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:start}
 .voll{grid-column:1/-1}
-.check .link-t{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.check .link-t{color:var(--blau-t);text-decoration:underline;text-underline-offset:2px}
 .form-fuss{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
 
 @media(max-width:1000px){.kontakt-in{grid-template-columns:1fr}}
@@ -331,7 +331,7 @@ canvas.welle{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 .fuss .lg{height:64px;width:auto;margin-bottom:22px}
 .fuss h4{font:700 13px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
 .fuss ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.fuss a:hover{color:var(--blue)}
+.fuss a:hover{color:var(--blau-t)}
 .fuss p{color:var(--muted);line-height:1.6}
 .fuss .mail small{display:block;font-size:12.5px;color:var(--muted);margin-top:-2px}
 /* ---------- Kundenstimmen (gemeinsamer Baustein, Quelle basis/stimmen.json; Leon 23.11.2026) ---------- */
@@ -369,7 +369,7 @@ canvas.welle{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 .faq-liste details{border-bottom:1px solid var(--edge)}
 .faq-liste summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font:700 clamp(18px,1.5vw,21px)/1.35 Comfortaa,sans-serif;transition:color .2s}
 .faq-liste summary::-webkit-details-marker{display:none}
-.faq-liste summary:hover{color:var(--blue)}
+.faq-liste summary:hover{color:var(--blau-t)}
 .faq-liste summary:after{content:"";flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--edge);background:no-repeat center/14px linear-gradient(currentColor,currentColor),no-repeat center/2px 14px linear-gradient(currentColor,currentColor);color:var(--text);transition:transform .3s,background-size .3s}
 .faq-liste details[open] summary:after{transform:rotate(180deg);background-size:14px 2px,0 0}
 .faq-liste summary:after{background-size:14px 2px,2px 14px}
@@ -377,7 +377,7 @@ canvas.welle{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 .faq-a p+p{margin-top:10px}
 @media(max-width:1000px){.faq-in{grid-template-columns:1fr}.faq-kopf{position:static}}
 /* Kontaktformular: Pflichtfelder (Leon 23.11.2026) */
-.kontakt-form .pf{font-style:normal;color:var(--blue)}
+.kontakt-form .pf{font-style:normal;color:var(--blau-t)}
 .kontakt-form label small{font-weight:400;color:var(--muted)}
 .pf-hinweis{font-size:13px;color:var(--muted);margin-top:-4px}
 .kontakt-form .f-zeit[hidden]{display:none}
@@ -393,7 +393,7 @@ canvas.welle{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 .ld-liste summary::-webkit-details-marker{display:none}
 .ld-liste summary h3{font-size:clamp(20px,1.7vw,24px);transition:color .2s}
 .ld-liste summary .ld-k{display:block;grid-column:1;color:var(--muted);font-size:16px;line-height:1.55;max-width:600px}
-.ld-liste summary:hover h3{color:var(--blue)}
+.ld-liste summary:hover h3{color:var(--blau-t)}
 .ld-liste summary:after{content:"";grid-column:2;grid-row:1/span 2;width:34px;height:34px;border-radius:50%;border:1px solid var(--edge);background:no-repeat center/14px 2px linear-gradient(currentColor,currentColor),no-repeat center/2px 14px linear-gradient(currentColor,currentColor);color:var(--text);transition:transform .3s,background-size .3s}
 .ld-liste details[open] summary:after{transform:rotate(180deg);background-size:14px 2px,0 0}
 .ld-a{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 58px 30px 0;border-top:1px solid var(--edge)}
@@ -510,15 +510,15 @@ body.edit .ek:hover,body.edit .nk:hover{transform:none}
 .cv-toast.an{opacity:1;transform:translate(-50%,0)}
 /* ---------- Lexikon: Begriffe im Text, Erklärung beim Antippen ---------- */
 /* Lexikon-Begriffe: ohne Unterstreichung, immer im Hover-Blau (Leon, 20.11.2026) */
-.lx{color:var(--blue);cursor:help;transition:color .2s,opacity .2s}
-.lx:hover,.lx:focus-visible,.lx.an{color:var(--blue);opacity:.8;outline:none}
+.lx{color:var(--blau-t);cursor:help;transition:color .2s,opacity .2s}
+.lx:hover,.lx:focus-visible,.lx.an{color:var(--blau-t);opacity:.8;outline:none}
 .lx-pop{position:absolute;z-index:70;width:min(340px,calc(100vw - 32px));padding:18px 20px 16px;border-radius:20px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);border:1px solid var(--edge);box-shadow:var(--sh2),var(--hi);font-size:15px;line-height:1.55;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;pointer-events:none}
 .lx-pop.an{opacity:1;transform:none;pointer-events:auto}
 .lx-pop:before{content:none} /* Verlaufs-Streifen entfernt */
 .lx-pop .lx-k{font:700 11px 'Mozilla Text',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .lx-pop b{display:block;font:700 17px Comfortaa,sans-serif;margin-bottom:6px}
 .lx-pop p{color:var(--muted);margin-bottom:10px}
-.lx-pop a{font-weight:700;font-size:14px;color:var(--blue);display:inline-flex;gap:6px;align-items:center}
+.lx-pop a{font-weight:700;font-size:14px;color:var(--blau-t);display:inline-flex;gap:6px;align-items:center}
 
 /* ---------- Social Media im Footer ---------- */
 .sozial{margin-top:24px}
@@ -552,10 +552,10 @@ body.edit .ek:hover,body.edit .nk:hover{transform:none}
 .cc-t{display:block;font:700 18px Comfortaa,sans-serif;margin-bottom:6px}
 .cc-text{display:block;font-size:14.5px;line-height:1.55;color:var(--muted)}
 .cc-links{display:flex;gap:16px;margin:6px 0 18px}
-.cc-links a{color:var(--blue);text-decoration:underline;text-underline-offset:2px;font-size:13.5px}
+.cc-links a{color:var(--blau-t);text-decoration:underline;text-underline-offset:2px;font-size:13.5px}
 body.dark .cc-links a{color:#9DBDF7}
 .cc-btns{display:flex;flex-direction:column;gap:10px}
-.cc-btn{border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);background:color-mix(in srgb,var(--blue) 10%,var(--bg));color:var(--blue);font:700 15px 'Mozilla Text',sans-serif;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background .2s,color .2s}
+.cc-btn{border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);background:color-mix(in srgb,var(--blue) 10%,var(--bg));color:var(--blau-t);font:700 15px 'Mozilla Text',sans-serif;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background .2s,color .2s}
 .cc-btn:hover,.cc-btn:focus-visible{background:var(--blue);color:#fff;outline:none}
 body.dark .cc-btn{color:#9DBDF7}
 body.dark .cc-btn:hover{color:#fff}
@@ -574,7 +574,7 @@ body.dark .cc-btn:hover{color:#fff}
 .nlb-chip{position:relative;display:inline-flex}
 .nlb-chip input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
 .nlb-chip span{display:inline-block;padding:10px 18px;border-radius:100px;border:1px solid var(--edge);font:700 14.5px 'Mozilla Text',sans-serif;transition:background .2s,border-color .2s,color .2s}
-.nlb-chip input:checked+span{background:color-mix(in srgb,var(--blue) 10%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent);color:var(--blue)}
+.nlb-chip input:checked+span{background:color-mix(in srgb,var(--blue) 10%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent);color:var(--blau-t)}
 .nlb-chip input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
 .nlb-feld{display:flex;gap:10px}
 .nlb-feld input{flex:1;min-width:0;min-height:52px;padding:0 20px;border-radius:100px;border:1px solid var(--edge);background:var(--bg);color:var(--text);font:400 16px 'Mozilla Text',sans-serif}
@@ -588,7 +588,7 @@ body.dark .cc-btn:hover{color:#fff}
 .nlb-ok[hidden]{display:none}
 .nlb-ok b{display:block;font:700 18px Comfortaa,sans-serif;margin-bottom:4px}
 .nlb-ok span.nlb-ok-t{display:block;color:var(--muted);line-height:1.55;margin-bottom:10px}
-.nlb-brief{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;flex:none;background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blue)}
+.nlb-brief{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;flex:none;background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blau-t)}
 .nlb-brief svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .nlz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:8px 32px;align-items:center;padding:26px 0;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
 .nlz-text b{display:block;font:700 18px/1.3 Comfortaa,sans-serif;margin-bottom:4px}
@@ -653,7 +653,7 @@ body:not(.kstListe) .stimmen figcaption{justify-content:center}
 .st-nav{display:none}
 body:not(.kstListe) .stimmen .st-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:8px}
 .st-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--edge);background:var(--bg);color:var(--text);cursor:pointer;font-size:20px;line-height:1}
-.st-nav button:hover{border-color:var(--blue);color:var(--blue)}
+.st-nav button:hover{border-color:var(--blue);color:var(--blau-t)}
 .st-punkte{display:flex;gap:8px}
 .st-punkte i{width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--text) 18%,transparent);cursor:pointer;transition:background .2s,width .2s}
 .st-punkte i.an{width:22px;border-radius:4px;background:var(--blue)}
@@ -729,7 +729,7 @@ body .fuss.fv-k,body:not(.fussAlt) .fuss.fv-k{padding:44px 0 22px;font-size:14px
 .fk-links{display:flex;flex-wrap:wrap;gap:6px 22px;font-weight:700}
 .fk-recht{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted)}
 .fk-recht a{color:var(--muted)}
-.fk-recht a:hover,.fk-links a:hover{color:var(--blue)}
+.fk-recht a:hover,.fk-links a:hover{color:var(--blau-t)}
 @media(max-width:1100px){.fk-in{grid-template-columns:repeat(3,minmax(0,1fr))}.fk-marke{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between}}
 @media(max-width:700px){.fk-in{grid-template-columns:1fr 1fr}.fk-unten{flex-direction:column;align-items:flex-start}}
 @media(max-width:440px){.fk-in{grid-template-columns:1fr}.fk-marke{flex-direction:column;align-items:flex-start}}
@@ -827,7 +827,7 @@ body.dark:not(.abZl) .st-p:last-child h3{background:var(--blue)}
 /* Termin als eigener ruhiger Button in der Leiste, wenn Ticket der Haupt-Button ist (Leon 24.11.2026: nicht im Support-Menü) */
 .kopf-r .kt-termin{display:none}
 body.kTicket:not(.ohneTermin) .kopf-r .kt-termin{display:inline-flex;align-items:center;height:50px;padding:0 20px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 15px 'Mozilla Text',sans-serif;text-decoration:none;transition:border-color .2s,color .2s}
-body.kTicket .kopf-r .kt-termin:hover{border-color:var(--blue);color:var(--blue)}
+body.kTicket .kopf-r .kt-termin:hover{border-color:var(--blue);color:var(--blau-t)}
 @media(max-width:1180px){body.kTicket:not(.ohneTermin) .kopf-r .kt-termin{height:44px;padding:0 16px;font-size:14.5px}}
 @media(max-width:1040px){body.kTicket .kopf-r .kt-termin{display:none!important}}
 .mnav .mn-termin{display:none}
@@ -903,7 +903,7 @@ body.hkAn .hk-rechts{display:flex;flex-direction:column;padding:22px 18px 14px;a
 .mz-bg.seg button{padding:4px 9px;font-size:12px!important}
 .mz-welle{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px 0 8px;border-radius:100px;border:1px solid var(--sg-rand)!important;font:700 12px 'Mozilla Text',sans-serif!important;color:var(--muted)!important}
 .mz-welle svg{width:16px;height:16px}
-.mz-welle.on{background:color-mix(in srgb,var(--blue) 12%,transparent);border-color:var(--blue)!important;color:var(--blue)!important}
+.mz-welle.on{background:color-mix(in srgb,var(--blue) 12%,transparent);border-color:var(--blue)!important;color:var(--blau-t)!important}
 /* Welle im Abschnitt: ruhig unten, Inhalt liegt darüber */
 main>section.modwelle{overflow:hidden}
 main>section>canvas.mw{display:none;z-index:0}
@@ -956,6 +956,10 @@ body.hkAn .hk-rechts.hk-status{display:block!important;padding:26px 26px 22px!im
 /* Anlass-Kachel Unternehmen nur im Aufbau „Frei“ */
 body.hkAn .nur-frei{display:none!important}body.hkAn .hk-karte .hsp{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:4px 28px!important}
 
+/* Konzept 23 entschieden (Leon 25.11.2026): kleine blaue Schrift im Dunkelmodus heller (#5B8EF0, 6,1 : 1 statt 4,0 : 1).
+   --blau-t = Blau als Textfarbe; Buttons, Flächen, Rahmen und die Hervorhebung in großen Überschriften bleiben #2D6CDF. */
+body.dark{--blau-t:#5B8EF0}
+body.dark :is(h1,h2,.mh-h,.ko-mt,.bp-fertig-t,.kx-h) b{color:var(--blue)}
 /* ================= Konzepte (Vergleichs- und Abstimmungsseite, noindex) =================
    Acht Konzept-Ideen mit Varianten als bedienbare Mini-Mockups. Präfix ko-, damit nichts mit anderen Seiten kollidiert. */
 main [hidden],.ck[hidden],.ck [hidden]{display:none!important}
@@ -967,7 +971,7 @@ main [hidden],.ck[hidden],.ck [hidden]{display:none!important}
 .ko-inhalt{margin-top:48px;padding:10px;border-radius:28px}
 .ko-inhalt ol{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}
 .ko-inhalt a{display:flex;align-items:baseline;gap:12px;padding:14px 18px;border-radius:20px;font-weight:700;font-size:15.5px;line-height:1.35;transition:background .2s,color .2s}
-.ko-inhalt a:hover{background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blue)}
+.ko-inhalt a:hover{background:color-mix(in srgb,var(--blue) 8%,transparent);color:var(--blau-t)}
 .ko-inhalt a span{font:700 13px Comfortaa,sans-serif;color:var(--muted);min-width:12px}
 
 /* ---------- Abschnittskopf, Umschalter, Empfehlung ---------- */
@@ -989,22 +993,22 @@ main [hidden],.ck[hidden],.ck [hidden]{display:none!important}
 .ko-erkl ul li:before,.ko-punkte li:before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--blue)}
 .ko-erkl ul.minus li:before{background:transparent;border:1.5px solid var(--muted)}
 .ko-empf{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 24px;align-items:baseline;margin-top:clamp(40px,4.5vw,60px);padding-top:26px;border-top:1px solid var(--edge);max-width:1000px}
-.ko-empf>b{display:flex;align-items:center;gap:12px;font:700 15px Comfortaa,sans-serif;color:var(--blue);white-space:nowrap}
+.ko-empf>b{display:flex;align-items:center;gap:12px;font:700 15px Comfortaa,sans-serif;color:var(--blau-t);white-space:nowrap}
 .ko-empf>b:before{content:none}
 .ko-empf p{font-size:17px;line-height:1.6}
 
 /* ---------- Gemeinsame Mini-Bausteine ---------- */
 .ko-mt{font:300 clamp(21px,1.8vw,25px)/1.2 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:10px}
 .ko-mt.gross{font-size:clamp(25px,2.4vw,34px);line-height:1.15;margin-bottom:14px}
-.ko-mt b{font-weight:700;color:var(--blue)}
+.ko-mt b{font-weight:700;color:var(--blau-t)}
 .ko-ml{font-size:15.5px;line-height:1.55;color:var(--muted);margin-bottom:22px;max-width:560px}
-.ko-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;flex:none;background:color-mix(in srgb,var(--blue) 9%,transparent);color:var(--blue)}
+.ko-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;flex:none;background:color-mix(in srgb,var(--blue) 9%,transparent);color:var(--blau-t)}
 .ko-ic.gross{width:56px;height:56px}
 .ko-ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .ko-ic.gross svg{width:25px;height:25px}
 .ko-hw{display:block;font-size:13.5px;color:var(--muted);margin-top:10px}
 .ko-ok{display:flex;gap:10px;font-size:15px;line-height:1.5;padding:14px 18px;border-radius:16px;background:var(--gbg);color:var(--gt);font-weight:400;margin-top:14px}
-.ko-pf{color:var(--blue);font-weight:700}
+.ko-pf{color:var(--blau-t);font-weight:700}
 .ko-opt{font-weight:400;color:var(--muted);letter-spacing:0;margin-left:4px}
 .ko-pfl{font-size:13.5px;color:var(--muted)}
 .ko-tipp{font-size:13px;color:var(--muted);line-height:1.4}
@@ -1027,7 +1031,7 @@ body.dark .ko-fm{color:#FF8D76}
 .ko-chip input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
 .ko-chip>span{display:inline-flex;align-items:center;padding:9px 16px;border-radius:100px;border:1px solid var(--edge);background:var(--bg);font-size:15px;font-weight:700;color:var(--muted);transition:border-color .2s,color .2s,background .2s}
 .ko-chip:hover>span{color:var(--text)}
-.ko-chip input:checked+span{border-color:var(--blue);color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--bg))}
+.ko-chip input:checked+span{border-color:var(--blue);color:var(--blau-t);background:color-mix(in srgb,var(--blue) 8%,var(--bg))}
 .ko-chip input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
 
 /* Kippschalter auf echter Checkbox */
@@ -1056,7 +1060,7 @@ body.dark .ko-fm{color:#FF8D76}
 .ko-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
 .ko-weg{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;width:100%;text-align:left;padding:15px 16px;margin-top:10px;border-radius:18px;border:1px solid var(--edge);background:var(--bg);cursor:pointer;transition:border-color .2s,transform .2s}
 .ko-weg:hover{border-color:var(--blue);transform:translateY(-1px)}
-.ko-weg:hover .pf{transform:translateX(3px);color:var(--blue)}
+.ko-weg:hover .pf{transform:translateX(3px);color:var(--blau-t)}
 .ko-weg b{display:block;font-size:16px;line-height:1.3}
 .ko-weg small{display:block;font-size:14px;color:var(--muted);line-height:1.45;margin-top:3px}
 .ko-notfall{margin-top:16px;font-size:14px;color:var(--muted)}
@@ -1075,13 +1079,13 @@ body.dark .ko-fm{color:#FF8D76}
 .sp-liste a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;border-bottom:1px solid var(--edge)}
 .sp-liste b{display:block;font-size:15px}
 .sp-liste small{display:block;font-size:13.5px;color:var(--muted)}
-.sp-liste a:hover b{color:var(--blue)}
+.sp-liste a:hover b{color:var(--blau-t)}
 .sp-liste a:hover .pf{transform:translateX(3px)}
 
 /* ---------- Das geführte Ticket ---------- */
 .tk{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:clamp(28px,4.5vw,72px);margin-top:clamp(48px,5vw,72px);padding:clamp(24px,4vw,52px);border-radius:34px;scroll-margin-top:110px}
 .tk-seite h3{font:300 clamp(26px,2.4vw,34px)/1.15 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:12px}
-.tk-seite h3 b{font-weight:700;color:var(--blue)}
+.tk-seite h3 b{font-weight:700;color:var(--blau-t)}
 .tk-schritte{list-style:none;margin:28px 0;display:grid;gap:2px}
 .tk-schritte li{display:flex;align-items:center;gap:14px;padding:9px 0;font-weight:700;font-size:15.5px;color:var(--muted);transition:color .2s}
 .tk-schritte li span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--edge);background:var(--bg);font:700 14px Comfortaa,sans-serif;flex:none;transition:background .2s,color .2s,border-color .2s}
@@ -1105,13 +1109,13 @@ body.dark .ko-fm{color:#FF8D76}
 .tk-opt small{display:block;font-size:13px;line-height:1.4;color:var(--muted)}
 .tk-opt:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent)}
 .tk-opt:has(input:checked){border-color:var(--blue);background:color-mix(in srgb,var(--blue) 6%,var(--bg))}
-.tk-opt:has(input:checked) b{color:var(--blue)}
+.tk-opt:has(input:checked) b{color:var(--blau-t)}
 .tk-opt:has(input:focus-visible){outline:2px solid var(--blue);outline-offset:2px}
 .tk-alarm{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;margin-top:12px;padding:14px 14px 14px 20px;border-radius:20px;background:var(--bg2);border:1px solid var(--edge);font-size:15px;animation:koRein .3s ease}
 .tk-alarm span{flex:1 1 260px}
 .tk-alarm .btn{padding:12px 20px;font-size:15px}
 .tk-datei{position:relative;display:flex!important;align-items:center;gap:12px;padding:15px 18px;border:1px dashed color-mix(in srgb,var(--text) 24%,transparent);border-radius:16px;cursor:pointer;font:700 15px 'Mozilla Text',sans-serif!important;color:var(--muted)!important;letter-spacing:0!important;transition:border-color .2s,color .2s}
-.tk-datei:hover{border-color:var(--blue);color:var(--blue)!important}
+.tk-datei:hover{border-color:var(--blue);color:var(--blau-t)!important}
 .tk-datei svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tk-datei input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .tk-datei-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -1182,7 +1186,7 @@ body.dark .pdf-papiere:before{background:#1A2333}
 .nl-feld input{flex:1;min-width:0;border:0;background:transparent;padding:10px 16px;font-size:16px;outline:none}
 .nl-feld .btn{padding:12px 22px;font-size:15px}
 .nl-hw{font-size:13.5px;line-height:1.5;color:var(--muted);margin-top:10px}
-.link-t{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.link-t{color:var(--blau-t);text-decoration:underline;text-underline-offset:2px}
 .nl-karte{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px 56px;align-items:start;padding:clamp(28px,4vw,52px);border-radius:34px}
 .nl-themen{border:0;min-width:0;margin-bottom:18px}
 .nl-themen legend{font:700 13px 'Mozilla Text',sans-serif;color:var(--muted);letter-spacing:.02em;margin-bottom:10px;padding:0}
@@ -1239,9 +1243,9 @@ body.dark .pdf-papiere:before{background:#1A2333}
 .ck-text{font-size:14.5px;line-height:1.55;color:var(--muted)}
 .ck-text>span{display:block}
 .ck-links{display:flex!important;gap:16px;margin-top:6px}
-.ck-links a{color:var(--blue);text-decoration:underline;text-underline-offset:2px;font-size:13.5px}
+.ck-links a{color:var(--blau-t);text-decoration:underline;text-underline-offset:2px;font-size:13.5px}
 .ck-btns{display:flex;flex-wrap:wrap;gap:10px}
-.ck-btn{flex:1 1 0;border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);background:color-mix(in srgb,var(--blue) 10%,var(--bg));color:var(--blue);font:700 15px 'Mozilla Text',sans-serif;padding:13px 20px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.ck-btn{flex:1 1 0;border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);background:color-mix(in srgb,var(--blue) 10%,var(--bg));color:var(--blau-t);font:700 15px 'Mozilla Text',sans-serif;padding:13px 20px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
 .ck-btn:hover,.ck-btn:focus-visible{background:var(--blue);color:#fff;outline:none}
 body.dark .ck-btn{color:#9DBDF7}
 body.dark .ck-btn:hover{color:#fff}
@@ -1269,7 +1273,7 @@ body.dark .ck-btn:hover{color:#fff}
 
 /* ---------- 6 KI: Richtungen ---------- */
 .ki-mp{font:700 13px Comfortaa,sans-serif;color:var(--muted);margin-bottom:4px}
-.ki-name{font:700 clamp(24px,2.2vw,30px)/1.2 Comfortaa,sans-serif;letter-spacing:-.01em;color:var(--blue)}
+.ki-name{font:700 clamp(24px,2.2vw,30px)/1.2 Comfortaa,sans-serif;letter-spacing:-.01em;color:var(--blau-t)}
 .ki-kern{font:300 clamp(18px,1.5vw,21px)/1.45 Comfortaa,sans-serif;margin:18px 0 4px;padding-left:18px;border-left:2px solid var(--blue)}
 .ki-folge{list-style:none;counter-reset:k;border-top:1px solid var(--edge)}
 .ki-folge li{counter-increment:k;display:grid;grid-template-columns:26px minmax(0,1fr);padding:9px 0;border-bottom:1px solid var(--edge);font-size:15px;line-height:1.45}
@@ -1281,16 +1285,16 @@ body.dark .ck-btn:hover{color:#fff}
 .mh-leiste{display:flex;align-items:center;gap:16px;height:44px;padding:0 18px 0 14px;margin-bottom:34px;border-radius:100px;background:color-mix(in srgb,var(--bg) 66%,transparent);border:1px solid var(--edge);font:700 12px 'Mozilla Text',sans-serif;white-space:nowrap;overflow:hidden}
 .mh-leiste img{height:26px;width:auto;margin-right:auto;flex:none}
 body.dark .mh-leiste img,body.dark .br-logo{filter:brightness(1.45) saturate(1.15)}
-.mh-leiste .on{color:var(--blue);box-shadow:inset 0 -1.5px var(--blue);padding:4px 0}
+.mh-leiste .on{color:var(--blau-t);box-shadow:inset 0 -1.5px var(--blue);padding:4px 0}
 .mh-h{font:300 clamp(25px,2.6vw,38px)/1.1 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:14px;max-width:600px}
 .mh-h.klein{font-size:clamp(22px,2vw,28px)}
-.mh-h b{font-weight:700;color:var(--blue)}
+.mh-h b{font-weight:700;color:var(--blau-t)}
 .mh-l{font-size:15px;line-height:1.55;color:var(--muted);max-width:540px;margin-bottom:22px}
 .mh-btns{display:flex;flex-wrap:wrap;gap:8px}
 .m-btn{display:inline-flex;align-items:center;border-radius:100px;padding:10px 18px;font:700 13px 'Mozilla Text',sans-serif;background:var(--blue);color:#fff}
 .m-btn.zw{background:var(--gbg);color:var(--gt)}
 .mh-reihe{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:34px;padding-top:18px;border-top:1px solid var(--edge);font-size:13.5px;font-weight:700;color:var(--muted)}
-.mh-reihe span+span:before{content:"·";margin:0 10px;color:var(--blue)}
+.mh-reihe span+span:before{content:"·";margin:0 10px;color:var(--blau-t)}
 .mh-a:after{content:"";position:absolute;right:-120px;top:90px;width:340px;height:340px;border-radius:50%;border:1px solid color-mix(in srgb,var(--blue) 20%,transparent);outline:1px solid color-mix(in srgb,var(--blue) 12%,transparent);outline-offset:-56px;pointer-events:none}
 .mh-beisp{display:grid;gap:8px;margin-top:30px;max-width:520px}
 .mh-beisp span{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;background:color-mix(in srgb,var(--bg) 75%,transparent);border:1px solid var(--edge);font-size:14px;font-weight:700}
@@ -1317,8 +1321,8 @@ body.dark .mh-leiste img,body.dark .br-logo{filter:brightness(1.45) saturate(1.1
 .kr-stellen a{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:14px;padding:15px 2px;border-bottom:1px solid var(--edge)}
 .kr-st b{display:block;font-size:16px;transition:color .2s}
 .kr-st small{display:block;font-size:13.5px;color:var(--muted)}
-.kr-stellen a:hover b{color:var(--blue)}
-.kr-stellen a:hover .pf{transform:translateX(3px);color:var(--blue)}
+.kr-stellen a:hover b{color:var(--blau-t)}
+.kr-stellen a:hover .pf{transform:translateX(3px);color:var(--blau-t)}
 .kr-init{margin-top:16px;font-size:14.5px;color:var(--muted)}
 .kr-ausb{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px 44px;align-items:center}
 .kr-ausb .mh-l{margin-bottom:0}
@@ -1350,13 +1354,13 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .br-leiste .cta{background:var(--blue);color:#fff;border-radius:100px;padding:14px 26px;font-size:15px}
 .br-inhalt{position:absolute;top:250px;width:1240px}
 .br-inhalt .h{font:300 66px/1.07 Comfortaa,sans-serif;letter-spacing:-.02em;max-width:820px;color:var(--text)}
-.br-inhalt .h b{font-weight:700;color:var(--blue)}
+.br-inhalt .h b{font-weight:700;color:var(--blau-t)}
 .br-inhalt .l{margin-top:26px;font-size:21px;line-height:1.55;color:var(--muted);max-width:620px}
 .br-inhalt .b{display:flex;gap:14px;margin-top:40px}
 .br-inhalt .b span{border-radius:100px;padding:18px 32px;font:700 17px 'Mozilla Text',sans-serif;background:var(--blue);color:#fff}
 .br-inhalt .b span+span{background:var(--gbg);color:var(--gt)}
 .br-spur{position:absolute;top:0;bottom:0;border-left:3px dashed color-mix(in srgb,var(--blue) 40%,transparent);border-right:3px dashed color-mix(in srgb,var(--blue) 40%,transparent);pointer-events:none}
-.br-spur span{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:700 30px 'Mozilla Text',sans-serif;color:var(--blue);background:var(--bg);padding:6px 20px;border-radius:100px;border:2px solid color-mix(in srgb,var(--blue) 35%,transparent)}
+.br-spur span{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:700 30px 'Mozilla Text',sans-serif;color:var(--blau-t);background:var(--bg);padding:6px 20px;border-radius:100px;border:2px solid color-mix(in srgb,var(--blue) 35%,transparent)}
 
 /* ---------- Responsiv ---------- */
 @media(max-width:1100px){
@@ -1445,10 +1449,10 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .kx-btn.rechts{align-self:flex-end}
 .kx-btns{display:flex;gap:8px;flex-wrap:wrap}
 .kx-h{font:300 17px/1.2 Comfortaa,sans-serif;letter-spacing:-.01em}
-.kx-h b{font-weight:700;color:var(--blue)}
+.kx-h b{font-weight:700;color:var(--blau-t)}
 .kx-pfad{font-size:10.5px;color:var(--muted)}
 .kx-leise{font-size:11px;color:var(--muted)}
-.kx-leise u,.kx-p u{text-decoration:none;color:var(--blue);font-weight:700}
+.kx-leise u,.kx-p u{text-decoration:none;color:var(--blau-t);font-weight:700}
 
 /* Termin */
 .kx-t3{display:grid;grid-template-columns:1.05fr 1.1fr 1fr;align-items:stretch;padding:0;overflow:hidden}
@@ -1460,7 +1464,7 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .kx-ta b{display:block;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kx-ta>span{min-width:0}
 .kx-ta.on{background:color-mix(in srgb,var(--blue) 8%,transparent);box-shadow:inset 0 0 0 1.2px color-mix(in srgb,var(--blue) 70%,transparent)}
-.kx-ta.on b{color:var(--blue)}
+.kx-ta.on b{color:var(--blau-t)}
 .kx-ta.nur{padding:6px 8px}
 .kx-ta.gross{align-items:flex-start;gap:10px;padding:10px 8px;border-bottom:1px solid var(--edge);border-radius:0}
 .kx-ta.gross b{white-space:normal;font-size:13px}
@@ -1468,10 +1472,10 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .kx-mon{display:flex;gap:3px;padding:3px;border-radius:12px;background:color-mix(in srgb,var(--text) 5%,transparent)}
 .kx-mon i{flex:1;text-align:center;font:700 10.5px Comfortaa,sans-serif;font-style:normal;padding:4px 2px;border-radius:9px;color:var(--text)}
 .kx-mon i small{font-size:9px}
-.kx-mon i.on{background:var(--bg);color:var(--blue);box-shadow:0 1px 3px rgba(15,25,50,.15)}
+.kx-mon i.on{background:var(--bg);color:var(--blau-t);box-shadow:0 1px 3px rgba(15,25,50,.15)}
 .kx-kal{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
 .kx-kal i{height:22px;border-radius:7px;font-style:normal;font-size:10px;display:grid;place-items:center;color:color-mix(in srgb,var(--text) 30%,transparent);background:color-mix(in srgb,var(--text) 3%,transparent)}
-.kx-kal i.frei{color:var(--blue);font-weight:700;background:color-mix(in srgb,var(--blue) 8%,transparent)}
+.kx-kal i.frei{color:var(--blau-t);font-weight:700;background:color-mix(in srgb,var(--blue) 8%,transparent)}
 .kx-kal i.wahl{background:var(--blue);color:#fff;font-weight:700}
 .kx-tag{font:700 12.5px Comfortaa,sans-serif}
 .kx-zt{display:grid;grid-template-columns:1fr 1fr;gap:5px}
@@ -1541,7 +1545,7 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 .kx-zitat.gross{font-size:52px;align-self:center}
 .kx-q{display:block;font:300 13.5px/1.35 Comfortaa,sans-serif}
 .kx-q.gross{font-size:18px;text-align:center;max-width:380px;align-self:center}
-.kx-q b{font-weight:700;color:var(--blue)}
+.kx-q b{font-weight:700;color:var(--blau-t)}
 .kx-wer{display:block;font-size:10.5px;color:var(--muted);margin-top:5px}
 .kx-punkte{display:flex;gap:4px}
 .kx-punkte i{width:6px;height:6px;border-radius:50%;background:color-mix(in srgb,var(--text) 18%,transparent)}
@@ -1613,7 +1617,33 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
 }.kx-p{font-weight:400}
 /* Logo in Mini-Ansichten nie strecken (Konzept 20 B) */
 .kx-fi>.kx-logo{align-self:flex-start;width:auto;height:22px}
-</style><script src="../einstellungen.js"></script>
+
+/* Konzept 23 lesbarer (Leon 25.11.2026: „schwer zu lesen, sehr dunkel“): größere Schrift, hellere Grautöne, Fläche statt fast schwarz */
+.kx-dunkel{background:#121A27}
+.kx-dunkel .kx-fi{background:#121A27;padding:clamp(28px,3.4vw,44px);gap:18px}
+.kx-dunkel .kx-h{font-size:24px}
+.kx-dunkel .kx-p{font-size:16.5px;line-height:1.65;color:#E6E9EF;max-width:460px}
+.kx-dunkel .kx-btn{font-size:13px;padding:9px 18px}
+.kx-dunkel .kx-kontrast{font-size:13px;color:#C9CED8}
+.kx-dunkel .ko-fl{background:#0E141F}
+.kx-dunkel .ko-fl span{background:#121A27;color:#C9CED8}
+
+/* Konzepte 25 bis 27 */
+.kx-wl{position:relative;justify-content:center;min-height:260px;overflow:hidden}
+.kx-wsvg{position:absolute;left:0;right:0;bottom:0;width:100%;height:75%}
+.kx-wl .kx-hk{position:relative;max-width:300px}
+.kx-mehr{margin-top:22px}
+.kx-mtext{flex:1;display:flex;gap:16px;justify-content:center;font-size:11.5px;font-weight:700;color:var(--muted)}
+.kx-mtext b{color:var(--text)}
+.kx-hero .kx-leiste{margin-bottom:auto}
+.kx-hero .kx-leiste+.kx-hk{margin-bottom:auto}
+.kx-weg{display:flex;flex-direction:column;max-width:440px}
+.kx-weg>i{font-style:normal;display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:2px 12px;padding:9px 0;border-top:1px solid var(--edge)}
+.kx-weg>i:first-child{border-top:0}
+.kx-weg>i b{font-size:12.5px}
+.kx-weg>i small{grid-column:1}
+.kx-weg>i em{grid-column:2;grid-row:1/3;align-self:center;font-style:normal;font-weight:700;font-size:11px;padding:3px 10px;border-radius:100px;color:var(--muted);background:color-mix(in srgb,var(--text) 6%,transparent)}
+.kx-weg>i.bleibt em{color:var(--gt);background:var(--gbg)}</style><script src="../einstellungen.js"></script>
 </head>
 <body class="lgB " data-welt="allgemein">
 <header class="kopf" id="kopf">
@@ -1722,7 +1752,10 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
     <li><a href="#menschen"><span>21</span>Menschen dahinter</a></li>
     <li><a href="#telefonie"><span>22</span>3CX oder Telefonanlage</a></li>
     <li><a href="#dunkelblau"><span>23</span>Blau im Dunkelmodus</a></li>
-    <li><a href="#datevfaq"><span>24</span>DATEV-FAQ Steuerberatung</a></li>   </ol>
+    <li><a href="#datevfaq"><span>24</span>DATEV-FAQ Steuerberatung</a></li>
+    <li><a href="#welle"><span>25</span>Welle Startseite</a></li>
+    <li><a href="#begriff"><span>26</span>Gesundheitswesen oder Healthcare</a></li>
+    <li><a href="#aufraeumen"><span>27</span>Umschalter aufräumen</a></li>   </ol>
   </nav>
  </div>
 </section>
@@ -3245,7 +3278,7 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
     <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Ein zweiter Blauton, der nur im Dunkelmodus vorkommt.</li></ul></div>
   </div>
 
-  <div class="ko-empf"><b>Empfehlung</b><p>Variante B. Lesbarkeit geht vor, und der hellere Ton greift nur dort, wo kleine Schrift auf Dunkel steht. Die Regel „Blau in Hell und Dunkel gleich“ gilt dann weiter für Buttons und Überschriften.</p></div>
+  <div class="ko-empf"><b>Entschieden</b><p>Variante B (Leon, 25.11.2026), auf allen Seiten umgesetzt. Lesbarkeit geht vor, und der hellere Ton greift nur dort, wo kleine Schrift auf Dunkel steht. Die Regel „Blau in Hell und Dunkel gleich“ gilt dann weiter für Buttons und Überschriften.</p></div>
  </div>
 </section>
 
@@ -3281,6 +3314,128 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
   </div>
 
   <div class="ko-empf"><b>Empfehlung</b><p>Variante B. Sie sagt dasselbe Ja, zieht aber die Grenze dort, wo sie für eine IT-Firma ohnehin liegt. Bitte prüfen, ob die Abstimmung zur normalen Betreuung gehört oder gesondert vereinbart wird, dann passen wir den Satz an.</p></div>
+ </div>
+</section>
+
+<!-- ================= 25 Welle auf der Startseite ================= -->
+<section class="ab ko" id="welle">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 25 · Inhalte und Darstellung</div><h2>Welle auf der Startseite: <b>Linien oder Bänder</b>?</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Im Startseiten-Hero bewegt sich heute die Welle aus feinen Linien von Grün nach Blau. Aus dem Team kamen breitere, weiche Bänder als Alternative, in mehreren Stärken. Die Wellenart gilt überall, auch für die stehenden Wellenkanten auf den Unterseiten. Hier eine Skizze, alle Varianten in Bewegung zeigt die Seite Wellen-Varianten.</p>
+   </div>
+  </div>
+
+  <div class="ko-wahl" role="group" aria-label="Variante Welle" data-wahl="welle">
+   <button type="button" data-v="A" class="on">A Feine Linien</button>
+   <button type="button" data-v="B">B Bänder</button>
+  </div>
+
+  <div class="ko-var" data-teil="welle" data-v="A">
+   <div class="ko-fenster"><div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de</span></div>
+    <div class="ko-fi kx-fi kx-wl">
+     <svg class="kx-wsvg" viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="kxWa" x1="0" x2="1"><stop offset="0" stop-color="#2EB329"/><stop offset=".5" stop-color="#1E96AA"/><stop offset="1" stop-color="#2D6CDF"/></linearGradient></defs><g fill="none" stroke="url(#kxWa)" stroke-width="1.1" opacity=".75"><path d="M0 150C120 90 220 200 330 140S520 80 600 120"/><path d="M0 156C120 98 220 206 330 147S520 88 600 127"/><path d="M0 162C120 106 220 212 330 154S520 96 600 134"/><path d="M0 168C120 114 220 218 330 161S520 104 600 141"/><path d="M0 174C120 122 220 224 330 168S520 112 600 148"/><path d="M0 180C120 130 220 230 330 175S520 120 600 155"/><path d="M0 186C120 138 220 236 330 182S520 128 600 162"/><path d="M0 192C120 146 220 242 330 189S520 136 600 169"/><path d="M0 198C120 154 220 248 330 196S520 144 600 176"/><path d="M0 204C120 162 220 254 330 203S520 152 600 183"/></g></svg>
+     <span class="kx-glas kx-hk"><span class="kx-h">IT, die man <b>nicht merkt</b>, bis man sie braucht.</span><span class="ko-sk"><i class="d w70"></i></span></span>
+    </div></div>
+   <div class="ko-erkl"><h3>A: Feine Linien (heute)</h3><p>Viele feine Linien, die sich langsam bewegen, Grün nach Blau.</p>
+    <div class="ko-pk">Spricht dafür</div><ul><li>Leicht und technisch, passt zu „IT, die man nicht merkt“.</li><li>Verdeckt nichts, der Text bleibt ruhig lesbar.</li></ul>
+    <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Auf sehr hellen Bildschirmen zart.</li></ul></div>
+  </div>
+  <div class="ko-var" data-teil="welle" data-v="B" hidden>
+   <div class="ko-fenster"><div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de</span></div>
+    <div class="ko-fi kx-fi kx-wl">
+     <svg class="kx-wsvg" viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="kxWb" x1="0" x2="1"><stop offset="0" stop-color="#2EB329" stop-opacity=".35"/><stop offset=".5" stop-color="#1E96AA" stop-opacity=".3"/><stop offset="1" stop-color="#2D6CDF" stop-opacity=".35"/></linearGradient></defs><g fill="url(#kxWb)"><path d="M0 140C120 90 230 190 330 140S520 90 600 120V160C520 130 430 200 330 180S120 130 0 180Z"/><path d="M0 170C130 120 240 210 340 170S520 120 600 150V185C520 160 430 225 340 205S130 160 0 205Z" opacity=".8"/><path d="M0 195C140 160 250 230 350 200S520 160 600 180V215C520 195 440 240 350 228S140 195 0 220Z" opacity=".6"/></g></svg>
+     <span class="kx-glas kx-hk"><span class="kx-h">IT, die man <b>nicht merkt</b>, bis man sie braucht.</span><span class="ko-sk"><i class="d w70"></i></span></span>
+    </div></div>
+   <div class="ko-erkl"><h3>B: Bänder</h3><p>Wenige breite, weiche Bänder mit Lichtkante, in mehreren Stärken (ruhig, kräftig, ohne Kanten).</p>
+    <div class="ko-pk">Spricht dafür</div><ul><li>Weicher und flächiger, wirkt freundlicher.</li></ul>
+    <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Mehr Farbe im Hero, der Text konkurriert stärker mit dem Hintergrund.</li><li>Als stehende Kante auf Unterseiten schwerer.</li></ul></div>
+  </div>
+  <p class="kx-mehr"><a class="link" href="wellen-varianten.html">Alle Wellen-Varianten in Bewegung ansehen<svg class="pf" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante A bleibt. Die feinen Linien sind inzwischen das Erkennungszeichen der Startseite und der Wellenkanten. Wer eine Bänder-Variante bevorzugt, kann sie auf der Startseite unter Einstellungen, „Welle“, direkt im Original ansehen.</p></div>
+ </div>
+</section>
+
+<!-- ================= 26 Gesundheitswesen oder Healthcare ================= -->
+<section class="ab alt ko" id="begriff">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 26 · Inhalte und Darstellung</div><h2>„Gesundheitswesen“ oder „<b>Healthcare</b>“?</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Für den Bereich Praxen, Apotheken und Pflege steht auf der ganzen Website ein Begriff: im Menü, in Überschriften, im Footer und in der Mail-Adresse wecare@. Heute ist es „Gesundheitswesen“, „Healthcare“ ist überall per Schalter möglich.</p>
+   </div>
+  </div>
+
+  <div class="ko-wahl" role="group" aria-label="Variante Begriff" data-wahl="begriff">
+   <button type="button" data-v="A" class="on">A Gesundheitswesen</button>
+   <button type="button" data-v="B">B Healthcare</button>
+  </div>
+
+  <div class="ko-var" data-teil="begriff" data-v="A">
+   <div class="ko-fenster"><div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de/gesundheitswesen</span></div>
+    <div class="ko-fi kx-fi kx-hero gw">
+     <span class="kx-leiste"><img data-logo alt="" class="kx-logo"><span class="kx-mtext"><b>Gesundheitswesen ▾</b><span>Kanzleien</span><span>Unternehmen</span></span></span>
+     <span class="kx-glas kx-hk"><span class="kx-pfad">Startseite / Gesundheitswesen</span><span class="kx-h">IT für das <b>Gesundheitswesen</b>.</span><span class="ko-sk"><i class="d w70"></i></span></span>
+    </div></div>
+   <div class="ko-erkl"><h3>A: Gesundheitswesen</h3><p>Der deutsche Begriff, wie ihn Praxen, Apotheken und Pflege selbst verwenden.</p>
+    <div class="ko-pk">Spricht dafür</div><ul><li>Klar und vertraut, passt zur Ansprache im Du und auf Deutsch.</li><li>So wird gesucht, etwa „IT Gesundheitswesen Niederrhein“.</li></ul>
+    <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Lang, im Menü braucht es mehr Platz.</li></ul></div>
+  </div>
+  <div class="ko-var" data-teil="begriff" data-v="B" hidden>
+   <div class="ko-fenster"><div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>cloudvibe.de/healthcare</span></div>
+    <div class="ko-fi kx-fi kx-hero gw">
+     <span class="kx-leiste"><img data-logo alt="" class="kx-logo"><span class="kx-mtext"><b>Healthcare ▾</b><span>Kanzleien</span><span>Unternehmen</span></span></span>
+     <span class="kx-glas kx-hk"><span class="kx-pfad">Startseite / Healthcare</span><span class="kx-h">IT für <b>Healthcare</b>.</span><span class="ko-sk"><i class="d w70"></i></span></span>
+    </div></div>
+   <div class="ko-erkl"><h3>B: Healthcare</h3><p>Der englische Begriff, kurz und modern.</p>
+    <div class="ko-pk">Spricht dafür</div><ul><li>Kurz, passt gut ins Menü.</li><li>Passt zum englischen Slogan „Your IT. Our business.“</li></ul>
+    <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Für viele Praxen und Pflegeeinrichtungen ungewohnt.</li><li>Mischt Englisch in eine sonst deutsche Seite.</li></ul></div>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante A. Die Zielgruppe spricht von Gesundheitswesen und sucht auch so. Der Schalter bleibt bis zur Entscheidung, danach legen wir den Begriff fest und passen Adresse und Footer an.</p></div>
+ </div>
+</section>
+
+<!-- ================= 27 Vergleichs-Umschalter aufräumen ================= -->
+<section class="ab ko" id="aufraeumen">
+ <div class="wrap">
+  <div class="ko-kopf">
+   <div><div class="eb">Konzept 27 · Inhalte und Darstellung</div><h2>Vergleichs-Umschalter <b>aufräumen</b>.</h2></div>
+   <div class="ko-worum">
+    <h3>Worum es geht</h3>
+    <p>Viele alte Fassungen sind nur noch zum Vergleich umschaltbar. Für die Umsetzung sollten sie verschwinden, damit die Entwicklung nur noch eine Fassung baut. Die Frage ist, wann wir aufräumen.</p>
+   </div>
+  </div>
+
+  <div class="ko-wahl" role="group" aria-label="Variante Aufräumen" data-wahl="aufraeumen">
+   <button type="button" data-v="A" class="on">A Nach diesen Entscheidungen</button>
+   <button type="button" data-v="B">B Erst vor der Umsetzung</button>
+  </div>
+
+  <div class="ko-var" data-teil="aufraeumen" data-v="A">
+   <div class="ko-fenster"><div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>Einstellungen</span></div>
+    <div class="ko-fi kx-fi">
+     <span class="kx-weg"><i><b>Kopfleiste</b><small>Bisher</small><em>entfällt</em></i><i><b>Hero-Buttons</b><small>Bisher</small><em>entfällt</em></i><i><b>Gesundheitswesen</b><small>Bisher</small><em>entfällt</em></i><i><b>Kundenstimmen</b><small>Liste</small><em>entfällt</em></i><i><b>Footer</b><small>B, C, D und Bisher</small><em>entfällt</em></i><i><b>Terminauswahl</b><small>Bisher</small><em>entfällt</em></i><i class="bleibt"><b>Dunkler Modus, Module je Seite</b><small>Werkzeuge</small><em>bleibt</em></i></span>
+    </div></div>
+   <div class="ko-erkl"><h3>A: Nach diesen Entscheidungen</h3><p>Sobald die Konzepte hier entschieden sind, entfernen wir alle Fassungen, die nur noch Vergleich sind. Was zur Arbeit gehört, etwa Dunkelmodus und Module je Seite, bleibt.</p>
+    <div class="ko-pk">Spricht dafür</div><ul><li>Das Einstellungsfenster wird kurz und klar.</li><li>Weniger Fehlerquellen, schnellere Seiten.</li></ul>
+    <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Alte Fassungen lassen sich danach nur noch im Archiv ansehen.</li></ul></div>
+  </div>
+  <div class="ko-var" data-teil="aufraeumen" data-v="B" hidden>
+   <div class="ko-fenster"><div class="ko-fl" aria-hidden="true"><i></i><i></i><i></i><span>Einstellungen</span></div>
+    <div class="ko-fi kx-fi">
+     <span class="kx-weg"><i class="bleibt"><b>Kopfleiste</b><small>Bisher</small><em>bleibt</em></i><i class="bleibt"><b>Hero-Buttons</b><small>Bisher</small><em>bleibt</em></i><i class="bleibt"><b>Gesundheitswesen</b><small>Bisher</small><em>bleibt</em></i><i class="bleibt"><b>Kundenstimmen</b><small>Liste</small><em>bleibt</em></i><i class="bleibt"><b>Footer</b><small>B, C, D und Bisher</small><em>bleibt</em></i><i class="bleibt"><b>Terminauswahl</b><small>Bisher</small><em>bleibt</em></i></span>
+    </div></div>
+   <div class="ko-erkl"><h3>B: Erst vor der Umsetzung</h3><p>Alles bleibt umschaltbar, bis die Übergabe an die Entwicklung ansteht.</p>
+    <div class="ko-pk">Spricht dafür</div><ul><li>Jeder Vergleich bleibt bis zuletzt möglich.</li></ul>
+    <div class="ko-pk">Spricht dagegen</div><ul class="minus"><li>Das Einstellungsfenster bleibt lang, Entscheidungen bleiben gefühlt offen.</li></ul></div>
+  </div>
+
+  <div class="ko-empf"><b>Empfehlung</b><p>Variante A. Entscheidungen sollen sichtbar werden. Wir räumen aber erst auf, wenn du die Konzepte hier bestätigt hast, und nennen vorher die Liste.</p></div>
  </div>
 </section>
 

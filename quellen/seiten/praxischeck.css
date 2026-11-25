@@ -22,7 +22,7 @@
 .stt-titel{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;align-items:start}
 .stt-titel svg{width:52px;height:52px;padding:12px;border-radius:50%;fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;background:color-mix(in srgb,var(--blue) 10%,transparent)}
 .stt-urteil{display:block;font:300 clamp(26px,2.4vw,34px)/1.15 Comfortaa,sans-serif;letter-spacing:-.02em;margin:4px 0 8px}
-.stt-urteil em{font-style:normal;font-weight:700;color:var(--blue)}
+.stt-urteil em{font-style:normal;font-weight:700;color:var(--blau-t)}
 .stt-satz{display:block;color:var(--muted);line-height:1.6;max-width:600px}
 .stt-offen-w{margin:26px 0 0;padding:20px 24px;border-radius:20px;background:color-mix(in srgb,var(--bg2) 80%,transparent)}
 body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
@@ -34,7 +34,7 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 .stt-offen span{display:block;font-size:14.5px;color:var(--muted);line-height:1.5;margin-top:2px}
 .stt-weiter{display:flex;align-items:center;flex-wrap:wrap;gap:14px 28px;margin-top:26px}
 .stt-neu{background:none;border:0;cursor:pointer;font:700 15px 'Mozilla Text',sans-serif;color:var(--muted)}
-.stt-neu:hover{color:var(--blue)}
+.stt-neu:hover{color:var(--blau-t)}
 .stt-mail{margin-top:26px;padding-top:22px;border-top:1px solid var(--edge)}
 .stt-mail label{display:block;font-size:15px;color:var(--muted);line-height:1.55;margin-bottom:12px;max-width:560px}
 .stt-feld{display:flex;gap:10px;max-width:520px}
