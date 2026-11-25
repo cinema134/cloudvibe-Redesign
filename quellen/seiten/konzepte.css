@@ -654,3 +654,5 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
  .kx-leiste{flex-wrap:wrap}
  .kx-fz{gap:10px}
 }.kx-p{font-weight:400}
+/* Logo in Mini-Ansichten nie strecken (Konzept 20 B) */
+.kx-fi>.kx-logo{align-self:flex-start;width:auto;height:22px}
