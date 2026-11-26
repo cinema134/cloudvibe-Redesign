@@ -8,7 +8,7 @@
 
   /* Paragraf im Hero selbst ausrichten (Leon 26.11.2026: „immer noch optisch schief, gib mir eine Einstellung“):
      Diese Seite → „Paragraf neigen“, Regler in 0,5°-Schritten, Drehung um die Mitte des Zeichens.
-     Gemerkt als hzWinkel (Browser, „Für alle festlegen“). Standard = Wert aus kanzleien.html (rotate(11 60 60)). */
+     Gemerkt als hzWinkel (Browser, „Für alle festlegen“). Standard = Wert aus kanzleien.html (rotate(5.5 60 60), Leon 26.11.2026: „wirkt fast gerade“; vorher 11°). */
   if (typeof CV === 'undefined') return;
   const g = document.querySelector('.uhero>.hz g[transform^="rotate"]');
   if (!g) return;
