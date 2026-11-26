@@ -1204,6 +1204,19 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
  .sst-s{grid-column:2;justify-self:start;margin-top:-4px}
 }
 
+/* MVZ und Gemeinschaftspraxen (Leon 26.11.2026): Block unter „Was bei uns liegt“, links Text, rechts vier Punkte */
+.mvz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:28px clamp(32px,4.4vw,72px);align-items:start;margin-top:clamp(18px,2vw,26px);padding:clamp(28px,3.2vw,44px)}
+.mvz-e{display:block;font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--blau-t);margin-bottom:14px}
+.mvz-t h3{font:300 clamp(24px,2.2vw,32px)/1.15 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:14px}
+.mvz-t h3 b{font-weight:700;color:var(--blue)}
+.mvz-t p{color:var(--muted);line-height:1.6;max-width:520px}
+.mvz-l{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px clamp(22px,2.4vw,36px)}
+.mvz-l li{position:relative;padding-left:28px}
+.mvz-l li:before{content:"";position:absolute;left:2px;top:.5em;width:11px;height:6px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+.mvz-l b{display:block;font:700 17px/1.3 Comfortaa,sans-serif;letter-spacing:-.01em;margin-bottom:4px}
+.mvz-l span{font-size:15px;line-height:1.5;color:var(--muted)}
+@media(max-width:1000px){.mvz{grid-template-columns:1fr}}
+@media(max-width:600px){.mvz-l{grid-template-columns:1fr}.mvz{padding:26px 22px}}
 /* ================= Karriere (Konzept 7, Vorlage Arztpraxen) ================= */
 /* Stellenliste: ruhige Zeilen mit grauen Linien, kein Kartenraster */
 .kr-stellen{border-top:1px solid var(--edge)}
@@ -1265,9 +1278,9 @@ body.stelle-an .stelle-ansicht{display:block}
     <a href="gesundheitswesen.html" aria-haspopup="true"><span class="hc">Gesundheitswesen</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></a>
     <div class="dd-m dd-2">
      <a href="gesundheitswesen.html"><b>Übersicht</b><small>Alles für Praxen, Apotheken und Pflege</small></a>
-     <a href="gesundheitswesen-arztpraxen.html"><b>Arztpraxen</b><small>Arzt- und Zahnarztpraxen</small></a>
+     <a href="gesundheitswesen-arztpraxen.html"><b>Arztpraxen und MVZ</b><small>Praxen, Gemeinschaftspraxen, MVZ</small></a>
      <a href="gesundheitswesen-apotheken.html"><b>Apotheken</b><small>IT und TI im Apothekenalltag</small></a>
-     <a href="gesundheitswesen-pflegeeinrichtungen.html"><b>Pflegeeinrichtungen</b><small>IT, die die Pflege nicht stört</small></a>
+     <a href="gesundheitswesen-pflegeeinrichtungen.html"><b>Pflege und SAPV</b><small>Im Haus und unterwegs</small></a>
      <a href="gesundheitswesen-telematikinfrastruktur.html"><b>Telematikinfrastruktur</b><small>Anbindung und Betrieb mit Telekonnekt</small></a>
      <a href="gesundheitswesen-praxis-check.html"><b>Praxis-Check IT-Sicherheit</b><small>Unverbindlicher erster Schritt</small></a>
     </div>
@@ -1641,11 +1654,13 @@ body.stelle-an .stelle-ansicht{display:block}
   </div>
  </div>
 </div>
-<script>const BEGRIFF_START="Gesundheitswesen";const CV_SEITE_ID="karriere";const CV_SEITEN=[{"id":"gesundheitswesen","t":"Gesundheitswesen","e":"","f":"gesundheitswesen.html"},{"id":"arztpraxen","t":"Arztpraxen","e":"gesundheitswesen","f":"gesundheitswesen-arztpraxen.html"},{"id":"apotheken","t":"Apotheken","e":"gesundheitswesen","f":"gesundheitswesen-apotheken.html"},{"id":"pflege","t":"Pflegeeinrichtungen","e":"gesundheitswesen","f":"gesundheitswesen-pflegeeinrichtungen.html"},{"id":"ti","t":"Telematikinfrastruktur","e":"gesundheitswesen","f":"gesundheitswesen-telematikinfrastruktur.html"},{"id":"praxischeck","t":"Praxis-Check","e":"gesundheitswesen","f":"gesundheitswesen-praxis-check.html"},{"id":"kanzleien","t":"Kanzleien","e":"","f":"kanzleien.html"},{"id":"unternehmen","t":"Unternehmen","e":"","f":"unternehmen.html"},{"id":"datev","t":"DATEV","e":"managed","f":"leistungen-datev.html"},{"id":"selectline","t":"SelectLine","e":"managed","f":"leistungen-selectline.html"},{"id":"managed","t":"Managed Services","e":"","f":"managed-services.html"},{"id":"ki","t":"KI sicher nutzen","e":"","f":"ki-sicher-nutzen.html"},{"id":"schulungen","t":"Schulungen","e":"managed","f":"leistungen-schulungen.html"},{"id":"ueber","t":"Über uns","e":"","f":"ueber-uns.html"},{"id":"team","t":"Team","e":"ueber","f":"ueber-uns-team.html"},{"id":"referenzen","t":"Referenzen","e":"ueber","f":"ueber-uns-referenzen.html"},{"id":"karriere","t":"Karriere","e":"ueber","f":"ueber-uns-karriere.html"},{"id":"news","t":"News","e":"","f":"news.html"},{"id":"newsletter","t":"Newsletter","e":"news","f":"news-newsletter.html"},{"id":"newsbeitrag","t":"Datensicherung in der Praxis","e":"news","f":"news-datensicherung-in-der-praxis.html"},{"id":"recht","t":"Impressum, Datenschutz, AGB","e":"","f":"impressum.html"},{"id":"lexikon","t":"Lexikon","e":"","f":"lexikon.html"},{"id":"termin","t":"Termin vereinbaren","e":"","f":"termin.html"},{"id":"support","t":"Support","e":"","f":"support.html"},{"id":"ticket","t":"Ticket eröffnen","e":"support","f":"support-ticket.html"},{"id":"login","t":"Kundenportal","e":"support","f":"login.html"}];</script>
+<script>const BEGRIFF_START="Gesundheitswesen";const CV_SEITE_ID="karriere";const CV_SEITEN=[{"id":"gesundheitswesen","t":"Gesundheitswesen","e":"","f":"gesundheitswesen.html"},{"id":"arztpraxen","t":"Arztpraxen und MVZ","e":"gesundheitswesen","f":"gesundheitswesen-arztpraxen.html"},{"id":"apotheken","t":"Apotheken","e":"gesundheitswesen","f":"gesundheitswesen-apotheken.html"},{"id":"pflege","t":"Pflege und SAPV","e":"gesundheitswesen","f":"gesundheitswesen-pflegeeinrichtungen.html"},{"id":"ti","t":"Telematikinfrastruktur","e":"gesundheitswesen","f":"gesundheitswesen-telematikinfrastruktur.html"},{"id":"praxischeck","t":"Praxis-Check","e":"gesundheitswesen","f":"gesundheitswesen-praxis-check.html"},{"id":"kanzleien","t":"Kanzleien","e":"","f":"kanzleien.html"},{"id":"unternehmen","t":"Unternehmen","e":"","f":"unternehmen.html"},{"id":"datev","t":"DATEV","e":"managed","f":"leistungen-datev.html"},{"id":"selectline","t":"SelectLine","e":"managed","f":"leistungen-selectline.html"},{"id":"managed","t":"Managed Services","e":"","f":"managed-services.html"},{"id":"ki","t":"KI sicher nutzen","e":"","f":"ki-sicher-nutzen.html"},{"id":"schulungen","t":"Schulungen","e":"managed","f":"leistungen-schulungen.html"},{"id":"ueber","t":"Über uns","e":"","f":"ueber-uns.html"},{"id":"team","t":"Team","e":"ueber","f":"ueber-uns-team.html"},{"id":"referenzen","t":"Referenzen","e":"ueber","f":"ueber-uns-referenzen.html"},{"id":"karriere","t":"Karriere","e":"ueber","f":"ueber-uns-karriere.html"},{"id":"news","t":"News","e":"","f":"news.html"},{"id":"newsletter","t":"Newsletter","e":"news","f":"news-newsletter.html"},{"id":"newsbeitrag","t":"Datensicherung in der Praxis","e":"news","f":"news-datensicherung-in-der-praxis.html"},{"id":"recht","t":"Impressum, Datenschutz, AGB","e":"","f":"impressum.html"},{"id":"lexikon","t":"Lexikon","e":"","f":"lexikon.html"},{"id":"termin","t":"Termin vereinbaren","e":"","f":"termin.html"},{"id":"support","t":"Support","e":"","f":"support.html"},{"id":"ticket","t":"Ticket eröffnen","e":"support","f":"support-ticket.html"},{"id":"login","t":"Kundenportal","e":"support","f":"login.html"}];</script>
 <script>/* ================= Lexikon: Begriffe für die Erklärungen im Text =================
    Im Text: <span class="lx" data-lx="ti">Telematikinfrastruktur</span>
    Später speist dieselbe Liste die Lexikon-Seite. Keine Fristen oder Zahlen ohne Quelle. */
 const LEX = {
+  mvz: { t: 'MVZ', b: 'Gesundheitswesen', d: 'Medizinisches Versorgungszentrum: eine Einrichtung, in der mehrere Ärztinnen und Ärzte zusammenarbeiten, oft mehrerer Fachrichtungen und an mehreren Standorten.' },
+  sapv: { t: 'SAPV', b: 'Gesundheitswesen', d: 'Spezialisierte ambulante Palliativversorgung: Teams aus Ärztinnen, Ärzten und Pflegekräften, die schwerkranke Menschen zu Hause oder im Hospiz versorgen.' },
   ti: { t: 'Telematikinfrastruktur (TI)', b: 'Gesundheitswesen', d: 'Das gesicherte Netz des Gesundheitswesens. Darüber tauschen Praxen, Apotheken, Pflegeeinrichtungen und Krankenkassen Daten aus, zum Beispiel für das E-Rezept oder die elektronische Patientenakte.' },
   erezept: { t: 'E-Rezept', b: 'Gesundheitswesen', d: 'Das elektronische Rezept. Es wird über die Telematikinfrastruktur ausgestellt und in der Apotheke eingelöst.' },
   epa: { t: 'Elektronische Patientenakte (ePA)', b: 'Gesundheitswesen', d: 'Eine digitale Akte für Gesundheitsdaten von Versicherten. Praxen greifen über die Telematikinfrastruktur darauf zu.' },

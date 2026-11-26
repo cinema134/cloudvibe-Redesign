@@ -29,9 +29,9 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 |---|---|---|---|
 | Startseite | `/` | `seiten/index.html` | `quellen/seiten/startseite.html` |
 | Gesundheitswesen | `/gesundheitswesen` | `seiten/gesundheitswesen.html` | `quellen/seiten/gesundheitswesen.html` |
-| Arztpraxen | `/gesundheitswesen/arztpraxen` | `seiten/gesundheitswesen-arztpraxen.html` | `quellen/seiten/arztpraxen.html` |
+| Arztpraxen und MVZ | `/gesundheitswesen/arztpraxen` | `seiten/gesundheitswesen-arztpraxen.html` | `quellen/seiten/arztpraxen.html` |
 | Apotheken | `/gesundheitswesen/apotheken` | `seiten/gesundheitswesen-apotheken.html` | `quellen/seiten/apotheken.html` |
-| Pflegeeinrichtungen | `/gesundheitswesen/pflegeeinrichtungen` | `seiten/gesundheitswesen-pflegeeinrichtungen.html` | `quellen/seiten/pflege.html` |
+| Pflege und SAPV | `/gesundheitswesen/pflegeeinrichtungen` | `seiten/gesundheitswesen-pflegeeinrichtungen.html` | `quellen/seiten/pflege.html` |
 | Telematikinfrastruktur | `/gesundheitswesen/telematikinfrastruktur` | `seiten/gesundheitswesen-telematikinfrastruktur.html` | `quellen/seiten/ti.html` |
 | Praxis-Check | `/gesundheitswesen/praxis-check` | `seiten/gesundheitswesen-praxis-check.html` | `quellen/seiten/praxischeck.html` |
 | Kanzleien | `/kanzleien` | `seiten/kanzleien.html` | `quellen/seiten/kanzleien.html` |
@@ -55,7 +55,7 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 | Lexikon | `/lexikon` | `seiten/lexikon.html` | `quellen/seiten/lexikon.html` |
 | Impressum, Datenschutz, AGB | `/impressum` | `seiten/impressum.html` | `quellen/seiten/recht.html` |
 
-**Hauptmenü:** Gesundheitswesen ▾ (Übersicht, Arztpraxen, Apotheken, Pflegeeinrichtungen, Telematikinfrastruktur, Praxis-Check) · Kanzleien · Unternehmen · Leistungen ▾ (Managed Services, KI sicher nutzen, DATEV, SelectLine; Klick auf „Leistungen“ führt zu Managed Services) · Über uns ▾ (Übersicht, Team, Referenzen, Karriere, News). Rechts: „Support ▾“ (Fernwartung starten, Ticket eröffnen, Anrufen, Kurzanleitung PDF, Kundenportal) „Ticket“ (Wort + Symbol, ruhig) und blauer Button „Fernwartung“ (lädt QuickSupport). „Termin vereinbaren“ und „E-Mail schreiben“ stehen im Hero der Startseite, Bereichs- und Leistungsseiten. Kein Menüpunkt und keine Seite Kontakt: Kontakt-Links sind `mailto:`-Links.
+**Hauptmenü:** Gesundheitswesen ▾ (Übersicht, Arztpraxen und MVZ, Apotheken, Pflege und SAPV, Telematikinfrastruktur, Praxis-Check) · Kanzleien · Unternehmen · Leistungen ▾ (Managed Services, KI sicher nutzen, DATEV, SelectLine; Klick auf „Leistungen“ führt zu Managed Services) · Über uns ▾ (Übersicht, Team, Referenzen, Karriere, News). Rechts: „Support ▾“ (Fernwartung starten, Ticket eröffnen, Anrufen, Kurzanleitung PDF, Kundenportal) „Ticket“ (Wort + Symbol, ruhig) und blauer Button „Fernwartung“ (lädt QuickSupport). „Termin vereinbaren“ und „E-Mail schreiben“ stehen im Hero der Startseite, Bereichs- und Leistungsseiten. Kein Menüpunkt und keine Seite Kontakt: Kontakt-Links sind `mailto:`-Links.
 
 ## Designsystem (verbindlich)
 

@@ -5,9 +5,10 @@
  <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel; „Frei“ per Umschalter -->
  <div class="wrap uhero-in hk hk-solo">
   <div class="hk-karte glas">
-  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:gesundheitswesen}}">{{HC}}</a><span>/</span>Pflegeeinrichtungen</nav>
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span><a href="{{LINK:gesundheitswesen}}">{{HC}}</a><span>/</span>Pflege und SAPV</nav>
   <h1>Zeit für Menschen. <b>Die&nbsp;IT&nbsp;läuft&nbsp;mit</b>.</h1>
-  <p class="lead">Für Pflegeeinrichtungen: Wir betreuen die IT deines Hauses, vom WLAN im Wohnbereich bis zur Anbindung an die <span class="lx" data-lx="ti">Telematikinfrastruktur</span>.</p>
+  <!-- Leon 26.11.2026: Pflegeeinrichtungen und SAPV auf einer Seite (MVZ nicht) -->
+  <p class="lead">Für Pflegeeinrichtungen und <span class="lx" data-lx="sapv">SAPV</span>-Teams: Wir betreuen die IT im Haus und unterwegs, vom WLAN im Wohnbereich über das Tablet im Einsatz bis zur Anbindung an die <span class="lx" data-lx="ti">Telematikinfrastruktur</span>.</p>
   <!-- Hero-Buttons (Leon 26.11.2026): Termin vereinbaren + E-Mail schreiben -->
   <div class="btns nur-alt">
    <a class="btn termin" href="{{LINK:termin}}?art=erst">Termin vereinbaren</a>
@@ -28,10 +29,10 @@
   <div class="kopfzeile">
    <div>
     <div class="eb">Was bei uns liegt</div>
-    <h2>Die ganze IT deines Hauses, <b>ein Ansprechpartner</b>.</h2>
+    <h2>Im Haus und unterwegs, <b>ein Ansprechpartner</b>.</h2>
    </div>
    <div class="rechts">
-    <p class="leise">Du musst nicht wissen, wer für was zuständig ist. Vom Wohnbereich über das Stationszimmer bis zur Verwaltung liegt die Technik bei uns.</p>
+    <p class="leise">Du musst nicht wissen, wer für was zuständig ist. Vom Wohnbereich über die Verwaltung bis zum Einsatz deines SAPV-Teams liegt die Technik bei uns.</p>
    </div>
   </div>
   <!-- Prüfdokument 24.11.2026: "wirkt auf jeder Gesundheitsseite gleich", daher Pflege nach Orten im Haus gegliedert (Wohnbereich groß, Stationszimmer und Verwaltung daneben) statt 3er-Raster -->
@@ -55,6 +56,17 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="7" rx="2"/><rect x="4" y="14" width="16" height="7" rx="2"/><path d="M8 6.5h.01M8 17.5h.01"/></svg>
     <h3>In der Verwaltung</h3>
     <p>Server und Netzwerk für Pflegesoftware und Verwaltung, Arbeitsplätze für Pflegedienstleitung und Büro, E-Mail-Schutz vor <span class="lx" data-lx="phishing">Phishing</span>.</p>
+   </div>
+   <!-- SAPV (Leon 26.11.2026): eigener Ort „Unterwegs“ über die volle Breite -->
+   <div class="hb hb-weit glas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+    <div class="hb-weit-t"><h3>Unterwegs mit dem SAPV-Team</h3>
+    <p>Palliativteams versorgen Menschen zu Hause und sind oft rund um die Uhr erreichbar. Dafür braucht es Geräte, die im Einsatz einfach funktionieren, und einen sicheren Weg zur Dokumentation.</p></div>
+    <ul>
+     <li>Laptops und Tablets mit sicherem Zugriff von unterwegs</li>
+     <li>Rufbereitschaft über <span class="lx" data-lx="telefonie">Cloud-Telefonie</span> und Smartphone</li>
+     <li>Geräte zentral verwaltet, bei Verlust aus der Ferne gesperrt</li>
+    </ul>
    </div>
   </div>
  </div>
@@ -88,6 +100,8 @@
   <div class="ld-liste">
    <details name="ld"><summary><h3>Pflegedokumentation im Zusammenspiel</h3><span class="ld-k">Die Technik, auf der deine Pflegesoftware jeden Tag läuft.</span></summary>
     <div class="ld-a"><div><h4>Ausgangslage</h4><p>Dokumentiert wird am Rechner, auf dem Tablet und im Stationszimmer. Fällt etwas aus, fehlt die Zeit am Menschen.</p></div><div><h4>Was wir tun</h4><p>Wir halten Server, Arbeitsplätze, mobile Geräte und WLAN rund um deine Pflegesoftware am Laufen und stimmen uns bei Störungen direkt mit dem Softwareanbieter ab.</p></div><div><h4>Was du davon hast</h4><p><b>Ein Ansprechpartner</b> statt Hin und Her zwischen Softwareanbieter und Technik.</p></div></div></details>
+   <details name="ld" id="sapv"><summary><h3>SAPV: mobil und erreichbar</h3><span class="ld-k">IT für Palliativteams, die zu den Menschen nach Hause fahren.</span></summary>
+    <div class="ld-a"><div><h4>Ausgangslage</h4><p>Ein <span class="lx" data-lx="sapv">SAPV</span>-Team arbeitet selten am Schreibtisch. Dokumentiert, telefoniert und abgestimmt wird unterwegs, oft auch nachts.</p></div><div><h4>Was wir tun</h4><p>Wir richten Laptops, Tablets und Smartphones ein, sichern den Zugriff auf die Dokumentation von unterwegs ab und richten die Rufbereitschaft über die Telefonanlage in der Cloud ein.</p></div><div><h4>Was du davon hast</h4><p><b>Technik, die im Einsatz mitläuft</b>, und eine Stelle, die sich kümmert, wenn etwas klemmt.</p></div></div></details>
    <details name="ld"><summary><h3>Betrieb rund um die Uhr</h3><span class="ld-k">Wartung und Updates, die den Schichtbetrieb nicht stören.</span></summary>
     <div class="ld-a"><div><h4>Ausgangslage</h4><p>Pflege läuft rund um die Uhr, auch nachts und am Wochenende. Für Wartung gibt es kein ruhiges Zeitfenster wie in einem Büro.</p></div><div><h4>Was wir tun</h4><p>Wir planen Updates und Wartung mit dir so, dass sie den Schichtbetrieb nicht stören, und halten fest, was das Team bei einer Störung tun kann.</p></div><div><h4>Was du davon hast</h4><p><b>Weniger Unterbrechungen</b> bei Übergabe und Dokumentation.</p></div></div></details>
    <details name="ld"><summary><h3>Datensicherung</h3><span class="ld-k"><span class="lx" data-lx="backup">Managed Backup</span> für Server, <span class="lx" data-lx="nas">NAS</span> und Microsoft&nbsp;365.</span></summary>
@@ -117,7 +131,7 @@
   <div class="btr">
    <div class="btr-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><h3>Rund um die Schichten</h3><p>Pflege kennt kein ruhiges Wochenende. Updates und Wartung planen wir mit dir so, dass Übergabe und Dokumentation nicht gestört werden.</p></div>
    <div class="btr-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10M10 20v-5h4v5"/></svg><h3>Jeder Wohnbereich</h3><p>WLAN, Arbeitsplätze und Geräte betreuen wir in allen Wohnbereichen nach demselben Standard. Vieles per <span class="lx" data-lx="fernwartung">Fernwartung</span>, vor Ort am Niederrhein.</p></div>
-   <div class="btr-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg><h3>Mobil arbeiten</h3><p>Tablets und Smartphones richten wir ein und verwalten sie zentral, damit dein Team dort dokumentieren kann, wo es gerade ist.</p></div>
+   <div class="btr-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg><h3>Mobil arbeiten</h3><p>Tablets und Smartphones richten wir ein und verwalten sie zentral, damit dein Team dort dokumentieren kann, wo es gerade ist, im Wohnbereich oder beim SAPV-Einsatz.</p></div>
   </div>
  </div>
 </section>
@@ -129,7 +143,7 @@
  <div class="wrap faq-in">
   <div class="faq-kopf">
    <div class="eb">Häufige Fragen</div>
-   <h2>Was Pflegeeinrichtungen <b>uns fragen</b>.</h2>
+   <h2>Was Pflege und SAPV <b>uns fragen</b>.</h2>
    <p class="lead">Deine Frage ist nicht dabei? Schreib uns kurz, wir melden uns.</p>
    <a class="link" href="#kontakt">Frage stellen{{PFEIL}}</a>
   </div>
@@ -137,6 +151,8 @@
    <details name="faq"><summary>Betreut ihr auch unsere Pflegesoftware?</summary><div class="faq-a"><p>Die Software selbst betreut dein Anbieter. Wir kümmern uns um alles, worauf sie läuft: Server, Arbeitsplätze, mobile Geräte und WLAN. Bei Störungen stimmen wir uns direkt mit dem Anbieter ab.</p></div></details>
    <details name="faq"><summary>Wie kommen Tablets und Smartphones sicher ins Netz?</summary><div class="faq-a"><p>Wir richten die Geräte ein, verwalten sie zentral und trennen das Netz für dein Team vom WLAN für Bewohner und Angehörige.</p></div></details>
    <details name="faq"><summary>Warum braucht eine Pflegeeinrichtung die TI?</summary><div class="faq-a"><p>Über die Telematikinfrastruktur tauschst du Daten sicher mit Praxen und Apotheken aus, zum Beispiel über <span class="lx" data-lx="kim">KIM</span>. Welche Anforderungen für deine Einrichtung gelten, klären wir gemeinsam.</p></div></details>
+   <details name="faq"><summary>Betreut ihr auch SAPV-Teams?</summary><div class="faq-a"><p>Ja. Wir betreuen die IT von Teams der spezialisierten ambulanten Palliativversorgung: mobile Geräte, sicheren Zugriff von unterwegs, Telefonie für die Rufbereitschaft und die Technik im Büro.</p></div></details>
+   <details name="faq"><summary>Wie greift unser SAPV-Team unterwegs sicher auf die Dokumentation zu?</summary><div class="faq-a"><p>Über einen gesicherten Zugang auf eingerichteten Geräten, nicht über private Rechner. Geht ein Gerät verloren, sperren wir es aus der Ferne.</p></div></details>
    <details name="faq"><summary>Wir haben mehrere Häuser. Geht das?</summary><div class="faq-a"><p>Ja. Wir betreuen jedes Haus nach demselben Standard und verbinden die Standorte sicher miteinander. Am Niederrhein kommen wir auch vor Ort vorbei.</p></div></details>
   </div>
  </div>

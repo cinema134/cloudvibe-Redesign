@@ -12,7 +12,7 @@
       "kids": [
         {
           "id": "arztpraxen",
-          "t": "Arztpraxen"
+          "t": "Arztpraxen und MVZ"
         },
         {
           "id": "apotheken",
@@ -20,7 +20,7 @@
         },
         {
           "id": "pflege",
-          "t": "Pflegeeinrichtungen"
+          "t": "Pflege und SAPV"
         },
         {
           "id": "ti",

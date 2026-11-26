@@ -2,6 +2,8 @@
    Im Text: <span class="lx" data-lx="ti">Telematikinfrastruktur</span>
    Später speist dieselbe Liste die Lexikon-Seite. Keine Fristen oder Zahlen ohne Quelle. */
 const LEX = {
+  mvz: { t: 'MVZ', b: 'Gesundheitswesen', d: 'Medizinisches Versorgungszentrum: eine Einrichtung, in der mehrere Ärztinnen und Ärzte zusammenarbeiten, oft mehrerer Fachrichtungen und an mehreren Standorten.' },
+  sapv: { t: 'SAPV', b: 'Gesundheitswesen', d: 'Spezialisierte ambulante Palliativversorgung: Teams aus Ärztinnen, Ärzten und Pflegekräften, die schwerkranke Menschen zu Hause oder im Hospiz versorgen.' },
   ti: { t: 'Telematikinfrastruktur (TI)', b: 'Gesundheitswesen', d: 'Das gesicherte Netz des Gesundheitswesens. Darüber tauschen Praxen, Apotheken, Pflegeeinrichtungen und Krankenkassen Daten aus, zum Beispiel für das E-Rezept oder die elektronische Patientenakte.' },
   erezept: { t: 'E-Rezept', b: 'Gesundheitswesen', d: 'Das elektronische Rezept. Es wird über die Telematikinfrastruktur ausgestellt und in der Apotheke eingelöst.' },
   epa: { t: 'Elektronische Patientenakte (ePA)', b: 'Gesundheitswesen', d: 'Eine digitale Akte für Gesundheitsdaten von Versicherten. Praxen greifen über die Telematikinfrastruktur darauf zu.' },
