@@ -1288,7 +1288,8 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 
 <!-- ================= Selbsttest (Prüfdokument 24.11.2026: "schneller Selbsttest, der dazu animiert, Daten dazulassen und den Termin für die Erstberatung zu vereinbaren").
      Acht Ja/Nein-Fragen, Ergebnis sofort in Worten (keine Prozente, keine Punkte), offene Punkte, dann Praxis-Check anfragen oder E-Mail dalassen. Logik in praxischeck.js ================= -->
-<section class="ab alt selbsttest" id="selbsttest" data-name="Selbsttest">
+<!-- Leon 26.11.2026 (Auswahl vom 25.11.): sichtbar nur Selbsttest und „So läuft der Check“; Was wir uns ansehen, Was du bekommst, Kontakt als Modul aus -->
+<section class="ab selbsttest" id="selbsttest" data-name="Selbsttest">
  <div class="wrap stt-in">
   <div class="stt-kopf">
    <div class="eb">Selbsttest</div>
@@ -1329,7 +1330,7 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 </section>
 
 <!-- ================= Was wir uns ansehen ================= -->
-<section class="ab liegt" id="umfang">
+<section class="ab liegt mod-aus" id="umfang">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -1370,7 +1371,7 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 </section>
 
 <!-- ================= Was du bekommst ================= -->
-<section class="ab alt ti-kurz" id="ergebnis">
+<section class="ab alt ti-kurz mod-aus" id="ergebnis">
  <div class="glow"></div>
  <div class="wrap ti-kurz-in">
   <div>
@@ -1385,7 +1386,7 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 </section>
 
 <!-- ================= So läuft der Check (echte Reihenfolge, einzige Nummerierung der Seite) ================= -->
-<section class="ab start" id="ablauf">
+<section class="ab alt start" id="ablauf">
  <div class="wrap">
   <div class="st-kopf">
    <div class="eb">So läuft der Check</div>
@@ -1404,7 +1405,7 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 <!-- FAQ entfernt (Leon 23.11.2026): wiederholte nur Inhalte der Seite -->
 
 <!-- ================= Kontakt ================= -->
-<section class="ab kontakt" id="kontakt">
+<section class="ab kontakt mod-aus" id="kontakt">
  <canvas class="welle" id="cvK" aria-hidden="true"></canvas>
  <div class="wrap">
   <div class="kontakt-in glas">
@@ -2138,15 +2139,17 @@ const CV = (function () {
     merke('herobtn', v);
   }
   document.querySelectorAll('[data-hbt]').forEach((x) => (x.onclick = () => setHbt(x.dataset.hbt)));
-  /* Haupt-Button oben (Prüfdokument 24.11.2026): Ticket (Standard, Termin dann im Support-Menü) oder Termin (bisher); ?kbtn=termin */
+  /* Haupt-Button oben: Termin (Standard seit Konzept 12 B, Leon 25.11.2026) oder Ticket (Prüfdokument 24.11.2026); ?kbtn=ticket|termin.
+     Gemerkt unter „hauptbtn“, weil der alte Schlüssel „kbtn“ in jedem Browser automatisch „ticket“ gespeichert hat */
   function setKbtn(v) {
-    B.classList.toggle('kTicket', v !== 'termin');
-    document.querySelectorAll('[data-kbtn]').forEach((x) => x.classList.toggle('on', x.dataset.kbtn === (v === 'termin' ? 'termin' : 'ticket')));
-    merke('kbtn', v === 'termin' ? 'termin' : 'ticket');
+    v = v === 'ticket' ? 'ticket' : 'termin';
+    B.classList.toggle('kTicket', v === 'ticket');
+    document.querySelectorAll('[data-kbtn]').forEach((x) => x.classList.toggle('on', x.dataset.kbtn === v));
+    merke('hauptbtn', v);
     if (typeof kopfPasst === 'function') kopfPasst();
   }
   document.querySelectorAll('[data-kbtn]').forEach((x) => (x.onclick = () => setKbtn(x.dataset.kbtn)));
-  setKbtn(wert('kbtn', Q.get('kbtn'), 'ticket'));
+  setKbtn(wert('hauptbtn', Q.get('kbtn'), 'termin'));
   /* Hero-Aufbau (Leon 25.11.2026): Kachel (Standard, Milchglas-Kachel + rechte Einstiegskachel) oder Bisher; ?heroauf=bisher. Nur wo die Seite .hk hat */
   function setHeroAuf(v) {
     if (v !== 'bisher') v = 'kachel';

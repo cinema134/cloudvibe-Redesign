@@ -1342,7 +1342,8 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
 </section>
 
 <!-- ================= So arbeiten wir zusammen ================= -->
-<section class="ab alt betreuung" id="zusammenarbeit">
+<!-- Leon 26.11.2026 (Auswahl vom 25.11.): sichtbar nur Team und Karriere-Hinweis; „So arbeiten wir mit dir“ und Gesprächsangebot als Modul aus -->
+<section class="ab alt betreuung mod-aus" id="zusammenarbeit">
  <div class="wrap">
   <div class="kopfzeile">
    <div>
@@ -1361,7 +1362,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
 <!-- Prüfdokument 24.11.2026 („Anordnung der Module prüfen“): erst die Menschen, dann wie wir mit dir arbeiten, direkt danach das Gesprächsangebot; der Karriere-Hinweis (für Bewerbende) als leiser Schluss.
      So stehen „Lust auf ein Gespräch?“ und „Lust, dazuzugehören?“ nicht mehr direkt untereinander und die Hintergründe wechseln sauber. -->
 <!-- ================= Baustein kurzer Abschluss statt Kontaktformular (Leon 24.11.2026: Formular nur, wo jemand konkret Hilfe sucht) ================= -->
-<section class="ab abs-ab" id="kontakt">
+<section class="ab abs-ab mod-aus" id="kontakt">
  <div class="wrap">
   <div class="abs glas">
    <div>
@@ -2087,15 +2088,17 @@ const CV = (function () {
     merke('herobtn', v);
   }
   document.querySelectorAll('[data-hbt]').forEach((x) => (x.onclick = () => setHbt(x.dataset.hbt)));
-  /* Haupt-Button oben (Prüfdokument 24.11.2026): Ticket (Standard, Termin dann im Support-Menü) oder Termin (bisher); ?kbtn=termin */
+  /* Haupt-Button oben: Termin (Standard seit Konzept 12 B, Leon 25.11.2026) oder Ticket (Prüfdokument 24.11.2026); ?kbtn=ticket|termin.
+     Gemerkt unter „hauptbtn“, weil der alte Schlüssel „kbtn“ in jedem Browser automatisch „ticket“ gespeichert hat */
   function setKbtn(v) {
-    B.classList.toggle('kTicket', v !== 'termin');
-    document.querySelectorAll('[data-kbtn]').forEach((x) => x.classList.toggle('on', x.dataset.kbtn === (v === 'termin' ? 'termin' : 'ticket')));
-    merke('kbtn', v === 'termin' ? 'termin' : 'ticket');
+    v = v === 'ticket' ? 'ticket' : 'termin';
+    B.classList.toggle('kTicket', v === 'ticket');
+    document.querySelectorAll('[data-kbtn]').forEach((x) => x.classList.toggle('on', x.dataset.kbtn === v));
+    merke('hauptbtn', v);
     if (typeof kopfPasst === 'function') kopfPasst();
   }
   document.querySelectorAll('[data-kbtn]').forEach((x) => (x.onclick = () => setKbtn(x.dataset.kbtn)));
-  setKbtn(wert('kbtn', Q.get('kbtn'), 'ticket'));
+  setKbtn(wert('hauptbtn', Q.get('kbtn'), 'termin'));
   /* Hero-Aufbau (Leon 25.11.2026): Kachel (Standard, Milchglas-Kachel + rechte Einstiegskachel) oder Bisher; ?heroauf=bisher. Nur wo die Seite .hk hat */
   function setHeroAuf(v) {
     if (v !== 'bisher') v = 'kachel';

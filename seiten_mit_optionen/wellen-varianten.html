@@ -1263,7 +1263,7 @@ body.wv-offen .stg{z-index:90}
    <section class="stg-gr" data-tab="design">
     <h5>Kopf und Fuß</h5>
     <div class="stg-z" data-ziel="#kopf"><span>Menüleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Blauer Button oben</span><div class="seg"><button type="button" data-kbtn="ticket" class="on" title="Ticket eröffnen als blauer Button, Termin als eigener Button daneben">Ticket</button><button type="button" data-kbtn="termin" title="Bisher: Termin vereinbaren als blauer Button">Termin</button></div></div>
+    <div class="stg-z" data-ziel="#kopf"><span>Blauer Button oben</span><div class="seg"><button type="button" data-kbtn="termin" class="on" title="Termin vereinbaren als blauer Button (Konzept 12 B, entschieden)">Termin</button><button type="button" data-kbtn="ticket" title="Ticket eröffnen als blauer Button, Termin als eigener Button daneben">Ticket</button></div></div>
     <div class="stg-z" data-ziel="footer.fuss"><span>Fußzeile</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">Kompakt</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">Spalten</button></div></div>
     <div class="stg-z" data-ziel="#cc"><span>Cookie-Abfrage</span><div class="seg"><button type="button" data-cc-art="leiste" class="on" title="Leiste unten über die Inhaltsbreite (Konzept 5 A, entschieden)">Leiste</button><button type="button" data-cc-art="karte" title="Bisher: kleine Karte unten links">Karte</button></div></div>
    </section>
@@ -1805,15 +1805,17 @@ const CV = (function () {
     merke('herobtn', v);
   }
   document.querySelectorAll('[data-hbt]').forEach((x) => (x.onclick = () => setHbt(x.dataset.hbt)));
-  /* Haupt-Button oben (Prüfdokument 24.11.2026): Ticket (Standard, Termin dann im Support-Menü) oder Termin (bisher); ?kbtn=termin */
+  /* Haupt-Button oben: Termin (Standard seit Konzept 12 B, Leon 25.11.2026) oder Ticket (Prüfdokument 24.11.2026); ?kbtn=ticket|termin.
+     Gemerkt unter „hauptbtn“, weil der alte Schlüssel „kbtn“ in jedem Browser automatisch „ticket“ gespeichert hat */
   function setKbtn(v) {
-    B.classList.toggle('kTicket', v !== 'termin');
-    document.querySelectorAll('[data-kbtn]').forEach((x) => x.classList.toggle('on', x.dataset.kbtn === (v === 'termin' ? 'termin' : 'ticket')));
-    merke('kbtn', v === 'termin' ? 'termin' : 'ticket');
+    v = v === 'ticket' ? 'ticket' : 'termin';
+    B.classList.toggle('kTicket', v === 'ticket');
+    document.querySelectorAll('[data-kbtn]').forEach((x) => x.classList.toggle('on', x.dataset.kbtn === v));
+    merke('hauptbtn', v);
     if (typeof kopfPasst === 'function') kopfPasst();
   }
   document.querySelectorAll('[data-kbtn]').forEach((x) => (x.onclick = () => setKbtn(x.dataset.kbtn)));
-  setKbtn(wert('kbtn', Q.get('kbtn'), 'ticket'));
+  setKbtn(wert('hauptbtn', Q.get('kbtn'), 'termin'));
   /* Hero-Aufbau (Leon 25.11.2026): Kachel (Standard, Milchglas-Kachel + rechte Einstiegskachel) oder Bisher; ?heroauf=bisher. Nur wo die Seite .hk hat */
   function setHeroAuf(v) {
     if (v !== 'bisher') v = 'kachel';
