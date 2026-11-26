@@ -1003,7 +1003,8 @@ body.stuck .kopf .kt-ticket{width:50px;padding:0;justify-content:center}
    Mitte (body.lsM): Support und Ticket als zwei gleich große runde Symbole · Block (body.lsB): beide in einer Pille mit Trennstrich */
 @media(min-width:1041px){
  /* Leon 26.11.2026 („zwischen Block und Über uns zu viel Freiraum“): Menü füllt den Platz, gleiche Abstände auch zu Logo und Block */
- body.stuck .kopf nav.nav-neu{flex:1 1 auto;justify-content:space-evenly;gap:16px;margin:0}
+ /* Leon 26.11.2026 (2): Abstand „Über uns“ → Block noch zu groß: Menü gleichmäßig verteilt, rechts nur 28 px bis zum Block, links etwas mehr Luft zum Logo */
+ body.stuck .kopf nav.nav-neu{flex:1 1 auto;justify-content:space-between;gap:16px;margin:0 4px 0 clamp(36px,4vw,64px)} /* rechts 4 px + 24 px Leisten-Lücke = 28 px bis zum Block */
  body.stuck .kopf .w{padding-left:34px}
  body.stuck .kopf .sup .chev{display:none}
  body.lsM.stuck .kopf .sup,body.lsM.stuck .kopf .kt-ticket{width:48px;height:48px;padding:0;justify-content:center}
@@ -1787,7 +1788,8 @@ const CV = (function () {
   const stuck = () => {
     const s = scrollY > 90;
     B.classList.toggle('stuck', s);
-    if (s !== warStuck) { warStuck = s; kopfPasst(); }
+    // nach dem Wechsel gescrollt/oben noch einmal messen, wenn Logo und Leiste fertig umgebaut sind (Leon 26.11.2026: Anzeigefehler am Support-Knopf beim Hochscrollen)
+    if (s !== warStuck) { warStuck = s; kopfPasst(); requestAnimationFrame(() => requestAnimationFrame(kopfPasst)); setTimeout(kopfPasst, 450); }
   };
   addEventListener('scroll', stuck, { passive: true });
   addEventListener('resize', kopfPasst);

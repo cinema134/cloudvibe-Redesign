@@ -70,7 +70,8 @@ const CV = (function () {
   const stuck = () => {
     const s = scrollY > 90;
     B.classList.toggle('stuck', s);
-    if (s !== warStuck) { warStuck = s; kopfPasst(); }
+    // nach dem Wechsel gescrollt/oben noch einmal messen, wenn Logo und Leiste fertig umgebaut sind (Leon 26.11.2026: Anzeigefehler am Support-Knopf beim Hochscrollen)
+    if (s !== warStuck) { warStuck = s; kopfPasst(); requestAnimationFrame(() => requestAnimationFrame(kopfPasst)); setTimeout(kopfPasst, 450); }
   };
   addEventListener('scroll', stuck, { passive: true });
   addEventListener('resize', kopfPasst);
