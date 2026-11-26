@@ -1037,6 +1037,31 @@ body.kopf-eng .kopf .kt-ticket{padding:0 14px}
 .uhero>.uhero-in{position:relative;z-index:1}
 body.dark .uhero>.hz{opacity:.2}
 body.hzAus .uhero>.hz{display:none}
+/* Konzepte für die Designtiefe (Leon 26.11.2026), body.hz-linie|echo|verlauf|glas|anschnitt */
+.uhero>.hz{color:var(--a1,var(--blue))}
+.uhero>.hz .hz-echo{display:none}
+/* B Echo: zweite, versetzte Linie dahinter, wie ein leiser Schatten in Linienform */
+body.hz-echo .uhero>.hz{opacity:.22}
+body.hz-echo .uhero>.hz .hz-echo{display:inline;transform:translate(7px,7px);opacity:.38}
+/* C Verlauf: Flächen mit weichem Verlauf in der Bereichsfarbe, Linie bleibt fein */
+body.hz-verlauf .uhero>.hz{opacity:.32}
+body.hz-verlauf .uhero>.hz .hz-form{stroke:color-mix(in srgb,currentColor 70%,transparent)}
+body.hz-verlauf .uhero>.hz .hz-form .f{fill:var(--hzv)}
+/* D Glas-Prägung: wie die Hero-Kachel aus Milchglas, helle Fläche, feiner Rand, weicher Schatten */
+body.hz-glas .uhero>.hz{opacity:1;filter:drop-shadow(0 22px 34px rgba(45,108,223,.16)) drop-shadow(0 2px 4px rgba(20,23,28,.05))}
+body.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,currentColor 38%,transparent);stroke-width:1.4px}
+body.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 62%,transparent)}
+body.hz-glas .uhero>.hz .hz-form :not(.f){stroke-width:5px;stroke:color-mix(in srgb,#fff 78%,transparent)}
+body.dark.hz-glas .uhero>.hz{filter:drop-shadow(0 22px 34px rgba(0,0,0,.45))}
+body.dark.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 7%,transparent)}
+body.dark.hz-glas .uhero>.hz .hz-form :not(.f){stroke:color-mix(in srgb,#fff 14%,transparent)}
+/* E Anschnitt: sehr groß, rechts angeschnitten, nur ein Hauch */
+body.hz-anschnitt .uhero>.hz{width:clamp(420px,46vw,720px);right:-6vw;top:50%;opacity:.1;stroke-width:2px}
+body.dark.hz-anschnitt .uhero>.hz{opacity:.13}
+/* F Medaillon: rundes Milchglas wie die Hero-Kachel, darin das Zeichen in der Bereichsfarbe */
+body.hz-medaillon .uhero>.hz{opacity:1;width:clamp(240px,22vw,340px);padding:clamp(40px,3.6vw,56px);box-sizing:border-box;border-radius:50%;overflow:visible;background:color-mix(in srgb,var(--bg) 55%,transparent);backdrop-filter:blur(26px) saturate(1.3);-webkit-backdrop-filter:blur(26px) saturate(1.3);border:1px solid color-mix(in srgb,var(--edge) 80%,transparent);box-shadow:0 30px 70px -30px rgba(45,108,223,.28),inset 0 1px 0 rgba(255,255,255,.6);stroke:color-mix(in srgb,currentColor 60%,transparent);stroke-width:1.8px}
+body.hz-medaillon .uhero>.hz .hz-form .f{fill:color-mix(in srgb,currentColor 10%,transparent)}
+body.dark.hz-medaillon .uhero>.hz{box-shadow:0 30px 70px -30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);stroke:color-mix(in srgb,currentColor 75%,transparent)}
 @media(max-width:1100px){.uhero>.hz{display:none}}
 /* Managed Services kurz auf Bereichsseiten (Leon 26.11.2026, basis/managed_kurz.html) */
 .msk-band{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden;border-radius:30px}
@@ -1661,7 +1686,7 @@ body.dark .artikel .artikel-nl{background:var(--bg2)}
    </section>
    <section class="stg-gr" data-tab="design">
     <h5>Erster Bildschirm (Hero)</h5>
-    <div class="stg-z" data-ziel="#top"><span>Branchen-Zeichen</span><div class="seg"><button type="button" data-hz="an" class="on" title="Feines Zeichen rechts im Hero (nur Branchenseiten)">An</button><button type="button" data-hz="aus">Aus</button></div></div>
+    <div class="stg-z" data-ziel="#top"><span>Branchen-Zeichen</span><select id="hzStil" aria-label="Branchen-Zeichen im Hero"><option value="linie">A Feine Linie</option><option value="echo">B Echo</option><option value="verlauf">C Verlauf</option><option value="glas">D Glas-Prägung</option><option value="anschnitt">E Anschnitt</option><option value="medaillon">F Medaillon</option><option value="aus">Aus</option></select></div>
     <div class="stg-z" data-ziel="#top"><span>Hintergrund</span><select id="heroStil" aria-label="Hintergrund im ersten Bildschirm"><option value="welle">Wellenkante je Bereich</option><option value="bereich">Ruhig je Bereich (bisher)</option><option value="ruhig">Ruhig</option><option value="schimmer">Schimmer</option><option value="punkte">Punkte</option></select></div>
    </section>
    <section class="stg-gr" data-tab="design">
@@ -1771,15 +1796,29 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-leiste]').forEach((x) => (x.onclick = () => setLeiste(x.dataset.leiste)));
   setLeiste(wert('leiste', Q.get('leiste'), 'mitte'));
-  // Branchen-Zeichen im Hero an/aus (Leon 26.11.2026, Vergleich), ?hz=aus
+  // Branchen-Zeichen im Hero (Leon 26.11.2026: „Designtiefe gefällt mir noch nicht, mehrere Konzepte“), ?hz=linie|echo|verlauf|glas|anschnitt|medaillon|aus
+  // Aufbau zur Laufzeit: Form in <g id>, Echo als <use>, Verlauf als <defs>; Flächen (Klasse f) bekommen je nach Konzept Füllung
+  const HZ = ['linie', 'echo', 'verlauf', 'glas', 'anschnitt', 'medaillon', 'aus'];
+  document.querySelectorAll('.uhero>.hz').forEach((svg, i) => {
+    if (svg.querySelector('.hz-form')) return;
+    const ns = 'http://www.w3.org/2000/svg', g = document.createElementNS(ns, 'g'), id = 'hzForm' + i;
+    g.setAttribute('class', 'hz-form'); g.id = id;
+    while (svg.firstChild) g.appendChild(svg.firstChild);
+    svg.innerHTML = '<defs><linearGradient id="hzVerlauf' + i + '" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".55"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>';
+    const u = document.createElementNS(ns, 'use'); u.setAttribute('href', '#' + id); u.setAttribute('class', 'hz-echo');
+    svg.appendChild(u); svg.appendChild(g);
+    svg.style.setProperty('--hzv', 'url(#hzVerlauf' + i + ')');
+  });
   function setHz(v) {
-    v = v === 'aus' ? 'aus' : 'an';
+    if (v === 'an') v = 'linie';
+    if (!HZ.includes(v)) v = 'linie';
+    HZ.forEach((k) => B.classList.toggle('hz-' + k, k === v));
     B.classList.toggle('hzAus', v === 'aus');
-    document.querySelectorAll('[data-hz]').forEach((x) => x.classList.toggle('on', x.dataset.hz === v));
+    if ($('hzStil')) $('hzStil').value = v;
     merke('hz', v);
   }
-  document.querySelectorAll('[data-hz]').forEach((x) => (x.onclick = () => setHz(x.dataset.hz)));
-  setHz(wert('hz', Q.get('hz'), 'an'));
+  if ($('hzStil')) $('hzStil').onchange = (e) => setHz(e.target.value);
+  setHz(wert('hz', Q.get('hz'), 'linie'));
   // Schalter Hell | Dunkel in der Fußzeile (Leon 26.11.2026); gemerkt wie im Panel, gilt auf allen Seiten
   document.querySelectorAll('[data-modus]').forEach((x) => (x.onclick = () => setDark(x.dataset.modus === 'dunkel')));
 

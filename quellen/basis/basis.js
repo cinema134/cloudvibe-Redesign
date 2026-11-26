@@ -52,15 +52,29 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-leiste]').forEach((x) => (x.onclick = () => setLeiste(x.dataset.leiste)));
   setLeiste(wert('leiste', Q.get('leiste'), 'mitte'));
-  // Branchen-Zeichen im Hero an/aus (Leon 26.11.2026, Vergleich), ?hz=aus
+  // Branchen-Zeichen im Hero (Leon 26.11.2026: „Designtiefe gefällt mir noch nicht, mehrere Konzepte“), ?hz=linie|echo|verlauf|glas|anschnitt|medaillon|aus
+  // Aufbau zur Laufzeit: Form in <g id>, Echo als <use>, Verlauf als <defs>; Flächen (Klasse f) bekommen je nach Konzept Füllung
+  const HZ = ['linie', 'echo', 'verlauf', 'glas', 'anschnitt', 'medaillon', 'aus'];
+  document.querySelectorAll('.uhero>.hz').forEach((svg, i) => {
+    if (svg.querySelector('.hz-form')) return;
+    const ns = 'http://www.w3.org/2000/svg', g = document.createElementNS(ns, 'g'), id = 'hzForm' + i;
+    g.setAttribute('class', 'hz-form'); g.id = id;
+    while (svg.firstChild) g.appendChild(svg.firstChild);
+    svg.innerHTML = '<defs><linearGradient id="hzVerlauf' + i + '" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".55"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>';
+    const u = document.createElementNS(ns, 'use'); u.setAttribute('href', '#' + id); u.setAttribute('class', 'hz-echo');
+    svg.appendChild(u); svg.appendChild(g);
+    svg.style.setProperty('--hzv', 'url(#hzVerlauf' + i + ')');
+  });
   function setHz(v) {
-    v = v === 'aus' ? 'aus' : 'an';
+    if (v === 'an') v = 'linie';
+    if (!HZ.includes(v)) v = 'linie';
+    HZ.forEach((k) => B.classList.toggle('hz-' + k, k === v));
     B.classList.toggle('hzAus', v === 'aus');
-    document.querySelectorAll('[data-hz]').forEach((x) => x.classList.toggle('on', x.dataset.hz === v));
+    if ($('hzStil')) $('hzStil').value = v;
     merke('hz', v);
   }
-  document.querySelectorAll('[data-hz]').forEach((x) => (x.onclick = () => setHz(x.dataset.hz)));
-  setHz(wert('hz', Q.get('hz'), 'an'));
+  if ($('hzStil')) $('hzStil').onchange = (e) => setHz(e.target.value);
+  setHz(wert('hz', Q.get('hz'), 'linie'));
   // Schalter Hell | Dunkel in der Fußzeile (Leon 26.11.2026); gemerkt wie im Panel, gilt auf allen Seiten
   document.querySelectorAll('[data-modus]').forEach((x) => (x.onclick = () => setDark(x.dataset.modus === 'dunkel')));
 
