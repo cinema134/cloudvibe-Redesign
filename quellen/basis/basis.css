@@ -1117,9 +1117,8 @@ body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
 .hk-z .sz-unten{bottom:auto;top:12px;right:46px} /* Hero-Kacheln: Text sitzt unten, Nest oben zwischen Symbol und Pfeil */
 .sz-folge{position:absolute;pointer-events:none;line-height:0}
 .sozial-hero .sz-folge svg{display:block;overflow:visible}
-.sozial-hero .sz-kugel svg{width:30px;height:36px}.sozial-hero .sz-hase svg{width:40px;height:56px}
-.sz-kugel{left:-18px}
-.sz-kugel .sz-pendel{transform-origin:18.5px 0;transform-box:view-box}
+.sozial-hero .sz-kugel svg{width:24px;height:42px}.sozial-hero .sz-hase svg{width:40px;height:56px}
+.sz-kugel{left:8px}
 .sz-hase{left:-23px;z-index:-1}
 .sz-pendel{transform-origin:50% 0;transform-box:fill-box;animation:szPendel 4s ease-in-out infinite}
 @keyframes szPendel{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}

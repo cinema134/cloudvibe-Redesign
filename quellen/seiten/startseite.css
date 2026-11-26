@@ -57,9 +57,10 @@ body.dark .ek:hover .ek-wolke path{fill:color-mix(in srgb,#1B2433 86%,transparen
 
 /* ---------- Folge uns: Leiste am rechten Hero-Rand (Variante) ---------- */
 /* Größe +18 % (Leon, 20.11.2026) */
-.sozial-hero{position:absolute;right:24px;top:50%;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:14px}
+/* höher gesetzt und Strich 40 → 16 px (Leon 26.11.2026), damit unter dem YouTube-Button Platz für die Weihnachtskugel bleibt */
+.sozial-hero{position:absolute;right:24px;top:calc(50% - 36px);transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:14px}
 .sh-t{writing-mode:vertical-rl;transform:rotate(180deg);font:700 14.5px Comfortaa,sans-serif;letter-spacing:.04em;color:var(--muted)}
-.sh-l{display:block;width:1px;height:40px;background:color-mix(in srgb,var(--text) 18%,transparent)}
+.sh-l{display:block;width:1px;height:16px;background:color-mix(in srgb,var(--text) 18%,transparent)}
 .sozial-hero a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text);transition:background .25s,color .25s,border-color .25s}
 .sozial-hero a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .sozial-hero svg{width:18px;height:18px;fill:currentColor}
