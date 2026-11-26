@@ -1041,13 +1041,13 @@ body.hzAus .uhero>.hz{display:none}
 .uhero>.hz{color:var(--a1,var(--blue))}
 .uhero>.hz .hz-echo{display:none}
 /* D Glas-Prägung: wie die Hero-Kachel aus Milchglas, helle Fläche, feiner Rand, weicher Schatten */
-body.hz-glas .uhero>.hz{opacity:1;filter:drop-shadow(0 22px 34px rgba(45,108,223,.16)) drop-shadow(0 2px 4px rgba(20,23,28,.05))}
-body.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,currentColor 38%,transparent);stroke-width:1.4px}
+body.hz-glas .uhero>.hz{opacity:1;filter:drop-shadow(0 0 10px rgba(45,108,223,.30)) drop-shadow(0 22px 34px rgba(45,108,223,.18)) drop-shadow(0 2px 4px rgba(20,23,28,.05))} /* naher blauer Schein auch für reine Linien (Leon 26.11.2026: „blauer Schimmer bei Würfel und Pille, bei allen umsetzen“) */
+body.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,var(--text) 13%,transparent);stroke-width:1.4px} /* Leon 26.11.2026: ohne Bereichsfarbe, neutral */
 body.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 62%,transparent)}
 body.hz-glas .uhero>.hz .hz-form :not(.f){stroke-width:5px;stroke:color-mix(in srgb,#fff 78%,transparent)}
-/* Schlangenkopf (Leon 26.11.2026): helle Linie wie der Körper, etwas kräftiger, ohne grüne Umrandung; Platz rechts: mehr Abstand zur Kachel, an der Inhaltskante */
-body.hz-glas .uhero>.hz .hz-form .kopf{stroke-width:7px}
+/* Schlangenkopf (Leon 26.11.2026): helle Linie, gleich dick wie der Körper; Platz rechts: mehr Abstand zur Kachel, an der Inhaltskante */
 body.dark.hz-glas .uhero>.hz{filter:drop-shadow(0 22px 34px rgba(0,0,0,.45))}
+body.dark.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,#fff 16%,transparent)}
 body.dark.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 7%,transparent)}
 body.dark.hz-glas .uhero>.hz .hz-form :not(.f){stroke:color-mix(in srgb,#fff 14%,transparent)}
 @media(max-width:1100px){.uhero>.hz{display:none}}
@@ -1251,7 +1251,7 @@ body.dark .kza-gross{background:color-mix(in srgb,var(--a1) 10%,var(--bg))}
 <!-- ================= Hero: schmal und sachlich ================= -->
 <section class="uhero kz-hero" id="top">
  <!-- Branchen-Zeichen (Leon 26.11.2026): feines Linien-Wasserzeichen rechts, ohne Bewegung -->
- <svg class="hz" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><g transform="rotate(5 60 60)"><path d="M74 26c-3-7-9-11-16-11c-9 0-16 6-16 14c0 18 34 14 34 33c0 7-5 12-12 14"/><path d="M46 94c3 7 9 11 16 11c9 0 16-6 16-14c0-18-34-14-34-33c0-7 5-12 12-14"/></g></svg>
+ <svg class="hz" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><g transform="rotate(11 60 60)"><path d="M74 26c-3-7-9-11-16-11c-9 0-16 6-16 14c0 18 34 14 34 33c0 7-5 12-12 14"/><path d="M46 94c3 7 9 11 16 11c9 0 16-6 16-14c0-18-34-14-34-33c0-7 5-12 12-14"/></g></svg>
  <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel; „Frei“ per Umschalter -->
  <div class="wrap uhero-in hk hk-solo">
   <div class="hk-karte glas">

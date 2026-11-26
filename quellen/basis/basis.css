@@ -1027,13 +1027,13 @@ body.hzAus .uhero>.hz{display:none}
 .uhero>.hz{color:var(--a1,var(--blue))}
 .uhero>.hz .hz-echo{display:none}
 /* D Glas-Prägung: wie die Hero-Kachel aus Milchglas, helle Fläche, feiner Rand, weicher Schatten */
-body.hz-glas .uhero>.hz{opacity:1;filter:drop-shadow(0 22px 34px rgba(45,108,223,.16)) drop-shadow(0 2px 4px rgba(20,23,28,.05))}
-body.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,currentColor 38%,transparent);stroke-width:1.4px}
+body.hz-glas .uhero>.hz{opacity:1;filter:drop-shadow(0 0 10px rgba(45,108,223,.30)) drop-shadow(0 22px 34px rgba(45,108,223,.18)) drop-shadow(0 2px 4px rgba(20,23,28,.05))} /* naher blauer Schein auch für reine Linien (Leon 26.11.2026: „blauer Schimmer bei Würfel und Pille, bei allen umsetzen“) */
+body.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,var(--text) 13%,transparent);stroke-width:1.4px} /* Leon 26.11.2026: ohne Bereichsfarbe, neutral */
 body.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 62%,transparent)}
 body.hz-glas .uhero>.hz .hz-form :not(.f){stroke-width:5px;stroke:color-mix(in srgb,#fff 78%,transparent)}
-/* Schlangenkopf (Leon 26.11.2026): helle Linie wie der Körper, etwas kräftiger, ohne grüne Umrandung; Platz rechts: mehr Abstand zur Kachel, an der Inhaltskante */
-body.hz-glas .uhero>.hz .hz-form .kopf{stroke-width:7px}
+/* Schlangenkopf (Leon 26.11.2026): helle Linie, gleich dick wie der Körper; Platz rechts: mehr Abstand zur Kachel, an der Inhaltskante */
 body.dark.hz-glas .uhero>.hz{filter:drop-shadow(0 22px 34px rgba(0,0,0,.45))}
+body.dark.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,#fff 16%,transparent)}
 body.dark.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 7%,transparent)}
 body.dark.hz-glas .uhero>.hz .hz-form :not(.f){stroke:color-mix(in srgb,#fff 14%,transparent)}
 @media(max-width:1100px){.uhero>.hz{display:none}}
