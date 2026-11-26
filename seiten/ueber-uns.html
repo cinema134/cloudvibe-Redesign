@@ -963,14 +963,31 @@ body.dark{--blau-t:#5B8EF0}
 body.dark :is(h1,h2,.mh-h,.ko-mt,.bp-fertig-t,.kx-h) b{color:var(--blue)}
 /* Hero je Seite abschaltbar (Leon 25.11.2026, body.heroAus): nur Abstand unter der Kopfleiste bleibt.
    Die H1 bleibt unsichtbar für Suchmaschinen und Screenreader erhalten, alles andere im Hero ist aus. */
-body.heroAus main>:is(.uhero,.hero){min-height:0!important;height:auto!important;padding:clamp(112px,9vw,132px) 0 0!important;margin:0!important;background:none!important;overflow:hidden}
+body.heroAus main>:is(.uhero,.hero){min-height:0!important;height:auto!important;padding:clamp(150px,12vw,176px) 0 0!important;margin:0!important;background:none!important;overflow:hidden}
 body.heroAus main>:is(.uhero,.hero):before,body.heroAus main>:is(.uhero,.hero):after{display:none!important}
 body.heroAus main>:is(.uhero,.hero)>canvas,body.heroAus main>:is(.uhero,.hero) .welle{display:none!important}
 body.heroAus main>:is(.uhero,.hero)>*{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
 body.heroAus main>:is(.uhero,.hero)>* *{visibility:hidden}
 body.heroAus main>:is(.uhero,.hero) h1,body.heroAus main>:is(.uhero,.hero) h1 *{visibility:visible}
-/* erster sichtbarer Abschnitt nach dem Hero (ausgeblendete Module davor zählen nicht) */
-body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(12px,1.6vw,24px)}
+/* Seitenkopf bei „Hero aus“ (Leon 26.11.2026): mehr Luft oben, Pfad und Seitentitel sichtbar, damit die Seite sich selbst erklärt */
+.seitenkopf{display:none}
+body.heroAus main>:is(.uhero,.hero)>.seitenkopf{display:block;position:static!important;width:auto!important;height:auto!important;margin:0!important;overflow:visible!important;clip:auto!important;white-space:normal!important}
+body.heroAus .seitenkopf,body.heroAus .seitenkopf *{visibility:visible!important}
+.seitenkopf .krumen{margin-bottom:18px}
+.seitenkopf .sk-t{font:300 clamp(34px,3.6vw,52px)/1.1 Comfortaa,sans-serif;letter-spacing:-.02em;color:var(--text);max-width:900px;padding-bottom:clamp(32px,3.4vw,52px);border-bottom:1px solid var(--edge)}
+.seitenkopf .sk-t b{font-weight:700;color:var(--blue)}
+/* erster sichtbarer Abschnitt nach dem Seitenkopf (ausgeblendete Module davor zählen nicht) */
+body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(36px,3.6vw,56px)}
+/* Managed Services kurz auf Bereichsseiten (Leon 26.11.2026, basis/managed_kurz.html) */
+.msk-band{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden;border-radius:30px}
+.msk-p{display:block;padding:32px 28px 36px;transition:background .3s}
+.msk-p+.msk-p{border-left:1px solid var(--edge)}
+.msk-p:hover{background:color-mix(in srgb,var(--blue) 5%,transparent)}
+.msk-p h3{font-size:clamp(18px,1.4vw,20px);margin-bottom:10px;transition:color .25s}
+.msk-p:hover h3{color:var(--blau-t)}
+.msk-p p{font-size:15px;line-height:1.55;color:var(--muted)}
+@media(max-width:1000px){.msk-band{grid-template-columns:1fr 1fr}.msk-p:nth-child(3){border-left:0}.msk-p:nth-child(n+3){border-top:1px solid var(--edge)}}
+@media(max-width:600px){.msk-band{grid-template-columns:1fr}.msk-p+.msk-p{border-left:0;border-top:1px solid var(--edge)}}
 /* Seiten ausblenden (Leon 25.11.2026) */
 .sAus{display:none!important}
 .stg-seiten .stg-tipp{font-size:12.5px;line-height:1.45;color:var(--muted);margin:-2px 0 8px}
@@ -1233,6 +1250,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
     <div class="dd-m">
      <a href="managed-services.html"><b>Managed Services</b><small>Backup, Infrastruktur, Hardware, Security</small></a>
      <a href="ki-sicher-nutzen.html"><b>KI sicher nutzen</b><small>Regeln, Einrichtung und Schulung</small></a>
+     <a href="leistungen-schulungen.html"><b>Schulungen</b><small>Word, Excel und Cybersecurity</small></a>
      <a href="leistungen-datev.html"><b>DATEV</b><small>Für Kanzleien und Unternehmen</small></a>
      <a href="leistungen-selectline.html"><b>SelectLine</b><small>Warenwirtschaft und Rechnungswesen</small></a>
     </div>
@@ -1471,7 +1489,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
    <span class="nlb-chip"><input type="checkbox" value="kanzlei" aria-label="Kanzleien"><span>Kanzleien</span></span>
    <span class="nlb-chip"><input type="checkbox" value="unternehmen" aria-label="Unternehmen"><span>Unternehmen</span></span>
   </fieldset>
-  <div class="nlb-feld"><label class="sr" for="nlb-mail-14">E-Mail-Adresse</label><input id="nlb-mail-14" type="email" placeholder="deine@e-mail.de" autocomplete="email"><button class="btn" type="submit">Anmelden</button></div>
+  <div class="nlb-feld"><label class="sr" for="nlb-mail-15">E-Mail-Adresse</label><input id="nlb-mail-15" type="email" placeholder="deine@e-mail.de" autocomplete="email"><button class="btn" type="submit">Anmelden</button></div>
   <small class="nlb-fm">Bitte eine gültige E-Mail-Adresse eingeben.</small>
   <small class="nlb-hw">Ohne Auswahl bekommst du den allgemeinen Teil. Du bekommst zuerst eine E-Mail mit Bestätigungslink. Mehr in der <a class="link-t" href="impressum.html#datenschutz">Datenschutzerklärung</a>.</small>
  </div>
@@ -1642,7 +1660,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
   </div>
  </div>
 </div>
-<script>const BEGRIFF_START="Gesundheitswesen";const CV_SEITE_ID="ueber";const CV_SEITEN=[{"id":"gesundheitswesen","t":"Gesundheitswesen","e":"","f":"gesundheitswesen.html"},{"id":"arztpraxen","t":"Arztpraxen","e":"gesundheitswesen","f":"gesundheitswesen-arztpraxen.html"},{"id":"apotheken","t":"Apotheken","e":"gesundheitswesen","f":"gesundheitswesen-apotheken.html"},{"id":"pflege","t":"Pflegeeinrichtungen","e":"gesundheitswesen","f":"gesundheitswesen-pflegeeinrichtungen.html"},{"id":"ti","t":"Telematikinfrastruktur","e":"gesundheitswesen","f":"gesundheitswesen-telematikinfrastruktur.html"},{"id":"praxischeck","t":"Praxis-Check","e":"gesundheitswesen","f":"gesundheitswesen-praxis-check.html"},{"id":"kanzleien","t":"Kanzleien","e":"","f":"kanzleien.html"},{"id":"unternehmen","t":"Unternehmen","e":"","f":"unternehmen.html"},{"id":"datev","t":"DATEV","e":"managed","f":"leistungen-datev.html"},{"id":"selectline","t":"SelectLine","e":"managed","f":"leistungen-selectline.html"},{"id":"managed","t":"Managed Services","e":"","f":"managed-services.html"},{"id":"ki","t":"KI sicher nutzen","e":"","f":"ki-sicher-nutzen.html"},{"id":"ueber","t":"Über uns","e":"","f":"ueber-uns.html"},{"id":"team","t":"Team","e":"ueber","f":"ueber-uns-team.html"},{"id":"referenzen","t":"Referenzen","e":"ueber","f":"ueber-uns-referenzen.html"},{"id":"karriere","t":"Karriere","e":"ueber","f":"ueber-uns-karriere.html"},{"id":"news","t":"News","e":"","f":"news.html"},{"id":"newsletter","t":"Newsletter","e":"news","f":"news-newsletter.html"},{"id":"newsbeitrag","t":"Datensicherung in der Praxis","e":"news","f":"news-datensicherung-in-der-praxis.html"},{"id":"recht","t":"Impressum, Datenschutz, AGB","e":"","f":"impressum.html"},{"id":"lexikon","t":"Lexikon","e":"","f":"lexikon.html"},{"id":"termin","t":"Termin vereinbaren","e":"","f":"termin.html"},{"id":"support","t":"Support","e":"","f":"support.html"},{"id":"ticket","t":"Ticket eröffnen","e":"support","f":"support-ticket.html"},{"id":"login","t":"Kundenportal","e":"support","f":"login.html"}];</script>
+<script>const BEGRIFF_START="Gesundheitswesen";const CV_SEITE_ID="ueber";const CV_SEITEN=[{"id":"gesundheitswesen","t":"Gesundheitswesen","e":"","f":"gesundheitswesen.html"},{"id":"arztpraxen","t":"Arztpraxen","e":"gesundheitswesen","f":"gesundheitswesen-arztpraxen.html"},{"id":"apotheken","t":"Apotheken","e":"gesundheitswesen","f":"gesundheitswesen-apotheken.html"},{"id":"pflege","t":"Pflegeeinrichtungen","e":"gesundheitswesen","f":"gesundheitswesen-pflegeeinrichtungen.html"},{"id":"ti","t":"Telematikinfrastruktur","e":"gesundheitswesen","f":"gesundheitswesen-telematikinfrastruktur.html"},{"id":"praxischeck","t":"Praxis-Check","e":"gesundheitswesen","f":"gesundheitswesen-praxis-check.html"},{"id":"kanzleien","t":"Kanzleien","e":"","f":"kanzleien.html"},{"id":"unternehmen","t":"Unternehmen","e":"","f":"unternehmen.html"},{"id":"datev","t":"DATEV","e":"managed","f":"leistungen-datev.html"},{"id":"selectline","t":"SelectLine","e":"managed","f":"leistungen-selectline.html"},{"id":"managed","t":"Managed Services","e":"","f":"managed-services.html"},{"id":"ki","t":"KI sicher nutzen","e":"","f":"ki-sicher-nutzen.html"},{"id":"schulungen","t":"Schulungen","e":"managed","f":"leistungen-schulungen.html"},{"id":"ueber","t":"Über uns","e":"","f":"ueber-uns.html"},{"id":"team","t":"Team","e":"ueber","f":"ueber-uns-team.html"},{"id":"referenzen","t":"Referenzen","e":"ueber","f":"ueber-uns-referenzen.html"},{"id":"karriere","t":"Karriere","e":"ueber","f":"ueber-uns-karriere.html"},{"id":"news","t":"News","e":"","f":"news.html"},{"id":"newsletter","t":"Newsletter","e":"news","f":"news-newsletter.html"},{"id":"newsbeitrag","t":"Datensicherung in der Praxis","e":"news","f":"news-datensicherung-in-der-praxis.html"},{"id":"recht","t":"Impressum, Datenschutz, AGB","e":"","f":"impressum.html"},{"id":"lexikon","t":"Lexikon","e":"","f":"lexikon.html"},{"id":"termin","t":"Termin vereinbaren","e":"","f":"termin.html"},{"id":"support","t":"Support","e":"","f":"support.html"},{"id":"ticket","t":"Ticket eröffnen","e":"support","f":"support-ticket.html"},{"id":"login","t":"Kundenportal","e":"support","f":"login.html"}];</script>
 <script>/* ================= Lexikon: Begriffe für die Erklärungen im Text =================
    Im Text: <span class="lx" data-lx="ti">Telematikinfrastruktur</span>
    Später speist dieselbe Liste die Lexikon-Seite. Keine Fristen oder Zahlen ohne Quelle. */
@@ -1669,7 +1687,7 @@ const LEX = {
   selectline: { t: 'SelectLine', b: 'Software', d: 'Kaufmännische Software für den Mittelstand, mit Modulen für Warenwirtschaft, Rechnungswesen und Produktion.' },
   '3cx': { t: '3CX', b: 'Technik', d: 'Eine Telefonanlage als Software. Telefoniert wird über das Internet statt über eine klassische Anlage.' },
   // Prüfdokument 24.11.2026: auf den Seiten keinen Anbieter nennen, sondern hierher verweisen (Partner: 3CX, easybell)
-  telefonie: { t: 'Telefonanlage (Cloud-Telefonie)', b: 'Technik', d: 'Telefonie über das Internet statt über eine klassische Anlage im Keller. Wir richten sie ein und betreuen sie, je nach Bedarf mit <b>3CX</b> als Telefonanlage oder mit <b>easybell</b> als Anbieter.' },
+  telefonie: { t: 'Cloud-Telefonie', b: 'Technik', d: 'Telefonie über das Internet statt über eine klassische Anlage im Keller. Wir richten sie ein und betreuen sie, je nach Bedarf mit <b>3CX</b> als Telefonanlage oder mit <b>easybell</b> als Anbieter.' },
 };
 
 /* ================= cloudvibe Mockup-Basis (Script) ================= */
@@ -2770,6 +2788,20 @@ const CV = (function () {
      Aus = nur Abstand unter der Kopfleiste, die H1 bleibt für Suchmaschinen und Screenreader erhalten. Werkzeugseiten haben ohnehin keinen Hero. */
   const heroEl = document.querySelector('main>.uhero,main>.hero');
   if (heroEl && !B.classList.contains('heroW')) {
+    // Seitenkopf bei „Hero aus“ (Leon 26.11.2026: „oben mehr Luft, muss auf der Seite immer sauber vermittelt werden“):
+    // Pfad und Seitentitel aus dem Hero übernommen, damit klar ist, wo man ist. Die echte H1 bleibt im Hero (nur für Suchmaschinen sichtbar).
+    if (!heroEl.querySelector(':scope>.seitenkopf')) {
+      const h1 = heroEl.querySelector('h1'), kr = heroEl.querySelector('.krumen');
+      if (h1) {
+        const sk = document.createElement('div');
+        sk.className = 'seitenkopf'; sk.setAttribute('aria-hidden', 'true');
+        sk.innerHTML = '<div class="wrap">' + (kr ? '<div class="krumen">' + kr.innerHTML + '</div>' : '') + '<div class="sk-t">' + h1.innerHTML + '</div></div>';
+        sk.querySelectorAll('a').forEach((a) => a.setAttribute('tabindex', '-1'));
+        heroEl.appendChild(sk);
+        // nicht mitspeichern, wird beim Laden neu aus Pfad und H1 erzeugt
+        if (typeof vorSpeichern !== 'undefined') vorSpeichern.push((d) => d.querySelectorAll('.seitenkopf').forEach((x) => x.remove()));
+      }
+    }
     function setHero(an, merken) {
       B.classList.toggle('heroAus', !an);
       document.querySelectorAll('[data-heroan]').forEach((x) => x.classList.toggle('on', (x.dataset.heroan === 'an') === an));

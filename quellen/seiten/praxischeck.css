@@ -43,6 +43,21 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 .stt-feld .btn{padding:13px 24px;font-size:15px}
 .stt-hinweis{margin-top:10px;font-size:13px;color:var(--muted)}
 .stt-danke{margin-top:12px;font-size:15px;font-weight:700}
+/* Zwei Wege (Leon 26.11.2026): Selbsttest links ruhig, Praxis-Check rechts als Hauptweg mit blauem Akzent */
+.pcw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,32px);align-items:stretch}
+.pcw-k{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,3.2vw,44px);border-radius:30px}
+.pcw-e{font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.pcw-k h3{font:300 clamp(26px,2.4vw,34px)/1.15 Comfortaa,sans-serif;letter-spacing:-.02em;margin-bottom:12px}
+.pcw-k>p{color:var(--muted);line-height:1.6}
+.pcw-k ul{list-style:none;margin:20px 0 24px;width:100%}
+.pcw-k li{position:relative;padding:9px 0 9px 28px;font-size:15.5px;line-height:1.45}
+.pcw-k li:before{content:"";position:absolute;left:2px;top:15px;width:11px;height:6px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+.pcw-k .btn{margin-top:auto}
+.pcw-hinweis{font-size:14px;margin:-8px 0 22px}
+.pcw-haupt{background:var(--bg);border:1px solid color-mix(in srgb,var(--blue) 28%,transparent);box-shadow:0 30px 70px -30px rgba(45,108,223,.35)}
+.pcw-haupt .pcw-e{color:var(--blau-t)}
+body.dark .pcw-haupt{background:color-mix(in srgb,var(--blue) 9%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
+@media(max-width:800px){.pcw{grid-template-columns:1fr}}
 @media(max-width:1000px){.stt-in{grid-template-columns:1fr}}
 @media(max-width:600px){
  .stt-karte{padding:6px 20px 24px}

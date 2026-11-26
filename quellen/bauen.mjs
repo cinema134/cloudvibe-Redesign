@@ -284,6 +284,7 @@ function baue(id, seite) {
       .replace('<!--@kontakt-->', lies('basis', 'kontakt.html'))
       .replace('<!--@kontakt:aus-->', lies('basis', 'kontakt.html').replace('<section class="ab kontakt"', '<section class="ab kontakt mod-aus"')) // Kontakt als Modul, anfangs aus (Startseite minimal, Leon 24.11.2026)
       .replace('<!--@abschluss-->', lies('basis', 'abschluss.html')) // kurzer Abschluss statt Formular
+      .replace(/<!--@managed(:alt)?-->/g, (_, alt) => lies('basis', 'managed_kurz.html').replace('<section class="ab msk"', '<section class="ab' + (alt ? ' alt' : '') + ' msk"')) // Managed Services kurz (Leon 26.11.2026)
       .replace('<!--@abschluss:aus-->', () => lies('basis', 'abschluss.html').replace('<section class="ab abs-ab"', '<section class="ab abs-ab mod-aus"')) // als Modul aus (Leon 26.11.2026, Team)
       .replace('<!--@lexikon-->', () => lexikonHtml())
       // Newsletter-Anmeldung: <!--@newsletter--> (Karte mit Themenwahl) oder <!--@newsletter:zeile--> (schmale Zeile); {{NLB}} macht IDs eindeutig

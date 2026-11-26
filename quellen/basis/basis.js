@@ -1096,6 +1096,20 @@ const CV = (function () {
      Aus = nur Abstand unter der Kopfleiste, die H1 bleibt für Suchmaschinen und Screenreader erhalten. Werkzeugseiten haben ohnehin keinen Hero. */
   const heroEl = document.querySelector('main>.uhero,main>.hero');
   if (heroEl && !B.classList.contains('heroW')) {
+    // Seitenkopf bei „Hero aus“ (Leon 26.11.2026: „oben mehr Luft, muss auf der Seite immer sauber vermittelt werden“):
+    // Pfad und Seitentitel aus dem Hero übernommen, damit klar ist, wo man ist. Die echte H1 bleibt im Hero (nur für Suchmaschinen sichtbar).
+    if (!heroEl.querySelector(':scope>.seitenkopf')) {
+      const h1 = heroEl.querySelector('h1'), kr = heroEl.querySelector('.krumen');
+      if (h1) {
+        const sk = document.createElement('div');
+        sk.className = 'seitenkopf'; sk.setAttribute('aria-hidden', 'true');
+        sk.innerHTML = '<div class="wrap">' + (kr ? '<div class="krumen">' + kr.innerHTML + '</div>' : '') + '<div class="sk-t">' + h1.innerHTML + '</div></div>';
+        sk.querySelectorAll('a').forEach((a) => a.setAttribute('tabindex', '-1'));
+        heroEl.appendChild(sk);
+        // nicht mitspeichern, wird beim Laden neu aus Pfad und H1 erzeugt
+        if (typeof vorSpeichern !== 'undefined') vorSpeichern.push((d) => d.querySelectorAll('.seitenkopf').forEach((x) => x.remove()));
+      }
+    }
     function setHero(an, merken) {
       B.classList.toggle('heroAus', !an);
       document.querySelectorAll('[data-heroan]').forEach((x) => x.classList.toggle('on', (x.dataset.heroan === 'an') === an));

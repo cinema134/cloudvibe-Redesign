@@ -17,6 +17,7 @@
     datev: { n: 'DATEV-Termin', d: 30, f: ['video', 'tel'] },
     sl: { n: 'SelectLine-Termin', d: 30, f: ['video', 'tel'] },
     ki: { n: 'KI-Check', d: 45, f: ['video', 'tel', 'ort'] }, // eigene Terminart (Abstimmung 24.11.2026)
+    schulung: { n: 'Schulung planen', d: 30, f: ['video', 'tel'] }, // Vorgespräch zur Schulung (Leon 26.11.2026)
     rueck: { n: 'Rückruf', d: 15, f: ['tel'] },
     kunde: { n: 'Termin mit deiner Ansprechperson', d: 30, f: ['video', 'tel', 'ort'] },
   };

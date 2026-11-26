@@ -38,6 +38,7 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 | Unternehmen | `/unternehmen` | `seiten/unternehmen.html` | `quellen/seiten/unternehmen.html` |
 | Managed Services | `/managed-services` | `seiten/managed-services.html` | `quellen/seiten/managed.html` |
 | KI sicher nutzen | `/ki-sicher-nutzen` | `seiten/ki-sicher-nutzen.html` | `quellen/seiten/ki.html` |
+| Schulungen | `/leistungen/schulungen` | `seiten/leistungen-schulungen.html` | `quellen/seiten/schulungen.html` |
 | DATEV | `/leistungen/datev` | `seiten/leistungen-datev.html` | `quellen/seiten/datev.html` |
 | SelectLine | `/leistungen/selectline` | `seiten/leistungen-selectline.html` | `quellen/seiten/selectline.html` |
 | Über uns | `/ueber-uns` | `seiten/ueber-uns.html` | `quellen/seiten/ueber.html` |
