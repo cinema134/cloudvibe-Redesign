@@ -7,6 +7,11 @@
 .th-fakten b{font:700 15px 'Mozilla Text',sans-serif;color:var(--text)}
 .th-fakten li>span{font-size:14px;color:var(--muted)}
 .uhero .th-fakten+.btns.nur-alt+.tel-zeile{margin-top:26px}
+/* Name und Rolle unter jeder Karte (Leon 26.11.2026: Beispielnamen und Positionen statt Balken) */
+.team-raster .pt figcaption{gap:3px;margin-top:14px}
+.team-raster .pt figcaption b{font:700 16.5px/1.3 Comfortaa,sans-serif;letter-spacing:-.01em;color:var(--text)}
+.team-raster .pt figcaption span{font-size:14.5px;line-height:1.4;color:var(--muted)}
+.team-hinweis{margin-top:28px;font-size:13.5px;color:var(--muted)}
 @media(max-width:700px){
  .th-fakten{flex-direction:column;gap:0;margin-top:28px}
  .th-fakten li,.th-fakten li:first-child{padding:12px 0;border-left:0;border-top:1px solid var(--edge)}

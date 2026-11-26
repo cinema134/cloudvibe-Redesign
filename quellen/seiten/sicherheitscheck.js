@@ -11,13 +11,14 @@
   const LINK_RECHT = hero.dataset.recht || '#', LINK_TERMIN = hero.dataset.termin || '#';
 
   // ---------- Inhalte ----------
+  // Symbole nach Lucide (ISC-Lizenz), 24er-Raster, Linie (Leon 26.11.2026: „Icons nicht wirklich sauber“)
   const IC = {
-    praxis: '<path d="M12 3v18M7 8h10"/><path d="M9 14c0-2 6-2 6-4"/>',
-    apotheke: '<rect x="4" y="9" width="16" height="7" rx="3.5" transform="rotate(-30 12 12.5)"/><path d="M9.5 8.2l4 6.8"/>',
-    pflege: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M7.5 12h2.5l1-2 2 4 1-2h2.5"/>',
-    kanzlei: '<path d="M14.5 6.5c-.6-1.4-1.8-2.2-3.2-2.2-1.8 0-3.2 1.2-3.2 2.8 0 3.6 6.8 2.8 6.8 6.6 0 1.4-1 2.4-2.4 2.8"/><path d="M9.5 17.5c.6 1.4 1.8 2.2 3.2 2.2 1.8 0 3.2-1.2 3.2-2.8 0-3.6-6.8-2.8-6.8-6.6 0-1.4 1-2.4 2.4-2.8"/>',
-    unternehmen: '<path d="M4 20V9l5-3v14M9 20V4l7 4v12M16 20v-8l4 2v6M3 20h18"/>',
-    sonst: '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',
+    praxis: '<path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/>',
+    apotheke: '<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>',
+    pflege: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/>',
+    kanzlei: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
+    unternehmen: '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
+    sonst: '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
   };
   const BRANCHEN = {
     praxis: { t: 'Arztpraxis oder MVZ', s: 'Praxis, Gemeinschaftspraxis, MVZ', betrieb: 'Praxis', gesund: true },
@@ -29,31 +30,34 @@
   };
   // when(a, b): Frage nur stellen, wenn … (a = Antworten bisher, b = Branche). Reihenfolge = Reihenfolge im Test und in den offenen Punkten.
   const FRAGEN = [
-    { id: 'sicherung', f: 'Wird regelmäßig gesichert, mit einer Kopie <b>außer Haus</b>?', s: 'Außer Haus heißt: nicht im selben Raum wie der Server, zum Beispiel in einem Rechenzentrum.',
-      t: 'Datensicherung außer Haus', e: 'Liegt die einzige Sicherung im selben Raum wie der Server, hilft sie bei Brand, Wasser oder Diebstahl nicht. Erst eine Kopie außer Haus macht dich davon unabhängig.' },
-    { id: 'wiederherstellung', f: 'Wurde eine <b>Wiederherstellung</b> schon einmal getestet?', s: 'Also: Daten aus der Sicherung zurückgeholt, um zu sehen, ob es klappt.', when: (a) => a.sicherung === 'ja',
-      t: 'Wiederherstellung testen', e: 'Eine Sicherung ist nur so gut wie ihre Wiederherstellung. Erst ein Test zeigt, ob sich die Daten im Ernstfall wirklich und vollständig zurückholen lassen.' },
-    { id: 'updates', f: 'Laufen <b>Updates</b> für Rechner und Programme automatisch?', s: 'Für Windows, Browser und die Programme, mit denen ihr täglich arbeitet.',
+    // Wording (Leon 26.11.2026: „Wird regelmäßig gesichert, mit einer Kopie außer Haus“ versteht man nicht direkt als Backup): Alltagssprache, eine Sache pro Frage
+    { id: 'sicherung', f: 'Macht ihr regelmäßig ein <b>Backup</b> eurer Daten?', s: 'Also eine automatische Datensicherung, zum Beispiel jede Nacht.',
+      t: 'Regelmäßiges Backup', e: 'Ohne Backup sind Daten nach einem Defekt, einem Fehler oder einem Angriff verloren. Ein automatisches Backup läuft, ohne dass jemand daran denken muss.' },
+    { id: 'aussenkopie', f: 'Liegt eine Kopie des Backups <b>außerhalb eurer Räume</b>?', s: 'Zum Beispiel in einem Rechenzentrum oder in der Cloud, nicht im selben Raum wie der Server.', when: (a) => a.sicherung === 'ja',
+      t: 'Backup-Kopie außer Haus', e: 'Liegt das einzige Backup neben dem Server, hilft es bei Brand, Wasser oder Diebstahl nicht. Erst eine Kopie an einem anderen Ort macht dich davon unabhängig.' },
+    { id: 'wiederherstellung', f: 'Habt ihr schon einmal getestet, ob sich Daten aus dem Backup <b>zurückholen</b> lassen?', s: 'Also wirklich eine Datei oder ein System wiederhergestellt, um zu sehen, ob es klappt.', when: (a) => a.sicherung === 'ja',
+      t: 'Wiederherstellung testen', e: 'Ein Backup ist nur so gut wie seine Wiederherstellung. Erst ein Test zeigt, ob sich die Daten im Ernstfall wirklich und vollständig zurückholen lassen.' },
+    { id: 'updates', f: 'Werden <b>Updates</b> für Windows und eure Programme automatisch installiert?', s: 'Für alle Rechner, den Browser und die Programme, mit denen ihr täglich arbeitet.',
       t: 'Updates automatisieren', e: 'Veraltete Systeme und Programme sind ein bekanntes Einfallstor für Angriffe. Automatische Updates schließen Lücken, ohne dass jemand daran denken muss.' },
-    { id: 'zugaenge', f: 'Hat jede Person im Team einen <b>eigenen Zugang</b>?', s: 'Statt eines gemeinsamen Passworts für alle.',
-      t: 'Eigene Zugänge je Person', e: 'Geteilte Passwörter machen es schwer nachzuvollziehen, wer worauf zugreift, und Zugänge sauber zu entfernen, wenn jemand geht.' },
-    { id: 'zweifaktor', f: 'Ist der Zugriff von außen <b>zusätzlich abgesichert</b>?', s: 'Gemeint ist etwa Homeoffice oder E-Mail von unterwegs, zum Beispiel mit einem zweiten Faktor per App.', when: (a, b) => b === 'kanzlei' || b === 'unternehmen',
+    { id: 'zugaenge', f: 'Meldet sich jede Person im Team mit <b>eigenem Konto</b> an?', s: 'Statt dass sich mehrere ein gemeinsames Konto und Passwort teilen.',
+      t: 'Eigenes Konto für jede Person', e: 'Geteilte Konten machen es schwer nachzuvollziehen, wer worauf zugreift, und Zugänge sauber zu entfernen, wenn jemand geht.' },
+    { id: 'zweifaktor', f: 'Braucht man für den Zugriff von außen <b>mehr als ein Passwort</b>?', s: 'Zum Beispiel einen Code aus einer App auf dem Handy, wenn jemand im Homeoffice oder unterwegs arbeitet.', when: (a, b) => b === 'kanzlei' || b === 'unternehmen',
       t: 'Zugriff von außen absichern', e: 'Ein Passwort allein reicht oft nicht. Ein zweiter Faktor, etwa eine App auf dem Handy, schützt den Zugang auch dann, wenn das Passwort bekannt wird.' },
-    { id: 'firewall', f: 'Wird deine <b>Firewall</b> betreut und aktuell gehalten?', s: 'Die Firewall trennt dein Netzwerk vom Internet.',
+    { id: 'firewall', f: 'Kümmert sich jemand darum, dass eure <b>Firewall</b> aktuell ist?', s: 'Die Firewall ist der Schutz zwischen eurem Netzwerk und dem Internet.',
       t: 'Firewall betreuen lassen', e: 'Eine Firewall schützt nur, wenn sie richtig eingestellt ist und aktuell bleibt. Einmal eingerichtet und dann vergessen reicht nicht.' },
-    { id: 'mail', f: 'Werden E-Mails auf <b>Spam und Schadsoftware</b> geprüft?', s: 'Bevor sie im Postfach landen.',
+    { id: 'mail', f: 'Werden eingehende E-Mails automatisch auf <b>Viren und Betrug</b> geprüft?', s: 'Bevor sie im Postfach landen.',
       t: 'E-Mail-Schutz einrichten', e: 'Die meisten Angriffe beginnen mit einer E-Mail. Ein Filter fängt vieles ab, bevor es im Postfach landet und jemand darauf klickt.' },
-    { id: 'ti', f: 'Kümmert sich jemand um eure <b>TI-Anbindung</b>, wenn etwas nicht läuft?', s: 'Konnektor oder TI-Gateway, Kartenterminals, KIM.', when: (a, b) => b === 'praxis' || b === 'apotheke',
+    { id: 'ti', f: 'Habt ihr einen festen Ansprechpartner, wenn die <b>TI</b> nicht läuft?', s: 'Also Konnektor oder TI-Gateway, Kartenterminals oder KIM.', when: (a, b) => b === 'praxis' || b === 'apotheke',
       t: 'Ansprechpartner für die TI', e: 'Fällt die Anbindung an die Telematikinfrastruktur aus, stocken E-Rezept und Versichertenkarte. Mit einem festen Ansprechpartner bist du schneller wieder arbeitsfähig.' },
-    { id: 'mobil', f: 'Sind Tablets und Handys, die <b>unterwegs</b> genutzt werden, geschützt?', s: 'Zum Beispiel mit Sperre, Verschlüsselung und der Möglichkeit, ein verlorenes Gerät aus der Ferne zu löschen.', when: (a, b) => b === 'pflege',
+    { id: 'mobil', f: 'Sind Tablets und Handys für unterwegs mit <b>Sperre und Verschlüsselung</b> geschützt?', s: 'Und lässt sich ein verlorenes Gerät aus der Ferne löschen?', when: (a, b) => b === 'pflege',
       t: 'Mobile Geräte schützen', e: 'Unterwegs geht schnell ein Gerät verloren. Sperre und Verschlüsselung schützen die Daten darauf, aus der Ferne lässt es sich dann leeren.' },
-    { id: 'verschluesselung', f: 'Sind Laptops und Sicherungen mit Mandantendaten <b>verschlüsselt</b>?', s: 'Damit niemand die Daten lesen kann, der das Gerät in die Hand bekommt.', when: (a, b) => b === 'kanzlei',
-      t: 'Mandantendaten verschlüsseln', e: 'Kanzleien arbeiten mit besonders vertraulichen Daten. Verschlüsselung schützt sie, wenn ein Laptop oder eine Sicherung in falsche Hände gerät.' },
-    { id: 'uebersicht', f: 'Gibt es eine aktuelle <b>Übersicht</b> über eure Geräte und Programme?', s: 'Welche Rechner, Server und Programme im Einsatz sind, und wie alt sie sind.', when: (a, b) => b === 'unternehmen',
-      t: 'Übersicht über Geräte und Programme', e: 'Nur was bekannt ist, lässt sich aktuell halten und schützen. Die Übersicht ist auch die Grundlage für Updates und Lizenzen.' },
-    { id: 'team', f: 'Ist dein Team geschult, <b>Phishing</b> zu erkennen?', s: 'Also gefälschte E-Mails, die zu einem Klick oder einer Eingabe verleiten sollen.',
+    { id: 'verschluesselung', f: 'Sind Laptops und Backups mit Mandantendaten <b>verschlüsselt</b>?', s: 'Damit niemand die Daten lesen kann, der das Gerät oder den Datenträger in die Hand bekommt.', when: (a, b) => b === 'kanzlei',
+      t: 'Mandantendaten verschlüsseln', e: 'Kanzleien arbeiten mit besonders vertraulichen Daten. Verschlüsselung schützt sie, wenn ein Laptop oder ein Backup in falsche Hände gerät.' },
+    { id: 'uebersicht', f: 'Habt ihr eine aktuelle <b>Liste</b> aller Geräte und Programme?', s: 'Welche Rechner, Server und Programme im Einsatz sind, und wie alt sie sind.', when: (a, b) => b === 'unternehmen',
+      t: 'Liste der Geräte und Programme', e: 'Nur was bekannt ist, lässt sich aktuell halten und schützen. Die Liste ist auch die Grundlage für Updates und Lizenzen.' },
+    { id: 'team', f: 'Weiß dein Team, wie man <b>gefälschte E-Mails</b> erkennt?', s: 'Sogenanntes Phishing: Mails, die zu einem Klick oder zur Eingabe von Passwörtern verleiten sollen.',
       t: 'Team schulen', e: 'Wer weiß, woran man Phishing erkennt, klickt seltener auf den falschen Link. Eine kurze Schulung im Jahr macht hier viel aus.' },
-    { id: 'notfall', f: 'Gibt es einen <b>Notfallplan</b>, falls die IT ausfällt?', s: 'Wer tut was, wen ruft man an, wie läuft der Betrieb weiter.',
+    { id: 'notfall', f: 'Gibt es einen <b>schriftlichen Plan</b> für den Fall, dass die IT ausfällt?', s: 'Wer tut was, wen ruft man an, wie läuft der Betrieb weiter.',
       t: 'Notfallplan festhalten', e: 'Wenn die IT ausfällt, hilft ein kurzer Plan: wer was tut, wen man anruft und wie der Betrieb weiterläuft. Er spart im Ernstfall die wichtigsten Stunden.' },
   ];
   const URTEIL = {
@@ -67,8 +71,12 @@
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
   // ---------- Zustand ----------
-  let branche = BRANCHEN[Q.get('branche')] ? Q.get('branche') : null; // ?branche=gesundheit = Auswahl zeigen
+  // Leon 26.11.2026: von einer Branchenseite (Arztpraxen, Apotheken, Pflege, Kanzleien, Unternehmen) keine Wahl, Branche steht fest;
+  // von Gesundheitswesen (?branche=gesundheit) nur die drei Gesundheitsbranchen; ohne Parameter alle
+  let branche = BRANCHEN[Q.get('branche')] ? Q.get('branche') : null;
   const vorgewaehlt = !!branche;
+  const nurGesund = Q.get('branche') === 'gesundheit';
+  const zurWahl = () => Object.entries(BRANCHEN).filter(([, b]) => !nurGesund || b.gesund);
   let antw = {}, schritt = branche ? 0 : -1; // -1 = Branche wählen, 0…n-1 = Fragen, n = Auswertung
   let sec, karte;
   const liste = () => FRAGEN.filter((q) => !q.when || q.when(antw, branche));
@@ -97,7 +105,7 @@
 
   function kopf(nr, gesamt) {
     const anteil = schritt < 0 ? 0 : Math.min(1, (nr - 1) / gesamt);
-    return `<div class="stw-kopf"><button type="button" class="stw-zur"${schritt < 0 ? ' disabled' : ''}>${PF_L}Zurück</button>
+    return `<div class="stw-kopf"><button type="button" class="stw-zur"${schritt < 0 || (schritt === 0 && vorgewaehlt) ? ' disabled' : ''}>${PF_L}Zurück</button>
       <div class="stw-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${gesamt}" aria-valuenow="${Math.max(0, nr - 1)}"><i style="width:${Math.round(anteil * 100)}%"></i></div>
       <span class="stw-nr">${schritt < 0 ? 'Start' : nr > gesamt ? 'Fertig' : `Frage ${nr} von ${gesamt}`}</span></div>`;
   }
@@ -107,14 +115,14 @@
     if (schritt >= L.length) return auswertung(L);
     if (schritt < 0) {
       karte.innerHTML = kopf(0, L.length) + `<div class="stw-schritt"><span class="stw-eb">Selbsttest IT-Sicherheit</span>
-        <span class="stw-f">Wo <b>arbeitest du</b>?</span><span class="stw-sub">Danach passen wir die Fragen an. Etwa acht Fragen, zwei Minuten, nichts wird gespeichert.</span>
-        <div class="stw-br">${Object.entries(BRANCHEN).map(([k, b]) => `<button type="button" data-b="${k}"${k === branche ? ' class="an"' : ''}><svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg><span>${b.t}<br><small>${b.s}</small></span></button>`).join('')}</div></div>`;
+        <span class="stw-f">Wo <b>arbeitest du</b>?</span><span class="stw-sub">Danach passen wir die Fragen an. Rund zehn kurze Fragen, zwei bis drei Minuten, nichts wird gespeichert.</span>
+        <div class="stw-br">${zurWahl().map(([k, b]) => `<button type="button" data-b="${k}"${k === branche ? ' class="an"' : ''}><svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg><span>${b.t}<br><small>${b.s}</small></span></button>`).join('')}</div></div>`;
       karte.querySelectorAll('[data-b]').forEach((x) => (x.onclick = () => { branche = x.dataset.b; setTermin(); schritt = 0; zeige(); inSicht(); }));
       return;
     }
     const q = L[schritt], a = antw[q.id];
     karte.innerHTML = kopf(schritt + 1, L.length) + `<div class="stw-schritt">
-      <span class="stw-eb">${esc(BRANCHEN[branche].t)}${schritt === 0 ? ' · <button type="button" class="stw-link stw-wechsel" style="font-size:12px;letter-spacing:.08em;text-transform:uppercase">ändern</button>' : ''}</span>
+      <span class="stw-eb">${esc(BRANCHEN[branche].t)}${schritt === 0 && !vorgewaehlt ? ' · <button type="button" class="stw-link stw-wechsel" style="font-size:12px;letter-spacing:.08em;text-transform:uppercase">ändern</button>' : ''}</span>
       <span class="stw-f" id="stwF">${q.f}</span><span class="stw-sub">${esc(q.s)}</span>
       <div class="stw-a" role="group" aria-labelledby="stwF">${[['ja', 'Ja'], ['nein', 'Nein'], ['weiss', 'Weiß ich nicht']].map(([k, t]) => `<button type="button" data-a="${k}" aria-pressed="${a === k}"${a === k ? ' class="an"' : ''}>${t}</button>`).join('')}</div>
       <div class="stw-erk-w"></div></div>`;
@@ -144,7 +152,7 @@
     if (fokus) b.focus({ preventScroll: true });
   }
 
-  function zurueck() { schritt = schritt <= 0 ? -1 : schritt - 1; zeige(); } // von der ersten Frage zurück zur Branchenwahl
+  function zurueck() { if (schritt === 0 && vorgewaehlt) return; schritt = schritt <= 0 ? -1 : schritt - 1; zeige(); } // ohne Vorwahl von der ersten Frage zurück zur Branchenwahl
 
   function bewertung(L) {
     const offen = L.filter((q) => antw[q.id] && antw[q.id] !== 'ja');
