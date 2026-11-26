@@ -1253,7 +1253,7 @@ const CV = (function () {
      Design → „Saison“ Automatisch | Aus | Weihnachten | Ostern, Option saison, ?saison=weihnachten|ostern|aus|auto. */
   {
     const T = $('cv-saison-logos');
-    const LOGO = { weihnachten: { f: 764 / 694 }, ostern: { f: 919 / 694 } }; // Höhe der Saisondatei / Höhe des Originals (oben Platz für Mütze bzw. Ohren)
+    const LOGO = { weihnachten: { f: 881 / 694 }, ostern: { f: 919 / 694 } }; // Weihnachten: schräge Mütze mit Geweih (Leon 26.11.2026) // Höhe der Saisondatei / Höhe des Originals (oben Platz für Mütze bzw. Ohren)
     const tag = 864e5;
     const ostersonntag = (j) => { // Gauß/Meeus, gregorianisch
       const a = j % 19, b = Math.floor(j / 100), c = j % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3);

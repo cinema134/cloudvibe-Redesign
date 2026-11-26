@@ -26,7 +26,7 @@ const js = async (expr) => { const r = await cdp('Runtime.evaluate', { expressio
 await cdp('Page.enable');
 await cdp('Page.navigate', { url: pathToFileURL(tmp).href });
 await warte(800);
-for (const art of ['weihnachten', 'ostern']) {
+for (const art of (process.argv[4] || 'weihnachten,ostern').split(',')) {
   const svg = await js(`vektor(${JSON.stringify(art)}, ${JSON.stringify(quelle)})`);
   fs.writeFileSync(path.join(ziel, `cloudvibe_logo_${art}.svg`), svg, 'utf8');
   for (const [name, b] of [[`cloudvibe_logo_${art}.png`, 1496], [`logo_${art}_web.png`, 748]]) {

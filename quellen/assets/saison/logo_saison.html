@@ -47,11 +47,90 @@ function svgAugen(P) {
   const y = (v) => v + P;
   return [366, 458].map((x) => `<ellipse cx="${x}" cy="${y(92)}" rx="10" ry="13" fill="#2A3550"/><circle cx="${x - 3}" cy="${y(87)}" r="3.4" fill="#fff"/>`).join('');
 }
+// Flacher Stil (Leon 26.11.2026, Vorlage Rentier-Mütze): Mütze mittig auf dem großen Bogen, Fellrand aus Kreisen, Bommel oben
+const ROT = '#D92B2B', FELL = '#F3F8FC', FELLRAND = '#D3DFEA';
+function svgMuetzeFlach(P) {
+  const y = (v) => v + P;
+  const kreise = [];
+  for (let i = 0; i < 7; i++) { const t = i / 6, x = 292 + 240 * t, yy = 96 + 8 * Math.sin(Math.PI * t); kreise.push(`<circle cx="${x.toFixed(1)}" cy="${y(yy).toFixed(1)}" r="24"/>`); }
+  return `
+  <path d="M280,${y(100)} C283,${y(18)} 338,${y(-40)} 412,${y(-42)} C486,${y(-44)} 542,${y(14)} 544,${y(98)} Z" fill="${ROT}"/>
+  <g fill="${FELL}" stroke="${FELLRAND}" stroke-width="4">${kreise.join('')}</g>
+  <g fill="${FELL}">${kreise.join('')}</g>
+  <circle cx="412" cy="${y(-48)}" r="27" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4"/>`;
+}
+function svgRentier(P) {
+  const y = (v) => v + P;
+  const BRAUN = '#7A4A2A', HAUT = '#F2B48A';
+  const links = `<path d="M342,${y(-14)} C330,${y(-58)} 306,${y(-96)} 286,${y(-132)}"/><path d="M318,${y(-58)} C300,${y(-64)} 280,${y(-76)} 264,${y(-96)}"/><path d="M302,${y(-96)} C310,${y(-112)} 322,${y(-124)} 338,${y(-134)}"/>`;
+  const geweih = `<g fill="none" stroke="${BRAUN}" stroke-width="17" stroke-linecap="round">${links}<g transform="matrix(-1 0 0 1 824 0)">${links}</g></g>`;
+  const ohrL = `<path d="M296,${y(36)} C266,${y(16)} 236,${y(22)} 222,${y(44)} C246,${y(62)} 280,${y(62)} 298,${y(50)} Z" fill="${BRAUN}"/><path d="M286,${y(40)} C266,${y(30)} 248,${y(33)} 238,${y(45)} C254,${y(54)} 272,${y(54)} 286,${y(48)} Z" fill="${HAUT}"/>`;
+  const ohren = `${ohrL}<g transform="matrix(-1 0 0 1 824 0)">${ohrL}</g>`;
+  return geweih + ohren + svgMuetzeFlach(P);
+}
+// Schräg wie die erste Fassung (Leon 26.11.2026): Mütze lokal gezeichnet (Krempenmitte = 0/0), dann auf die Linie
+// linke Spitze des ersten Bogens (275,7/135,9) → Tal (522,0/66,8) gedreht: Mitte 398,9/101,3, Winkel −15,7°
+function muetzeSchraeg(P, rentier) {
+  const kreise = [];
+  for (let i = 0; i < 7; i++) { const t = i / 6, x = -124 + 248 * t, yy = 6 * Math.sin(Math.PI * t); kreise.push(`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="24"/>`); }
+  const BRAUN = '#7A4A2A', HAUT = '#F2B48A';
+  const gl = `<path d="M-62,-108 C-74,-150 -98,-186 -118,-222"/><path d="M-86,-152 C-104,-158 -124,-170 -140,-190"/><path d="M-102,-188 C-94,-204 -82,-216 -66,-226"/>`;
+  const geweih = rentier ? `<g fill="none" stroke="${BRAUN}" stroke-width="17" stroke-linecap="round">${gl}<g transform="scale(-1 1)">${gl}</g></g>` : '';
+  const ol = `<path d="M-118,-58 C-148,-78 -178,-72 -192,-50 C-168,-32 -134,-32 -116,-44 Z" fill="${BRAUN}"/><path d="M-128,-54 C-148,-64 -166,-61 -176,-49 C-160,-40 -142,-40 -128,-46 Z" fill="${HAUT}"/>`;
+  const ohren = rentier ? `${ol}<g transform="scale(-1 1)">${ol}</g>` : '';
+  return `<g transform="translate(398.9 ${101.3 + P}) rotate(-15.7)">${geweih}${ohren}
+  <path d="M-134,6 C-131,-82 -76,-142 0,-144 C76,-146 131,-84 134,4 Z" fill="${ROT}"/>
+  <g fill="${FELL}" stroke="${FELLRAND}" stroke-width="4">${kreise.join('')}</g>
+  <g fill="${FELL}">${kreise.join('')}</g>
+  <circle cx="0" cy="-150" r="27" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4"/></g>`;
+}
+// Eingefasst (Leon 26.11.2026: „besser in den zwei Bögen eingefasst“): Mützenform = Außenkante des großen Bogens
+// (Kreis um 411,6/146,6, r 147,3), zwischen linker Spitze und Tal; nur oben links ein weicher Zipfel zum Bommel
+function muetzeEingefasst(P, rentier, weit) {
+  // weit (Leon 26.11.2026: „Mütze etwas weiter raus, man soll erahnen, dass darunter der Bogen steckt“): Haube ca. 25 px außerhalb der Bogenkante
+  const cx = 411.6, cy = 146.6 + P, R = weit ? 172 : 147.3;
+  const pk = (deg, r = R) => [cx + r * Math.cos(deg * Math.PI / 180), cy - r * Math.sin(deg * Math.PI / 180)];
+  const f = (p) => p.map((v) => v.toFixed(1)).join(',');
+  const A = weit ? pk(190) : pk(184.5), B = weit ? pk(31) : pk(35.9), P1 = pk(104), P2 = pk(152);
+  const tip = weit ? [308, -44 + P] : [326, -22 + P];
+  const koerper = `M${f(B)} A${R} ${R} 0 0 0 ${f(P1)} C${(P1[0] - 22).toFixed(1)},${(P1[1] - 4).toFixed(1)} ${tip[0] + 22},${tip[1] - 2} ${tip[0]},${tip[1]} C${tip[0] - 10},${tip[1] + 16} ${(P2[0] + 4).toFixed(1)},${(P2[1] - 16).toFixed(1)} ${f(P2)} A${R} ${R} 0 0 0 ${f(A)} Z`;
+  // Fellrand: 7 Kreise auf der Sehne A→B, leicht nach unten gewölbt
+  const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L; // Normale nach unten
+  const kreise = [];
+  const nK = weit ? 8 : 7, rK = weit ? 26 : 24, sag = weit ? 4 : 7;
+  for (let i = 0; i < nK; i++) { const t = 0.04 + 0.92 * i / (nK - 1), s = sag * Math.sin(Math.PI * t); kreise.push(`<circle cx="${(A[0] + dx * t + nx * s).toFixed(1)}" cy="${(A[1] + dy * t + ny * s).toFixed(1)}" r="${rK}"/>`); }
+  let deko = '';
+  if (rentier) {
+    const BRAUN = '#7A4A2A';
+    const gl = `<path d="M0,0 C-4,-40 -14,-80 -26,-118"/><path d="M-8,-50 C-26,-56 -44,-66 -58,-84"/><path d="M-18,-88 C-8,-102 4,-112 20,-120"/>`;
+    const b1 = pk(94, R - 8), b2 = pk(60, R - 8);
+    deko = `<g fill="none" stroke="${BRAUN}" stroke-width="17" stroke-linecap="round"><g transform="translate(${f(b1)}) rotate(2)">${gl}</g><g transform="translate(${f(b2)}) rotate(16) scale(-1 1)">${gl}</g></g>`;
+  }
+  return `${deko}<path d="${koerper}" fill="${ROT}"/>
+  <g fill="${FELL}" stroke="${FELLRAND}" stroke-width="4">${kreise.join('')}</g>
+  <g fill="${FELL}">${kreise.join('')}</g>
+  <circle cx="${tip[0] - 6}" cy="${tip[1] - 4}" r="26" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4"/>`;
+}
 // Vektorfassung (Leon 26.11.2026: cloudvibe_logo.svg bereitgestellt): Deko als eigene Gruppen direkt ins Original-SVG, Zeichenfläche nach oben erweitert
 window.vektor = (art, src) => {
-  const oben = art === 'weihnachten' ? 70 : 225;
+  // „weihnachten“ = finale Fassung (Leon 26.11.2026: schräge flache Mütze mit Geweih und Ohren, 12 px weiter heraus)
+  if (art === 'weihnachten') art = 'schraeg_rentier_hoch';
+  const oben = { weihnachten: 70, flach: 80, rentier: 150, schraeg: 90, schraeg_rentier: 175, eingefasst: 70, eingefasst_rentier: 140, weit: 85, weit_rentier: 160, hoch: 80, hoch_rentier: 150, schraeg_rentier_hoch: 187 }[art] || 225;
   let s = src.replace(/width="1496" height="694" viewBox="0 0 1496 694"/, `width="1496" height="${694 + oben}" viewBox="0 -${oben} 1496 ${694 + oben}"`);
   if (art === 'weihnachten') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetze(0)}</g>\n</svg>\n`);
+  else if (art === 'flach') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetzeFlach(0)}</g>\n</svg>\n`);
+  else if (art === 'rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${svgRentier(0)}</g>\n</svg>\n`);
+  else if (art === 'schraeg') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${muetzeSchraeg(0, false)}</g>\n</svg>\n`);
+  // Leon 26.11.2026: „diese Fassung (schräg mit Geweih) und hier weiter raus“ → ganze Gruppe 12 px nach oben
+  else if (art === 'schraeg_rentier_hoch') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier" transform="translate(0 -12)">${muetzeSchraeg(0, true)}</g>\n</svg>\n`);
+  // Leon 26.11.2026: „vorletzte Fassung (eingefasst), Mütze minimal höher“
+  else if (art === 'hoch') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze" transform="translate(0 -10)">${muetzeEingefasst(0, false)}</g>\n</svg>\n`);
+  else if (art === 'hoch_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier" transform="translate(0 -10)">${muetzeEingefasst(0, true)}</g>\n</svg>\n`);
+  else if (art === 'weit') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${muetzeEingefasst(0, false, true)}</g>\n</svg>\n`);
+  else if (art === 'weit_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${muetzeEingefasst(0, true, true)}</g>\n</svg>\n`);
+  else if (art === 'eingefasst') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${muetzeEingefasst(0, false)}</g>\n</svg>\n`);
+  else if (art === 'eingefasst_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${muetzeEingefasst(0, true)}</g>\n</svg>\n`);
+  else if (art === 'schraeg_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${muetzeSchraeg(0, true)}</g>\n</svg>\n`);
   else {
     s = s.replace('<g id="cloud"', `<g id="saison-ohren">${svgOhren(0)}</g>\n<g id="cloud"`);
     s = s.replace(/<\/svg>\s*$/, `<g id="saison-nase">${svgNase(0)}</g>\n</svg>\n`);
