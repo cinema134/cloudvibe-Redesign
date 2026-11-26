@@ -995,7 +995,7 @@ body.stuck .kopf .kt-ticket{width:50px;padding:0;justify-content:center}
  body.stuck .kopf .sup .chev{display:none}
  body.lsM.stuck .kopf .sup,body.lsM.stuck .kopf .kt-ticket{width:48px;height:48px;padding:0;justify-content:center}
  body.lsB.stuck .kopf-r .dd-rechts{margin-right:-10px}
- body.lsB.stuck .kopf .sup{width:54px;height:48px;padding:0 0 0 4px;justify-content:center;border-radius:100px 0 0 100px;border-right:0}
+ body.lsB.stuck .kopf .sup{width:54px;height:48px;padding:0 0 0 4px;justify-content:center;border-radius:100px 0 0 100px;border-right-width:0} /* nur die Breite, Farbe bleibt --edge: border-right:0 setzte die Farbe auf die Textfarbe, beim Hochscrollen blitzte rechts kurz eine dunkle Linie (Leon 26.11.2026) */
  body.lsB.stuck .kopf .kt-ticket{width:54px;height:48px;padding:0 4px 0 0;justify-content:center;border-radius:0 100px 100px 0;border-left:1px solid var(--edge);position:relative}
  body.lsB.stuck .kopf .kt-ticket:before{content:"";position:absolute;left:-1px;top:12px;bottom:12px;width:1px;background:var(--edge)}
  body.lsB.stuck .kopf .kt-ticket{border-left-color:transparent}
