@@ -990,6 +990,13 @@ body.kopf-eng .kopf .kt-ticket{padding:0 14px}
 @media(max-width:1180px){.kopf .kt-ticket{height:44px;padding:0 14px}.kopf .kt-ticket span{display:none}}
 @media(max-width:1040px){.kopf .kt-ticket{width:44px;padding:0;justify-content:center}}
 @media(max-width:560px){.kopf .kt-ticket{width:40px;height:40px}.kopf-r .cta-fw svg{display:none}}
+/* Fußzeile: Schalter Hell | Dunkel (Leon 26.11.2026), leise wie die übrigen Links */
+.fk-modus{display:inline-flex;gap:2px;padding:3px;border-radius:100px;border:1px solid var(--edge);vertical-align:middle}
+.fk-modus button{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:0;border-radius:100px;background:transparent;color:var(--muted);font:700 13px 'Mozilla Text',sans-serif;cursor:pointer;transition:background .2s,color .2s}
+.fk-modus button:hover{color:var(--blau-t)}
+.fk-modus button.on{background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--text)}
+.fk-modus svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fk-modus button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
 /* Managed Services kurz auf Bereichsseiten (Leon 26.11.2026, basis/managed_kurz.html) */
 .msk-band{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden;border-radius:30px}
 .msk-p{display:block;padding:32px 28px 36px;transition:background .3s}

@@ -38,10 +38,13 @@ const CV = (function () {
   function setDark(on) {
     B.classList.toggle('dark', on);
     if ($('dk')) $('dk').classList.toggle('on', on);
+    document.querySelectorAll('[data-modus]').forEach((x) => { const an = (x.dataset.modus === 'dunkel') === on; x.classList.toggle('on', an); x.setAttribute('aria-pressed', String(an)); });
     hoerer.dark.forEach((f) => f(on));
     merke('dunkel', on);
   }
   if ($('dk')) $('dk').onclick = () => setDark(!B.classList.contains('dark'));
+  // Schalter Hell | Dunkel in der Fußzeile (Leon 26.11.2026); gemerkt wie im Panel, gilt auf allen Seiten
+  document.querySelectorAll('[data-modus]').forEach((x) => (x.onclick = () => setDark(x.dataset.modus === 'dunkel')));
 
   /* ---- Header: beim Scrollen wandert das Logo in die Leiste ---- */
   /* Kopfleiste darf sich nie überlagern (Leon 24.11.2026: "Über uns" lief in "Support"):
