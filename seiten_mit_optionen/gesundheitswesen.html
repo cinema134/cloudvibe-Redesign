@@ -1721,27 +1721,15 @@ body.hvA .uhero:has(#cvH):has(+ .einstiege:not(.mod-aus)){padding-bottom:clamp(2
    <section class="stg-gr" data-tab="design">
     <h5>Darstellung</h5>
     <div class="stg-z"><span>Dunkler Modus</span><button type="button" id="dk" class="tg" aria-label="Dunkler Modus"></button></div>
-    <div class="stg-z" data-ziel="main .hc"><span>Wort für den Bereich</span><select id="begriff" aria-label="Wort für den Bereich"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
-   </section>
-   <section class="stg-gr" data-tab="design">
-    <h5>Kopf und Fuß</h5>
-    <div class="stg-z" data-ziel="#kopf"><span>Menüleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="footer.fuss"><span>Fußzeile</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">Kompakt</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">Spalten</button></div></div>
-    <div class="stg-z" data-ziel="#cc"><span>Cookie-Abfrage</span><div class="seg"><button type="button" data-cc-art="leiste" class="on" title="Leiste unten über die Inhaltsbreite (Konzept 5 A, entschieden)">Leiste</button><button type="button" data-cc-art="karte" title="Bisher: kleine Karte unten links">Karte</button></div></div>
    </section>
    <section class="stg-gr" data-tab="design">
     <h5>Erster Bildschirm (Hero)</h5>
-    <div class="stg-z" data-ziel="#top"><span>Aufbau</span><div class="seg"><button type="button" data-heroauf="kachel" class="on" title="Text in Milchglas-Kachel wie auf der Startseite, rechts Einstiege">Kachel</button><button type="button" data-heroauf="bisher" title="Bisher: Text frei auf dem Hintergrund">Frei</button></div></div>
-    <div class="stg-z" data-ziel="#top"><span>Einstiege rechts</span><div class="seg"><button type="button" data-einstieg="raster" class="on" title="Vier Felder im Raster">Raster</button><button type="button" data-einstieg="liste" title="Untereinander in einer Kachel">Liste</button></div></div>
-    <div class="stg-z" data-ziel="#top"><span>Höhe</span><div class="seg"><button type="button" data-heroh="einheitlich" class="on" title="Füllt den ersten Bildschirm">Bildschirm</button><button type="button" data-heroh="bisher" title="Bisher: so hoch wie der Inhalt">Inhalt</button></div></div>
     <div class="stg-z" data-ziel="#top"><span>Hintergrund</span><select id="heroStil" aria-label="Hintergrund im ersten Bildschirm"><option value="welle">Wellenkante je Bereich</option><option value="bereich">Ruhig je Bereich (bisher)</option><option value="ruhig">Ruhig</option><option value="schimmer">Schimmer</option><option value="punkte">Punkte</option></select></div>
     <div class="stg-z" data-ziel="#top"><span>Form der Welle</span><select id="welleArt" aria-label="Form der Welle"></select></div>
-    <div class="stg-z" data-ziel="#top"><span>Buttons</span><div class="seg"><button type="button" data-hbt="neu" class="on" title="Ein Button mit eigenem Zweck, Anrufen als leise Zeile">Ein Zweck</button><button type="button" data-hbt="alt" title="Bisher: Termin und Anrufen als Buttons">Bisher</button></div></div>
    </section>
    <section class="stg-gr" data-tab="design">
     <h5>Bausteine</h5>
     <div class="stg-z" data-ziel=".stimmen"><span>Kundenstimmen</span><div class="seg"><button type="button" data-kst="kompakt" class="on">Kompakt</button><button type="button" data-kst="buehne">Bühne</button><button type="button" data-kst="liste">Liste</button></div></div>
-    <div class="stg-z" data-ziel=".st-reihe"><span>Abläufe</span><div class="seg"><button type="button" data-ablauf="pfeil" class="on" title="Pfeilband: Schritte als Pfeile, die zum Ziel kräftiger werden">Pfeile</button><button type="button" data-ablauf="zeitleiste" title="Bisher: Zeitleiste mit Linie und Punkten">Zeitleiste</button></div></div>
     <div class="stg-z" id="stgAz" data-ziel=".bk ul, .fragen"><span>Aufzählungszeichen</span><div class="seg"><button type="button" data-az="P">Punkt</button><button type="button" data-az="H">Haken</button><button type="button" data-az="S">Strich</button><button type="button" data-az="L">Ohne</button></div></div>
    </section>
    <section class="stg-gr" data-tab="design" data-ziel="#kopf">
@@ -1810,7 +1798,11 @@ const CV = (function () {
   let MEIN = {};
   try { MEIN = JSON.parse(localStorage.getItem(OKEY)) || {}; } catch (e) {}
   let bereit = false; // erst nach dem Start merken, nicht die Startwerte
-  const wert = (k, url, std) => (url != null && url !== '' ? url : MEIN[k] != null ? MEIN[k] : TEAM[k] != null ? TEAM[k] : std);
+  // Entschiedene Optionen (Leon 26.11.2026: „Alles was entschieden ist, kann als Option aus den Einstellungen entfernt werden“):
+  // fester Wert, gemerkte Werte und Adress-Parameter wirken nicht mehr. Begriff: Konzept 26 A, Menüleiste: 9 C, Aufbau: 13 A,
+  // Einstiege: 14 A, Buttons: 15 B, Abläufe: 17 A, Fußzeile: 18 A, Cookie: 5 A, Höhe: Leon 24.11., Haupt-Button: 12 B/Leiste neu, Terminauswahl: 9 A
+  const FEST = { ks: 'neu', heroauf: 'kachel', einstieg: 'raster', herobtn: 'alt', ablauf: 'pfeil', fuss: 'k', ccart: 'leiste', heroh: 'einheitlich', hauptbtn: 'termin', termin: 'spalten' };
+  const wert = (k, url, std) => (k in FEST ? FEST[k] : url != null && url !== '' ? url : MEIN[k] != null ? MEIN[k] : TEAM[k] != null ? TEAM[k] : std);
   const merke = (k, v) => { if (!bereit) return; MEIN[k] = v; try { localStorage.setItem(OKEY, JSON.stringify(MEIN)); } catch (e) {} };
 
   /* ---- Begriff "Gesundheitswesen" global austauschbar ---- */
@@ -2220,7 +2212,7 @@ const CV = (function () {
   addEventListener('scroll', () => { if (matchMedia('(hover:hover)').matches) lxZu(); }, { passive: true });
 
   /* ---- Startzustand aus der Adresse (zum Vergleichen: ?dunkel=1&begriff=Healthcare) ---- */
-  setBegriff(wert('begriff', Q.get('begriff'), BEGRIFF_START));
+  setBegriff(BEGRIFF_START); // Konzept 26 A entschieden: „Gesundheitswesen“, kein Umschalter mehr
   if (Q.get('dunkel') === '1' || (Q.get('dunkel') == null && wert('dunkel', null, false) === true)) setDark(true);
   if (Q.get('bearbeiten') === '1') setEdit(true);
 

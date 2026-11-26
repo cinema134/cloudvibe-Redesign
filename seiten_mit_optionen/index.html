@@ -1733,13 +1733,6 @@ body.kTicket .tile .ticket{display:none}
    <section class="stg-gr" data-tab="design">
     <h5>Darstellung</h5>
     <div class="stg-z"><span>Dunkler Modus</span><button type="button" id="dk" class="tg" aria-label="Dunkler Modus"></button></div>
-    <div class="stg-z" data-ziel=".einstieg"><span>Wort für den Bereich</span><select id="begriff" aria-label="Wort für den Bereich"><option>Gesundheitswesen</option><option>Healthcare</option></select></div>
-   </section>
-   <section class="stg-gr" data-tab="design">
-    <h5>Kopf und Fuß</h5>
-    <div class="stg-z" data-ziel="#kopf"><span>Menüleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="footer.fuss"><span>Fußzeile</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">Kompakt</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">Spalten</button></div></div>
-    <div class="stg-z" data-ziel="#cc"><span>Cookie-Abfrage</span><div class="seg"><button type="button" data-cc-art="leiste" class="on" title="Leiste unten über die Inhaltsbreite (Konzept 5 A, entschieden)">Leiste</button><button type="button" data-cc-art="karte" title="Bisher: kleine Karte unten links">Karte</button></div></div>
    </section>
    <section class="stg-gr" data-tab="design">
     <h5>Erster Bildschirm (Hero)</h5>
@@ -1822,7 +1815,11 @@ const CV = (function () {
   let MEIN = {};
   try { MEIN = JSON.parse(localStorage.getItem(OKEY)) || {}; } catch (e) {}
   let bereit = false; // erst nach dem Start merken, nicht die Startwerte
-  const wert = (k, url, std) => (url != null && url !== '' ? url : MEIN[k] != null ? MEIN[k] : TEAM[k] != null ? TEAM[k] : std);
+  // Entschiedene Optionen (Leon 26.11.2026: „Alles was entschieden ist, kann als Option aus den Einstellungen entfernt werden“):
+  // fester Wert, gemerkte Werte und Adress-Parameter wirken nicht mehr. Begriff: Konzept 26 A, Menüleiste: 9 C, Aufbau: 13 A,
+  // Einstiege: 14 A, Buttons: 15 B, Abläufe: 17 A, Fußzeile: 18 A, Cookie: 5 A, Höhe: Leon 24.11., Haupt-Button: 12 B/Leiste neu, Terminauswahl: 9 A
+  const FEST = { ks: 'neu', heroauf: 'kachel', einstieg: 'raster', herobtn: 'alt', ablauf: 'pfeil', fuss: 'k', ccart: 'leiste', heroh: 'einheitlich', hauptbtn: 'termin', termin: 'spalten' };
+  const wert = (k, url, std) => (k in FEST ? FEST[k] : url != null && url !== '' ? url : MEIN[k] != null ? MEIN[k] : TEAM[k] != null ? TEAM[k] : std);
   const merke = (k, v) => { if (!bereit) return; MEIN[k] = v; try { localStorage.setItem(OKEY, JSON.stringify(MEIN)); } catch (e) {} };
 
   /* ---- Begriff "Gesundheitswesen" global austauschbar ---- */
@@ -2232,7 +2229,7 @@ const CV = (function () {
   addEventListener('scroll', () => { if (matchMedia('(hover:hover)').matches) lxZu(); }, { passive: true });
 
   /* ---- Startzustand aus der Adresse (zum Vergleichen: ?dunkel=1&begriff=Healthcare) ---- */
-  setBegriff(wert('begriff', Q.get('begriff'), BEGRIFF_START));
+  setBegriff(BEGRIFF_START); // Konzept 26 A entschieden: „Gesundheitswesen“, kein Umschalter mehr
   if (Q.get('dunkel') === '1' || (Q.get('dunkel') == null && wert('dunkel', null, false) === true)) setDark(true);
   if (Q.get('bearbeiten') === '1') setEdit(true);
 

@@ -281,13 +281,7 @@
     klebe();
     if (merken && typeof CV !== 'undefined') CV.merke('termin', v);
   }
-  if (document.getElementById('stgPanel') && typeof CV !== 'undefined' && CV.panelZeile) {
-    const z = document.createElement('div');
-    z.className = 'stg-z'; z.dataset.ziel = '#terminarten';
-    z.innerHTML = '<span>Terminauswahl</span><div class="seg"><button type="button" data-tm="spalten" class="on" title="Terminart, Tag und Uhrzeit nebeneinander">Drei Spalten</button><button type="button" data-tm="kompakt" title="Liste und Kalender auf einen Blick">Kompakt</button><button type="button" data-tm="bisher" title="Bisher: große Liste mit Beschreibungen">Bisher</button></div>';
-    CV.panelZeile(z); // Panel-Reiter „Diese Seite“
-    z.querySelectorAll('[data-tm]').forEach((b) => (b.onclick = () => setAufbau(b.dataset.tm, true)));
-  }
+  // Umschalter „Terminauswahl“ entfernt (Konzept 9 A entschieden: Drei Spalten, Leon 26.11.2026)
 
   /* ---- Prüfhilfe über Adress-Parameter ---- */
   const Q = new URLSearchParams(location.search), art = Q.get('art');
