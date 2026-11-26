@@ -102,7 +102,7 @@
     draw();
     if (!still) requestAnimationFrame(frame);
   }
-  setWelle(CV.wert('welle', Q.get('welle'), 'aktuell'), true); // Adresse > im Browser gemerkt > für alle festgelegt > Standard
+  setWelle(CV.wert('welle', Q.get('welle'), 'origRuhig'), true); // Standard Bänder „Original ruhig“ (Konzept 25 B, Leon 26.11.2026) // Adresse > im Browser gemerkt > für alle festgelegt > Standard
   requestAnimationFrame(frame);
 
   /* ---- Gemerkte Körnung und Logo anwenden (gilt auch ohne Panel, wenn für alle festgelegt) ---- */
@@ -180,20 +180,21 @@
     Object.keys(LIM).forEach((id) => { $(id).min = LIM[id][0]; $(id).max = LIM[id][1]; });
     R.style.removeProperty('--lgh');
     R.style.removeProperty('--lga');
+    R.style.removeProperty('--lgk'); if ($('lgk')) $('lgk').value = 62;
     syncLogo();
     B.classList.add('lgB'); $('lgb').classList.add('on');
     $('top').classList.remove('nograin'); $('gr').classList.add('on');
     CV.setDark(false);
     Object.values(setzer).forEach((fn) => fn());
     CV.setBegriff(BEGRIFF_START);
-    setWelle('aktuell');
-    ['koernung', 'logoFrei', 'lgs', 'lga'].forEach((k) => CV.merke(k, null)); // gemerkte Werte verwerfen
+    setWelle('origRuhig');
+    ['koernung', 'logoFrei', 'lgs', 'lga', 'lgk'].forEach((k) => CV.merke(k, null)); // gemerkte Werte verwerfen
     tt = 0;
   };
 
   $('cpy').onclick = async (e) => {
     const o = { welle };
-    ['lgs', 'lga'].forEach((k) => (o[k] = +$(k).value));
+    ['lgs', 'lga', 'lgk'].forEach((k) => (o[k] = +$(k).value));
     o.logoFrei = B.classList.contains('lgB');
     o.koernung = $('gr').classList.contains('on');
     o.dunkel = B.classList.contains('dark');

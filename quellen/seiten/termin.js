@@ -257,7 +257,7 @@
   }
   $('neu').onclick = () => {
     $('sAngaben').reset();
-    if (kompakt()) { waehleArt(st.art || 'erst', false); return; } // Kompakt: Kalender bleibt sichtbar
+    if (kompakt() && (st.art || VORWAHL)) { waehleArt(st.art || 'erst', false); return; } // Kompakt: Kalender bleibt sichtbar
     st.art = null;
     document.querySelectorAll('.ta').forEach((el) => { el.classList.remove('on'); el.querySelector('.ta-wahl').setAttribute('aria-pressed', 'false'); });
     $('bpVoll').hidden = true; $('bpLeer').hidden = false;
@@ -266,6 +266,8 @@
   /* ---- Aufbau Kompakt (Standard) / Bisher (Prüfdokument 24.11.2026: "auf einen Blick die Terminauswahl sehen")
      Kompakt: schmale Liste links, Kalender der gewählten Art sofort rechts; Umschalter im Panel, ?termin=bisher ---- */
   // Drei Spalten (Standard, Leon 25.11.2026): body.tm3 zusätzlich zu tmK; ?termin=spalten|kompakt|bisher
+  // Vorauswahl (Konzept 10 B, Leon 26.11.2026): ohne ?art= ist keine Terminart gewählt, rechts steht „Wähl eine Terminart“; ?vorwahl=erst = bisher (Erstberatung)
+  const VORWAHL = new URLSearchParams(location.search).get('vorwahl') === 'erst';
   function setAufbau(v, merken) {
     if (!['spalten', 'kompakt', 'bisher'].includes(v)) v = 'spalten';
     const k = v !== 'bisher';
@@ -273,7 +275,7 @@
     B.classList.toggle('tm3', v === 'spalten');
     document.querySelectorAll('[data-tm]').forEach((b) => b.classList.toggle('on', b.dataset.tm === v));
     $('zuAngaben').textContent = v === 'spalten' ? 'Weiter zu deinen Angaben' : 'Weiter';
-    if (k && !st.art) waehleArt('erst', false); // sofort buchbar: erste Art vorgewählt
+    if (k && !st.art && VORWAHL) waehleArt('erst', false); // nur mit ?vorwahl=erst: erste Art vorgewählt
     else if (st.art && !$('sZeit').hidden) { autoTag(); kalender(); zeiten(); }
     klebe();
     if (merken && typeof CV !== 'undefined') CV.merke('termin', v);

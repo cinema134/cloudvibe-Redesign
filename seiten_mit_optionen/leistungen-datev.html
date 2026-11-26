@@ -1004,6 +1004,13 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
  body.ccL .cc-box{padding:16px 18px}
  body.ccL .cc-btns{flex-direction:column}
 }
+/* Logo in der Leiste (Leon 25.11.2026: „wirkt gestaucht“): eigene Größe --lgk (Standard 62 px statt 54 px), Leiste wächst mit,
+   damit oben und unten Luft bleibt. Regler „Größe in der Leiste“ im Panel, gilt auf allen Seiten. */
+:root{--lgk:62px}
+@media(min-width:561px){
+ .kopf .logo img{height:var(--lgk)}
+ .kopf .w{height:max(75px,calc(var(--lgk) + 18px))}
+}
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
 
@@ -1740,6 +1747,13 @@ body.dark .vn2-nachher{background:color-mix(in srgb,var(--blue) 9%,var(--bg));bo
     <div class="stg-z" data-ziel=".st-reihe"><span>Abläufe</span><div class="seg"><button type="button" data-ablauf="pfeil" class="on" title="Pfeilband: Schritte als Pfeile, die zum Ziel kräftiger werden">Pfeile</button><button type="button" data-ablauf="zeitleiste" title="Bisher: Zeitleiste mit Linie und Punkten">Zeitleiste</button></div></div>
     <div class="stg-z" id="stgAz" data-ziel=".bk ul, .fragen"><span>Aufzählungszeichen</span><div class="seg"><button type="button" data-az="P">Punkt</button><button type="button" data-az="H">Haken</button><button type="button" data-az="S">Strich</button><button type="button" data-az="L">Ohne</button></div></div>
    </section>
+   <section class="stg-gr" data-tab="design" data-ziel="#kopf">
+    <h5>Logo (gilt auf allen Seiten)</h5>
+    <label class="sp">Größe <input id="lgs" type="range" min="30" max="220" value="90"></label>
+    <label class="sp">Abstand <input id="lga" type="range" min="0" max="320" value="70"></label>
+    <label class="sp">Größe in der Leiste <input id="lgk" type="range" min="40" max="90" value="62"></label>
+    <div class="stg-z"><span>Logo frei links</span><button type="button" id="lgb" class="tg on" aria-label="Logo frei"></button></div>
+   </section>
   </div>
  </aside>
  <div class="stg-bar">
@@ -1994,7 +2008,7 @@ const CV = (function () {
   // Stehende Welle (Unterseiten-Hero, Kontaktblock). Zeichnet die gewählte Wellenart (Leon 24.11.2026: „an allen Stellen, wo wir Wellen verwenden“):
   // Linien wie bisher, bei Bänder-Varianten die Bänder in der unteren Zone (zone = Anteil der Höhe), bei „mit Linien“ beides.
   const STILL = [];
-  const welleJetzt = () => wert('welle', Q.get('welle'), 'aktuell');
+  const welleJetzt = () => wert('welle', Q.get('welle'), 'origRuhig'); // Standard Bänder „Original ruhig“ (Konzept 25 B, Leon 26.11.2026); ?welle=aktuell = feine Linien
   function stillWelle(cv, p, t = 2.2, zone = 0.42) {
     const f = flaeche(cv);
     const go = () => {
@@ -2315,7 +2329,8 @@ const CV = (function () {
   if (!document.querySelector('.st-reihe')) document.querySelectorAll('[data-ablauf]').forEach((x) => x.closest('.stg-z').remove());
   document.querySelectorAll('[data-ablauf]').forEach((x) => (x.onclick = () => setAblauf(x.dataset.ablauf)));
   setAblauf(wert('ablauf', Q.get('ablauf'), 'pfeil'));
-  setHbt(wert('herobtn', Q.get('herobtn') === 'bisher' ? 'alt' : null, 'neu') === 'alt' ? 'alt' : 'neu');
+  // Standard jetzt „Termin vereinbaren“ (blau) + „Anrufen“ (grün) (Konzept 15 B, Leon 26.11.2026); ?herobtn=reduziert = ein Button mit eigenem Zweck
+  { const q = Q.get('herobtn'); setHbt(wert('herobtn', q === 'bisher' ? 'alt' : q === 'reduziert' ? 'neu' : null, 'alt') === 'neu' ? 'neu' : 'alt'); }
   /* Kopfleiste rechts (Leon 23.11.2026, Variante A): nur "Support ▾" (Fernwartung als erster Punkt) und "Termin vereinbaren"; kein eigener Fernwartung-Button mehr */
   document.querySelectorAll('.kopf .dd').forEach((d) => {
     const t = d.querySelector(':scope>a,:scope>button');
@@ -2888,7 +2903,34 @@ const CV = (function () {
       panelZeile(z);
       z.querySelectorAll('[data-heroan]').forEach((x) => (x.onclick = () => setHero(x.dataset.heroan === 'an', true)));
     }
-    setHero(wert('hero-' + hkSeite, Q.get('hero'), 'an') !== 'aus', false);
+    // Standard je Seite: data-hero-std="aus" am Hero (Leon 26.11.2026: Team, Karriere, News ohne Hero); ?hero=an zeigt ihn
+    setHero(wert('hero-' + hkSeite, Q.get('hero'), heroEl.dataset.heroStd === 'aus' ? 'aus' : 'an') !== 'aus', false);
+  }
+  /* Logo auf allen Seiten (Leon 25.11.2026: „muss auf allen Seiten angezogen werden“): Größe (--lgh), Abstand (--lga),
+     Größe in der Leiste (--lgk) und „Logo frei links“ werden gemerkt (lgs, lga, lgk, logoFrei) und hier überall angewendet.
+     Regler im Panel (Design → Logo); auf der Startseite steuert startseite.js Größe/Abstand/frei mit Zahlenfeldern, hier nur lgk. */
+  {
+    const R = document.documentElement;
+    const VAR = { lgs: '--lgh', lga: '--lga', lgk: '--lgk' };
+    const anwenden = (k, v) => { if (v == null || v === '') R.style.removeProperty(VAR[k]); else R.style.setProperty(VAR[k], v + 'px'); };
+    Object.keys(VAR).forEach((k) => anwenden(k, wert(k, null, null)));
+    if (wert('logoFrei', null, true) === false) B.classList.remove('lgB');
+    const start = !!$('cpy'); // Startseiten-Panel: dort übernimmt startseite.js Größe, Abstand und „frei“
+    Object.keys(VAR).forEach((k) => {
+      const r = $(k);
+      if (!r || (start && k !== 'lgk')) return;
+      const cur = parseFloat(getComputedStyle(R).getPropertyValue(VAR[k]));
+      if (isFinite(cur)) r.value = cur;
+      let n = r.parentNode.querySelector('.v');
+      if (!n) { n = document.createElement('span'); n.className = 'v'; r.parentNode.insertBefore(n, r); }
+      const zeig = () => (n.textContent = Math.round(r.value) + ' px');
+      zeig();
+      r.addEventListener('input', () => { anwenden(k, +r.value); merke(k, +r.value); zeig(); });
+    });
+    if (!start && $('lgb')) {
+      $('lgb').classList.toggle('on', B.classList.contains('lgB'));
+      $('lgb').onclick = (e) => { const an = B.classList.toggle('lgB'); e.currentTarget.classList.toggle('on', an); merke('logoFrei', an); };
+    }
   }
   /* Seiten ausblenden (Leon 25.11.2026): Design → „Seiten“. Ausgeblendete Seiten verschwinden aus Menü, mobilem Menü, Footer und
      aus Links und Buttons im Inhalt (das umgebende li bzw. der Link selbst). Gilt auf allen Seiten (Option seitenAus = Liste der IDs),

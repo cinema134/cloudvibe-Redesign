@@ -990,3 +990,10 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
  body.ccL .cc-box{padding:16px 18px}
  body.ccL .cc-btns{flex-direction:column}
 }
+/* Logo in der Leiste (Leon 25.11.2026: „wirkt gestaucht“): eigene Größe --lgk (Standard 62 px statt 54 px), Leiste wächst mit,
+   damit oben und unten Luft bleibt. Regler „Größe in der Leiste“ im Panel, gilt auf allen Seiten. */
+:root{--lgk:62px}
+@media(min-width:561px){
+ .kopf .logo img{height:var(--lgk)}
+ .kopf .w{height:max(75px,calc(var(--lgk) + 18px))}
+}
