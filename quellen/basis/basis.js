@@ -1293,7 +1293,7 @@ const CV = (function () {
     const NESTER = { a: eierA, b: eierA.replace(/F6D776/g, 'F4B8C8').replace(/9ED9B8/g, 'F6D776') };
     const nest = (eier) => `<svg width="80" height="48" viewBox="0 0 96 58"><path d="M10 34 Q48 22 86 34" fill="none" stroke="#B88A4A" stroke-width="3" stroke-linecap="round"/><path d="M14 32 Q48 24 82 32" fill="none" stroke="#DDBB78" stroke-width="2" stroke-linecap="round"/>${eier}<path d="M6 34 Q8 54 48 55 Q88 54 90 34 Q48 44 6 34 Z" fill="#C99A55"/><path d="M10 38 Q48 49 86 38 M12 44 Q48 53 84 44 M18 50 Q48 56 78 50" fill="none" stroke="#A97B3C" stroke-width="1.4" stroke-linecap="round"/><path d="M14 36 Q30 42 46 40 M50 41 Q68 42 82 36 M22 46 Q38 50 54 48 M58 48 Q70 48 78 45" fill="none" stroke="#E6C88A" stroke-width="1.2" stroke-linecap="round"/><path d="M6 34 Q2 31 0 33 M90 34 Q94 30 96 32 M30 54 Q26 57 22 56 M66 54 Q72 57 76 55" fill="none" stroke="#B88A4A" stroke-width="1.3" stroke-linecap="round"/></svg>`;
     const deko = (s) => {
-      document.querySelectorAll('.sz-deko, .sz-folge').forEach((x) => x.remove());
+      document.querySelectorAll('.sz-deko, .sz-folge, .sz-fuss').forEach((x) => x.remove());
       if (s === 'aus') return;
       const attr = s === 'weihnachten' ? 'szW' : 'szO';
       document.querySelectorAll(s === 'weihnachten' ? '[data-sz-w]' : '[data-sz-o]').forEach((k) => {
@@ -1302,6 +1302,19 @@ const CV = (function () {
         const z = document.createElement('span');
         z.className = 'sz-deko ' + (s === 'weihnachten' ? 'sz-oben' : 'sz-unten'); z.setAttribute('aria-hidden', 'true'); z.innerHTML = html;
         k.appendChild(z);
+      });
+      // Fußzeile „Folge uns“ (Leon 26.11.2026: „darf auch etwas mehr“): Weihnachten drei Kugeln unter LinkedIn, Instagram, YouTube; Ostern Nest rechts neben den Symbolen
+      document.querySelectorAll('.fuss .sozial-r').forEach((reihe) => {
+        const a = [...reihe.querySelectorAll('a')];
+        if (!a.length) return;
+        const span = (cls, html) => { const z = document.createElement('span'); z.className = 'sz-fuss ' + cls; z.setAttribute('aria-hidden', 'true'); z.innerHTML = html; return z; };
+        if (s === 'weihnachten') {
+          [[0, 6, 6.5, '#C0392B', 0.2], [2, 14, 7.5, '#D4A63A', 1.4], [3, 9, 6, '#2E7D5B', 2.3]].forEach(([i, faden, r, farbe, verz]) => {
+            if (a[i]) a[i].appendChild(span('sz-fk', `<svg width="20" height="${faden + 4 + 2 * r}" viewBox="0 0 20 ${faden + 4 + 2 * r}">${kugel(10, faden, r, farbe, farbe === '#D4A63A' ? '#B8923A' : '#C9A94B', verz)}</svg>`));
+          });
+        } else {
+          a[a.length - 1].appendChild(span('sz-fn', nest(NESTER.a).replace('width="80" height="48"', 'width="56" height="34"')));
+        }
       });
       const sh = document.querySelector('.sozial-hero'), yt = sh && sh.querySelector('a[aria-label="YouTube"]');
       if (!yt) return;

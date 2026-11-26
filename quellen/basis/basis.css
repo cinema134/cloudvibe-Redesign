@@ -1119,6 +1119,13 @@ body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
 .sozial-hero .sz-folge svg{display:block;overflow:visible}
 .sozial-hero .sz-kugel svg{width:24px;height:42px}.sozial-hero .sz-hase svg{width:40px;height:56px}
 .sz-kugel{left:8px}
+.fuss .sozial-r a{position:relative}
+.sz-fuss{position:absolute;pointer-events:none;line-height:0}
+.sz-fuss svg{display:block;overflow:visible}
+.fuss .sozial-r .sz-fk svg{width:20px;height:auto}
+.fuss .sozial-r .sz-fn svg{width:56px;height:34px}
+.sz-fk{top:100%;left:50%;margin-left:-10px}
+.sz-fn{left:calc(100% + 6px);bottom:-6px}
 .sz-hase{left:-23px;z-index:-1}
 .sz-pendel{transform-origin:50% 0;transform-box:fill-box;animation:szPendel 4s ease-in-out infinite}
 @keyframes szPendel{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
