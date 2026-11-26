@@ -1032,7 +1032,7 @@ body.kopf-eng .kopf .kt-ticket{padding:0 14px}
 .fk-modus button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
 /* Branchen-Zeichen im Hero (Leon 26.11.2026): Arztpraxen/MVZ, Apotheken, Pflege/SAPV, Kanzleien, Unternehmen.
    Feine Linie in der Bereichsfarbe, sehr blass, rechts im freien Bereich über der Welle, ohne Bewegung. Aus: body.hzAus, ?hz=aus */
-.uhero>.hz{position:absolute;right:max(48px,calc((100% - 1240px)/2 + 56px));top:46%;transform:translateY(-50%);width:clamp(240px,25vw,400px);height:auto;fill:none;stroke:var(--a1,var(--blue));stroke-width:1.6px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.16;pointer-events:none;z-index:0}
+.uhero>.hz{position:absolute;right:max(36px,calc((100% - 1240px)/2 + 8px));top:46%;transform:translateY(-50%);width:clamp(220px,20vw,330px);height:auto;fill:none;stroke:var(--a1,var(--blue));stroke-width:1.6px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.16;pointer-events:none;z-index:0}
 .uhero>.hz *{vector-effect:non-scaling-stroke}
 .uhero>.uhero-in{position:relative;z-index:1}
 body.dark .uhero>.hz{opacity:.2}
@@ -1045,6 +1045,8 @@ body.hz-glas .uhero>.hz{opacity:1;filter:drop-shadow(0 22px 34px rgba(45,108,223
 body.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,currentColor 38%,transparent);stroke-width:1.4px}
 body.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 62%,transparent)}
 body.hz-glas .uhero>.hz .hz-form :not(.f){stroke-width:5px;stroke:color-mix(in srgb,#fff 78%,transparent)}
+/* Schlangenkopf (Leon 26.11.2026): helle Linie wie der Körper, etwas kräftiger, ohne grüne Umrandung; Platz rechts: mehr Abstand zur Kachel, an der Inhaltskante */
+body.hz-glas .uhero>.hz .hz-form .kopf{stroke-width:7px}
 body.dark.hz-glas .uhero>.hz{filter:drop-shadow(0 22px 34px rgba(0,0,0,.45))}
 body.dark.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 7%,transparent)}
 body.dark.hz-glas .uhero>.hz .hz-form :not(.f){stroke:color-mix(in srgb,#fff 14%,transparent)}
@@ -1274,7 +1276,7 @@ body.dark .vn2-nachher{background:color-mix(in srgb,var(--blue) 9%,var(--bg));bo
 <!-- ================= Hero: grauer Hintergrund, Einstieg über den Anlass ================= -->
 <section class="uhero un-hero" id="top">
  <!-- Branchen-Zeichen (Leon 26.11.2026): feines Linien-Wasserzeichen rechts, ohne Bewegung -->
- <svg class="hz" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><rect class="f" x="14" y="72" width="24" height="34" rx="5"/><rect class="f" x="48" y="50" width="24" height="56" rx="5"/><rect class="f" x="82" y="24" width="24" height="82" rx="5"/><path d="M12 114h96"/></svg>
+ <svg class="hz" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><g transform="translate(60 60) scale(1.32) translate(-60 -57)"><path class="f" d="M43 52l17 10v20l-17 10l-17-10V62z"/><path class="f" d="M26 62l17 10l17-10M43 72v20"/><path class="f" d="M77 52l17 10v20l-17 10l-17-10V62z"/><path class="f" d="M60 62l17 10l17-10M77 72v20"/><path class="f" d="M60 22l17 10v20l-17 10l-17-10V32z"/><path class="f" d="M43 32l17 10l17-10M60 42v20"/></g></svg>
  <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): nur Text-Kachel; die Anlass-Kachel doppelte „Typisch Mittelstand“ und steht nur noch im Aufbau „Frei“ -->
  <div class="wrap uhero-in un-hero-in hk hk-solo">
   <div class="un-hero-text hk-karte glas">

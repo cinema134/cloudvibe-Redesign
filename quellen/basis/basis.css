@@ -1018,7 +1018,7 @@ body.kopf-eng .kopf .kt-ticket{padding:0 14px}
 .fk-modus button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
 /* Branchen-Zeichen im Hero (Leon 26.11.2026): Arztpraxen/MVZ, Apotheken, Pflege/SAPV, Kanzleien, Unternehmen.
    Feine Linie in der Bereichsfarbe, sehr blass, rechts im freien Bereich über der Welle, ohne Bewegung. Aus: body.hzAus, ?hz=aus */
-.uhero>.hz{position:absolute;right:max(48px,calc((100% - 1240px)/2 + 56px));top:46%;transform:translateY(-50%);width:clamp(240px,25vw,400px);height:auto;fill:none;stroke:var(--a1,var(--blue));stroke-width:1.6px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.16;pointer-events:none;z-index:0}
+.uhero>.hz{position:absolute;right:max(36px,calc((100% - 1240px)/2 + 8px));top:46%;transform:translateY(-50%);width:clamp(220px,20vw,330px);height:auto;fill:none;stroke:var(--a1,var(--blue));stroke-width:1.6px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.16;pointer-events:none;z-index:0}
 .uhero>.hz *{vector-effect:non-scaling-stroke}
 .uhero>.uhero-in{position:relative;z-index:1}
 body.dark .uhero>.hz{opacity:.2}
@@ -1031,6 +1031,8 @@ body.hz-glas .uhero>.hz{opacity:1;filter:drop-shadow(0 22px 34px rgba(45,108,223
 body.hz-glas .uhero>.hz .hz-form{stroke:color-mix(in srgb,currentColor 38%,transparent);stroke-width:1.4px}
 body.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 62%,transparent)}
 body.hz-glas .uhero>.hz .hz-form :not(.f){stroke-width:5px;stroke:color-mix(in srgb,#fff 78%,transparent)}
+/* Schlangenkopf (Leon 26.11.2026): helle Linie wie der Körper, etwas kräftiger, ohne grüne Umrandung; Platz rechts: mehr Abstand zur Kachel, an der Inhaltskante */
+body.hz-glas .uhero>.hz .hz-form .kopf{stroke-width:7px}
 body.dark.hz-glas .uhero>.hz{filter:drop-shadow(0 22px 34px rgba(0,0,0,.45))}
 body.dark.hz-glas .uhero>.hz .hz-form .f{fill:color-mix(in srgb,#fff 7%,transparent)}
 body.dark.hz-glas .uhero>.hz .hz-form :not(.f){stroke:color-mix(in srgb,#fff 14%,transparent)}
