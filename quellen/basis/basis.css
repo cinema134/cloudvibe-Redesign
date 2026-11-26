@@ -1110,10 +1110,6 @@ body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
 @keyframes szFall{from{transform:translate3d(0,-20px,0)}to{transform:translate3d(36px,105vh,0)}}
 @media(prefers-reduced-motion:reduce),(max-width:700px){.sz-schnee{display:none}}
 /* Kette/Girlande unter dem Menü, Kugeln und Nester auf markierten Karten (data-sz-w / data-sz-o), „Folge uns“ (basis.js kette/deko) */
-.sz-kette{position:absolute;height:40px;pointer-events:none;z-index:5;line-height:0}
-.sz-kette svg{display:block;overflow:visible}
-.sz-draht{stroke:#2F5A3E}.sz-draht2{stroke:#4F7D5E}.sz-draht-f{fill:#2F5A3E}
-body.dark .sz-draht{stroke:#4E7E60}body.dark .sz-draht2{stroke:#6E9C7D}body.dark .sz-draht-f{fill:#4E7E60}
 .sz-deko{position:absolute;pointer-events:none;z-index:2;line-height:0}
 .sz-deko svg{display:block;overflow:visible}
 .sz-oben{top:0;right:var(--sz-r,24px)}
@@ -1121,13 +1117,12 @@ body.dark .sz-draht{stroke:#4E7E60}body.dark .sz-draht2{stroke:#6E9C7D}body.dark
 .hk-z .sz-unten{bottom:auto;top:12px;right:46px} /* Hero-Kacheln: Text sitzt unten, Nest oben zwischen Symbol und Pfeil */
 .sz-folge{position:absolute;pointer-events:none;line-height:0}
 .sozial-hero .sz-folge svg{display:block;overflow:visible}
-.sozial-hero .sz-kugel svg{width:24px;height:48px}.sozial-hero .sz-hase svg{width:40px;height:56px}
-.sz-kugel{left:8px}
+.sozial-hero .sz-kugel svg{width:30px;height:36px}.sozial-hero .sz-hase svg{width:40px;height:56px}
+.sz-kugel{left:-18px}
+.sz-kugel .sz-pendel{transform-origin:18.5px 0;transform-box:view-box}
 .sz-hase{left:-23px;z-index:-1}
 .sz-pendel{transform-origin:50% 0;transform-box:fill-box;animation:szPendel 4s ease-in-out infinite}
 @keyframes szPendel{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
-.sz-glimm{animation:szGlimm 4s ease-in-out infinite}
-@keyframes szGlimm{0%,100%{opacity:1}50%{opacity:.55}}
 .sz-ohr{transform-origin:15px 26px;transform-box:view-box;animation:szOhr 5s ease-in-out infinite}
 @keyframes szOhr{0%,80%,100%{transform:rotate(0)}86%{transform:rotate(-14deg)}92%{transform:rotate(4deg)}}
-@media(prefers-reduced-motion:reduce),(max-width:700px){.sz-pendel,.sz-glimm,.sz-ohr{animation:none}}
+@media(prefers-reduced-motion:reduce),(max-width:700px){.sz-pendel,.sz-ohr{animation:none}}

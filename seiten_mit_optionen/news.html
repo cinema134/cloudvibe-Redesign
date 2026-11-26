@@ -1124,10 +1124,6 @@ body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
 @keyframes szFall{from{transform:translate3d(0,-20px,0)}to{transform:translate3d(36px,105vh,0)}}
 @media(prefers-reduced-motion:reduce),(max-width:700px){.sz-schnee{display:none}}
 /* Kette/Girlande unter dem Menü, Kugeln und Nester auf markierten Karten (data-sz-w / data-sz-o), „Folge uns“ (basis.js kette/deko) */
-.sz-kette{position:absolute;height:40px;pointer-events:none;z-index:5;line-height:0}
-.sz-kette svg{display:block;overflow:visible}
-.sz-draht{stroke:#2F5A3E}.sz-draht2{stroke:#4F7D5E}.sz-draht-f{fill:#2F5A3E}
-body.dark .sz-draht{stroke:#4E7E60}body.dark .sz-draht2{stroke:#6E9C7D}body.dark .sz-draht-f{fill:#4E7E60}
 .sz-deko{position:absolute;pointer-events:none;z-index:2;line-height:0}
 .sz-deko svg{display:block;overflow:visible}
 .sz-oben{top:0;right:var(--sz-r,24px)}
@@ -1135,16 +1131,15 @@ body.dark .sz-draht{stroke:#4E7E60}body.dark .sz-draht2{stroke:#6E9C7D}body.dark
 .hk-z .sz-unten{bottom:auto;top:12px;right:46px} /* Hero-Kacheln: Text sitzt unten, Nest oben zwischen Symbol und Pfeil */
 .sz-folge{position:absolute;pointer-events:none;line-height:0}
 .sozial-hero .sz-folge svg{display:block;overflow:visible}
-.sozial-hero .sz-kugel svg{width:24px;height:48px}.sozial-hero .sz-hase svg{width:40px;height:56px}
-.sz-kugel{left:8px}
+.sozial-hero .sz-kugel svg{width:30px;height:36px}.sozial-hero .sz-hase svg{width:40px;height:56px}
+.sz-kugel{left:-18px}
+.sz-kugel .sz-pendel{transform-origin:18.5px 0;transform-box:view-box}
 .sz-hase{left:-23px;z-index:-1}
 .sz-pendel{transform-origin:50% 0;transform-box:fill-box;animation:szPendel 4s ease-in-out infinite}
 @keyframes szPendel{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
-.sz-glimm{animation:szGlimm 4s ease-in-out infinite}
-@keyframes szGlimm{0%,100%{opacity:1}50%{opacity:.55}}
 .sz-ohr{transform-origin:15px 26px;transform-box:view-box;animation:szOhr 5s ease-in-out infinite}
 @keyframes szOhr{0%,80%,100%{transform:rotate(0)}86%{transform:rotate(-14deg)}92%{transform:rotate(4deg)}}
-@media(prefers-reduced-motion:reduce),(max-width:700px){.sz-pendel,.sz-glimm,.sz-ohr{animation:none}}
+@media(prefers-reduced-motion:reduce),(max-width:700px){.sz-pendel,.sz-ohr{animation:none}}
 
 /* ================= Arztpraxen (Vorlage für Apotheken, Pflege, TI, Praxis-Check) ================= */
 .uhero h1{max-width:860px}
@@ -2981,7 +2976,7 @@ const CV = (function () {
       s.innerHTML = h; hero.appendChild(s);
     };
     /* Deko (Leon 26.11.2026, Skizze assets/saison/skizze_saison_2.js):
-       alle Seiten: Lichterkette bzw. Ostergirlande unter dem Menü (nicht gescrollt, nicht mobil);
+       Lichterkette/Ostergirlande unter dem Menü wieder entfernt (Leon 26.11.2026: „im Design zu viel“), Entwurf bleibt in der Skizze;
        Karten mit data-sz-w="k2|k3" (Weihnachtskugeln oben) bzw. data-sz-o="a|b" (Nest mit Eiern unten), Lage per --sz-r/--sz-nr am Element;
        Startseite „Folge uns“: Kugel am YouTube-Button bzw. Hase, der dahinter hervorlugt. Alles aria-hidden, nichts davon wird gespeichert. */
     const kugel = (x, faden, r, farbe, kappe, verz) => `<g class="sz-pendel" style="animation-delay:-${verz}s"><path d="M${x} 0V${faden}" stroke="#B8BFCB" stroke-width="1"/><rect x="${x - 3}" y="${faden - 1}" width="6" height="4" rx="1" fill="${kappe}"/><circle cx="${x}" cy="${faden + 3 + r}" r="${r}" fill="${farbe}"/><ellipse cx="${x - r * 0.35}" cy="${faden + 3 + r * 0.6}" rx="${r * 0.25}" ry="${r * 0.38}" fill="#fff" opacity=".45"/></g>`;
@@ -2993,47 +2988,6 @@ const CV = (function () {
     const eierA = `${ei(30, 27, 22, 29, '#F6D776', '<path d="M20 27q5-3.5 10 0t10 0" stroke="#E39A3B" stroke-width="2" fill="none"/>', -16)}${ei(66, 28, 22, 29, '#C9B6E8', '<circle cx="61" cy="24" r="2" fill="#fff"/><circle cx="69" cy="30" r="2" fill="#fff"/><circle cx="63" cy="34" r="1.7" fill="#fff"/>', 14)}${ei(48, 23, 24, 32, '#9ED9B8', '<path d="M37 21h22M37 27h22" stroke="#fff" stroke-width="2.2"/>', 0)}`;
     const NESTER = { a: eierA, b: eierA.replace(/F6D776/g, 'F4B8C8').replace(/9ED9B8/g, 'F6D776') };
     const nest = (eier) => `<svg width="80" height="48" viewBox="0 0 96 58"><path d="M10 34 Q48 22 86 34" fill="none" stroke="#B88A4A" stroke-width="3" stroke-linecap="round"/><path d="M14 32 Q48 24 82 32" fill="none" stroke="#DDBB78" stroke-width="2" stroke-linecap="round"/>${eier}<path d="M6 34 Q8 54 48 55 Q88 54 90 34 Q48 44 6 34 Z" fill="#C99A55"/><path d="M10 38 Q48 49 86 38 M12 44 Q48 53 84 44 M18 50 Q48 56 78 50" fill="none" stroke="#A97B3C" stroke-width="1.4" stroke-linecap="round"/><path d="M14 36 Q30 42 46 40 M50 41 Q68 42 82 36 M22 46 Q38 50 54 48 M58 48 Q70 48 78 45" fill="none" stroke="#E6C88A" stroke-width="1.2" stroke-linecap="round"/><path d="M6 34 Q2 31 0 33 M90 34 Q94 30 96 32 M30 54 Q26 57 22 56 M66 54 Q72 57 76 55" fill="none" stroke="#B88A4A" stroke-width="1.3" stroke-linecap="round"/></svg>`;
-    // Kette/Girlande: Bögen unter dem Menü, abwechselnd tiefer, zwei Anhänger je Bogen, an der Kurve geneigt
-    const KETTE_F = [['#FFD45C', '#FFF3C4'], ['#FF5A4A', '#FFC9BF'], ['#3FC489', '#C8F2DC'], ['#4E9BFF', '#CFE3FF'], ['#FF8FC4', '#FFE0EF']];
-    const EIER_G = [['#F6D776', 'zz', '#E39A3B'], ['#C9B6E8', 'pk', '#fff'], ['#9ED9B8', 'st', '#fff'], ['#F4B8C8', 'pk', '#fff'], ['#A9D4F5', 'zz', '#fff']];
-    const eiMuster = (m, c) => m === 'st' ? `<path d="M-4.6 1.5h9.2M-4.8 4.5h9.6" stroke="${c}" stroke-width="1.3"/>` : m === 'pk' ? `<circle cx="-1.8" cy="2" r="1.1" fill="${c}"/><circle cx="2" cy="4" r="1.1" fill="${c}"/><circle cx="-1" cy="7" r=".9" fill="${c}"/><circle cx="2.4" cy="0" r=".8" fill="${c}"/>` : `<path d="M-4.6 3l2.3-2 2.3 2 2.3-2 2.3 2" stroke="${c}" stroke-width="1.2" fill="none" stroke-linejoin="round"/>`;
-    const bluete = (x, f) => `<g transform="translate(${x.toFixed(1)} 0)">${[0, 72, 144, 216, 288].map((a) => `<ellipse cx="0" cy="-2.6" rx="1.8" ry="2.6" fill="${f}" transform="rotate(${a})"/>`).join('')}<circle r="1.4" fill="#F6C343"/></g>`;
-    const kette = (s) => {
-      document.querySelectorAll('.sz-kette').forEach((x) => x.remove());
-      if (s === 'aus') return;
-      const kopf = document.querySelector('.kopf'), w = kopf && kopf.querySelector('.w'), nav = w && w.querySelector('nav.nav-neu');
-      if (!nav || !nav.offsetWidth || innerWidth <= 700 || B.classList.contains('stuck')) return;
-      const kr = kopf.getBoundingClientRect(), r = w.getBoundingClientRect(), nr = nav.getBoundingClientRect();
-      const von = Math.max(r.left + r.height / 2 + 14, nr.left + 4), bis = Math.min(r.right - r.height / 2 - 14, nr.right - 4), L = bis - von;
-      if (L < 120) return;
-      const n = Math.max(1, Math.round(L / 64)), b = L / n, tiefe = (i) => (i % 2 ? 11 : 8);
-      let d = 'M0 0', d2 = 'M0 0', teile = '', defs = '', extra = s === 'ostern' ? bluete(0, '#F4B8C8') : '';
-      if (s === 'weihnachten') KETTE_F.forEach(([f, h], k) => { defs += `<radialGradient id="szG${k}" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="${h}"/><stop offset=".55" stop-color="${f}"/><stop offset="1" stop-color="${f}" stop-opacity=".9"/></radialGradient><radialGradient id="szS${k}"><stop offset="0" stop-color="${f}" stop-opacity=".55"/><stop offset="1" stop-color="${f}" stop-opacity="0"/></radialGradient>`; });
-      for (let i = 0; i < n; i++) {
-        const a = i * b, t = tiefe(i);
-        d += ` Q${(a + b / 2).toFixed(1)} ${t * 2} ${(a + b).toFixed(1)} 0`;
-        d2 += ` Q${(a + b / 2).toFixed(1)} ${t * 2 + 1.6} ${(a + b).toFixed(1)} 0`;
-        if (s === 'ostern') extra += bluete(a + b, i % 2 ? '#F4B8C8' : '#C9B6E8');
-        [0.32, 0.68].forEach((u, j) => {
-          const x = a + b * u, y = 4 * (1 - u) * u * t, nr2 = i * 2 + j, verz = ((nr2 * 0.8) % 4).toFixed(1);
-          if (s === 'weihnachten') {
-            const k = nr2 % KETTE_F.length, wink = (Math.atan2(4 * t * (1 - 2 * u), b) * 180 / Math.PI) * 0.6;
-            teile += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${wink.toFixed(1)})"><circle cx="0" cy="9" r="9" fill="url(#szS${k})" class="sz-glimm" style="animation-delay:-${verz}s"/><rect x="-2.1" y="0" width="4.2" height="3.6" rx=".9" class="sz-draht-f"/><path d="M-2.1 1.3h4.2M-2.1 2.5h4.2" class="sz-draht2" stroke-width=".5"/><path d="M0 3.4 C-3.4 3.4 -3.6 8 -2.6 10.4 C-1.9 12.2 -0.8 13 0 13 C0.8 13 1.9 12.2 2.6 10.4 C3.6 8 3.4 3.4 0 3.4 Z" fill="url(#szG${k})"/><path d="M-1.3 5.2 C-1.9 6.6 -1.9 8.4 -1.3 9.6" stroke="#fff" stroke-width=".9" stroke-linecap="round" fill="none" opacity=".75"/></g>`;
-          } else {
-            const [f, m, c] = EIER_G[nr2 % EIER_G.length], len = j ? 7 : 4;
-            teile += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><path d="M0 0V${len}" stroke="#B88A4A" stroke-width=".8"/><g class="sz-pendel" style="animation-delay:-${verz}s"><g transform="translate(0 ${len + 6.4}) rotate(${j ? 8 : -8})"><path d="M0 -6.2 C-3.9 -6.2 -5.2 0.6 -5.2 2.6 C-5.2 6.4 -2.9 8.4 0 8.4 C2.9 8.4 5.2 6.4 5.2 2.6 C5.2 0.6 3.9 -6.2 0 -6.2 Z" fill="${f}"/>${eiMuster(m, c)}<ellipse cx="-2.2" cy="-1.8" rx="1.1" ry="2" fill="#fff" opacity=".55"/></g></g></g>`;
-          }
-        });
-      }
-      const drahtW = s === 'weihnachten'
-        ? `<path d="${d}" fill="none" class="sz-draht" stroke-width="1.1"/><path d="${d2}" fill="none" class="sz-draht2" stroke-width=".7" stroke-dasharray="3 2.4"/><circle r="1.8" class="sz-draht-f"/><circle cx="${L.toFixed(1)}" r="1.8" class="sz-draht-f"/>`
-        : `<path d="${d}" fill="none" stroke="#B88A4A" stroke-width="1.2"/><path d="${d}" fill="none" stroke="#E2C27D" stroke-width=".6" stroke-dasharray="2 3"/>`;
-      const el = document.createElement('div');
-      el.className = 'sz-kette'; el.setAttribute('aria-hidden', 'true');
-      el.style.cssText = `left:${(von - kr.left).toFixed(1)}px;top:${(r.bottom - kr.top - 1).toFixed(1)}px;width:${L.toFixed(1)}px`;
-      el.innerHTML = `<svg width="${Math.round(L)}" height="40" viewBox="0 0 ${Math.round(L)} 40"><defs>${defs}</defs>${drahtW}${teile}${s === 'ostern' ? extra : ''}</svg>`;
-      kopf.appendChild(el);
-    };
     const deko = (s) => {
       document.querySelectorAll('.sz-deko, .sz-folge').forEach((x) => x.remove());
       if (s === 'aus') return;
@@ -3049,9 +3003,10 @@ const CV = (function () {
       if (!yt) return;
       const z = document.createElement('span');
       z.className = 'sz-folge ' + (s === 'weihnachten' ? 'sz-kugel' : 'sz-hase'); z.setAttribute('aria-hidden', 'true');
-      z.style.top = (yt.offsetTop + (s === 'weihnachten' ? yt.offsetHeight : -22)) + 'px';
+      // Kugel hängt links am Rand des Buttons (nicht darunter: bei breiten Fenstern folgen die Karten direkt, Leon 26.11.2026), ragt höchstens 8 px unter den Button
+      z.style.top = (yt.offsetTop + (s === 'weihnachten' ? Math.round(yt.offsetHeight * 0.35) : -22)) + 'px';
       z.innerHTML = s === 'weihnachten'
-        ? `<svg width="24" height="48" viewBox="0 0 24 48">${kugel(12, 22, 9, '#C0392B', '#D4A63A', 0.4)}</svg>`
+        ? `<svg width="30" height="36" viewBox="0 0 30 36"><g class="sz-pendel"><path d="M18.5 0 L10 15" stroke="#B8BFCB" stroke-width="1"/><rect x="7" y="14" width="6" height="4" rx="1" fill="#D4A63A" transform="rotate(30 10 16)"/><circle cx="8.6" cy="24.5" r="7.5" fill="#C0392B"/><ellipse cx="6" cy="22" rx="1.9" ry="2.8" fill="#fff" opacity=".45"/></g></svg>`
         : `<svg width="40" height="56" viewBox="0 0 40 56"><g class="sz-ohr"><path d="M15 27 C9 18 8 4 12 1 C17 3 19 16 19 26 Z" fill="#B98A5E"/><path d="M15.5 24 C12 17 11.5 7 13 4.5 C15.6 7 17 16 17.2 23 Z" fill="#F4B8C8"/></g><path d="M22 26 C21 16 24 4 29 3 C32 7 29 19 26 27 Z" fill="#A87B52"/><path d="M23.2 23 C23 16 25 8 28 6.5 C29.3 10 27.5 17 25.4 23 Z" fill="#F4B8C8"/><ellipse cx="20" cy="36" rx="13" ry="11.5" fill="#B98A5E"/><circle cx="14.5" cy="34" r="1.7" fill="#2A211A"/><circle cx="14" cy="33.4" r=".5" fill="#fff"/><ellipse cx="10" cy="39" rx="2.2" ry="1.6" fill="#F4A3B6"/><path d="M10 41 L3 40 M10 42 L3.5 43.5" stroke="#E8DCCD" stroke-width=".6" stroke-linecap="round"/><ellipse cx="17" cy="42" rx="4.5" ry="3" fill="#E8DCCD"/></svg>`;
       sh.appendChild(z);
     };
@@ -3085,7 +3040,7 @@ const CV = (function () {
       if (aktiv !== 'aus') B.classList.add('saison-' + aktiv);
       logosSetzen(aktiv);
       schnee(aktiv === 'weihnachten');
-      kette(aktiv); deko(aktiv);
+      deko(aktiv);
       document.querySelectorAll('[data-saison]').forEach((b) => b.classList.toggle('on', b.dataset.saison === v));
       if (merken) merke('saison', v);
     }
@@ -3098,14 +3053,8 @@ const CV = (function () {
       g.querySelectorAll('[data-saison]').forEach((b) => (b.onclick = () => setSaison(b.dataset.saison, true)));
     }
     setSaison(wert('saison', Q.get('saison'), 'auto'), false);
-    // Kette nach jeder Größen- oder Leistenänderung neu legen (Menübreite ändert sich mit kopf-eng, Schriften, gescrollt/oben)
-    let ketteT = 0;
-    const ketteNeu = () => { if (aktiv === 'aus') return; clearTimeout(ketteT); ketteT = setTimeout(() => kette(aktiv), 120); };
-    addEventListener('resize', () => { if (aktiv !== 'aus') { ruecken(); schnee(aktiv === 'weihnachten'); ketteNeu(); } });
-    addEventListener('load', () => { if (aktiv !== 'aus') { ruecken(); ketteNeu(); } });
-    if (document.fonts) document.fonts.ready.then(ketteNeu);
-    let ketteStuck = B.classList.contains('stuck');
-    new MutationObserver(() => { const s = B.classList.contains('stuck'); if (s !== ketteStuck) { ketteStuck = s; if (s) document.querySelectorAll('.sz-kette').forEach((x) => x.remove()); else setTimeout(ketteNeu, 450); } }).observe(B, { attributes: true, attributeFilter: ['class'] });
+    addEventListener('resize', () => { if (aktiv !== 'aus') { ruecken(); schnee(aktiv === 'weihnachten'); } });
+    addEventListener('load', () => { if (aktiv !== 'aus') ruecken(); });
   }
   bereit = true;
 
