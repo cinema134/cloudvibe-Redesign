@@ -1030,6 +1030,14 @@ body.kopf-eng .kopf .kt-ticket{padding:0 14px}
 .fk-modus button.on{background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--text)}
 .fk-modus svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .fk-modus button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+/* Branchen-Zeichen im Hero (Leon 26.11.2026): Arztpraxen/MVZ, Apotheken, Pflege/SAPV, Kanzleien, Unternehmen.
+   Feine Linie in der Bereichsfarbe, sehr blass, rechts im freien Bereich über der Welle, ohne Bewegung. Aus: body.hzAus, ?hz=aus */
+.uhero>.hz{position:absolute;right:max(48px,calc((100% - 1240px)/2 + 56px));top:46%;transform:translateY(-50%);width:clamp(240px,25vw,400px);height:auto;fill:none;stroke:var(--a1,var(--blue));stroke-width:1.6px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.16;pointer-events:none;z-index:0}
+.uhero>.hz *{vector-effect:non-scaling-stroke}
+.uhero>.uhero-in{position:relative;z-index:1}
+body.dark .uhero>.hz{opacity:.2}
+body.hzAus .uhero>.hz{display:none}
+@media(max-width:1100px){.uhero>.hz{display:none}}
 /* Managed Services kurz auf Bereichsseiten (Leon 26.11.2026, basis/managed_kurz.html) */
 .msk-band{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden;border-radius:30px}
 .msk-p{display:block;padding:32px 28px 36px;transition:background .3s}
@@ -1885,6 +1893,15 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-leiste]').forEach((x) => (x.onclick = () => setLeiste(x.dataset.leiste)));
   setLeiste(wert('leiste', Q.get('leiste'), 'mitte'));
+  // Branchen-Zeichen im Hero an/aus (Leon 26.11.2026, Vergleich), ?hz=aus
+  function setHz(v) {
+    v = v === 'aus' ? 'aus' : 'an';
+    B.classList.toggle('hzAus', v === 'aus');
+    document.querySelectorAll('[data-hz]').forEach((x) => x.classList.toggle('on', x.dataset.hz === v));
+    merke('hz', v);
+  }
+  document.querySelectorAll('[data-hz]').forEach((x) => (x.onclick = () => setHz(x.dataset.hz)));
+  setHz(wert('hz', Q.get('hz'), 'an'));
   // Schalter Hell | Dunkel in der Fußzeile (Leon 26.11.2026); gemerkt wie im Panel, gilt auf allen Seiten
   document.querySelectorAll('[data-modus]').forEach((x) => (x.onclick = () => setDark(x.dataset.modus === 'dunkel')));
 

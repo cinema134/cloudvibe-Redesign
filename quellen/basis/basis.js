@@ -52,6 +52,15 @@ const CV = (function () {
   }
   document.querySelectorAll('[data-leiste]').forEach((x) => (x.onclick = () => setLeiste(x.dataset.leiste)));
   setLeiste(wert('leiste', Q.get('leiste'), 'mitte'));
+  // Branchen-Zeichen im Hero an/aus (Leon 26.11.2026, Vergleich), ?hz=aus
+  function setHz(v) {
+    v = v === 'aus' ? 'aus' : 'an';
+    B.classList.toggle('hzAus', v === 'aus');
+    document.querySelectorAll('[data-hz]').forEach((x) => x.classList.toggle('on', x.dataset.hz === v));
+    merke('hz', v);
+  }
+  document.querySelectorAll('[data-hz]').forEach((x) => (x.onclick = () => setHz(x.dataset.hz)));
+  setHz(wert('hz', Q.get('hz'), 'an'));
   // Schalter Hell | Dunkel in der Fußzeile (Leon 26.11.2026); gemerkt wie im Panel, gilt auf allen Seiten
   document.querySelectorAll('[data-modus]').forEach((x) => (x.onclick = () => setDark(x.dataset.modus === 'dunkel')));
 
