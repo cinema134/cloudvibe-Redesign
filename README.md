@@ -55,7 +55,7 @@ Stand 24.11.2026. Dieser Ordner enthält das fertige Design der neuen Website vo
 | Lexikon | `/lexikon` | `seiten/lexikon.html` | `quellen/seiten/lexikon.html` |
 | Impressum, Datenschutz, AGB | `/impressum` | `seiten/impressum.html` | `quellen/seiten/recht.html` |
 
-**Hauptmenü:** Gesundheitswesen ▾ (Übersicht, Arztpraxen, Apotheken, Pflegeeinrichtungen, Telematikinfrastruktur, Praxis-Check) · Kanzleien · Unternehmen · Leistungen ▾ (Managed Services, KI sicher nutzen, DATEV, SelectLine; Klick auf „Leistungen“ führt zu Managed Services) · Über uns ▾ (Übersicht, Team, Referenzen, Karriere, News). Rechts: „Support ▾“ (Fernwartung starten, Ticket eröffnen, Anrufen, Kurzanleitung PDF, Kundenportal) und Haupt-Button „Ticket eröffnen“, links davon „Termin“ als ruhiger Button (Umschalter `?kbtn=termin` = bisher). Kein Menüpunkt und keine Seite Kontakt: Kontakt-Links sind `mailto:`-Links.
+**Hauptmenü:** Gesundheitswesen ▾ (Übersicht, Arztpraxen, Apotheken, Pflegeeinrichtungen, Telematikinfrastruktur, Praxis-Check) · Kanzleien · Unternehmen · Leistungen ▾ (Managed Services, KI sicher nutzen, DATEV, SelectLine; Klick auf „Leistungen“ führt zu Managed Services) · Über uns ▾ (Übersicht, Team, Referenzen, Karriere, News). Rechts: „Support ▾“ (Fernwartung starten, Ticket eröffnen, Anrufen, Kurzanleitung PDF, Kundenportal) „Ticket“ (Wort + Symbol, ruhig) und blauer Button „Fernwartung“ (lädt QuickSupport). „Termin vereinbaren“ und „E-Mail schreiben“ stehen im Hero der Startseite, Bereichs- und Leistungsseiten. Kein Menüpunkt und keine Seite Kontakt: Kontakt-Links sind `mailto:`-Links.
 
 ## Designsystem (verbindlich)
 

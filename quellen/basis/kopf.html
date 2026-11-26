@@ -40,8 +40,7 @@
    </div>
   </nav>
   <div class="kopf-r nav-neu">
-   <!-- Leon 24.11.2026: Termin nicht im Support-Menü, sondern eigener ruhiger Platz in der Leiste, links; Support und Ticket außen nebeneinander (nur bei Haupt-Button Ticket) -->
-   <a class="kt-termin" href="{{LINK:termin}}">Termin</a>
+   <!-- Leon 26.11.2026: rechts Support (Wort + Symbol), Ticket (Wort + Symbol), Fernwartung blau; Termin vereinbaren steht im Hero -->
    <div class="dd dd-rechts">
     <button type="button" class="sup" aria-haspopup="true" aria-label="Support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-2"/></svg><span>Support</span>{{CHEV}}</button>
     <div class="dd-m dd-sup">
@@ -53,9 +52,8 @@
      <a href="{{LINK:login}}"><b>Kundenportal</b><small>Login und Stand deiner Tickets</small></a>
     </div>
    </div>
-   <!-- Hauptbutton auf allen Seiten "Termin vereinbaren" (unter 1420 px nur "Termin"); Fernwartung steht im Support-Menü -->
-   <a class="cta cta-termin" href="{{LINK:termin}}">Termin<span class="tv"> vereinbaren</span></a>
-   <a class="cta cta-ticket" href="{{LINK:ticket}}">Ticket<span class="tv">&nbsp;eröffnen</span></a>
+   <a class="kt-ticket" href="{{LINK:ticket}}" aria-label="Ticket eröffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M10 5v14" stroke-dasharray="2 2.5"/></svg><span>Ticket</span></a>
+   <a class="cta cta-fw" {{FW}}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Fernwartung</a>
   </div>
   <!-- Bisherige Leiste (Vergleich, Umschalter "Kopfleiste") -->
   <nav class="nav-alt" aria-label="Hauptmenü (bisher)">

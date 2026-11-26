@@ -964,6 +964,24 @@ body.heroAus .seitenkopf,body.heroAus .seitenkopf *{visibility:visible!important
 .seitenkopf .sk-t b{font-weight:700;color:var(--blue)}
 /* erster sichtbarer Abschnitt nach dem Seitenkopf (ausgeblendete Module davor zählen nicht) */
 body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(36px,3.6vw,56px)}
+/* Kopfleiste rechts (Leon 26.11.2026): Support ▾ und Ticket ruhig mit Wort + Symbol, Fernwartung als blauer Button (lädt QuickSupport) */
+.kopf .kt-ticket{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 15px 'Mozilla Text',sans-serif;white-space:nowrap;transition:border-color .2s,color .2s}
+.kopf .kt-ticket:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blau-t)}
+.kopf .kt-ticket svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.kopf-r .cta-fw{display:inline-flex;align-items:center;gap:8px}
+.kopf-r .cta-fw svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body.ohneTicket .kopf .kt-ticket{display:none}
+/* steht jetzt in der Leiste, im Support-Menü am Desktop nicht doppelt (im mobilen Menü bleiben beide) */
+.kopf .dd-sup .sup-ticket,.kopf .dd-sup .dd-haupt{display:none}
+/* Wird es eng: erst Abstände kleiner und Fernwartung ohne Symbol, dann Support nur als Symbol; „Ticket“ bleibt als Wort */
+body.kopf-eng .kopf nav{margin:0 8px;gap:16px}
+body.kopf-eng .kopf-r{gap:8px}
+body.kopf-eng .kopf-r .cta-fw svg{display:none}
+body.kopf-eng .kopf .sup{padding:0 12px 0 14px}
+body.kopf-eng .kopf .kt-ticket{padding:0 14px}
+@media(max-width:1180px){.kopf .kt-ticket{height:44px;padding:0 14px}.kopf .kt-ticket span{display:none}}
+@media(max-width:1040px){.kopf .kt-ticket{width:44px;padding:0;justify-content:center}}
+@media(max-width:560px){.kopf .kt-ticket{width:40px;height:40px}.kopf-r .cta-fw svg{display:none}}
 /* Managed Services kurz auf Bereichsseiten (Leon 26.11.2026, basis/managed_kurz.html) */
 .msk-band{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden;border-radius:30px}
 .msk-p{display:block;padding:32px 28px 36px;transition:background .3s}

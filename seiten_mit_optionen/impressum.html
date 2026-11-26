@@ -978,6 +978,24 @@ body.heroAus .seitenkopf,body.heroAus .seitenkopf *{visibility:visible!important
 .seitenkopf .sk-t b{font-weight:700;color:var(--blue)}
 /* erster sichtbarer Abschnitt nach dem Seitenkopf (ausgeblendete Module davor zählen nicht) */
 body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(36px,3.6vw,56px)}
+/* Kopfleiste rechts (Leon 26.11.2026): Support ▾ und Ticket ruhig mit Wort + Symbol, Fernwartung als blauer Button (lädt QuickSupport) */
+.kopf .kt-ticket{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 15px 'Mozilla Text',sans-serif;white-space:nowrap;transition:border-color .2s,color .2s}
+.kopf .kt-ticket:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blau-t)}
+.kopf .kt-ticket svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.kopf-r .cta-fw{display:inline-flex;align-items:center;gap:8px}
+.kopf-r .cta-fw svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body.ohneTicket .kopf .kt-ticket{display:none}
+/* steht jetzt in der Leiste, im Support-Menü am Desktop nicht doppelt (im mobilen Menü bleiben beide) */
+.kopf .dd-sup .sup-ticket,.kopf .dd-sup .dd-haupt{display:none}
+/* Wird es eng: erst Abstände kleiner und Fernwartung ohne Symbol, dann Support nur als Symbol; „Ticket“ bleibt als Wort */
+body.kopf-eng .kopf nav{margin:0 8px;gap:16px}
+body.kopf-eng .kopf-r{gap:8px}
+body.kopf-eng .kopf-r .cta-fw svg{display:none}
+body.kopf-eng .kopf .sup{padding:0 12px 0 14px}
+body.kopf-eng .kopf .kt-ticket{padding:0 14px}
+@media(max-width:1180px){.kopf .kt-ticket{height:44px;padding:0 14px}.kopf .kt-ticket span{display:none}}
+@media(max-width:1040px){.kopf .kt-ticket{width:44px;padding:0;justify-content:center}}
+@media(max-width:560px){.kopf .kt-ticket{width:40px;height:40px}.kopf-r .cta-fw svg{display:none}}
 /* Managed Services kurz auf Bereichsseiten (Leon 26.11.2026, basis/managed_kurz.html) */
 .msk-band{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden;border-radius:30px}
 .msk-p{display:block;padding:32px 28px 36px;transition:background .3s}
@@ -1096,8 +1114,7 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
    </div>
   </nav>
   <div class="kopf-r nav-neu">
-   <!-- Leon 24.11.2026: Termin nicht im Support-Menü, sondern eigener ruhiger Platz in der Leiste, links; Support und Ticket außen nebeneinander (nur bei Haupt-Button Ticket) -->
-   <a class="kt-termin" href="termin.html">Termin</a>
+   <!-- Leon 26.11.2026: rechts Support (Wort + Symbol), Ticket (Wort + Symbol), Fernwartung blau; Termin vereinbaren steht im Hero -->
    <div class="dd dd-rechts">
     <button type="button" class="sup" aria-haspopup="true" aria-label="Support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-2"/></svg><span>Support</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>
     <div class="dd-m dd-sup">
@@ -1109,9 +1126,8 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
      <a href="login.html"><b>Kundenportal</b><small>Login und Stand deiner Tickets</small></a>
     </div>
    </div>
-   <!-- Hauptbutton auf allen Seiten "Termin vereinbaren" (unter 1420 px nur "Termin"); Fernwartung steht im Support-Menü -->
-   <a class="cta cta-termin" href="termin.html">Termin<span class="tv"> vereinbaren</span></a>
-   <a class="cta cta-ticket" href="support-ticket.html">Ticket<span class="tv">&nbsp;eröffnen</span></a>
+   <a class="kt-ticket" href="support-ticket.html" aria-label="Ticket eröffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M10 5v14" stroke-dasharray="2 2.5"/></svg><span>Ticket</span></a>
+   <a class="cta cta-fw" href="#" data-fw="02823 8901434-00"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Fernwartung</a>
   </div>
   <!-- Bisherige Leiste (Vergleich, Umschalter "Kopfleiste") -->
   <nav class="nav-alt" aria-label="Hauptmenü (bisher)">
@@ -1312,7 +1328,6 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
    <section class="stg-gr" data-tab="design">
     <h5>Kopf und Fuß</h5>
     <div class="stg-z" data-ziel="#kopf"><span>Menüleiste</span><div class="seg"><button type="button" data-ks="neu" class="on">Neu</button><button type="button" data-ks="alt">Bisher</button></div></div>
-    <div class="stg-z" data-ziel="#kopf"><span>Blauer Button oben</span><div class="seg"><button type="button" data-kbtn="termin" class="on" title="Termin vereinbaren als blauer Button (Konzept 12 B, entschieden)">Termin</button><button type="button" data-kbtn="ticket" title="Ticket eröffnen als blauer Button, Termin als eigener Button daneben">Ticket</button></div></div>
     <div class="stg-z" data-ziel="footer.fuss"><span>Fußzeile</span><div class="seg"><button type="button" data-fuss="k" class="on" title="Kompakt: alle Angaben in zwei Zeilen (Standard)">Kompakt</button><button type="button" data-fuss="a" title="Spalten: Adressen, Kontakt, Linkzeile">Spalten</button></div></div>
     <div class="stg-z" data-ziel="#cc"><span>Cookie-Abfrage</span><div class="seg"><button type="button" data-cc-art="leiste" class="on" title="Leiste unten über die Inhaltsbreite (Konzept 5 A, entschieden)">Leiste</button><button type="button" data-cc-art="karte" title="Bisher: kleine Karte unten links">Karte</button></div></div>
    </section>

@@ -53,6 +53,8 @@ function ersetze(s, seite, id) {
   return s
     .replaceAll('{{FUSSMAIL}}', fussMail(seite))
     // Fernwartung: direkter Download der QuickSupport-.exe (Leon 24.11.2026, keine eigene Seite); Link in seiten.json "fernwartung"
+    // E-Mail-Button im Hero (Leon 26.11.2026: „im Hero Termin vereinbaren und E-Mail schreiben“), Adresse je Bereich wie im Footer
+    .replaceAll('{{MAILBTN}}', () => { const m = FUSSMAIL[seite.bereich || 'allgemein'][0]; return `<a class="btn zw mail" href="mailto:${m}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="cw"><span class="c1">E-Mail schreiben</span><span class="c2">${m}</span></span></a>`; })
     .replaceAll('{{FW}}', () => `href="${cfg.fernwartung || '#'}"${cfg.fernwartung && cfg.fernwartung !== '#' ? ' download' : ''} data-fw="${cfg.support.replace(/^\+49\s*/, '0')}"`)
     .replace(/\{\{LINK:([a-z_]+)\}\}/g, (_, x) => dateiVon(x))
     .replace(/\{\{ON:([a-z_]+)\}\}/g, (_, x) => (x === (seite.aktiv || id) ? ' class="on"' : ''))
