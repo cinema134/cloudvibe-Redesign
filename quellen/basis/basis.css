@@ -973,6 +973,14 @@ body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:n
 body.ohneTicket .kopf .kt-ticket{display:none}
 /* steht jetzt in der Leiste, im Support-Menü am Desktop nicht doppelt (im mobilen Menü bleiben beide) */
 .kopf .dd-sup .sup-ticket,.kopf .dd-sup .dd-haupt{display:none}
+/* Gescrollte Leiste (Leon 26.11.2026: „Logo verschwindet und wirkt gestaucht“): Logo darf nie schrumpfen (war bei 1920 px 114 statt 139 px breit),
+   Support und Ticket nur noch als Symbol, damit das Logo Platz hat; Fernwartung bleibt mit Wort */
+.kopf .logo{flex:none}
+.kopf .logo img{flex:none;max-width:none}
+body.stuck .kopf .sup span,body.stuck .kopf .kt-ticket span{display:none}
+body.stuck .kopf .sup{padding:0 12px 0 14px}
+body.stuck .kopf .kt-ticket{width:50px;padding:0;justify-content:center}
+@media(max-width:1180px){body.stuck .kopf .kt-ticket{width:44px}}
 /* Wird es eng: erst Abstände kleiner und Fernwartung ohne Symbol, dann Support nur als Symbol; „Ticket“ bleibt als Wort */
 body.kopf-eng .kopf nav{margin:0 8px;gap:16px}
 body.kopf-eng .kopf-r{gap:8px}

@@ -987,6 +987,14 @@ body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:n
 body.ohneTicket .kopf .kt-ticket{display:none}
 /* steht jetzt in der Leiste, im Support-Menü am Desktop nicht doppelt (im mobilen Menü bleiben beide) */
 .kopf .dd-sup .sup-ticket,.kopf .dd-sup .dd-haupt{display:none}
+/* Gescrollte Leiste (Leon 26.11.2026: „Logo verschwindet und wirkt gestaucht“): Logo darf nie schrumpfen (war bei 1920 px 114 statt 139 px breit),
+   Support und Ticket nur noch als Symbol, damit das Logo Platz hat; Fernwartung bleibt mit Wort */
+.kopf .logo{flex:none}
+.kopf .logo img{flex:none;max-width:none}
+body.stuck .kopf .sup span,body.stuck .kopf .kt-ticket span{display:none}
+body.stuck .kopf .sup{padding:0 12px 0 14px}
+body.stuck .kopf .kt-ticket{width:50px;padding:0;justify-content:center}
+@media(max-width:1180px){body.stuck .kopf .kt-ticket{width:44px}}
 /* Wird es eng: erst Abstände kleiner und Fernwartung ohne Symbol, dann Support nur als Symbol; „Ticket“ bleibt als Wort */
 body.kopf-eng .kopf nav{margin:0 8px;gap:16px}
 body.kopf-eng .kopf-r{gap:8px}
@@ -1300,7 +1308,7 @@ body.dark .tk-fm{color:#FF8D76}
   <div class="kopf-r nav-neu">
    <!-- Leon 26.11.2026: rechts Support (Wort + Symbol), Ticket (Wort + Symbol), Fernwartung blau; Termin vereinbaren steht im Hero -->
    <div class="dd dd-rechts">
-    <button type="button" class="sup" aria-haspopup="true" aria-label="Support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-2"/></svg><span>Support</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>
+    <button type="button" class="sup" aria-haspopup="true" aria-label="Support" title="Support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-2"/></svg><span>Support</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>
     <div class="dd-m dd-sup">
      <!-- Fernwartung als erster, hervorgehobener Punkt (Leon 23.11.2026, Variante A); lädt direkt die QuickSupport-.exe, keine eigene Seite (Leon 24.11.2026) -->
      <a class="dd-haupt" href="#" data-fw="02823 8901434-00"><b>Fernwartung starten</b><small>QuickSupport herunterladen und ID nennen</small></a>
@@ -1310,7 +1318,7 @@ body.dark .tk-fm{color:#FF8D76}
      <a href="login.html"><b>Kundenportal</b><small>Login und Stand deiner Tickets</small></a>
     </div>
    </div>
-   <a class="kt-ticket" href="support-ticket.html" aria-label="Ticket eröffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M10 5v14" stroke-dasharray="2 2.5"/></svg><span>Ticket</span></a>
+   <a class="kt-ticket" href="support-ticket.html" aria-label="Ticket eröffnen" title="Ticket eröffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M10 5v14" stroke-dasharray="2 2.5"/></svg><span>Ticket</span></a>
    <a class="cta cta-fw" href="#" data-fw="02823 8901434-00"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Fernwartung</a>
   </div>
   <!-- Bisherige Leiste (Vergleich, Umschalter "Kopfleiste") -->
@@ -1580,7 +1588,8 @@ const CV = (function () {
   // Entschiedene Optionen (Leon 26.11.2026: „Alles was entschieden ist, kann als Option aus den Einstellungen entfernt werden“):
   // fester Wert, gemerkte Werte und Adress-Parameter wirken nicht mehr. Begriff: Konzept 26 A, Menüleiste: 9 C, Aufbau: 13 A,
   // Einstiege: 14 A, Buttons: 15 B, Abläufe: 17 A, Fußzeile: 18 A, Cookie: 5 A, Höhe: Leon 24.11., Haupt-Button: 12 B/Leiste neu, Terminauswahl: 9 A
-  const FEST = { ks: 'neu', heroauf: 'kachel', einstieg: 'raster', herobtn: 'alt', ablauf: 'pfeil', fuss: 'k', ccart: 'leiste', heroh: 'einheitlich', hauptbtn: 'termin', termin: 'spalten' };
+  // Leon 26.11.2026 nachträglich: Welle „Original ruhig“ (Konzept 25 B), Kundenstimmen Liste (Konzept 18 C)
+  const FEST = { welle: 'origRuhig', kst: 'liste', ks: 'neu', heroauf: 'kachel', einstieg: 'raster', herobtn: 'alt', ablauf: 'pfeil', fuss: 'k', ccart: 'leiste', heroh: 'einheitlich', hauptbtn: 'termin', termin: 'spalten' };
   const wert = (k, url, std) => (k in FEST ? FEST[k] : url != null && url !== '' ? url : MEIN[k] != null ? MEIN[k] : TEAM[k] != null ? TEAM[k] : std);
   const merke = (k, v) => { if (!bereit) return; MEIN[k] = v; try { localStorage.setItem(OKEY, JSON.stringify(MEIN)); } catch (e) {} };
 
