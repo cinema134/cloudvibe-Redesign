@@ -1295,6 +1295,13 @@ body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));borde
  .mgu-z{grid-template-columns:1fr}
  .mgu-fazit{text-align:left}
 }
+/* Leon 26.11.2026: Hero muss wie alle anderen genau einen Bildschirm füllen (war 942 statt 900 px bei 1440 × 900): vier Sprungmarken in einer Reihe statt 2 × 2 */
+@media(min-width:701px){
+ body.hkAn .hk-karte .hsp{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0 18px!important;margin-top:30px}
+ body.hkAn .hk-karte .hsp a{padding-right:22px}
+ body.hkAn .hk-karte .hsp b{font-size:16px}
+ body.hkAn .hk-karte .hsp span{font-size:13.5px}
+}
 @media(max-width:1000px){
  .mg-raster{grid-template-columns:1fr 1fr}
  .mg-sla-in{grid-template-columns:1fr}

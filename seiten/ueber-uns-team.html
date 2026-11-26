@@ -1328,6 +1328,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
 .th-fakten b{font:700 15px 'Mozilla Text',sans-serif;color:var(--text)}
 .th-fakten li>span{font-size:14px;color:var(--muted)}
 .uhero .th-fakten+.btns.nur-alt+.tel-zeile{margin-top:26px}
+.team-satz{max-width:620px;margin-bottom:clamp(28px,3vw,40px)}
 /* Name und Rolle unter jeder Karte (Leon 26.11.2026: Beispielnamen und Positionen statt Balken) */
 .team-raster .pt figcaption{gap:3px;margin-top:14px;padding:0 12px} /* eingerückt, weil die Karte 22 px Radius hat (Leon 26.11.2026: Namen wirkten neben der Rundung nicht sauber platziert) */
 .team-raster .pt figcaption b{font:700 16.5px/1.3 Comfortaa,sans-serif;letter-spacing:-.01em;color:var(--text)}
@@ -1437,15 +1438,8 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
 <!-- ================= Team-Raster (7 Personen) ================= -->
 <section class="ab team-raster" id="team">
  <div class="wrap">
-  <div class="kopfzeile">
-   <div>
-    <div class="eb">Unser Team</div>
-    <h2>Sieben Menschen, <b>ein Team</b>.</h2>
-   </div>
-   <div class="rechts">
-    <p class="leise">Technik, Support und Beratung in einem Büro. Kurze Wege, damit Anliegen nicht hin und her geschoben werden.</p>
-   </div>
-  </div>
+  <!-- Leon 26.11.2026: nur eine Überschrift; „Die Menschen hinter cloudvibe.“ (Seitentitel) bleibt, „Unser Team / Sieben Menschen, ein Team.“ entfällt -->
+  <p class="leise team-satz">Technik, Support und Beratung in einem Büro. Kurze Wege, damit Anliegen nicht hin und her geschoben werden.</p>
   <div class="portraits">
    <!-- Leon 26.11.2026: Mitarbeiterfoto raus (bisher erstes Bild team/ansprechpartner_gesundheitswesen.webp), alle Karten Platzhalter.
         Namen außer der Geschäftsführung sind Beispiele, Rollen als Vorschlag; echte Namen, Rollen, Fotos und Einwilligungen liefert Leon. -->
