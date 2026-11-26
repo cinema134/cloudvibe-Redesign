@@ -567,6 +567,16 @@ body.dark .cc-btn:hover{color:#fff}
 .cc-z b{display:block;font-size:15px}
 .cc-z small{display:block;font-size:13.5px;line-height:1.45;color:var(--muted)}
 .cc-z input{width:18px;height:18px;accent-color:var(--blue);flex:none}
+/* Checkbox rund mit Haken (Leon 26.11.2026; rund mit Punkt verworfen, wirkt wie ein Auswahlknopf für nur eine Option):
+   Kreis 20 px, Rand gedämpft, gewählt blaue Fläche mit weißem Haken, Fokus-Ring. Gilt für .check (Kontakt, Termin, Ticket, Login) und die Cookie-Leiste. */
+.check input[type=checkbox],.cc-z input[type=checkbox]{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:0;flex:none;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--muted) 75%,transparent);background:var(--bg);display:grid;place-content:center;cursor:pointer;transition:background .15s,border-color .15s}
+.check input[type=checkbox]{margin-top:2px}
+.check input[type=checkbox]::before,.cc-z input[type=checkbox]::before{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .15s}
+.check input[type=checkbox]:checked,.cc-z input[type=checkbox]:checked{background:var(--blue);border-color:var(--blue)}
+.check input[type=checkbox]:checked::before,.cc-z input[type=checkbox]:checked::before{transform:translateY(-1px) rotate(-45deg) scale(1)}
+.check input[type=checkbox]:hover:not(:disabled),.cc-z input[type=checkbox]:hover:not(:disabled){border-color:var(--blue)}
+.check input[type=checkbox]:focus-visible,.cc-z input[type=checkbox]:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 35%,transparent)}
+.check input[type=checkbox]:disabled,.cc-z input[type=checkbox]:disabled{cursor:default;opacity:.55}
 .cc-einst .cc-btns{margin-top:16px}
 @media(max-width:560px){.cc{left:10px;right:10px;bottom:10px;width:auto}.cc-box{padding:20px}}
 /* ---------- Baustein Newsletter-Anmeldung (Karte .nlb, Zeile .nlz) ---------- */
