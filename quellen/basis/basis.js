@@ -1244,6 +1244,86 @@ const CV = (function () {
     const qs = Q.get('seitenaus');
     setSeitenAus(qs != null ? qs.split(',').filter(Boolean) : wert('seitenAus', null, []), false);
   }
+
+  /* ---- Saison (Leon 26.11.2026): Weihnachten und Ostern dezent ----
+     Automatik nach Datum: Weihnachten vom 1. Advent bis 6. Januar, Ostern von 7 Tagen vor Ostersonntag bis Ostermontag.
+     Logo: eigene Dateien (assets/saison, Daten im <template id="cv-saison-logos"> aus kopf.html), deckungsgleich und unten bündig
+     über dem Original, damit der Schriftzug in jeder Größe an seiner Stelle bleibt; ragt die Deko über den Bildschirmrand, rückt das Logo nach unten.
+     Weihnachten zusätzlich leichter Schnee im Startseiten-Hero (nicht mobil, nicht bei reduzierter Bewegung).
+     Design → „Saison“ Automatisch | Aus | Weihnachten | Ostern, Option saison, ?saison=weihnachten|ostern|aus|auto. */
+  {
+    const T = $('cv-saison-logos');
+    const LOGO = { weihnachten: { f: 764 / 694 }, ostern: { f: 919 / 694 } }; // Höhe der Saisondatei / Höhe des Originals (oben Platz für Mütze bzw. Ohren)
+    const tag = 864e5;
+    const ostersonntag = (j) => { // Gauß/Meeus, gregorianisch
+      const a = j % 19, b = Math.floor(j / 100), c = j % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3);
+      const h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451);
+      const mon = Math.floor((h + l - 7 * m + 114) / 31), t = ((h + l - 7 * m + 114) % 31) + 1;
+      return new Date(j, mon - 1, t);
+    };
+    const ersterAdvent = (j) => { const w = new Date(j, 11, 25), d = w.getDay(); return new Date(j, 11, 25 - (d === 0 ? 7 : d) - 21); };
+    const automatisch = (jetzt = new Date()) => {
+      const t = new Date(jetzt.getFullYear(), jetzt.getMonth(), jetzt.getDate()), j = t.getFullYear();
+      if (t >= ersterAdvent(j) || t <= new Date(j, 0, 6)) return 'weihnachten';
+      const o = ostersonntag(j);
+      if (t >= new Date(o - 7 * tag) && t <= new Date(+o + tag)) return 'ostern';
+      return 'aus';
+    };
+    const schnee = (an) => {
+      const hero = document.querySelector('main>.hero');
+      const alt = document.querySelector('.sz-schnee');
+      if (!an || !hero || innerWidth <= 700 || matchMedia('(prefers-reduced-motion: reduce)').matches) { if (alt) alt.remove(); return; }
+      if (alt) return;
+      const s = document.createElement('div'); s.className = 'sz-schnee'; s.setAttribute('aria-hidden', 'true');
+      let h = '';
+      for (let i = 0; i < 26; i++) { const z = 2 + ((i * 37) % 4); h += `<i style="left:${(i * 53) % 100}%;width:${z}px;height:${z}px;animation-duration:${16 + ((i * 7) % 12)}s;animation-delay:-${(i * 3.7) % 26}s;opacity:${0.55 + ((i * 7) % 4) / 10}"></i>`; }
+      s.innerHTML = h; hero.appendChild(s);
+    };
+    let aktiv = 'aus';
+    const logosSetzen = (s) => {
+      document.querySelectorAll('.sz-logo').forEach((x) => x.remove());
+      document.querySelectorAll('.lgOut, .kopf .logo').forEach((a) => a.style.removeProperty('--sz-dy'));
+      if (s === 'aus' || !T || !T.dataset[s]) return;
+      document.querySelectorAll('.lgOut img.lg, .kopf .logo img.lg').forEach((img) => {
+        const z = document.createElement('img');
+        z.className = 'sz-logo'; z.src = T.dataset[s]; z.alt = ''; z.setAttribute('aria-hidden', 'true');
+        z.style.setProperty('--sz-f', LOGO[s].f);
+        img.after(z);
+      });
+      ruecken();
+    };
+    // ragt die Deko über den oberen Rand, das Logo so weit nach unten setzen, dass sie ganz sichtbar ist
+    const ruecken = () => {
+      document.querySelectorAll('.lgOut, .kopf .logo').forEach((a) => {
+        a.style.removeProperty('--sz-dy');
+        const z = a.querySelector('.sz-logo'); if (!z || !z.offsetHeight) return;
+        if (scrollY > 0 && a.classList.contains('lgOut')) return; // freies Logo nur oben auf der Seite sichtbar
+        const oben = z.getBoundingClientRect().top;
+        if (oben < 2) a.style.setProperty('--sz-dy', Math.ceil(2 - oben) + 'px');
+      });
+    };
+    function setSaison(v, merken) {
+      const s = v === 'auto' ? automatisch() : v;
+      aktiv = ['weihnachten', 'ostern'].includes(s) ? s : 'aus';
+      B.classList.remove('saison-weihnachten', 'saison-ostern');
+      if (aktiv !== 'aus') B.classList.add('saison-' + aktiv);
+      logosSetzen(aktiv);
+      schnee(aktiv === 'weihnachten');
+      document.querySelectorAll('[data-saison]').forEach((b) => b.classList.toggle('on', b.dataset.saison === v));
+      if (merken) merke('saison', v);
+    }
+    if (inhSp) {
+      const g = document.createElement('section');
+      g.className = 'stg-gr'; g.dataset.tab = 'design'; g.dataset.ziel = '#kopf';
+      g.innerHTML = '<h5>Saison</h5><div class="stg-tipp">Automatisch: Weihnachten vom 1. Advent bis 6. Januar, Ostern eine Woche vor Ostersonntag bis Ostermontag.</div>' +
+        '<div class="stg-z"><span>Saison</span><div class="seg"><button type="button" data-saison="auto">Automatisch</button><button type="button" data-saison="aus">Aus</button><button type="button" data-saison="weihnachten">Weihnachten</button><button type="button" data-saison="ostern">Ostern</button></div></div>';
+      inhSp.appendChild(g);
+      g.querySelectorAll('[data-saison]').forEach((b) => (b.onclick = () => setSaison(b.dataset.saison, true)));
+    }
+    setSaison(wert('saison', Q.get('saison'), 'auto'), false);
+    addEventListener('resize', () => { if (aktiv !== 'aus') { ruecken(); schnee(aktiv === 'weihnachten'); } });
+    addEventListener('load', () => { if (aktiv !== 'aus') ruecken(); });
+  }
   bereit = true;
 
   return { $, Q, panelZeile, meineSenden, htmlNeu, stickyEinmal, setEdit, setBegriff, setDark, zeichne, flaeche, stillWelle, wellenNeu, baender, BAENDER, wert, merke, LOKAL, onDark: (f) => hoerer.dark.push(f),

@@ -1,0 +1,82 @@
+<!DOCTYPE html><meta charset="utf-8"><body style="margin:0;background:#eee">
+<script>
+// Großer Wolkenbogen im Original (1496 × 694): Kreis durch (283,128), (400,15), (520,72) → Mitte (412,144.5), Radius 130 (Linienmitte)
+const C = { x: 412, y: 144.5 };
+const pt = (r, deg) => [C.x + r * Math.cos(deg * Math.PI / 180), C.y - r * Math.sin(deg * Math.PI / 180)];
+const aL = 187.3, aR = 34; // Winkel (y nach oben) am linken Ansatz und am rechten Tal des Bogens; aR als 360-326
+function svgMuetze(P) {
+  // Krempe quer über den oberen Teil des Bogens (wie auf einem Kopf), rotes Teil deckt die Kuppe und fällt nach links
+  const y = (v) => v + P;
+  // Leon 26.11.2026: Krempe links bis in die Spitze, an der der erste Bogen beginnt (ca. 283/128), rechts bis ins Tal (ca. 520/72)
+  return `
+  <!-- Haube: deckt den ganzen Bogen bis zur linken Spitze (Leon: „da scheint noch grün durch“) -->
+  <!-- Zipfel wieder als Teil der Haube mit dunkler Falte (Leon 26.11.2026: „der alte Zipfel war besser“); Haube reicht links bis zur Spitze, damit kein Grün durchscheint -->
+  <path d="M534,${y(70)} C544,${y(-6)} 500,${y(-54)} 426,${y(-56)} C352,${y(-58)} 284,${y(-24)} 258,${y(38)} C251,${y(56)} 247,${y(78)} 246,${y(98)} C258,${y(92)} 266,${y(104)} 266,${y(134)} L300,${y(136)} Z" fill="#C0392B"/>
+  <path d="M330,${y(-26)} C372,${y(-46)} 452,${y(-46)} 502,${y(-14)}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="9" stroke-linecap="round"/>
+  <path d="M266,${y(44)} C272,${y(60)} 278,${y(80)} 280,${y(104)}" fill="none" stroke="#8E2A20" stroke-opacity=".3" stroke-width="6" stroke-linecap="round"/>
+  <path d="M283,${y(127)} Q392,${y(120)} 528,${y(70)}" fill="none" stroke="#DCE3EE" stroke-width="38" stroke-linecap="round"/>
+  <path d="M283,${y(127)} Q392,${y(120)} 528,${y(70)}" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="244" cy="${y(104)}" r="24" fill="#fff" stroke="#DCE3EE" stroke-width="3"/>`;
+}
+function ohr(bx, by, tx, ty, w) {
+  // Ohr von Basis (bx,by) zur Spitze (tx,ty), Breite w; Innenfläche rosa
+  const dx = tx - bx, dy = ty - by, L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L;
+  const p = (f, s) => [bx + dx * f + nx * s, by + dy * f + ny * s];
+  const a = p(0, -w / 2), b = p(0, w / 2), c1 = p(.55, -w * .62), c2 = p(.55, w * .62), t = p(1, 0);
+  const i1 = p(.08, -w * .22), i2 = p(.08, w * .22), j1 = p(.55, -w * .34), j2 = p(.55, w * .34), it = p(.9, 0);
+  // runde Spitzen (Leon 26.11.2026: „nicht ganz so spitz“)
+  const aussen = `M${a} C${c1} ${p(.9, -w * .46)} ${p(.97, -w * .24)} Q${p(1.04, 0)} ${p(.97, w * .24)} C${p(.9, w * .46)} ${c2} ${b} Z`;
+  const innen = `M${i1} C${j1} ${p(.8, -w * .26)} ${p(.86, -w * .12)} Q${p(.91, 0)} ${p(.86, w * .12)} C${p(.8, w * .26)} ${j2} ${i2} Z`;
+  // Leon 26.11.2026: braun mit pinker Innenseite statt weiß
+  return `<path d="${aussen}" fill="#A9774F" stroke="#7E5434" stroke-width="5" stroke-linejoin="round"/><path d="${innen}" fill="#F2AFC2"/>`;
+}
+function svgOhren(P) {
+  const y = (v) => v + P;
+  const [b1x, b1y] = pt(118, 104), [b2x, b2y] = pt(118, 76);
+  // nur außerhalb der Wolke sichtbar (Leon: „scheinen noch leicht durch“): Maske schneidet alles innerhalb des Bogens weg
+  return `<defs><mask id="aussen" maskUnits="userSpaceOnUse" x="-100" y="-500" width="1700" height="1600"><rect x="-100" y="-500" width="1700" height="1600" fill="#fff"/><circle cx="${C.x}" cy="${y(C.y)}" r="130" fill="#000"/></mask></defs>
+  <g mask="url(#aussen)">${ohr(b1x, y(b1y), b1x - 95, y(b1y - 210), 64) + ohr(b2x, y(b2y), b2x - 20, y(b2y - 225), 64)}</g>`;
+}
+// Gesicht im freien Feld des großen Bogens (über der ersten Ziffernreihe): Nase mittig, Augen links/rechts davon
+function svgNase(P) {
+  const y = (v) => v + P;
+  // Leon 26.11.2026: nur Nase, etwa so groß wie eine Ziffer (Ziffern ca. 28 × 44 px im Original)
+  return `<path d="M389,${y(102)} Q412,${y(94)} 435,${y(102)} Q441,${y(111)} 425,${y(128)} Q412,${y(141)} 399,${y(128)} Q383,${y(111)} 389,${y(102)} Z" fill="#E88FA8"/>`;
+}
+function svgAugen(P) {
+  const y = (v) => v + P;
+  return [366, 458].map((x) => `<ellipse cx="${x}" cy="${y(92)}" rx="10" ry="13" fill="#2A3550"/><circle cx="${x - 3}" cy="${y(87)}" r="3.4" fill="#fff"/>`).join('');
+}
+// Vektorfassung (Leon 26.11.2026: cloudvibe_logo.svg bereitgestellt): Deko als eigene Gruppen direkt ins Original-SVG, Zeichenfläche nach oben erweitert
+window.vektor = (art, src) => {
+  const oben = art === 'weihnachten' ? 70 : 225;
+  let s = src.replace(/width="1496" height="694" viewBox="0 0 1496 694"/, `width="1496" height="${694 + oben}" viewBox="0 -${oben} 1496 ${694 + oben}"`);
+  if (art === 'weihnachten') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetze(0)}</g>\n</svg>\n`);
+  else {
+    s = s.replace('<g id="cloud"', `<g id="saison-ohren">${svgOhren(0)}</g>\n<g id="cloud"`);
+    s = s.replace(/<\/svg>\s*$/, `<g id="saison-nase">${svgNase(0)}</g>\n</svg>\n`);
+  }
+  return s;
+};
+window.png = async (svg, breite) => {
+  const s = new Image(); s.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg))); await s.decode();
+  const W = breite, H = Math.round(s.height * breite / s.width);
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d'); g.imageSmoothingQuality = 'high'; g.drawImage(s, 0, 0, W, H);
+  return { url: cv.toDataURL('image/png'), W, H };
+};
+window.bauen = async (art) => {
+  const img = new Image(); img.src = 'LOGO'; await img.decode();
+  const P = art === 'weihnachten' ? 70 : 225;
+  const W = img.width, H = img.height + P;
+  const deko = art === 'weihnachten' ? svgMuetze(P) : svgOhren(P);
+  const gesicht = art === 'ostern_nase' ? svgNase(P) : art === 'ostern_gesicht' ? svgAugen(P) + svgNase(P) : '';
+  // Ohren hinter dem Logo (wachsen aus dem Kopf), Mütze und Gesicht über dem Logo
+  const vorn = art === 'weihnachten';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${vorn ? '' : deko}<image href="${img.src}" x="0" y="${P}" width="${img.width}" height="${img.height}"/>${vorn ? deko : ''}${gesicht}</svg>`;
+  const s = new Image(); s.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg))); await s.decode();
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  cv.getContext('2d').drawImage(s, 0, 0);
+  return { url: cv.toDataURL('image/png'), W, H, P };
+};
+</script>

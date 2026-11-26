@@ -94,6 +94,9 @@ function ersetze(s, seite, id) {
     .replaceAll('{{SUPPORT_TEL}}', cfg.support.replace(/[^\d+]/g, ''))
     .replaceAll('{{SALES}}', cfg.sales.replace(/^\+49\s*/, '0'))
     .replaceAll('{{SUPPORT}}', cfg.support.replace(/^\+49\s*/, '0'))
+    // Saison-Logos (Leon 26.11.2026), siehe basis.js „Saison“
+    .replaceAll('{{LOGO_WEIHNACHTEN}}', () => 'data:image/png;base64,' + fs.readFileSync(path.join(Q, 'assets', 'saison', 'logo_weihnachten_web.png')).toString('base64'))
+    .replaceAll('{{LOGO_OSTERN}}', () => 'data:image/png;base64,' + fs.readFileSync(path.join(Q, 'assets', 'saison', 'logo_ostern_web.png')).toString('base64'))
     .replaceAll('{{LOGO}}', lies('assets', 'logo.txt'))
     .replaceAll('{{VERSION}}', 'v' + String(seite.version).padStart(2, '0'))
     // [[Platzhalter: ...]] wird sichtbar markiert

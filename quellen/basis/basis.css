@@ -1098,3 +1098,14 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
  .kopf .logo img{height:var(--lgk)}
  .kopf .w{height:max(75px,calc(var(--lgk) + 18px))}
 }
+/* ---- Saison (Leon 26.11.2026): Logo mit Mütze bzw. Ohren deckungsgleich und unten bündig über dem Original (basis.js setSaison);
+   ragt die Deko über den oberen Rand, schiebt basis.js das Logo per --sz-dy nach unten. Schnee nur im Startseiten-Hero. ---- */
+body:is(.saison-weihnachten,.saison-ostern) :is(.lgOut,.kopf .logo){line-height:0;translate:0 var(--sz-dy,0px)}
+body:is(.saison-weihnachten,.saison-ostern) .kopf .logo{position:relative}
+body:is(.saison-weihnachten,.saison-ostern) :is(.lgOut,.kopf .logo) img.lg{display:block;visibility:hidden}
+:is(.lgOut,.kopf .logo) img.sz-logo{position:absolute;left:0;bottom:0;height:calc(100% * var(--sz-f,1))!important;width:auto;max-width:none;pointer-events:none} /* !important: .lgOut img / .kopf .logo img setzen sonst die Höhe des Originals */
+body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
+.sz-schnee{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.sz-schnee i{position:absolute;top:-12px;border-radius:50%;background:#fff;box-shadow:0 0 0 .6px rgba(45,108,223,.22);animation:szFall linear infinite}
+@keyframes szFall{from{transform:translate3d(0,-20px,0)}to{transform:translate3d(36px,105vh,0)}}
+@media(prefers-reduced-motion:reduce),(max-width:700px){.sz-schnee{display:none}}
