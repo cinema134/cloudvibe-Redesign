@@ -25,10 +25,6 @@
         {
           "id": "ti",
           "t": "Telematikinfrastruktur"
-        },
-        {
-          "id": "praxischeck",
-          "t": "Praxis-Check IT-Sicherheit"
         }
       ]
     },
@@ -40,6 +36,11 @@
     {
       "id": "unternehmen",
       "t": "Unternehmen",
+      "kids": []
+    },
+    {
+      "id": "sicherheitscheck",
+      "t": "Sicherheits-Check",
       "kids": []
     },
     {

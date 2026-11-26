@@ -1326,7 +1326,7 @@ body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));borde
      <a href="gesundheitswesen-apotheken.html"><b>Apotheken</b><small>IT und TI im Apothekenalltag</small></a>
      <a href="gesundheitswesen-pflegeeinrichtungen.html"><b>Pflege und SAPV</b><small>Im Haus und unterwegs</small></a>
      <a href="gesundheitswesen-telematikinfrastruktur.html"><b>Telematikinfrastruktur</b><small>Anbindung und Betrieb mit Telekonnekt</small></a>
-     <a href="gesundheitswesen-praxis-check.html"><b>Praxis-Check IT-Sicherheit</b><small>Unverbindlicher erster Schritt</small></a>
+     <a href="sicherheits-check.html?branche=gesundheit"><b>Praxis-Check IT-Sicherheit</b><small>Selbsttest oder Prüfung durch uns</small></a>
     </div>
    </div>
    <a href="kanzleien.html">Kanzleien</a>
@@ -1386,7 +1386,8 @@ body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));borde
 <!-- bisher: H1 „IT, die einfach läuft.“ -->
 <section class="uhero" id="top">
  <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel, rechts die vier Bereiche; „Bisher“ per Umschalter -->
- <div class="wrap uhero-in hk">
+ <!-- Leon 26.11.2026: Status-Karte rechts raus („wirkt sehr KI-gebaut“), Hero nur noch Text-Kachel (hk-solo) -->
+ <div class="wrap uhero-in hk hk-solo">
   <div class="hk-karte glas">
   <nav class="krumen" aria-label="Pfad"><a href="index.html">Startseite</a><span>/</span>Managed Services</nav>
   <h1>Wir betreiben deine IT, <b>nicht&nbsp;nur&nbsp;im&nbsp;Notfall</b>.</h1>
@@ -1403,17 +1404,7 @@ body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));borde
    <a href="#security"><b>Security</b><span>Richtlinien und Schulung</span><svg class="pf" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </nav>
   </div>
-  <!-- Leon 25.11.2026: rechts als Bild, was „betreiben“ heißt (Status-Ansicht, Beispiel, ohne Zahlen und Uhrzeiten); die vier Bereiche stehen als leise Sprungmarken in der Text-Kachel -->
-  <div class="hk-rechts glas hk-status" role="img" aria-label="Beispielhafte Statusansicht: Datensicherung geprüft, Updates eingespielt, Überwachung aktiv, Firewall aktuell">
-   <div class="hk-inhalt">
-    <p class="hs-kopf"><b>Deine IT heute</b><span>Beispiel</span></p>
-    <div class="hs-z"><span class="hs-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></span><b>Datensicherung</b><em>geprüft</em></div>
-    <div class="hs-z"><span class="hs-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg></span><b>Updates</b><em>eingespielt</em></div>
-    <div class="hs-z"><span class="hs-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></span><b>Überwachung</b><em>aktiv</em></div>
-    <div class="hs-z"><span class="hs-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/></svg></span><b>Firewall</b><em>aktuell</em></div>
-    <p class="hs-fuss">Läuft im Hintergrund. Du bekommst den Bericht, nicht die Arbeit.</p>
-   </div>
-  </div>
+  <!-- entfernt (Leon 26.11.2026): Status-Karte „Deine IT heute“ (Datensicherung geprüft, Updates eingespielt, Überwachung aktiv, Firewall aktuell; Fuß „Läuft im Hintergrund. Du bekommst den Bericht, nicht die Arbeit.“) -->
  </div>
 </section>
 
@@ -1667,7 +1658,7 @@ body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));borde
    <span class="nlb-chip"><input type="checkbox" value="kanzlei" aria-label="Kanzleien"><span>Kanzleien</span></span>
    <span class="nlb-chip"><input type="checkbox" value="unternehmen" aria-label="Unternehmen"><span>Unternehmen</span></span>
   </fieldset>
-  <div class="nlb-feld"><label class="sr" for="nlb-mail-12">E-Mail-Adresse</label><input id="nlb-mail-12" type="email" placeholder="deine@e-mail.de" autocomplete="email"><button class="btn" type="submit">Anmelden</button></div>
+  <div class="nlb-feld"><label class="sr" for="nlb-mail-11">E-Mail-Adresse</label><input id="nlb-mail-11" type="email" placeholder="deine@e-mail.de" autocomplete="email"><button class="btn" type="submit">Anmelden</button></div>
   <small class="nlb-fm">Bitte eine gültige E-Mail-Adresse eingeben.</small>
   <small class="nlb-hw">Ohne Auswahl bekommst du den allgemeinen Teil. Du bekommst zuerst eine E-Mail mit Bestätigungslink. Mehr in der <a class="link-t" href="impressum.html#datenschutz">Datenschutzerklärung</a>.</small>
  </div>
@@ -1806,7 +1797,7 @@ body.dark .mgu-plan{background:color-mix(in srgb,var(--blue) 9%,var(--bg));borde
   </div>
  </div>
 </div>
-<script>const BEGRIFF_START="Gesundheitswesen";const CV_SEITE_ID="managed";const CV_SEITEN=[{"id":"gesundheitswesen","t":"Gesundheitswesen","e":"","f":"gesundheitswesen.html"},{"id":"arztpraxen","t":"Arztpraxen und MVZ","e":"gesundheitswesen","f":"gesundheitswesen-arztpraxen.html"},{"id":"apotheken","t":"Apotheken","e":"gesundheitswesen","f":"gesundheitswesen-apotheken.html"},{"id":"pflege","t":"Pflege und SAPV","e":"gesundheitswesen","f":"gesundheitswesen-pflegeeinrichtungen.html"},{"id":"ti","t":"Telematikinfrastruktur","e":"gesundheitswesen","f":"gesundheitswesen-telematikinfrastruktur.html"},{"id":"praxischeck","t":"Praxis-Check","e":"gesundheitswesen","f":"gesundheitswesen-praxis-check.html"},{"id":"kanzleien","t":"Kanzleien","e":"","f":"kanzleien.html"},{"id":"unternehmen","t":"Unternehmen","e":"","f":"unternehmen.html"},{"id":"datev","t":"DATEV","e":"managed","f":"leistungen-datev.html"},{"id":"selectline","t":"SelectLine","e":"managed","f":"leistungen-selectline.html"},{"id":"managed","t":"Managed Services","e":"","f":"managed-services.html"},{"id":"ki","t":"KI sicher nutzen","e":"","f":"ki-sicher-nutzen.html"},{"id":"schulungen","t":"Schulungen","e":"managed","f":"leistungen-schulungen.html"},{"id":"ueber","t":"Über uns","e":"","f":"ueber-uns.html"},{"id":"team","t":"Team","e":"ueber","f":"ueber-uns-team.html"},{"id":"referenzen","t":"Referenzen","e":"ueber","f":"ueber-uns-referenzen.html"},{"id":"karriere","t":"Karriere","e":"ueber","f":"ueber-uns-karriere.html"},{"id":"news","t":"News","e":"","f":"news.html"},{"id":"newsletter","t":"Newsletter","e":"news","f":"news-newsletter.html"},{"id":"newsbeitrag","t":"Datensicherung in der Praxis","e":"news","f":"news-datensicherung-in-der-praxis.html"},{"id":"recht","t":"Impressum, Datenschutz, AGB","e":"","f":"impressum.html"},{"id":"lexikon","t":"Lexikon","e":"","f":"lexikon.html"},{"id":"termin","t":"Termin vereinbaren","e":"","f":"termin.html"},{"id":"support","t":"Support","e":"","f":"support.html"},{"id":"ticket","t":"Ticket eröffnen","e":"support","f":"support-ticket.html"},{"id":"login","t":"Kundenportal","e":"support","f":"login.html"}];</script>
+<script>const BEGRIFF_START="Gesundheitswesen";const CV_SEITE_ID="managed";const CV_SEITEN=[{"id":"gesundheitswesen","t":"Gesundheitswesen","e":"","f":"gesundheitswesen.html"},{"id":"arztpraxen","t":"Arztpraxen und MVZ","e":"gesundheitswesen","f":"gesundheitswesen-arztpraxen.html"},{"id":"apotheken","t":"Apotheken","e":"gesundheitswesen","f":"gesundheitswesen-apotheken.html"},{"id":"pflege","t":"Pflege und SAPV","e":"gesundheitswesen","f":"gesundheitswesen-pflegeeinrichtungen.html"},{"id":"ti","t":"Telematikinfrastruktur","e":"gesundheitswesen","f":"gesundheitswesen-telematikinfrastruktur.html"},{"id":"sicherheitscheck","t":"Sicherheits-Check","e":"","f":"sicherheits-check.html"},{"id":"kanzleien","t":"Kanzleien","e":"","f":"kanzleien.html"},{"id":"unternehmen","t":"Unternehmen","e":"","f":"unternehmen.html"},{"id":"datev","t":"DATEV","e":"managed","f":"leistungen-datev.html"},{"id":"selectline","t":"SelectLine","e":"managed","f":"leistungen-selectline.html"},{"id":"managed","t":"Managed Services","e":"","f":"managed-services.html"},{"id":"ki","t":"KI sicher nutzen","e":"","f":"ki-sicher-nutzen.html"},{"id":"schulungen","t":"Schulungen","e":"managed","f":"leistungen-schulungen.html"},{"id":"ueber","t":"Über uns","e":"","f":"ueber-uns.html"},{"id":"team","t":"Team","e":"ueber","f":"ueber-uns-team.html"},{"id":"referenzen","t":"Referenzen","e":"ueber","f":"ueber-uns-referenzen.html"},{"id":"karriere","t":"Karriere","e":"ueber","f":"ueber-uns-karriere.html"},{"id":"news","t":"News","e":"","f":"news.html"},{"id":"newsletter","t":"Newsletter","e":"news","f":"news-newsletter.html"},{"id":"newsbeitrag","t":"Datensicherung in der Praxis","e":"news","f":"news-datensicherung-in-der-praxis.html"},{"id":"recht","t":"Impressum, Datenschutz, AGB","e":"","f":"impressum.html"},{"id":"lexikon","t":"Lexikon","e":"","f":"lexikon.html"},{"id":"termin","t":"Termin vereinbaren","e":"","f":"termin.html"},{"id":"support","t":"Support","e":"","f":"support.html"},{"id":"ticket","t":"Ticket eröffnen","e":"support","f":"support-ticket.html"},{"id":"login","t":"Kundenportal","e":"support","f":"login.html"}];</script>
 <script>/* ================= Lexikon: Begriffe für die Erklärungen im Text =================
    Im Text: <span class="lx" data-lx="ti">Telematikinfrastruktur</span>
    Später speist dieselbe Liste die Lexikon-Seite. Keine Fristen oder Zahlen ohne Quelle. */

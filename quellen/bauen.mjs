@@ -55,6 +55,8 @@ function ersetze(s, seite, id) {
     // Fernwartung: direkter Download der QuickSupport-.exe (Leon 24.11.2026, keine eigene Seite); Link in seiten.json "fernwartung"
     // E-Mail-Button im Hero (Leon 26.11.2026: „im Hero Termin vereinbaren und E-Mail schreiben“), Adresse je Bereich wie im Footer
     .replaceAll('{{MAILBTN}}', () => { const m = FUSSMAIL[seite.bereich || 'allgemein'][0]; return `<a class="btn zw mail" href="mailto:${m}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="cw"><span class="c1">E-Mail schreiben</span><span class="c2">${m}</span></span></a>`; })
+    // Selbsttest-Button im Hero statt E-Mail (Leon 26.11.2026, Variante A): führt zum Sicherheits-Check, Branche vorgewählt, Test startet sofort
+    .replaceAll('{{CHECKBTN}}', () => { const b = { arztpraxen: 'praxis', apotheken: 'apotheke', pflege: 'pflege', gesundheitswesen: 'gesundheit', kanzleien: 'kanzlei', unternehmen: 'unternehmen' }[id]; return `<a class="btn zw selbsttest-btn" href="${dateiVon('sicherheitscheck')}${b ? '?branche=' + b : ''}#selbsttest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></svg>Selbsttest starten</a>`; })
     .replaceAll('{{FW}}', () => `href="${cfg.fernwartung || '#'}"${cfg.fernwartung && cfg.fernwartung !== '#' ? ' download' : ''} data-fw="${cfg.support.replace(/^\+49\s*/, '0')}"`)
     .replace(/\{\{LINK:([a-z_]+)\}\}/g, (_, x) => dateiVon(x))
     .replace(/\{\{ON:([a-z_]+)\}\}/g, (_, x) => (x === (seite.aktiv || id) ? ' class="on"' : ''))
@@ -243,10 +245,10 @@ function seoKopf(id, seite, html) {
 
 // ---------- Zusatzmodule (Leon 24.11.2026): je Seite nur passende, anfangs aus, im Panel "Module" einschaltbar ----------
 // Bereich ("Welt") der Seite bestimmt, welche Module sinnvoll sind (z. B. kein Gesundheitsmodul bei Kanzleien).
-const WELT = { gesundheitswesen: 'gesundheit', arztpraxen: 'arztpraxis', apotheken: 'apotheke', pflege: 'pflege', ti: 'gesundheit', praxischeck: 'gesundheit',
+const WELT = { gesundheitswesen: 'gesundheit', arztpraxen: 'arztpraxis', apotheken: 'apotheke', pflege: 'pflege', ti: 'gesundheit',
   kanzleien: 'kanzlei', unternehmen: 'unternehmen', selectline: 'unternehmen', datev: 'kanzlei' };
 const GESUNDHEIT = ['gesundheit', 'arztpraxis', 'apotheke', 'pflege'];
-const OHNE_MODULE = ['startseite', 'konzepte', 'welten', 'wellen', 'ticket', 'termin', 'recht', 'lexikon', 'login']; // Werkzeug-, Formular- und Rechtsseiten
+const OHNE_MODULE = ['startseite', 'konzepte', 'welten', 'wellen', 'ticket', 'termin', 'recht', 'lexikon', 'login', 'sicherheitscheck']; // Werkzeug-, Formular- und Rechtsseiten
 function mitZusatz(id, seite, html) {
   if (OHNE_MODULE.includes(id) || seite.noindex) return html;
   const welt = WELT[id] || 'allgemein', gesund = GESUNDHEIT.includes(welt);
@@ -256,7 +258,7 @@ function mitZusatz(id, seite, html) {
   if (!['news', 'newsbeitrag'].includes(id)) nimm.push('news');
   if (!['newsletter', 'news', 'newsbeitrag'].includes(id)) nimm.push('newsletter');
   if (id !== 'karriere') nimm.push('karriere');
-  if (gesund && id !== 'praxischeck') nimm.push('praxischeck');
+  if (gesund) nimm.push('praxischeck'); // Zusatzmodul „Praxis-Check“ führt zum Sicherheits-Check (Branche vorgewählt)
   if (gesund && id !== 'ti' && id !== 'gesundheitswesen') nimm.push('ti');
   if (welt === 'unternehmen' && id !== 'selectline' && !hat('@softwarekarten')) nimm.push('software');
   if (welt === 'kanzlei' && id !== 'datev' && !hat('@softwarekarten')) nimm.push('datev');

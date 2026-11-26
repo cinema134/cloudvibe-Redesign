@@ -28,7 +28,7 @@ Stand 24.11.2026 (nach Prüfdokument). Einige Gestaltungsfragen entscheidet clou
 
 ## Bereits entschieden (nur zur Info, technisch noch umschaltbar)
 
-Stand 26.11.2026 fest (kein Umschalter mehr, Adress-Parameter wirken nicht): Fußzeile Kompakt, Hero füllt den ersten Bildschirm, Begriff „Gesundheitswesen“, Menüleiste neu, Hero-Buttons „Termin vereinbaren“ + „E-Mail schreiben“ (Startseite, Bereichs- und Leistungsseiten), Abläufe als Pfeilband, Terminauswahl Drei Spalten, Cookie-Abfrage als Leiste, Hero-Aufbau Kachel, Einstiege rechts als Raster, Welle Bänder „Original ruhig“ (überall), Kundenstimmen als Liste. Kopfleiste rechts: Support ▾, Ticket, Fernwartung (blau).
+Stand 26.11.2026 fest (kein Umschalter mehr, Adress-Parameter wirken nicht): Fußzeile Kompakt, Hero füllt den ersten Bildschirm, Begriff „Gesundheitswesen“, Menüleiste neu, Hero-Buttons „Termin vereinbaren“ + „Selbsttest starten“ (Startseite, Gesundheitswesen, Arztpraxen, Apotheken, Pflege, Kanzleien, Unternehmen) bzw. + „E-Mail schreiben“ (übrige Leistungsseiten), Sicherheits-Check `?branche=praxis|apotheke|pflege|gesundheit|kanzlei|unternehmen`, `#selbsttest` startet den Test, Abläufe als Pfeilband, Terminauswahl Drei Spalten, Cookie-Abfrage als Leiste, Hero-Aufbau Kachel, Einstiege rechts als Raster, Welle Bänder „Original ruhig“ (überall), Kundenstimmen als Liste. Kopfleiste rechts: Support ▾, Ticket, Fernwartung (blau).
 
 Eyebrow-Farbe Grau (`?ebf=B|G|S`), Hero der Unterseiten mit Wellenkante (`?hero=A|B|C`), Footer-Spalte „cloudvibe“ entfällt, Kontaktformular nur wo jemand Hilfe sucht, Kopfleiste neu. Diese brauchen keine Option, die Werte stehen im Standard.
 

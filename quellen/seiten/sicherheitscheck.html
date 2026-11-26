@@ -1,0 +1,35 @@
+<main>
+<!-- ================= Sicherheits-Check (Leon 26.11.2026): ersetzt den Praxis-Check unter Gesundheitswesen.
+     Eigene Seite auf oberster Ebene, damit sich jede Branche angesprochen fühlt (nicht unter Gesundheitswesen oder Leistungen versteckt).
+     Hero als Entscheidung: prüfen lassen oder Selbsttest. Darunter nichts. Der geführte Selbsttest wird erst beim Start
+     von sicherheitscheck.js NACH <main> eingefügt (Speichern zählt die Textelemente in <main>, deshalb nicht hier im HTML).
+     ?branche=praxis|apotheke|pflege|gesundheit|kanzlei|unternehmen wählt die Branche vor und passt Texte an; #selbsttest startet den Test sofort. ================= -->
+<section class="uhero" id="top" data-recht="{{LINK:recht}}#datenschutz" data-termin="{{LINK:termin}}">
+ <canvas class="welle" id="cvH" aria-hidden="true"></canvas>
+ <div class="wrap uhero-in hk pc-hk">
+  <div class="hk-karte glas">
+  <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span>Sicherheits-Check</nav>
+  <h1>Ein ehrlicher Blick auf <b>deine IT-Sicherheit</b>.</h1>
+  <p class="lead">Für Praxen, Apotheken, Pflege, Kanzleien und Unternehmen. Du wählst den Weg: Schätz dich mit ein paar Fragen selbst ein, oder lass deine IT von uns prüfen.</p>
+  </div>
+  <div class="pc-wahl">
+   <div class="pcw-k pcw-haupt">
+    <span class="pcw-e">Prüfen lassen</span>
+    <h3>IT prüfen lassen</h3>
+    <ul>
+     <li>Kurzes Vorgespräch zu deinem Betrieb und deiner Technik</li>
+     <li>Der Check vor Ort am Niederrhein oder per <span class="lx" data-lx="fernwartung">Fernwartung</span></li>
+     <li>Wir gehen die Übersicht mit dir durch</li>
+    </ul>
+    <a class="btn pc-termin" href="{{LINK:termin}}?art=erst" data-gesund="{{LINK:termin}}?art=check">Termin vereinbaren</a>
+   </div>
+   <div class="pcw-k glas">
+    <span class="pcw-e">Selbsttest</span>
+    <h3>Selbst einschätzen</h3>
+    <p>Etwa acht Fragen, zwei Minuten. Am Ende siehst du, wo du stehst. Eine erste Einschätzung, keine Prüfung.</p>
+    <a class="btn zw pc-start" href="#selbsttest">Selbsttest starten</a>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
