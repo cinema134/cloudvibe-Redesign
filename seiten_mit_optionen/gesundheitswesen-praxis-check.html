@@ -1308,6 +1308,19 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 .pcw-haupt .pcw-e{color:var(--blau-t)}
 body.dark .pcw-haupt{background:color-mix(in srgb,var(--blue) 9%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
 @media(max-width:800px){.pcw{grid-template-columns:1fr}}
+/* Hero als Entscheidung (Leon 26.11.2026): rechts zwei Wege übereinander, darunter nichts; Selbsttest erst nach Klick (body.pcOffen) */
+body.hkAn .uhero-in.pc-hk{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center}
+.pc-wahl{display:grid;gap:clamp(14px,1.6vw,20px)}
+.pc-wahl .pcw-k{padding:clamp(22px,2.4vw,32px) clamp(24px,2.6vw,36px);border-radius:26px}
+.pc-wahl .pcw-e{margin-bottom:8px}
+.pc-wahl .pcw-k h3{font-size:clamp(22px,1.9vw,28px);margin-bottom:8px}
+.pc-wahl .pcw-k ul{margin:6px 0 18px}
+.pc-wahl .pcw-k li{padding:5px 0 5px 28px;font-size:15px}
+.pc-wahl .pcw-k li:before{top:11px}
+.pc-wahl .pcw-k>p{font-size:15px;margin-bottom:18px}
+.pc-wahl .btn{margin-top:0}
+body:not(.pcOffen) #selbsttest{display:none}
+@media(max-width:1000px){body.hkAn .uhero-in.pc-hk{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:1000px){.stt-in{grid-template-columns:1fr}}
 @media(max-width:600px){
  .stt-karte{padding:6px 20px 24px}
@@ -1395,21 +1408,32 @@ body.dark .pcw-haupt{background:color-mix(in srgb,var(--blue) 9%,var(--bg));bord
 <section class="uhero" id="top">
  <canvas class="welle" id="cvH" aria-hidden="true"></canvas>
  <!-- Hero-Aufbau „Kachel“ (Leon 25.11.2026): Text in Milchglas-Kachel; „Frei“ per Umschalter -->
- <div class="wrap uhero-in hk hk-solo">
+ <!-- Hero als Entscheidung (Leon 26.11.2026: „wenn man draufklickt, nur der Hero, nichts drunter; hier entscheidet man, ob prüfen lassen oder Selbsttest“):
+      links Text, rechts zwei Wege als Kacheln. Darunter nichts; der Selbsttest klappt erst nach „Selbsttest starten“ auf (praxischeck.js, body.pcOffen).
+      „Zwei Wege“ und „So läuft der Check“ als Modul aus, der Ablauf steht jetzt kurz in der Kachel „Praxis prüfen lassen“. -->
+ <div class="wrap uhero-in hk pc-hk">
   <div class="hk-karte glas">
   <nav class="krumen" aria-label="Pfad"><a href="index.html">Startseite</a><span>/</span><a href="gesundheitswesen.html"><span class="hc">Gesundheitswesen</span></a><span>/</span>Praxis-Check</nav>
   <h1>Ein ehrlicher Blick auf <b>deine IT-Sicherheit</b>.</h1>
-  <!-- Leon 26.11.2026: „sauber klären, was mit Selbsttest gemeint ist, und ich möchte einen Termin, um meine Praxis prüfen zu lassen“: zwei klar getrennte Wege -->
-  <p class="lead">Für Praxen, Apotheken und Pflegeeinrichtungen gibt es zwei Wege: Du schätzt dich mit acht Fragen selbst ein, oder du lässt deine IT von uns prüfen und bekommst eine verständliche Übersicht.</p>
-  <!-- Leon 26.11.2026: hier die zwei Wege statt Anrufen -->
-  <div class="btns nur-alt">
-   <a class="btn" href="termin.html?art=check">Praxis prüfen lassen</a>
-   <a class="btn zw" href="#selbsttest">Selbsttest starten</a>
+  <p class="lead">Für Praxen, Apotheken und Pflegeeinrichtungen. Du wählst den Weg: Schätz dich mit acht Fragen selbst ein, oder lass deine IT von uns prüfen.</p>
   </div>
-  <div class="btns nur-neu">
-   <a class="btn" href="termin.html?art=check">Praxis prüfen lassen</a>
-   <a class="btn zw" href="#selbsttest">Selbsttest starten</a>
-  </div>
+  <div class="pc-wahl">
+   <div class="pcw-k pcw-haupt">
+    <span class="pcw-e">Praxis-Check</span>
+    <h3>Praxis prüfen lassen</h3>
+    <ul>
+     <li>Kurzes Vorgespräch zu deinem Betrieb und deiner Technik</li>
+     <li>Der Check vor Ort am Niederrhein oder per <span class="lx" data-lx="fernwartung">Fernwartung</span></li>
+     <li>Wir gehen die Übersicht mit dir durch</li>
+    </ul>
+    <a class="btn" href="termin.html?art=check">Termin vereinbaren</a>
+   </div>
+   <div class="pcw-k glas">
+    <span class="pcw-e">Selbsttest</span>
+    <h3>Selbst einschätzen</h3>
+    <p>Acht Ja/Nein-Fragen, Ergebnis sofort in Worten. Nichts wird gespeichert. Eine erste Einschätzung, keine Prüfung.</p>
+    <a class="btn zw pc-start" href="#selbsttest">Selbsttest starten</a>
+   </div>
   </div>
  </div>
 </section>
@@ -1418,7 +1442,7 @@ body.dark .pcw-haupt{background:color-mix(in srgb,var(--blue) 9%,var(--bg));bord
      Acht Ja/Nein-Fragen, Ergebnis sofort in Worten (keine Prozente, keine Punkte), offene Punkte, dann Praxis-Check anfragen oder E-Mail dalassen. Logik in praxischeck.js ================= -->
 <!-- Leon 26.11.2026 (Auswahl vom 25.11.): sichtbar nur Selbsttest und „So läuft der Check“; Was wir uns ansehen, Was du bekommst, Kontakt als Modul aus -->
 <!-- ================= Zwei Wege (Leon 26.11.2026): Selbsttest = eigene Einschätzung online, Praxis-Check = Prüfung durch uns mit Termin ================= -->
-<section class="ab pc-wege" id="zwei-wege" data-name="Zwei Wege">
+<section class="ab pc-wege mod-aus" id="zwei-wege" data-name="Zwei Wege (jetzt im Hero)">
  <div class="wrap">
   <div class="st-kopf">
    <div class="eb">Zwei Wege</div>
@@ -1549,7 +1573,7 @@ body.dark .pcw-haupt{background:color-mix(in srgb,var(--blue) 9%,var(--bg));bord
 </section>
 
 <!-- ================= So läuft der Check (echte Reihenfolge, einzige Nummerierung der Seite) ================= -->
-<section class="ab start" id="ablauf">
+<section class="ab start mod-aus" id="ablauf" data-name="So läuft der Check (jetzt im Hero)">
  <div class="wrap">
   <div class="st-kopf">
    <div class="eb">So läuft der Praxis-Check</div>
@@ -3122,6 +3146,15 @@ const CV = (function () {
 (function () {
   const S = document.getElementById('selbsttest');
   if (!S) return;
+  /* Selbsttest erst nach Klick (Leon 26.11.2026: Hero als Entscheidung, darunter nichts).
+     Öffnet bei „Selbsttest starten“ und wenn die Adresse #selbsttest nennt (Links von anderen Seiten). */
+  const oeffnen = (scrollen) => {
+    document.body.classList.add('pcOffen');
+    if (scrollen) requestAnimationFrame(() => S.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  };
+  document.querySelectorAll('a[href="#selbsttest"]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); history.replaceState(null, '', '#selbsttest'); oeffnen(true); }));
+  if (location.hash === '#selbsttest') oeffnen(true);
+  window.addEventListener('hashchange', () => { if (location.hash === '#selbsttest') oeffnen(true); });
   const fragen = [...S.querySelectorAll('.stt-fragen li')];
   const aus = S.querySelector('.stt-aus'), warte = S.querySelector('.stt-warte');
   const URTEIL = {

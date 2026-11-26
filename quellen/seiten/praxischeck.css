@@ -58,6 +58,19 @@ body.dark .stt-offen-w{background:color-mix(in srgb,var(--bg) 55%,transparent)}
 .pcw-haupt .pcw-e{color:var(--blau-t)}
 body.dark .pcw-haupt{background:color-mix(in srgb,var(--blue) 9%,var(--bg));border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
 @media(max-width:800px){.pcw{grid-template-columns:1fr}}
+/* Hero als Entscheidung (Leon 26.11.2026): rechts zwei Wege übereinander, darunter nichts; Selbsttest erst nach Klick (body.pcOffen) */
+body.hkAn .uhero-in.pc-hk{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center}
+.pc-wahl{display:grid;gap:clamp(14px,1.6vw,20px)}
+.pc-wahl .pcw-k{padding:clamp(22px,2.4vw,32px) clamp(24px,2.6vw,36px);border-radius:26px}
+.pc-wahl .pcw-e{margin-bottom:8px}
+.pc-wahl .pcw-k h3{font-size:clamp(22px,1.9vw,28px);margin-bottom:8px}
+.pc-wahl .pcw-k ul{margin:6px 0 18px}
+.pc-wahl .pcw-k li{padding:5px 0 5px 28px;font-size:15px}
+.pc-wahl .pcw-k li:before{top:11px}
+.pc-wahl .pcw-k>p{font-size:15px;margin-bottom:18px}
+.pc-wahl .btn{margin-top:0}
+body:not(.pcOffen) #selbsttest{display:none}
+@media(max-width:1000px){body.hkAn .uhero-in.pc-hk{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:1000px){.stt-in{grid-template-columns:1fr}}
 @media(max-width:600px){
  .stt-karte{padding:6px 20px 24px}

@@ -4,6 +4,15 @@
 (function () {
   const S = document.getElementById('selbsttest');
   if (!S) return;
+  /* Selbsttest erst nach Klick (Leon 26.11.2026: Hero als Entscheidung, darunter nichts).
+     Öffnet bei „Selbsttest starten“ und wenn die Adresse #selbsttest nennt (Links von anderen Seiten). */
+  const oeffnen = (scrollen) => {
+    document.body.classList.add('pcOffen');
+    if (scrollen) requestAnimationFrame(() => S.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  };
+  document.querySelectorAll('a[href="#selbsttest"]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); history.replaceState(null, '', '#selbsttest'); oeffnen(true); }));
+  if (location.hash === '#selbsttest') oeffnen(true);
+  window.addEventListener('hashchange', () => { if (location.hash === '#selbsttest') oeffnen(true); });
   const fragen = [...S.querySelectorAll('.stt-fragen li')];
   const aus = S.querySelector('.stt-aus'), warte = S.querySelector('.stt-warte');
   const URTEIL = {
