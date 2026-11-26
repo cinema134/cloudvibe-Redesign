@@ -17,7 +17,7 @@ const LEX = {
   nas: { t: 'NAS', b: 'Technik', d: 'Network Attached Storage: ein Speichergerät im Netzwerk, auf dem mehrere Rechner Daten ablegen können.' },
   vm: { t: 'Virtuelle Maschine (VM)', b: 'Technik', d: 'Ein Rechner, der als Software auf einem Server läuft. Mehrere virtuelle Maschinen können sich einen Server teilen.' },
   sla: { t: 'SLA', b: 'Technik', d: 'Service Level Agreement: die schriftliche Vereinbarung, welche Leistungen wir dir zusichern.' },
-  fernwartung: { t: 'Fernwartung', b: 'Technik', d: 'Wir schalten uns mit deiner Erlaubnis auf deinen Rechner und helfen direkt, ohne Anfahrt. Bei cloudvibe läuft das über QuickSupport.' },
+  fernwartung: { t: 'Fernwartung', b: 'Technik', d: 'Wir schalten uns mit deiner Erlaubnis auf deinen Rechner und helfen direkt, ohne Anfahrt. Bei cloudvibe läuft das über RustDesk.' },
   firewall: { t: 'Firewall', b: 'Technik', d: 'Ein Schutzsystem zwischen deinem Netzwerk und dem Internet, das unerwünschte Verbindungen blockiert.' },
   phishing: { t: 'Phishing', b: 'Technik', d: 'Gefälschte E-Mails oder Webseiten, die an Passwörter oder andere Daten kommen wollen.' },
   copilot: { t: 'Microsoft 365 Copilot', b: 'Technik', d: 'Der KI-Assistent in Microsoft 365, zum Beispiel in Outlook, Word und Teams. Er arbeitet mit allen Daten, auf die die jeweilige Person Zugriff hat.' },

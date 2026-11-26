@@ -873,11 +873,11 @@ const CV = (function () {
   stickyEinmal(false);
   document.addEventListener('toggle', () => stickyEinmal(false), true); // aufgeklappt kann ein Abschnitt lang genug werden
 
-  /* ---- Fernwartung = direkter Download der QuickSupport-.exe, keine eigene Seite (Leon 24.11.2026) ----
+  /* ---- Fernwartung = direkter Download der RustDesk-.exe, keine eigene Seite (Leon 24.11.2026) ----
      Link aus seiten.json ("fernwartung"); solange er fehlt (#), startet im Mockup kein Download. Danach kurzer Hinweis, was als Nächstes kommt. */
   document.querySelectorAll('[data-fw]').forEach((a) => a.addEventListener('click', (e) => {
     if (a.getAttribute('href') === '#') e.preventDefault();
-    toast('QuickSupport wird heruntergeladen. Datei öffnen und uns am Telefon die angezeigte ID nennen: ' + (a.dataset.fw || ''), 7000);
+    toast('RustDesk wird heruntergeladen. Datei öffnen und uns am Telefon die angezeigte ID und das Passwort nennen: ' + (a.dataset.fw || ''), 7000);
   }));
 
   /* ---- Bänder-Welle (Idee aus dem Team, Leon 24.11.2026): durchscheinende Bänder Grün → Blau, steigen nach rechts ----

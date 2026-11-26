@@ -977,7 +977,7 @@ body.heroAus .seitenkopf,body.heroAus .seitenkopf *{visibility:visible!important
 .seitenkopf .sk-t b{font-weight:700;color:var(--blue)}
 /* erster sichtbarer Abschnitt nach dem Seitenkopf (ausgeblendete Module davor zählen nicht) */
 body.heroAus main>section:not(.mod-aus,[hidden],.uhero,.hero):not(main>section:not(.mod-aus,[hidden],.uhero,.hero) ~ section){padding-top:clamp(36px,3.6vw,56px)}
-/* Kopfleiste rechts (Leon 26.11.2026): Support ▾ und Ticket ruhig mit Wort + Symbol, Fernwartung als blauer Button (lädt QuickSupport) */
+/* Kopfleiste rechts (Leon 26.11.2026): Support ▾ und Ticket ruhig mit Wort + Symbol, Fernwartung als blauer Button (lädt RustDesk) */
 .kopf .kt-ticket{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 18px;border-radius:100px;border:1px solid var(--edge);background:color-mix(in srgb,var(--bg) 60%,transparent);color:var(--text);font:700 15px 'Mozilla Text',sans-serif;white-space:nowrap;transition:border-color .2s,color .2s}
 .kopf .kt-ticket:hover{border-color:color-mix(in srgb,var(--blue) 40%,transparent);color:var(--blau-t)}
 .kopf .kt-ticket svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}

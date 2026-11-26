@@ -70,9 +70,9 @@ for (const g of k.hauptmenue) {
 }
 for (const n of k.footer) kn(n.id, n.t, { crumb: 'Footer und Funktionen' });
 P.fernwartung = { t: 'Fernwartung', crumb: 'Footer und Funktionen', funktion: true,
-  beschreibung: 'Keine eigene Seite (Leon 24.11.2026): „Fernwartung starten“ lädt direkt die QuickSupport-Datei herunter. Danach erscheint der Hinweis, die Datei zu öffnen und uns am Telefon die angezeigte ID zu nennen.',
+  beschreibung: 'Keine eigene Seite (Leon 24.11.2026): „Fernwartung starten“ lädt direkt die RustDesk-Datei herunter. Danach erscheint der Hinweis, die Datei zu öffnen und uns am Telefon die angezeigte ID zu nennen.',
   wo: ['Kopfleiste: Support ▾ → Fernwartung starten (erster Punkt)', 'Support-Seite: Weg „Fernwartung starten“', 'Login: „Ohne Anmeldung“', 'Footer D: Für Kunden'],
-  offen: cfg.fernwartung && cfg.fernwartung !== '#' ? [] : ['Download-Link zu QuickSupport (Zulieferung)'] };
+  offen: cfg.fernwartung && cfg.fernwartung !== '#' ? [] : ['Download-Link zu RustDesk (Zulieferung)'] };
 const ABST = OPT && OPT.ohneAbstimmung ? [] : Object.entries(cfg.seiten).filter(([, s]) => s.noindex && !s.pfad).map(([id]) => id);
 for (const id of ABST) kn(id, null, { crumb: 'Nur zur Abstimmung' });
 
