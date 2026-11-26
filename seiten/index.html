@@ -83,6 +83,9 @@ body:not(.hbR) .nur-neu{display:none!important}
 .uhero .btns+.tel-zeile,.uhero .btns.nur-alt+.btns+.tel-zeile{margin-top:22px}
 .tel-zeile a:not(.link){font-weight:700;color:var(--text);white-space:nowrap;transition:color .2s}
 .tel-zeile a:not(.link):hover{color:var(--blau-t)}
+/* Hero: „Termin vereinbaren“ im hellen Grün wie früher „Anrufen“ (Leon 26.11.2026) */
+.btn.termin{background:var(--gbg);color:var(--gt)}
+.btn.termin:hover{box-shadow:0 16px 30px -18px rgba(46,179,41,.6)}
 /* Grün nur für „Anrufen“, in beiden Button-Varianten (26.11.2026: bei Hero-Buttons „Bisher“ als Standard waren „Zum Praxis-Check“, „Zum KI-Check“, „TI-Ausstattung bestellen“ grün) */
 .btn.zw:not(.call){background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--edge)}
 .btn.zw:not(.call):hover{color:var(--blau-t);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--blue) 45%,transparent)}
@@ -999,7 +1002,8 @@ body.stuck .kopf .kt-ticket{width:50px;padding:0;justify-content:center}
    gemeinsam: Menü als Gruppe mit gleichen Abständen statt über die Breite verteilt, Logo mit Luft
    Mitte (body.lsM): Support und Ticket als zwei gleich große runde Symbole · Block (body.lsB): beide in einer Pille mit Trennstrich */
 @media(min-width:1041px){
- body.stuck .kopf nav.nav-neu{flex:0 1 auto;justify-content:center;gap:clamp(26px,2.4vw,40px);margin:0 auto}
+ /* Leon 26.11.2026 („zwischen Block und Über uns zu viel Freiraum“): Menü füllt den Platz, gleiche Abstände auch zu Logo und Block */
+ body.stuck .kopf nav.nav-neu{flex:1 1 auto;justify-content:space-evenly;gap:16px;margin:0}
  body.stuck .kopf .w{padding-left:34px}
  body.stuck .kopf .sup .chev{display:none}
  body.lsM.stuck .kopf .sup,body.lsM.stuck .kopf .kt-ticket{width:48px;height:48px;padding:0;justify-content:center}
@@ -1071,7 +1075,7 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
 }
 /* Logo in der Leiste (Leon 25.11.2026: „wirkt gestaucht“): eigene Größe --lgk (Standard 62 px statt 54 px), Leiste wächst mit,
    damit oben und unten Luft bleibt. Regler „Größe in der Leiste“ im Panel, gilt auf allen Seiten. */
-:root{--lgk:62px}
+:root{--lgk:50px} /* Leon 26.11.2026: Logo in der Leiste wirkte zu groß, 50 statt 62 px (das „Gestauchte“ war das Schrumpfen, jetzt behoben) */
 @media(min-width:561px){
  .kopf .logo img{height:var(--lgk)}
  .kopf .w{height:max(75px,calc(var(--lgk) + 18px))}
@@ -1394,7 +1398,7 @@ body.kTicket .tile .ticket{display:none}
    <p class="lead uz">Betrieb, Datensicherung und Sicherheit für <span class="hc">Gesundheitswesen</span>, Kanzleien und Unternehmen. Per Fernwartung deutschlandweit, vor Ort am Niederrhein.</p>
    <!-- Hero-Buttons (Leon 26.11.2026): Termin vereinbaren + E-Mail schreiben -->
    <div class="btns">
-    <a class="btn" href="termin.html?art=erst">Termin vereinbaren</a>
+    <a class="btn termin" href="termin.html?art=erst">Termin vereinbaren</a>
     <a class="btn zw mail" href="mailto:kontakt@cloudvibe.de"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="cw"><span class="c1">E-Mail schreiben</span><span class="c2">kontakt@cloudvibe.de</span></span></a>
    </div>
     <!-- Zeile „Schon Kunde und etwas klemmt?“ entfernt (Leon 26.11.2026: Ticket steht oben in der Leiste) -->
@@ -1805,7 +1809,7 @@ const CV = (function () {
   // fester Wert, gemerkte Werte und Adress-Parameter wirken nicht mehr. Begriff: Konzept 26 A, Menüleiste: 9 C, Aufbau: 13 A,
   // Einstiege: 14 A, Buttons: 15 B, Abläufe: 17 A, Fußzeile: 18 A, Cookie: 5 A, Höhe: Leon 24.11., Haupt-Button: 12 B/Leiste neu, Terminauswahl: 9 A
   // Leon 26.11.2026 nachträglich: Welle „Original ruhig“ (Konzept 25 B), Kundenstimmen Liste (Konzept 18 C)
-  const FEST = { welle: 'origRuhig', kst: 'liste', ks: 'neu', heroauf: 'kachel', einstieg: 'raster', herobtn: 'alt', ablauf: 'pfeil', fuss: 'k', ccart: 'leiste', heroh: 'einheitlich', hauptbtn: 'termin', termin: 'spalten' };
+  const FEST = { leiste: 'block', welle: 'origRuhig', kst: 'liste', ks: 'neu', heroauf: 'kachel', einstieg: 'raster', herobtn: 'alt', ablauf: 'pfeil', fuss: 'k', ccart: 'leiste', heroh: 'einheitlich', hauptbtn: 'termin', termin: 'spalten' };
   const wert = (k, url, std) => (k in FEST ? FEST[k] : url != null && url !== '' ? url : MEIN[k] != null ? MEIN[k] : TEAM[k] != null ? TEAM[k] : std);
   const merke = (k, v) => { if (!bereit) return; MEIN[k] = v; try { localStorage.setItem(OKEY, JSON.stringify(MEIN)); } catch (e) {} };
 
@@ -3192,7 +3196,7 @@ const CV = (function () {
     Object.keys(LIM).forEach((id) => { $(id).min = LIM[id][0]; $(id).max = LIM[id][1]; });
     R.style.removeProperty('--lgh');
     R.style.removeProperty('--lga');
-    R.style.removeProperty('--lgk'); if ($('lgk')) $('lgk').value = 62;
+    R.style.removeProperty('--lgk'); if ($('lgk')) $('lgk').value = 50;
     syncLogo();
     B.classList.add('lgB'); $('lgb').classList.add('on');
     $('top').classList.remove('nograin'); $('gr').classList.add('on');

@@ -180,7 +180,7 @@
     Object.keys(LIM).forEach((id) => { $(id).min = LIM[id][0]; $(id).max = LIM[id][1]; });
     R.style.removeProperty('--lgh');
     R.style.removeProperty('--lga');
-    R.style.removeProperty('--lgk'); if ($('lgk')) $('lgk').value = 62;
+    R.style.removeProperty('--lgk'); if ($('lgk')) $('lgk').value = 50;
     syncLogo();
     B.classList.add('lgB'); $('lgb').classList.add('on');
     $('top').classList.remove('nograin'); $('gr').classList.add('on');

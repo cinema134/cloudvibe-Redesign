@@ -69,6 +69,9 @@ body:not(.hbR) .nur-neu{display:none!important}
 .uhero .btns+.tel-zeile,.uhero .btns.nur-alt+.btns+.tel-zeile{margin-top:22px}
 .tel-zeile a:not(.link){font-weight:700;color:var(--text);white-space:nowrap;transition:color .2s}
 .tel-zeile a:not(.link):hover{color:var(--blau-t)}
+/* Hero: „Termin vereinbaren“ im hellen Grün wie früher „Anrufen“ (Leon 26.11.2026) */
+.btn.termin{background:var(--gbg);color:var(--gt)}
+.btn.termin:hover{box-shadow:0 16px 30px -18px rgba(46,179,41,.6)}
 /* Grün nur für „Anrufen“, in beiden Button-Varianten (26.11.2026: bei Hero-Buttons „Bisher“ als Standard waren „Zum Praxis-Check“, „Zum KI-Check“, „TI-Ausstattung bestellen“ grün) */
 .btn.zw:not(.call){background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--edge)}
 .btn.zw:not(.call):hover{color:var(--blau-t);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--blue) 45%,transparent)}
@@ -985,7 +988,8 @@ body.stuck .kopf .kt-ticket{width:50px;padding:0;justify-content:center}
    gemeinsam: Menü als Gruppe mit gleichen Abständen statt über die Breite verteilt, Logo mit Luft
    Mitte (body.lsM): Support und Ticket als zwei gleich große runde Symbole · Block (body.lsB): beide in einer Pille mit Trennstrich */
 @media(min-width:1041px){
- body.stuck .kopf nav.nav-neu{flex:0 1 auto;justify-content:center;gap:clamp(26px,2.4vw,40px);margin:0 auto}
+ /* Leon 26.11.2026 („zwischen Block und Über uns zu viel Freiraum“): Menü füllt den Platz, gleiche Abstände auch zu Logo und Block */
+ body.stuck .kopf nav.nav-neu{flex:1 1 auto;justify-content:space-evenly;gap:16px;margin:0}
  body.stuck .kopf .w{padding-left:34px}
  body.stuck .kopf .sup .chev{display:none}
  body.lsM.stuck .kopf .sup,body.lsM.stuck .kopf .kt-ticket{width:48px;height:48px;padding:0;justify-content:center}
@@ -1057,7 +1061,7 @@ body.ccL .cc-einst .cc-btns{justify-content:flex-end}
 }
 /* Logo in der Leiste (Leon 25.11.2026: „wirkt gestaucht“): eigene Größe --lgk (Standard 62 px statt 54 px), Leiste wächst mit,
    damit oben und unten Luft bleibt. Regler „Größe in der Leiste“ im Panel, gilt auf allen Seiten. */
-:root{--lgk:62px}
+:root{--lgk:50px} /* Leon 26.11.2026: Logo in der Leiste wirkte zu groß, 50 statt 62 px (das „Gestauchte“ war das Schrumpfen, jetzt behoben) */
 @media(min-width:561px){
  .kopf .logo img{height:var(--lgk)}
  .kopf .w{height:max(75px,calc(var(--lgk) + 18px))}
