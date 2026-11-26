@@ -43,6 +43,15 @@ const CV = (function () {
     merke('dunkel', on);
   }
   if ($('dk')) $('dk').onclick = () => setDark(!B.classList.contains('dark'));
+  // Gescrollte Leiste: Mitte | Block (Leon 26.11.2026, Vergleich), ?leiste=mitte|block
+  function setLeiste(v) {
+    v = v === 'block' ? 'block' : 'mitte';
+    B.classList.toggle('lsM', v === 'mitte'); B.classList.toggle('lsB', v === 'block');
+    document.querySelectorAll('[data-leiste]').forEach((x) => x.classList.toggle('on', x.dataset.leiste === v));
+    merke('leiste', v);
+  }
+  document.querySelectorAll('[data-leiste]').forEach((x) => (x.onclick = () => setLeiste(x.dataset.leiste)));
+  setLeiste(wert('leiste', Q.get('leiste'), 'mitte'));
   // Schalter Hell | Dunkel in der Fußzeile (Leon 26.11.2026); gemerkt wie im Panel, gilt auf allen Seiten
   document.querySelectorAll('[data-modus]').forEach((x) => (x.onclick = () => setDark(x.dataset.modus === 'dunkel')));
 

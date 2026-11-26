@@ -995,6 +995,20 @@ body.stuck .kopf .sup span,body.stuck .kopf .kt-ticket span{display:none}
 body.stuck .kopf .sup{padding:0 12px 0 14px}
 body.stuck .kopf .kt-ticket{width:50px;padding:0;justify-content:center}
 @media(max-width:1180px){body.stuck .kopf .kt-ticket{width:44px}}
+/* Gescrollte Leiste ruhiger (Leon 26.11.2026: „wirkt noch nicht harmonisch“), zwei Varianten zum Vergleich:
+   gemeinsam: Menü als Gruppe mit gleichen Abständen statt über die Breite verteilt, Logo mit Luft
+   Mitte (body.lsM): Support und Ticket als zwei gleich große runde Symbole · Block (body.lsB): beide in einer Pille mit Trennstrich */
+@media(min-width:1041px){
+ body.stuck .kopf nav.nav-neu{flex:0 1 auto;justify-content:center;gap:clamp(26px,2.4vw,40px);margin:0 auto}
+ body.stuck .kopf .w{padding-left:34px}
+ body.stuck .kopf .sup .chev{display:none}
+ body.lsM.stuck .kopf .sup,body.lsM.stuck .kopf .kt-ticket{width:48px;height:48px;padding:0;justify-content:center}
+ body.lsB.stuck .kopf-r .dd-rechts{margin-right:-10px}
+ body.lsB.stuck .kopf .sup{width:54px;height:48px;padding:0 0 0 4px;justify-content:center;border-radius:100px 0 0 100px;border-right:0}
+ body.lsB.stuck .kopf .kt-ticket{width:54px;height:48px;padding:0 4px 0 0;justify-content:center;border-radius:0 100px 100px 0;border-left:1px solid var(--edge);position:relative}
+ body.lsB.stuck .kopf .kt-ticket:before{content:"";position:absolute;left:-1px;top:12px;bottom:12px;width:1px;background:var(--edge)}
+ body.lsB.stuck .kopf .kt-ticket{border-left-color:transparent}
+}
 /* Wird es eng: erst Abstände kleiner und Fernwartung ohne Symbol, dann Support nur als Symbol; „Ticket“ bleibt als Wort */
 body.kopf-eng .kopf nav{margin:0 8px;gap:16px}
 body.kopf-eng .kopf-r{gap:8px}
@@ -3727,6 +3741,7 @@ body.dark .br-flaeche{background:linear-gradient(180deg,#0B0D10 0%,#0E131C 60%,#
    <section class="stg-gr" data-tab="design">
     <h5>Darstellung</h5>
     <div class="stg-z"><span>Dunkler Modus</span><button type="button" id="dk" class="tg" aria-label="Dunkler Modus"></button></div>
+    <div class="stg-z" data-ziel="#kopf"><span>Leiste beim Scrollen</span><div class="seg"><button type="button" data-leiste="mitte" class="on" title="Support und Ticket als zwei runde Symbole">Mitte</button><button type="button" data-leiste="block" title="Support und Ticket in einer Pille">Block</button></div></div>
    </section>
    <section class="stg-gr" data-tab="design">
     <h5>Erster Bildschirm (Hero)</h5>
@@ -3828,6 +3843,15 @@ const CV = (function () {
     merke('dunkel', on);
   }
   if ($('dk')) $('dk').onclick = () => setDark(!B.classList.contains('dark'));
+  // Gescrollte Leiste: Mitte | Block (Leon 26.11.2026, Vergleich), ?leiste=mitte|block
+  function setLeiste(v) {
+    v = v === 'block' ? 'block' : 'mitte';
+    B.classList.toggle('lsM', v === 'mitte'); B.classList.toggle('lsB', v === 'block');
+    document.querySelectorAll('[data-leiste]').forEach((x) => x.classList.toggle('on', x.dataset.leiste === v));
+    merke('leiste', v);
+  }
+  document.querySelectorAll('[data-leiste]').forEach((x) => (x.onclick = () => setLeiste(x.dataset.leiste)));
+  setLeiste(wert('leiste', Q.get('leiste'), 'mitte'));
   // Schalter Hell | Dunkel in der Fußzeile (Leon 26.11.2026); gemerkt wie im Panel, gilt auf allen Seiten
   document.querySelectorAll('[data-modus]').forEach((x) => (x.onclick = () => setDark(x.dataset.modus === 'dunkel')));
 
