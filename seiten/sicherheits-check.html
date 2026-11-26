@@ -2907,7 +2907,6 @@ const CV = (function () {
         <label class="check voll"><input type="checkbox" id="stw-ds"> <span>Ich bin einverstanden, dass ihr meine Angaben zur Bearbeitung meiner Anfrage verwendet. Mehr dazu in unserer <a class="link-t" href="${esc(LINK_RECHT)}">Datenschutzerklärung</a>. <i style="font-style:normal;color:var(--blau-t)">*</i></span></label>
         <span class="stw-fm voll stw-ds-fm" hidden>Bitte bestätige die Datenschutzerklärung.</span>
         <div class="voll stw-fuss"><button type="submit" class="btn">Anfrage senden</button><a class="stw-link" href="${esc(LINK_TERMIN)}?art=${terminArt()}">Lieber direkt einen Termin buchen</a><button type="button" class="stw-link stw-neu">Test neu starten</button></div>
-        <span class="voll stw-hinweis">Mockup: Es wird nichts gespeichert oder verschickt.</span>
        </form>
       </div></div>`;
     karte.querySelector('.stw-zur').onclick = () => { schritt = L.length - 1; zeige(); };
@@ -2933,7 +2932,7 @@ const CV = (function () {
       if (!ds) { f.querySelector('#stw-ds').focus(); return; }
       const tage = [...f.querySelectorAll('input[name="tag"]:checked')].map((x) => x.value), zeit = [...f.querySelectorAll('input[name="zeit"]:checked')].map((x) => x.nextElementSibling.textContent);
       const weg = rr ? `Wir rufen dich an${tage.length ? ' (' + tage.join(', ') + (zeit.length ? '; ' + zeit.join(', ') : '') + ')' : zeit.length ? ' (' + zeit.join(', ') + ')' : ''}.` : 'Wir melden uns per E-Mail.';
-      karte.querySelector('.stw-k').innerHTML = `<span class="stw-danke"><b>Danke, ${esc(v('vorname'))}!</b>${weg} ${f.querySelector('#stw-erg').checked ? 'Dein Ergebnis haben wir dabei.' : ''}<br><span class="stw-hinweis" style="margin-top:6px">Mockup: Es wurde nichts verschickt.</span></span>`;
+      karte.querySelector('.stw-k').innerHTML = `<span class="stw-danke"><b>Danke, ${esc(v('vorname'))}!</b>${weg} ${f.querySelector('#stw-erg').checked ? 'Dein Ergebnis haben wir dabei.' : ''}</span>`; // keine Mockup-Hinweise (Leon 26.11.2026)
     };
   }
   function feld(id, label, ac, pflicht, kl = '', typ = 'text') {
