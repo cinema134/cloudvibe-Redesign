@@ -8,7 +8,7 @@
     "startseite": {
       "datei": "Startseite",
       "titel": "Startseite",
-      "version": 139,
+      "version": 140,
       "regler": true,
       "pfad": "/",
       "seoTitel": "IT-Betreuung für Praxen, Kanzleien & Mittelstand | cloudvibe",
@@ -17,7 +17,7 @@
     "gesundheitswesen": {
       "datei": "Gesundheitswesen",
       "titel": "Gesundheitswesen",
-      "version": 138,
+      "version": 139,
       "bereich": "gesundheit",
       "body": "hcseite",
       "pfad": "/gesundheitswesen",
@@ -28,7 +28,7 @@
     "arztpraxen": {
       "datei": "Arztpraxen",
       "titel": "Arztpraxen und MVZ",
-      "version": 133,
+      "version": 134,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -41,7 +41,7 @@
     "apotheken": {
       "datei": "Apotheken",
       "titel": "Apotheken",
-      "version": 95,
+      "version": 96,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -55,7 +55,7 @@
     "pflege": {
       "datei": "Pflegeeinrichtungen",
       "titel": "Pflege und SAPV",
-      "version": 95,
+      "version": 96,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -69,7 +69,7 @@
     "ti": {
       "datei": "Telematikinfrastruktur",
       "titel": "Telematikinfrastruktur",
-      "version": 90,
+      "version": 91,
       "aktiv": "gesundheitswesen",
       "bereich": "gesundheit",
       "body": "hcseite",
@@ -83,7 +83,7 @@
     "sicherheitscheck": {
       "datei": "Sicherheits-Check",
       "titel": "Sicherheits-Check",
-      "version": 18,
+      "version": 19,
       "pfad": "/sicherheits-check",
       "seoTitel": "Sicherheits-Check: IT-Selbsttest für deinen Betrieb | cloudvibe",
       "beschreibung": "Wie sicher ist deine IT? Selbsttest in zwei Minuten für Praxen, Apotheken, Pflege, Kanzleien und Unternehmen, oder Prüfung durch cloudvibe aus Goch."
@@ -91,13 +91,13 @@
     "welten": {
       "datei": "Bereichswelten",
       "titel": "Bereichs-Welten",
-      "version": 134,
+      "version": 135,
       "noindex": true
     },
     "kanzleien": {
       "datei": "Kanzleien",
       "titel": "Kanzleien",
-      "version": 131,
+      "version": 132,
       "aktiv": "kanzleien",
       "bereich": "kanzlei",
       "body": "kzseite kzC",
@@ -109,7 +109,7 @@
     "unternehmen": {
       "datei": "Unternehmen",
       "titel": "Unternehmen",
-      "version": 133,
+      "version": 134,
       "aktiv": "unternehmen",
       "bereich": "unternehmen",
       "body": "unseite",
@@ -121,7 +121,7 @@
     "datev": {
       "datei": "DATEV",
       "titel": "DATEV",
-      "version": 91,
+      "version": 92,
       "aktiv": "managed",
       "bereich": "unternehmen",
       "stil": "arztpraxen,unternehmen",
@@ -134,7 +134,7 @@
     "selectline": {
       "datei": "SelectLine",
       "titel": "SelectLine",
-      "version": 90,
+      "version": 91,
       "aktiv": "managed",
       "bereich": "unternehmen",
       "stil": "arztpraxen,unternehmen",
@@ -147,7 +147,7 @@
     "managed": {
       "datei": "Managed-Services",
       "titel": "Managed Services",
-      "version": 89,
+      "version": 90,
       "stil": "arztpraxen",
       "pfad": "/managed-services",
       "seoTitel": "Managed Services: Backup, Betrieb, Security | cloudvibe",
@@ -157,7 +157,7 @@
     "ki": {
       "datei": "KI-sicher-nutzen",
       "titel": "KI sicher nutzen",
-      "version": 88,
+      "version": 89,
       "aktiv": "managed",
       "stil": "arztpraxen",
       "pfad": "/ki-sicher-nutzen",
@@ -168,7 +168,7 @@
     "schulungen": {
       "datei": "Schulungen",
       "titel": "Schulungen",
-      "version": 40,
+      "version": 41,
       "aktiv": "managed",
       "stil": "arztpraxen",
       "eltern": "managed",
@@ -180,7 +180,7 @@
     "ueber": {
       "datei": "Ueber-uns",
       "titel": "Über uns",
-      "version": 87,
+      "version": 88,
       "aktiv": "ueber",
       "stil": "arztpraxen",
       "pfad": "/ueber-uns",
@@ -190,7 +190,7 @@
     "team": {
       "datei": "Team",
       "titel": "Team",
-      "version": 87,
+      "version": 88,
       "aktiv": "ueber",
       "stil": "arztpraxen,ueber",
       "pfad": "/ueber-uns/team",
@@ -201,7 +201,7 @@
     "referenzen": {
       "datei": "Referenzen",
       "titel": "Referenzen",
-      "version": 86,
+      "version": 87,
       "aktiv": "ueber",
       "stil": "arztpraxen",
       "pfad": "/ueber-uns/referenzen",
@@ -212,7 +212,7 @@
     "karriere": {
       "datei": "Karriere",
       "titel": "Karriere",
-      "version": 86,
+      "version": 87,
       "aktiv": "ueber",
       "bereich": "karriere",
       "stil": "arztpraxen",
@@ -225,7 +225,7 @@
     "news": {
       "datei": "News",
       "titel": "News",
-      "version": 85,
+      "version": 86,
       "aktiv": "ueber",
       "stil": "arztpraxen",
       "pfad": "/news",
@@ -235,7 +235,7 @@
     "newsletter": {
       "datei": "Newsletter",
       "titel": "Newsletter",
-      "version": 80,
+      "version": 81,
       "aktiv": "ueber",
       "stil": "arztpraxen,news",
       "pfad": "/news/newsletter",
@@ -246,7 +246,7 @@
     "newsbeitrag": {
       "datei": "News-Beitrag",
       "titel": "Datensicherung in der Praxis",
-      "version": 85,
+      "version": 86,
       "aktiv": "ueber",
       "stil": "arztpraxen,news",
       "pfad": "/news/datensicherung-in-der-praxis",
@@ -258,7 +258,7 @@
     "recht": {
       "datei": "Rechtliches",
       "titel": "Impressum, Datenschutz, AGB",
-      "version": 84,
+      "version": 85,
       "pfad": "/impressum",
       "seoTitel": "Impressum, Datenschutz und AGB | cloudvibe GmbH",
       "beschreibung": "Impressum der cloudvibe GmbH aus Goch mit Anbieterangaben, Handelsregister und Umsatzsteuer-ID, dazu Datenschutzerklärung und Allgemeine Geschäftsbedingungen.",
@@ -267,7 +267,7 @@
     "lexikon": {
       "datei": "Lexikon",
       "titel": "Lexikon",
-      "version": 83,
+      "version": 84,
       "stil": "arztpraxen,news",
       "pfad": "/lexikon",
       "seoTitel": "IT-Lexikon: TI, Backup, Firewall und mehr erklärt | cloudvibe",
@@ -277,19 +277,19 @@
     "konzepte": {
       "datei": "Konzepte",
       "titel": "Konzepte",
-      "version": 103,
+      "version": 104,
       "noindex": true
     },
     "wellen": {
       "datei": "Wellen-Varianten",
       "titel": "Wellen-Varianten",
-      "version": 80,
+      "version": 81,
       "noindex": true
     },
     "termin": {
       "datei": "Termin",
       "titel": "Termin vereinbaren",
-      "version": 103,
+      "version": 104,
       "pfad": "/termin",
       "seoTitel": "Termin vereinbaren: Erstberatung und mehr | cloudvibe",
       "beschreibung": "Buche deinen Termin bei cloudvibe aus Goch: Erstberatung, TI-Beratung, Praxis-Check, DATEV- oder SelectLine-Termin oder Rückruf. Online oder vor Ort.",
@@ -300,7 +300,7 @@
       "datei": "Support",
       "titel": "Support",
       "body": "spseite ohneTermin",
-      "version": 101,
+      "version": 102,
       "pfad": "/support",
       "seoTitel": "Support: Ticket eröffnen und schnelle Hilfe | cloudvibe",
       "beschreibung": "Schnelle Hilfe von cloudvibe: Ticket eröffnen, Fernwartung starten oder anrufen. Servicezeiten, Kurzanleitung fürs Team und Zugang zum Kundenportal.",
@@ -310,7 +310,7 @@
       "datei": "Ticket",
       "titel": "Ticket eröffnen",
       "body": "spseite ohneTermin ohneTicket",
-      "version": 100,
+      "version": 101,
       "aktiv": "support",
       "pfad": "/support/ticket",
       "eltern": "support",
@@ -322,7 +322,7 @@
       "datei": "Login",
       "titel": "Kundenportal",
       "body": "spseite ohneTermin",
-      "version": 65,
+      "version": 66,
       "stil": "ticket",
       "aktiv": "support",
       "pfad": "/login",
