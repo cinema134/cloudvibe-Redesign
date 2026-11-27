@@ -3201,7 +3201,7 @@ const CV = (function () {
       k3: `<svg width="84" height="58" viewBox="0 0 84 58">${kugel(16, 12, 9, '#C0392B', '#C9A94B', 0)}${kugel(42, 22, 11, '#D4A63A', '#B8923A', 1.3)}${kugel(68, 6, 8, '#2E7D5B', '#C9A94B', 2.1)}</svg>`
     };
     /* Osternest (Leon 27.11.2026: „wertig, aber nicht künstlich billig“, Skizze assets/saison/skizze_nest_varianten.html):
-       Nest aus vielen feinen Halmen, Eier mit Licht und Schatten. Umschalter Design → Saison → „Osternest“:
+       Detailstufe 3 „schlicht“ (Leon 27.11.2026): Schale mit wenigen breiten Halmen, Eier mit Licht und Schatten. Umschalter Design → Saison → „Osternest“:
        C Pastell mit Gold (Standard) | D Natur mit Grün, Option osterNest, ?osternest=c|d. data-sz-o="b" tauscht die Eierfarben. */
     let gid = 0;
     const rnd = (s) => () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646; // fester Zufall, jedes Nest sieht gleich aus
@@ -3211,21 +3211,21 @@ const CV = (function () {
       return `<defs><radialGradient id="${g}" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="${hell}"/><stop offset=".45" stop-color="${grund}"/><stop offset="1" stop-color="${dunkel}"/></radialGradient><clipPath id="${c}"><path d="${eiPfad(x, y, w, h)}"/></clipPath></defs><g transform="rotate(${dreh} ${x} ${y})"><path d="${eiPfad(x, y, w, h)}" fill="url(#${g})"/><g clip-path="url(#${c})">${extra}</g><ellipse cx="${x - w * 0.18}" cy="${y - h * 0.22}" rx="${w * 0.12}" ry="${h * 0.15}" fill="#fff" opacity=".28"/></g>`;
     };
     const sprenkel = ([x, y, w, h], farbe, n, seed, op = 0.55) => { const r = rnd(seed); let s = ''; for (let i = 0; i < n; i++) { const a = r() * 6.283, d = Math.sqrt(r()); s += `<circle cx="${(x + Math.cos(a) * d * w * 0.5).toFixed(1)}" cy="${(y + Math.sin(a) * d * h * 0.5).toFixed(1)}" r="${(0.35 + r() * 0.75).toFixed(2)}" fill="${farbe}" opacity="${(op * (0.5 + r() * 0.5)).toFixed(2)}"/>`; } return s; };
-    const goldband = ([x, y, w]) => `<path d="M${x - w} ${y + 0.5}h${w * 2}" stroke="#C9A94B" stroke-width="1.6"/><path d="M${x - w} ${y + 4.5}h${w * 2}M${x - w} ${y - 3.5}h${w * 2}" stroke="#C9A94B" stroke-width=".7"/>`;
+    const goldband = ([x, y, w]) => `<path d="M${x - w} ${y + 1}h${w * 2}" stroke="#C9A94B" stroke-width="1.8"/>`; // eine Goldlinie (Stufe 3)
     const EL = [35, 31, 27, 35, -14], ER = [85, 32, 27, 35, 15], EM = [60, 27, 29, 38, 0]; // links, rechts, Mitte (vorne)
     const P = { butter: ['#FBF1CF', '#EBD9A0', '#C9B26F'], malve: ['#F1E6F1', '#D8C3D9', '#AF95B2'], salbei: ['#E4F0E7', '#B9D4C2', '#86AA92'] };
     const N = { creme: ['#F8F1E4', '#E9DCC4', '#C9B590'], blau: ['#E6F0EC', '#BFD7D0', '#8FB0A7'], braun: ['#E9C9A7', '#C79A6F', '#9C6E46'] };
     const EIER = {
       c: (b) => ei(EL, b ? P.malve : P.butter) + ei(ER, b ? P.butter : P.malve) + ei(EM, P.salbei, goldband(EM)),
-      d: (b) => ei(EL, b ? N.blau : N.creme, sprenkel(EL, b ? '#5F7F76' : '#8A6A45', b ? 16 : 10, 3, b ? 0.55 : 0.35)) + ei(ER, b ? N.creme : N.blau, sprenkel(ER, b ? '#8A6A45' : '#5F7F76', b ? 10 : 16, 5, b ? 0.35 : 0.55)) + ei(EM, N.braun, sprenkel(EM, '#5C3A20', 26, 9))
+      d: (b) => ei(EL, b ? N.blau : N.creme) + ei(ER, b ? N.creme : N.blau) + ei(EM, N.braun, sprenkel(EM, '#5C3A20', 9, 9, 0.4)) // Stufe 3: nur das braune Ei gesprenkelt
     };
-    const GRUEN = '<path d="M14 40q-8-7-14-4q6 8 14 4Z" fill="#6F9A6B"/><path d="M14 40q-7-3-12 0" stroke="#4F7A4C" stroke-width=".6" fill="none"/><path d="M106 41q9-6 15-2q-7 7-15 2Z" fill="#7FA97A"/><path d="M106 41q7-2 13 0" stroke="#55804F" stroke-width=".6" fill="none"/><g fill="#8FB07E" opacity=".9"><circle cx="20" cy="40" r="2.2"/><circle cx="24" cy="41.5" r="1.8"/><circle cx="96" cy="41.5" r="2"/><circle cx="100" cy="40.5" r="1.6"/></g><g transform="translate(100 40)" fill="#fff"><circle r="2.3" cy="-3"/><circle r="2.3" cx="2.9" cy="-.9"/><circle r="2.3" cx="1.8" cy="2.4"/><circle r="2.3" cx="-1.8" cy="2.4"/><circle r="2.3" cx="-2.9" cy="-.9"/><circle r="1.4" fill="#E8C35A"/></g>';
+    const GRUEN = '<path d="M106 41q9-6 15-2q-7 7-15 2Z" fill="#7FA97A"/>'; // Stufe 3: ein Blatt
     const HALME = (() => { // einmal erzeugt, gilt für alle Nester
-      const r = rnd(7), T = ['#7A5530', '#93693B', '#AD8148', '#C69A5B', '#DDBA7E', '#EBD3A0'];
+      // Stufe 3 „schlicht“ (Leon 27.11.2026: Stufe 1 mit 130 Halmen „fast schon zu tief im Detail“): wenige breite Halme, 3 Töne, keine losen Halme
+      const r = rnd(7), T = ['#A97B44', '#C69A5B', '#DDBA7E'];
       const halm = (y0, y1, bogen, anz, breite) => { let s = ''; for (let i = 0; i < anz; i++) { const xa = 8 + r() * 30, xe = 82 + r() * 30, ya = y0 + r() * (y1 - y0), ye = y0 + r() * (y1 - y0), xm = (xa + xe) / 2 + (r() - 0.5) * 20, ym = Math.max(ya, ye) + bogen * (0.6 + r() * 0.6); s += `<path d="M${xa.toFixed(1)} ${ya.toFixed(1)}Q${xm.toFixed(1)} ${ym.toFixed(1)} ${xe.toFixed(1)} ${ye.toFixed(1)}" stroke="${T[Math.floor(r() * T.length)]}" stroke-width="${(breite * (0.6 + r() * 0.8)).toFixed(2)}"/>`; } return s; };
-      const hinten = halm(28, 36, -6, 26, 1.3), vorne = halm(40, 62, 6, 70, 1.15) + halm(36, 44, 4, 34, 1.5);
-      let lose = ''; for (let i = 0; i < 10; i++) { const li = i % 2 === 0, x = li ? 10 + r() * 8 : 102 + r() * 8, y = 38 + r() * 16, dx = (li ? -1 : 1) * (6 + r() * 9), dy = -4 + r() * 8; lose += `<path d="M${x.toFixed(1)} ${y.toFixed(1)}q${(dx / 2).toFixed(1)} ${(dy - 3).toFixed(1)} ${dx.toFixed(1)} ${dy.toFixed(1)}" stroke="${T[1 + Math.floor(r() * 4)]}" stroke-width="${(0.6 + r() * 0.6).toFixed(2)}"/>`; }
-      return { hinten, vorne: vorne + lose };
+      const vorne = halm(40, 62, 6, 9, 2.1 * 0.88) + halm(36, 44, 4, 6, 2.1 * 1.15);
+      return { hinten: '', vorne };
     })();
     let nestArt = 'c';
     // Breite in px; Höhe folgt dem Seitenverhältnis (viewBox mit Platz für Schatten und lose Halme)
