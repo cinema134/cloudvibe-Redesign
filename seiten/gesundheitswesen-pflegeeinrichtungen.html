@@ -3277,6 +3277,8 @@ const CV = (function () {
       document.querySelectorAll('main .uhero .hk-karte, main .kontakt-in, [data-sz-l]').forEach((k) => {
         // Ostern: kein zweites Nest auf der Hero-Kachel, wenn im selben Hero schon eins liegt (Leon 27.11.2026, Gesundheitswesen)
         if (s === 'ostern' && k.matches('.hk-karte') && k.closest('.uhero').querySelector('[data-sz-o]')) return;
+        // Karneval: keine Kamelle im Hero (Leon 27.11.2026: Logo, Kamelle und Luftschlange zusammen zu viel), nur auf dem Kontaktblock
+        if (s === 'karneval' && k.matches('.hk-karte')) return;
         const z = document.createElement('span');
         z.className = 'sz-deko sz-liegt'; z.setAttribute('aria-hidden', 'true'); z.innerHTML = LIEGEN[s]();
         k.appendChild(z);
