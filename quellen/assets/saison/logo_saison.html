@@ -84,6 +84,24 @@ function muetzeSchraeg(P, rentier) {
   <g fill="${FELL}">${kreise.join('')}</g>
   <circle cx="0" cy="-150" r="27" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4"/></g>`;
 }
+// Karneval (Leon 27.11.2026, Skizze skizze_karneval.html Variante A): Elferratskappe Rot-Weiß mit Goldstern und Federbusch.
+// Ausrichtung exakt wie die Weihnachtsmütze (muetzeSchraeg + 12 px höher): Krempe von der linken Bogenspitze bis ins Tal.
+function kappeSchraeg() {
+  const GOLD = '#C9A94B', ROTD = '#A81F24';
+  const feder = [[-34, 150, '#fff'], [-12, 168, ROT], [10, 146, '#fff']].map(([w, l, c]) =>
+    `<g transform="translate(-74 -112) rotate(${w})"><path d="M0,4 C-30,-${l * 0.45} -20,-${l * 0.85} 0,-${l} C20,-${l * 0.85} 30,-${l * 0.45} 0,4 Z" fill="${c}" stroke="${c === '#fff' ? FELLRAND : ROTD}" stroke-width="4"/><path d="M0,-6 V-${l - 14}" stroke="${c === '#fff' ? FELLRAND : ROTD}" stroke-width="4" stroke-linecap="round"/></g>`).join('');
+  const stern = (r) => { let d = ''; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, q = i % 2 ? r * 0.45 : r; d += (i ? 'L' : 'M') + (Math.cos(a) * q).toFixed(1) + ',' + (Math.sin(a) * q).toFixed(1); } return d + 'Z'; };
+  return `<g transform="translate(398.9 89.3) rotate(-15.7)">${feder}
+  <path d="M-138,20 L-116,-112 Q-8,-140 110,-100 L136,18 Q0,26 -138,20 Z" fill="${ROT}"/>
+  <path d="M-116,-112 Q-8,-140 110,-100" fill="none" stroke="${ROTD}" stroke-width="8" stroke-linecap="round"/>
+  <path d="M-96,-96 Q-10,-118 86,-88" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="9" stroke-linecap="round"/>
+  <!-- Band so hoch wie der Fellrand der Weihnachtsmütze (Kreise r 24 auf der Linie), deckt den Bogen bis ins Tal -->
+  <path d="M-146,-24 Q0,-32 146,-30 Q154,-4 146,22 Q0,30 -146,24 Q-154,0 -146,-24 Z" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M-144,-14 Q0,-22 144,-20" fill="none" stroke="${GOLD}" stroke-width="6" stroke-linecap="round"/>
+  <path d="M-144,13 Q0,20 144,11" fill="none" stroke="${GOLD}" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="-6" cy="-74" r="27" fill="${GOLD}" stroke="#B08E3A" stroke-width="4"/>
+  <path d="${stern(17)}" transform="translate(-6 -74)" fill="#fff"/></g>`;
+}
 // Eingefasst (Leon 26.11.2026: „besser in den zwei Bögen eingefasst“): Mützenform = Außenkante des großen Bogens
 // (Kreis um 411,6/146,6, r 147,3), zwischen linker Spitze und Tal; nur oben links ein weicher Zipfel zum Bommel
 function muetzeEingefasst(P, rentier, weit) {
@@ -115,9 +133,10 @@ function muetzeEingefasst(P, rentier, weit) {
 window.vektor = (art, src) => {
   // „weihnachten“ = finale Fassung (Leon 26.11.2026: schräge flache Mütze mit Geweih und Ohren, 12 px weiter heraus)
   if (art === 'weihnachten') art = 'schraeg_rentier_hoch';
-  const oben = { weihnachten: 70, flach: 80, rentier: 150, schraeg: 90, schraeg_rentier: 175, eingefasst: 70, eingefasst_rentier: 140, weit: 85, weit_rentier: 160, hoch: 80, hoch_rentier: 150, schraeg_rentier_hoch: 187 }[art] || 225;
+  const oben = { karneval: 160, weihnachten: 70, flach: 80, rentier: 150, schraeg: 90, schraeg_rentier: 175, eingefasst: 70, eingefasst_rentier: 140, weit: 85, weit_rentier: 160, hoch: 80, hoch_rentier: 150, schraeg_rentier_hoch: 187 }[art] || 225;
   let s = src.replace(/width="1496" height="694" viewBox="0 0 1496 694"/, `width="1496" height="${694 + oben}" viewBox="0 -${oben} 1496 ${694 + oben}"`);
-  if (art === 'weihnachten') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetze(0)}</g>\n</svg>\n`);
+  if (art === 'karneval') s = s.replace(/<\/svg>\s*$/, `<g id="saison-kappe">${kappeSchraeg()}</g>\n</svg>\n`);
+  else if (art === 'weihnachten') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetze(0)}</g>\n</svg>\n`);
   else if (art === 'flach') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetzeFlach(0)}</g>\n</svg>\n`);
   else if (art === 'rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${svgRentier(0)}</g>\n</svg>\n`);
   else if (art === 'schraeg') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${muetzeSchraeg(0, false)}</g>\n</svg>\n`);

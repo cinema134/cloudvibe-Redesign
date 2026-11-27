@@ -7,7 +7,7 @@ import os from 'node:os';
 import { pathToFileURL } from 'node:url';
 
 const [svgPfad, ziel] = process.argv.slice(2);
-const hier = path.dirname(new URL(import.meta.url).pathname.replace(/^\/(\w:)/, '$1'));
+const hier = path.dirname(decodeURIComponent(new URL(import.meta.url).pathname).replace(/^\/(\w:)/, '$1')); // decode: Pfad mit Leerzeichen
 const quelle = fs.readFileSync(svgPfad, 'utf8');
 const tmp = path.join(hier, 'logo_vektor_lauf.html');
 fs.writeFileSync(tmp, fs.readFileSync(path.join(hier, 'logo_saison.html'), 'utf8').replace("'LOGO'", "''"));

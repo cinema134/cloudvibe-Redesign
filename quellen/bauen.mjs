@@ -97,6 +97,7 @@ function ersetze(s, seite, id) {
     // Saison-Logos (Leon 26.11.2026), siehe basis.js „Saison“
     .replaceAll('{{LOGO_WEIHNACHTEN}}', () => 'data:image/png;base64,' + fs.readFileSync(path.join(Q, 'assets', 'saison', 'logo_weihnachten_web.png')).toString('base64'))
     .replaceAll('{{LOGO_OSTERN}}', () => 'data:image/png;base64,' + fs.readFileSync(path.join(Q, 'assets', 'saison', 'logo_ostern_web.png')).toString('base64'))
+    .replaceAll('{{LOGO_KARNEVAL}}', () => 'data:image/png;base64,' + fs.readFileSync(path.join(Q, 'assets', 'saison', 'logo_karneval_web.png')).toString('base64'))
     .replaceAll('{{LOGO}}', lies('assets', 'logo.txt'))
     .replaceAll('{{VERSION}}', 'v' + String(seite.version).padStart(2, '0'))
     // [[Platzhalter: ...]] wird sichtbar markiert

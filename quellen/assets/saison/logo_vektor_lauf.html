@@ -1,0 +1,180 @@
+<!DOCTYPE html><meta charset="utf-8"><body style="margin:0;background:#eee">
+<script>
+// Großer Wolkenbogen im Original (1496 × 694): Kreis durch (283,128), (400,15), (520,72) → Mitte (412,144.5), Radius 130 (Linienmitte)
+const C = { x: 412, y: 144.5 };
+const pt = (r, deg) => [C.x + r * Math.cos(deg * Math.PI / 180), C.y - r * Math.sin(deg * Math.PI / 180)];
+const aL = 187.3, aR = 34; // Winkel (y nach oben) am linken Ansatz und am rechten Tal des Bogens; aR als 360-326
+function svgMuetze(P) {
+  // Krempe quer über den oberen Teil des Bogens (wie auf einem Kopf), rotes Teil deckt die Kuppe und fällt nach links
+  const y = (v) => v + P;
+  // Leon 26.11.2026: Krempe links bis in die Spitze, an der der erste Bogen beginnt (ca. 283/128), rechts bis ins Tal (ca. 520/72)
+  return `
+  <!-- Haube: deckt den ganzen Bogen bis zur linken Spitze (Leon: „da scheint noch grün durch“) -->
+  <!-- Zipfel wieder als Teil der Haube mit dunkler Falte (Leon 26.11.2026: „der alte Zipfel war besser“); Haube reicht links bis zur Spitze, damit kein Grün durchscheint -->
+  <path d="M534,${y(70)} C544,${y(-6)} 500,${y(-54)} 426,${y(-56)} C352,${y(-58)} 284,${y(-24)} 258,${y(38)} C251,${y(56)} 247,${y(78)} 246,${y(98)} C258,${y(92)} 266,${y(104)} 266,${y(134)} L300,${y(136)} Z" fill="#C0392B"/>
+  <path d="M330,${y(-26)} C372,${y(-46)} 452,${y(-46)} 502,${y(-14)}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="9" stroke-linecap="round"/>
+  <path d="M266,${y(44)} C272,${y(60)} 278,${y(80)} 280,${y(104)}" fill="none" stroke="#8E2A20" stroke-opacity=".3" stroke-width="6" stroke-linecap="round"/>
+  <path d="M283,${y(127)} Q392,${y(120)} 528,${y(70)}" fill="none" stroke="#DCE3EE" stroke-width="38" stroke-linecap="round"/>
+  <path d="M283,${y(127)} Q392,${y(120)} 528,${y(70)}" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="244" cy="${y(104)}" r="24" fill="#fff" stroke="#DCE3EE" stroke-width="3"/>`;
+}
+function ohr(bx, by, tx, ty, w) {
+  // Ohr von Basis (bx,by) zur Spitze (tx,ty), Breite w; Innenfläche rosa
+  const dx = tx - bx, dy = ty - by, L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L;
+  const p = (f, s) => [bx + dx * f + nx * s, by + dy * f + ny * s];
+  const a = p(0, -w / 2), b = p(0, w / 2), c1 = p(.55, -w * .62), c2 = p(.55, w * .62), t = p(1, 0);
+  const i1 = p(.08, -w * .22), i2 = p(.08, w * .22), j1 = p(.55, -w * .34), j2 = p(.55, w * .34), it = p(.9, 0);
+  // runde Spitzen (Leon 26.11.2026: „nicht ganz so spitz“)
+  const aussen = `M${a} C${c1} ${p(.9, -w * .46)} ${p(.97, -w * .24)} Q${p(1.04, 0)} ${p(.97, w * .24)} C${p(.9, w * .46)} ${c2} ${b} Z`;
+  const innen = `M${i1} C${j1} ${p(.8, -w * .26)} ${p(.86, -w * .12)} Q${p(.91, 0)} ${p(.86, w * .12)} C${p(.8, w * .26)} ${j2} ${i2} Z`;
+  // Leon 26.11.2026: braun mit pinker Innenseite statt weiß
+  return `<path d="${aussen}" fill="#A9774F" stroke="#7E5434" stroke-width="5" stroke-linejoin="round"/><path d="${innen}" fill="#F2AFC2"/>`;
+}
+function svgOhren(P) {
+  const y = (v) => v + P;
+  const [b1x, b1y] = pt(118, 104), [b2x, b2y] = pt(118, 76);
+  // nur außerhalb der Wolke sichtbar (Leon: „scheinen noch leicht durch“): Maske schneidet alles innerhalb des Bogens weg
+  return `<defs><mask id="aussen" maskUnits="userSpaceOnUse" x="-100" y="-500" width="1700" height="1600"><rect x="-100" y="-500" width="1700" height="1600" fill="#fff"/><circle cx="${C.x}" cy="${y(C.y)}" r="130" fill="#000"/></mask></defs>
+  <g mask="url(#aussen)">${ohr(b1x, y(b1y), b1x - 95, y(b1y - 210), 64) + ohr(b2x, y(b2y), b2x - 20, y(b2y - 225), 64)}</g>`;
+}
+// Gesicht im freien Feld des großen Bogens (über der ersten Ziffernreihe): Nase mittig, Augen links/rechts davon
+function svgNase(P) {
+  const y = (v) => v + P;
+  // Leon 26.11.2026: nur Nase, etwa so groß wie eine Ziffer (Ziffern ca. 28 × 44 px im Original)
+  return `<path d="M389,${y(102)} Q412,${y(94)} 435,${y(102)} Q441,${y(111)} 425,${y(128)} Q412,${y(141)} 399,${y(128)} Q383,${y(111)} 389,${y(102)} Z" fill="#E88FA8"/>`;
+}
+function svgAugen(P) {
+  const y = (v) => v + P;
+  return [366, 458].map((x) => `<ellipse cx="${x}" cy="${y(92)}" rx="10" ry="13" fill="#2A3550"/><circle cx="${x - 3}" cy="${y(87)}" r="3.4" fill="#fff"/>`).join('');
+}
+// Flacher Stil (Leon 26.11.2026, Vorlage Rentier-Mütze): Mütze mittig auf dem großen Bogen, Fellrand aus Kreisen, Bommel oben
+const ROT = '#D92B2B', FELL = '#F3F8FC', FELLRAND = '#D3DFEA';
+function svgMuetzeFlach(P) {
+  const y = (v) => v + P;
+  const kreise = [];
+  for (let i = 0; i < 7; i++) { const t = i / 6, x = 292 + 240 * t, yy = 96 + 8 * Math.sin(Math.PI * t); kreise.push(`<circle cx="${x.toFixed(1)}" cy="${y(yy).toFixed(1)}" r="24"/>`); }
+  return `
+  <path d="M280,${y(100)} C283,${y(18)} 338,${y(-40)} 412,${y(-42)} C486,${y(-44)} 542,${y(14)} 544,${y(98)} Z" fill="${ROT}"/>
+  <g fill="${FELL}" stroke="${FELLRAND}" stroke-width="4">${kreise.join('')}</g>
+  <g fill="${FELL}">${kreise.join('')}</g>
+  <circle cx="412" cy="${y(-48)}" r="27" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4"/>`;
+}
+function svgRentier(P) {
+  const y = (v) => v + P;
+  const BRAUN = '#7A4A2A', HAUT = '#F2B48A';
+  const links = `<path d="M342,${y(-14)} C330,${y(-58)} 306,${y(-96)} 286,${y(-132)}"/><path d="M318,${y(-58)} C300,${y(-64)} 280,${y(-76)} 264,${y(-96)}"/><path d="M302,${y(-96)} C310,${y(-112)} 322,${y(-124)} 338,${y(-134)}"/>`;
+  const geweih = `<g fill="none" stroke="${BRAUN}" stroke-width="17" stroke-linecap="round">${links}<g transform="matrix(-1 0 0 1 824 0)">${links}</g></g>`;
+  const ohrL = `<path d="M296,${y(36)} C266,${y(16)} 236,${y(22)} 222,${y(44)} C246,${y(62)} 280,${y(62)} 298,${y(50)} Z" fill="${BRAUN}"/><path d="M286,${y(40)} C266,${y(30)} 248,${y(33)} 238,${y(45)} C254,${y(54)} 272,${y(54)} 286,${y(48)} Z" fill="${HAUT}"/>`;
+  const ohren = `${ohrL}<g transform="matrix(-1 0 0 1 824 0)">${ohrL}</g>`;
+  return geweih + ohren + svgMuetzeFlach(P);
+}
+// Schräg wie die erste Fassung (Leon 26.11.2026): Mütze lokal gezeichnet (Krempenmitte = 0/0), dann auf die Linie
+// linke Spitze des ersten Bogens (275,7/135,9) → Tal (522,0/66,8) gedreht: Mitte 398,9/101,3, Winkel −15,7°
+function muetzeSchraeg(P, rentier) {
+  const kreise = [];
+  for (let i = 0; i < 7; i++) { const t = i / 6, x = -124 + 248 * t, yy = 6 * Math.sin(Math.PI * t); kreise.push(`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="24"/>`); }
+  const BRAUN = '#7A4A2A', HAUT = '#F2B48A';
+  const gl = `<path d="M-62,-108 C-74,-150 -98,-186 -118,-222"/><path d="M-86,-152 C-104,-158 -124,-170 -140,-190"/><path d="M-102,-188 C-94,-204 -82,-216 -66,-226"/>`;
+  const geweih = rentier ? `<g fill="none" stroke="${BRAUN}" stroke-width="17" stroke-linecap="round">${gl}<g transform="scale(-1 1)">${gl}</g></g>` : '';
+  const ol = `<path d="M-118,-58 C-148,-78 -178,-72 -192,-50 C-168,-32 -134,-32 -116,-44 Z" fill="${BRAUN}"/><path d="M-128,-54 C-148,-64 -166,-61 -176,-49 C-160,-40 -142,-40 -128,-46 Z" fill="${HAUT}"/>`;
+  const ohren = rentier ? `${ol}<g transform="scale(-1 1)">${ol}</g>` : '';
+  return `<g transform="translate(398.9 ${101.3 + P}) rotate(-15.7)">${geweih}${ohren}
+  <path d="M-134,6 C-131,-82 -76,-142 0,-144 C76,-146 131,-84 134,4 Z" fill="${ROT}"/>
+  <g fill="${FELL}" stroke="${FELLRAND}" stroke-width="4">${kreise.join('')}</g>
+  <g fill="${FELL}">${kreise.join('')}</g>
+  <circle cx="0" cy="-150" r="27" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4"/></g>`;
+}
+// Karneval (Leon 27.11.2026, Skizze skizze_karneval.html Variante A): Elferratskappe Rot-Weiß mit Goldstern und Federbusch.
+// Ausrichtung exakt wie die Weihnachtsmütze (muetzeSchraeg + 12 px höher): Krempe von der linken Bogenspitze bis ins Tal.
+function kappeSchraeg() {
+  const GOLD = '#C9A94B', ROTD = '#A81F24';
+  const feder = [[-34, 150, '#fff'], [-12, 168, ROT], [10, 146, '#fff']].map(([w, l, c]) =>
+    `<g transform="translate(-74 -112) rotate(${w})"><path d="M0,4 C-30,-${l * 0.45} -20,-${l * 0.85} 0,-${l} C20,-${l * 0.85} 30,-${l * 0.45} 0,4 Z" fill="${c}" stroke="${c === '#fff' ? FELLRAND : ROTD}" stroke-width="4"/><path d="M0,-6 V-${l - 14}" stroke="${c === '#fff' ? FELLRAND : ROTD}" stroke-width="4" stroke-linecap="round"/></g>`).join('');
+  const stern = (r) => { let d = ''; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, q = i % 2 ? r * 0.45 : r; d += (i ? 'L' : 'M') + (Math.cos(a) * q).toFixed(1) + ',' + (Math.sin(a) * q).toFixed(1); } return d + 'Z'; };
+  return `<g transform="translate(398.9 89.3) rotate(-15.7)">${feder}
+  <path d="M-138,20 L-116,-112 Q-8,-140 110,-100 L136,18 Q0,26 -138,20 Z" fill="${ROT}"/>
+  <path d="M-116,-112 Q-8,-140 110,-100" fill="none" stroke="${ROTD}" stroke-width="8" stroke-linecap="round"/>
+  <path d="M-96,-96 Q-10,-118 86,-88" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="9" stroke-linecap="round"/>
+  <!-- Band so hoch wie der Fellrand der Weihnachtsmütze (Kreise r 24 auf der Linie), deckt den Bogen bis ins Tal -->
+  <path d="M-146,-24 Q0,-32 146,-30 Q154,-4 146,22 Q0,30 -146,24 Q-154,0 -146,-24 Z" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M-144,-14 Q0,-22 144,-20" fill="none" stroke="${GOLD}" stroke-width="6" stroke-linecap="round"/>
+  <path d="M-144,13 Q0,20 144,11" fill="none" stroke="${GOLD}" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="-6" cy="-74" r="27" fill="${GOLD}" stroke="#B08E3A" stroke-width="4"/>
+  <path d="${stern(17)}" transform="translate(-6 -74)" fill="#fff"/></g>`;
+}
+// Eingefasst (Leon 26.11.2026: „besser in den zwei Bögen eingefasst“): Mützenform = Außenkante des großen Bogens
+// (Kreis um 411,6/146,6, r 147,3), zwischen linker Spitze und Tal; nur oben links ein weicher Zipfel zum Bommel
+function muetzeEingefasst(P, rentier, weit) {
+  // weit (Leon 26.11.2026: „Mütze etwas weiter raus, man soll erahnen, dass darunter der Bogen steckt“): Haube ca. 25 px außerhalb der Bogenkante
+  const cx = 411.6, cy = 146.6 + P, R = weit ? 172 : 147.3;
+  const pk = (deg, r = R) => [cx + r * Math.cos(deg * Math.PI / 180), cy - r * Math.sin(deg * Math.PI / 180)];
+  const f = (p) => p.map((v) => v.toFixed(1)).join(',');
+  const A = weit ? pk(190) : pk(184.5), B = weit ? pk(31) : pk(35.9), P1 = pk(104), P2 = pk(152);
+  const tip = weit ? [308, -44 + P] : [326, -22 + P];
+  const koerper = `M${f(B)} A${R} ${R} 0 0 0 ${f(P1)} C${(P1[0] - 22).toFixed(1)},${(P1[1] - 4).toFixed(1)} ${tip[0] + 22},${tip[1] - 2} ${tip[0]},${tip[1]} C${tip[0] - 10},${tip[1] + 16} ${(P2[0] + 4).toFixed(1)},${(P2[1] - 16).toFixed(1)} ${f(P2)} A${R} ${R} 0 0 0 ${f(A)} Z`;
+  // Fellrand: 7 Kreise auf der Sehne A→B, leicht nach unten gewölbt
+  const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L; // Normale nach unten
+  const kreise = [];
+  const nK = weit ? 8 : 7, rK = weit ? 26 : 24, sag = weit ? 4 : 7;
+  for (let i = 0; i < nK; i++) { const t = 0.04 + 0.92 * i / (nK - 1), s = sag * Math.sin(Math.PI * t); kreise.push(`<circle cx="${(A[0] + dx * t + nx * s).toFixed(1)}" cy="${(A[1] + dy * t + ny * s).toFixed(1)}" r="${rK}"/>`); }
+  let deko = '';
+  if (rentier) {
+    const BRAUN = '#7A4A2A';
+    const gl = `<path d="M0,0 C-4,-40 -14,-80 -26,-118"/><path d="M-8,-50 C-26,-56 -44,-66 -58,-84"/><path d="M-18,-88 C-8,-102 4,-112 20,-120"/>`;
+    const b1 = pk(94, R - 8), b2 = pk(60, R - 8);
+    deko = `<g fill="none" stroke="${BRAUN}" stroke-width="17" stroke-linecap="round"><g transform="translate(${f(b1)}) rotate(2)">${gl}</g><g transform="translate(${f(b2)}) rotate(16) scale(-1 1)">${gl}</g></g>`;
+  }
+  return `${deko}<path d="${koerper}" fill="${ROT}"/>
+  <g fill="${FELL}" stroke="${FELLRAND}" stroke-width="4">${kreise.join('')}</g>
+  <g fill="${FELL}">${kreise.join('')}</g>
+  <circle cx="${tip[0] - 6}" cy="${tip[1] - 4}" r="26" fill="${FELL}" stroke="${FELLRAND}" stroke-width="4"/>`;
+}
+// Vektorfassung (Leon 26.11.2026: cloudvibe_logo.svg bereitgestellt): Deko als eigene Gruppen direkt ins Original-SVG, Zeichenfläche nach oben erweitert
+window.vektor = (art, src) => {
+  // „weihnachten“ = finale Fassung (Leon 26.11.2026: schräge flache Mütze mit Geweih und Ohren, 12 px weiter heraus)
+  if (art === 'weihnachten') art = 'schraeg_rentier_hoch';
+  const oben = { karneval: 160, weihnachten: 70, flach: 80, rentier: 150, schraeg: 90, schraeg_rentier: 175, eingefasst: 70, eingefasst_rentier: 140, weit: 85, weit_rentier: 160, hoch: 80, hoch_rentier: 150, schraeg_rentier_hoch: 187 }[art] || 225;
+  let s = src.replace(/width="1496" height="694" viewBox="0 0 1496 694"/, `width="1496" height="${694 + oben}" viewBox="0 -${oben} 1496 ${694 + oben}"`);
+  if (art === 'karneval') s = s.replace(/<\/svg>\s*$/, `<g id="saison-kappe">${kappeSchraeg()}</g>\n</svg>\n`);
+  else if (art === 'weihnachten') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetze(0)}</g>\n</svg>\n`);
+  else if (art === 'flach') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${svgMuetzeFlach(0)}</g>\n</svg>\n`);
+  else if (art === 'rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${svgRentier(0)}</g>\n</svg>\n`);
+  else if (art === 'schraeg') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${muetzeSchraeg(0, false)}</g>\n</svg>\n`);
+  // Leon 26.11.2026: „diese Fassung (schräg mit Geweih) und hier weiter raus“ → ganze Gruppe 12 px nach oben
+  else if (art === 'schraeg_rentier_hoch') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier" transform="translate(0 -12)">${muetzeSchraeg(0, true)}</g>\n</svg>\n`);
+  // Leon 26.11.2026: „vorletzte Fassung (eingefasst), Mütze minimal höher“
+  else if (art === 'hoch') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze" transform="translate(0 -10)">${muetzeEingefasst(0, false)}</g>\n</svg>\n`);
+  else if (art === 'hoch_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier" transform="translate(0 -10)">${muetzeEingefasst(0, true)}</g>\n</svg>\n`);
+  else if (art === 'weit') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${muetzeEingefasst(0, false, true)}</g>\n</svg>\n`);
+  else if (art === 'weit_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${muetzeEingefasst(0, true, true)}</g>\n</svg>\n`);
+  else if (art === 'eingefasst') s = s.replace(/<\/svg>\s*$/, `<g id="saison-muetze">${muetzeEingefasst(0, false)}</g>\n</svg>\n`);
+  else if (art === 'eingefasst_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${muetzeEingefasst(0, true)}</g>\n</svg>\n`);
+  else if (art === 'schraeg_rentier') s = s.replace(/<\/svg>\s*$/, `<g id="saison-rentier">${muetzeSchraeg(0, true)}</g>\n</svg>\n`);
+  else {
+    s = s.replace('<g id="cloud"', `<g id="saison-ohren">${svgOhren(0)}</g>\n<g id="cloud"`);
+    s = s.replace(/<\/svg>\s*$/, `<g id="saison-nase">${svgNase(0)}</g>\n</svg>\n`);
+  }
+  return s;
+};
+window.png = async (svg, breite) => {
+  const s = new Image(); s.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg))); await s.decode();
+  const W = breite, H = Math.round(s.height * breite / s.width);
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d'); g.imageSmoothingQuality = 'high'; g.drawImage(s, 0, 0, W, H);
+  return { url: cv.toDataURL('image/png'), W, H };
+};
+window.bauen = async (art) => {
+  const img = new Image(); img.src = ''; await img.decode();
+  const P = art === 'weihnachten' ? 70 : 225;
+  const W = img.width, H = img.height + P;
+  const deko = art === 'weihnachten' ? svgMuetze(P) : svgOhren(P);
+  const gesicht = art === 'ostern_nase' ? svgNase(P) : art === 'ostern_gesicht' ? svgAugen(P) + svgNase(P) : '';
+  // Ohren hinter dem Logo (wachsen aus dem Kopf), Mütze und Gesicht über dem Logo
+  const vorn = art === 'weihnachten';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${vorn ? '' : deko}<image href="${img.src}" x="0" y="${P}" width="${img.width}" height="${img.height}"/>${vorn ? deko : ''}${gesicht}</svg>`;
+  const s = new Image(); s.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg))); await s.decode();
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  cv.getContext('2d').drawImage(s, 0, 0);
+  return { url: cv.toDataURL('image/png'), W, H, P };
+};
+</script>
