@@ -740,6 +740,8 @@ body .fuss.fv-k,body:not(.fussAlt) .fuss.fv-k{padding:44px 0 22px;font-size:14px
 :root{--hh:max(560px,100vh);--hhk:clamp(380px,50vh,460px);--hb:clamp(90px,8.5vw,120px)}
 body.hhE .uhero{min-height:var(--hh);padding-bottom:var(--hb)!important}
 body.hhE.heroK .uhero{min-height:var(--hhk);padding-bottom:clamp(40px,4vw,60px)!important}
+/* Hohe Fenster (z. B. 80 % Zoom, Leon 27.11.2026: „Karte wirkt verloren“): Inhalt rückt mit der Fensterhöhe nach unten statt oben zu kleben; bis ca. 980 px Höhe unverändert */
+body.hhE:not(.heroK):not(.heroW) .uhero{padding-top:max(clamp(150px,13vw,190px),calc((100vh - 600px) / 2))}
 @media(max-width:700px){:root{--hh:600px;--hhk:380px;--hb:120px}}
 /* Hero-Stil „Welle überall“: Wellenkante auch in Heros ohne eigene Welle (Farbe je Bereich, siehe basis.js) */
 body.hvW .uhero .welle{display:block}/* Einheitliche Heros: H1 und Einleitung etwas breiter, damit lange Überschriften auf zwei Zeilen passen und die Höhe gleich bleibt */
@@ -1114,6 +1116,9 @@ body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
 .sz-deko svg{display:block;overflow:visible}
 .sz-oben{top:0;right:var(--sz-r,24px)}
 .sz-unten{bottom:5px;right:var(--sz-nr,84px)}
+.sz-liegt{bottom:calc(100% - 4px);right:var(--sz-lr,64px)}
+.sz-liegt svg{width:auto;height:58px}
+.hk-karte .sz-liegt{right:auto;left:var(--sz-ll,46px)}
 .hk-z .sz-unten{bottom:auto;top:12px;right:46px} /* Hero-Kacheln: Text sitzt unten, Nest oben zwischen Symbol und Pfeil */
 .sz-folge{position:absolute;pointer-events:none;line-height:0}
 .sozial-hero .sz-folge svg{display:block;overflow:visible}
