@@ -1123,6 +1123,18 @@ const CV = (function () {
     g.appendChild(z);
     zeigeReiter(document.querySelector('.stg-reiter .on')?.dataset.reiter || 'seite');
   }
+  // Telekonnekt im Fließtext als Wort oder Logo (Leon 27.11.2026: „Logo brauch ich als Option“), ?tktext=logo|wort
+  if (document.querySelector('.tk-wort')) {
+    const setTk = (v, m) => { B.classList.toggle('tkLogo', v === 'logo'); document.querySelectorAll('[data-tk]').forEach((b) => b.classList.toggle('on', b.dataset.tk === v)); if (m) merke('tkText', v); };
+    if (inhSp) {
+      const z = document.createElement('div');
+      z.className = 'stg-z'; z.dataset.ziel = '#ti';
+      z.innerHTML = '<span>Telekonnekt im Text</span><div class="seg"><button type="button" data-tk="wort">Wort</button><button type="button" data-tk="logo">Logo</button></div>';
+      panelZeile(z);
+      z.querySelectorAll('[data-tk]').forEach((b) => (b.onclick = () => setTk(b.dataset.tk, true)));
+    }
+    setTk(wert('tkText', ['logo', 'wort'].includes(Q.get('tktext')) ? Q.get('tktext') : null, 'wort'), false);
+  }
   if (document.querySelector('.hk-rechts')) {
     if (inhSp) {
       const z = document.createElement('div');

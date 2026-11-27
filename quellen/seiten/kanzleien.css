@@ -44,29 +44,34 @@ body.dark .datev-band{background:#0F1517}
 .kz-refs{margin-top:24px}
 
 /* Was in einer Kanzlei anders ist (Prüfdokument 24.11.2026): ein großes Petrol-Feld für die Verschwiegenheit, vier ruhige Textpunkte daneben, ohne Linien */
-.kz-anders-kopf{max-width:760px;margin-bottom:clamp(44px,5vw,72px)}
-.kz-anders-kopf .lead{margin-top:24px;max-width:620px}
-.kz-anders-raster{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(40px,4vw,60px) clamp(28px,3vw,48px);align-items:start}
-.kza h3{font-size:clamp(19px,1.5vw,22px);line-height:1.3;margin-bottom:12px}
-.kza p{font-size:15.5px;line-height:1.6;color:var(--muted)}
-.kza-gross{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.15fr);gap:20px clamp(28px,4vw,64px);align-items:start;padding:clamp(30px,3.6vw,52px);border-radius:30px;background:color-mix(in srgb,var(--a1) 7%,var(--bg));border:1px solid color-mix(in srgb,var(--a1) 16%,transparent)}
-.kza-gross h3{font-size:clamp(26px,2.5vw,36px);line-height:1.15;margin:0;max-width:420px}
-.kza-gross p{font-size:17px;grid-column:3}
-.kza-ic{width:56px;height:56px;padding:13px;border-radius:18px;fill:none;stroke:var(--a1);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;background:color-mix(in srgb,var(--a1) 12%,transparent)}
-.kza-gross .kza-ic{grid-row:1/3}
-.kza-gross h3{grid-row:1/3}
+/* Leon 27.11.2026: ohne grauen Kasten. Oben Kopf links, Verschwiegenheit rechts frei; darunter vier helle Kacheln mit Symbol (Stil wie „So läuft die Betreuung“) */
+.kz-anders-oben{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px clamp(40px,6vw,96px);align-items:start;margin-bottom:clamp(44px,5vw,72px)}
+.kz-anders-kopf .lead{margin-top:24px;max-width:560px}
+.kza-vs{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 22px;padding-top:clamp(8px,1.4vw,26px)}
+.kza-vs .kza-ic{grid-row:1/4}
+.kza-vs h3{font-size:clamp(21px,1.75vw,25px);line-height:1.25;text-wrap:balance}
+.kza-vs p{font-size:16.5px;line-height:1.65;color:var(--muted)}
 .kza-zusatz{font-weight:700;color:var(--text)!important}
-body.dark .kza-gross{background:color-mix(in srgb,var(--a1) 10%,var(--bg))}
+.kz-anders-raster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
+.kza{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;gap:8px 20px;align-items:start;padding:clamp(26px,2.8vw,36px);border-radius:28px;background:var(--bg);box-shadow:0 24px 60px -44px rgba(20,30,60,.35),inset 0 0 0 1px var(--edge)}
+body.dark .kza{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shadow:inset 0 0 0 1px var(--edge)}
+.kza .kza-ic{grid-row:1/3}
+.kza h3{font-size:clamp(19px,1.5vw,22px);line-height:1.3;margin-top:4px}
+.kza p{font-size:15.5px;line-height:1.6;color:var(--muted)}
+.kza-ic{width:52px;height:52px;padding:13px;border-radius:50%;fill:none;stroke:var(--a1);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;background:color-mix(in srgb,var(--a1) 11%,transparent)}
+/* Hero: drei Zusagen als leise Häkchen-Zeile */
+.hk-haken{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:24px}
+.hk-haken li{position:relative;padding-left:22px;font-size:14.5px;color:var(--muted)}
+.hk-haken li:before{content:"";position:absolute;left:2px;top:.42em;width:10px;height:5px;border-left:2px solid var(--a1);border-bottom:2px solid var(--a1);transform:rotate(-45deg)}
 
 @media(max-width:1000px){
- .kz-anders-raster{grid-template-columns:1fr 1fr}
- .kza-gross{grid-template-columns:1fr}
- .kza-gross .kza-ic,.kza-gross h3,.kza-gross p{grid-row:auto;grid-column:1}
+ .kz-anders-oben{grid-template-columns:1fr}
  .kz-fragen-in,.datev-band{grid-template-columns:1fr}
  .kz-fragen-kopf{position:static}
 }
 @media(max-width:700px){
  .kz-anders-raster{grid-template-columns:1fr}
+ .kza,.kza-vs{grid-template-columns:1fr}.kza .kza-ic,.kza-vs .kza-ic{grid-row:auto}
  .kz-person-in{grid-template-columns:1fr}
  .kz-person .pt{max-width:240px}
  .kz-hero:after{width:360px;height:360px;right:-180px}

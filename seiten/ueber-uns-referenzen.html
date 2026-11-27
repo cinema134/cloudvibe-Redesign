@@ -1125,6 +1125,12 @@ body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
 .sz-schnee i{position:absolute;top:-12px;border-radius:50%;background:#fff;box-shadow:0 0 0 .6px rgba(45,108,223,.22);animation:szFall linear infinite}
 @keyframes szFall{from{transform:translate3d(0,-20px,0)}to{transform:translate3d(36px,105vh,0)}}
 @media(prefers-reduced-motion:reduce),(max-width:700px){.sz-schnee{display:none}}
+/* Telekonnekt im Fließtext: Wort (Standard) oder Logo (Option, Leon 27.11.2026), Umschalter „Telekonnekt im Text“ */
+.tk-l{display:none}
+body.tkLogo .tk-w{display:none}
+body.tkLogo .tk-l{display:inline-block;vertical-align:-.18em;margin:0 .1em}
+body.tkLogo .tk-l .logo-maske{display:block;height:1.05em;width:auto;background:#181A7A;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:left center;mask-position:left center}
+body.dark.tkLogo .tk-l .logo-maske{background:#fff}
 /* Kette/Girlande unter dem Menü, Kugeln und Nester auf markierten Karten (data-sz-w / data-sz-o), „Folge uns“ (basis.js kette/deko) */
 .sz-deko{position:absolute;pointer-events:none;z-index:2;line-height:0}
 .sz-deko svg{display:block;overflow:visible}
@@ -2808,6 +2814,18 @@ const CV = (function () {
     if (!g) { g = document.createElement('section'); g.className = 'stg-gr stg-seite'; g.innerHTML = '<h5>Varianten dieser Seite</h5>'; inhSp.prepend(g); }
     g.appendChild(z);
     zeigeReiter(document.querySelector('.stg-reiter .on')?.dataset.reiter || 'seite');
+  }
+  // Telekonnekt im Fließtext als Wort oder Logo (Leon 27.11.2026: „Logo brauch ich als Option“), ?tktext=logo|wort
+  if (document.querySelector('.tk-wort')) {
+    const setTk = (v, m) => { B.classList.toggle('tkLogo', v === 'logo'); document.querySelectorAll('[data-tk]').forEach((b) => b.classList.toggle('on', b.dataset.tk === v)); if (m) merke('tkText', v); };
+    if (inhSp) {
+      const z = document.createElement('div');
+      z.className = 'stg-z'; z.dataset.ziel = '#ti';
+      z.innerHTML = '<span>Telekonnekt im Text</span><div class="seg"><button type="button" data-tk="wort">Wort</button><button type="button" data-tk="logo">Logo</button></div>';
+      panelZeile(z);
+      z.querySelectorAll('[data-tk]').forEach((b) => (b.onclick = () => setTk(b.dataset.tk, true)));
+    }
+    setTk(wert('tkText', ['logo', 'wort'].includes(Q.get('tktext')) ? Q.get('tktext') : null, 'wort'), false);
   }
   if (document.querySelector('.hk-rechts')) {
     if (inhSp) {

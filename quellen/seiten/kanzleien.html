@@ -8,12 +8,14 @@
   <div class="hk-karte glas">
   <nav class="krumen" aria-label="Pfad"><a href="{{LINK:startseite}}">Startseite</a><span>/</span>Kanzleien</nav>
   <h1>Vertrauliche Daten brauchen <b>verlässliche&nbsp;IT</b>.</h1>
-  <p class="lead">Für Steuerberatung und Anwaltskanzleien: Wir kümmern uns um die IT deiner Kanzlei, damit du dich auf Mandate und Fristen konzentrieren kannst.</p>
+  <!-- bisher: „Für Steuerberatung und Anwaltskanzleien: Wir kümmern uns um die IT deiner Kanzlei, damit du dich auf Mandate und Fristen konzentrieren kannst.“ (Leon 27.11.2026: inhaltlich aufbauen) -->
+  <p class="lead">Ob Steuerberatung oder Anwaltskanzlei: Wir betreuen Arbeitsplätze, Server und die <span class="lx" data-lx="datev">DATEV</span>-Umgebung, schützen Mandantendaten und sorgen dafür, dass dein Team auch von zu Hause sicher arbeitet.</p>
   <!-- Hero-Buttons (Leon 26.11.2026): Termin vereinbaren + E-Mail schreiben -->
   <div class="btns nur-alt">
    <a class="btn termin" href="{{LINK:termin}}?art=erst">Termin vereinbaren</a>
    {{CHECKBTN}}<!-- Leon 26.11.2026: Selbsttest statt E-Mail im Hero (Variante A) -->
   </div>
+  <ul class="hk-haken" aria-label="Was wir zusichern"><li>Vertraulichkeit schriftlich vereinbart</li><li>Fernwartung nur mit deiner Freigabe</li><li>Updates außerhalb der Fristzeiten</li></ul><!-- Leon 27.11.2026: drei Zusagen, alle schon auf der Seite belegt -->
   <p class="tel-zeile nur-neu">Lieber direkt sprechen? <a href="tel:{{SALES_TEL}}">{{SALES}}</a></p>
   </div>
  </div>
@@ -24,34 +26,25 @@
 <!-- ================= Was in einer Kanzlei anders ist (Prüfdokument 24.11.2026: „bietet Kanzleien nicht den Mehrwert“; nur Themen, die Kanzleien betreffen) ================= -->
 <section class="ab kz-anders" id="kanzlei-alltag" data-name="Was in einer Kanzlei anders ist">
  <div class="wrap">
-  <div class="kz-anders-kopf">
-   <div class="eb">Was Kanzleien besonders macht</div>
-   <h2>In einer Kanzlei trägt die IT <b>mehr Verantwortung</b>.</h2>
-   <p class="lead">Mandantendaten, Fristen, Berufsgeheimnis: Darauf richten wir die Betreuung deiner Kanzlei aus, nicht auf einen Standard für alle.</p>
-  </div>
-  <div class="kz-anders-raster">
-   <div class="kza kza-gross">
+  <!-- Leon 27.11.2026: grauer Kasten wirkte plump; jetzt oben Kopf links und Verschwiegenheit rechts frei auf der Fläche, darunter vier helle Kacheln mit Symbol -->
+  <div class="kz-anders-oben">
+   <div class="kz-anders-kopf">
+    <div class="eb">Was Kanzleien besonders macht</div>
+    <h2>In einer Kanzlei trägt die IT <b>mehr Verantwortung</b>.</h2>
+    <p class="lead">Mandantendaten, Fristen, Berufsgeheimnis: Darauf richten wir die Betreuung deiner Kanzlei aus, nicht auf einen Standard für alle.</p>
+   </div>
+   <div class="kza-vs">
     <svg class="kza-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></svg>
     <h3>Verschwiegenheit gilt auch für die IT.</h3>
-    <p>Als Steuerberatung oder Anwaltskanzlei bist du zur Verschwiegenheit verpflichtet. Wer deine IT betreut, arbeitet an Systemen mit Mandantendaten. Deshalb gibt es bei uns klare Zugriffsrechte, eine feste Ansprechperson statt wechselnder Techniker, und <span class="lx" data-lx="fernwartung">Fernwartung</span> nur mit deiner Freigabe.</p>
+    <p>Als Steuerberatung oder Anwaltskanzlei bist du zur Verschwiegenheit verpflichtet. Wer deine IT betreut, arbeitet an Systemen mit Mandantendaten. Deshalb gibt es bei uns klare Zugriffsrechte, eine feste Ansprechperson statt wechselnder Techniker und <span class="lx" data-lx="fernwartung">Fernwartung</span> nur mit deiner Freigabe.</p>
     <p class="kza-zusatz">Die Vertraulichkeit halten wir mit dir schriftlich fest.</p>
    </div>
-   <div class="kza">
-    <h3>Updates nicht mitten in der Frist.</h3>
-    <p><span class="lx" data-lx="datev">DATEV</span>-Updates und größere Arbeiten planen wir mit dir in ruhige Zeiten, nicht in die Wochen, in denen sich bei dir die Abgaben stapeln.</p>
-   </div>
-   <div class="kza">
-    <h3>Sicher mit Mandanten austauschen.</h3>
-    <p>Verschlüsselte E-Mail und geschützte Wege für Unterlagen statt offener Anhänge. Arbeitsplätze und Zugänge für die DATEV-Dienste richten wir so ein, dass der Austausch mit Mandanten läuft.</p>
-   </div>
-   <div class="kza">
-    <h3>Homeoffice ohne offene Türen.</h3>
-    <p>Von zu Hause oder beim Mandanten über einen gesicherten Zugang auf Akten und DATEV, mit Kanzlei-Geräten statt privater Rechner.</p>
-   </div>
-   <div class="kza">
-    <h3>Erreichbar, wenn es eng wird.</h3>
-    <p>Gerade in Fristzeiten zählt jede Stunde. Wann wir erreichbar sind und wie schnell wir reagieren, steht im <span class="lx" data-lx="sla">SLA</span>, abgestimmt auf deine Kanzleizeiten.</p>
-   </div>
+  </div>
+  <div class="kz-anders-raster">
+   <div class="kza"><svg class="kza-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><h3>Updates nicht mitten in der Frist.</h3><p><span class="lx" data-lx="datev">DATEV</span>-Updates und größere Arbeiten planen wir mit dir in ruhige Zeiten, nicht in die Wochen, in denen sich bei dir die Abgaben stapeln.</p></div>
+   <div class="kza"><svg class="kza-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><h3>Sicher mit Mandanten austauschen.</h3><p>Verschlüsselte E-Mail und geschützte Wege für Unterlagen statt offener Anhänge. Arbeitsplätze und Zugänge für die DATEV-Dienste richten wir so ein, dass der Austausch mit Mandanten läuft.</p></div>
+   <div class="kza"><svg class="kza-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg><h3>Homeoffice ohne offene Türen.</h3><p>Von zu Hause oder beim Mandanten über einen gesicherten Zugang auf Akten und DATEV, mit Kanzlei-Geräten statt privater Rechner.</p></div>
+   <div class="kza"><svg class="kza-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><h3>Erreichbar, wenn es eng wird.</h3><p>Gerade in Fristzeiten zählt jede Stunde. Wann wir erreichbar sind und wie schnell wir reagieren, steht im <span class="lx" data-lx="sla">SLA</span>, abgestimmt auf deine Kanzleizeiten.</p></div>
   </div>
  </div>
 </section>
@@ -64,27 +57,13 @@
    <h2>Was Kanzleien <b>uns fragen</b>.</h2>
    <p class="leise">Kurz beantwortet. Alles Weitere klären wir im Gespräch.</p>
   </div>
-  <div class="fragen">
-   <div class="fr">
-    <h3>Was passiert, wenn unser Server ausfällt?</h3>
-    <p>Wir betreuen deinen Server im laufenden Betrieb und sichern die Daten mit <span class="lx" data-lx="backup">Managed Backup</span>. Im Ernstfall meldest du dich bei deiner Ansprechperson, wir helfen per <span class="lx" data-lx="fernwartung">Fernwartung</span> oder vor Ort. Erreichbarkeit und Reaktionszeiten halten wir schriftlich im <span class="lx" data-lx="sla">SLA</span> fest.</p>
-   </div>
-   <div class="fr">
-    <h3>Wie sind Mandantendaten geschützt?</h3>
-    <p>Mit <span class="lx" data-lx="firewall">Firewall</span>, E-Mail-Sicherheit und Sicherheitsrichtlinien für deine Kanzlei. Auf Wunsch schulen wir dein Team, zum Beispiel im Erkennen von <span class="lx" data-lx="phishing">Phishing</span>.</p>
-   </div>
-   <div class="fr">
-    <h3>Wer hilft uns bei DATEV?</h3>
-    <p>Wir kümmern uns um die IT, auf der DATEV läuft: Arbeitsplätze, Server, Updates, Zugänge und Datensicherung. Bei Störungen sind wir die erste Anlaufstelle und klären mit dir, wo es hakt.</p>
-   </div>
-   <div class="fr">
-    <h3>Brauchen wir eigenes IT-Wissen in der Kanzlei?</h3>
-    <p>Nein. Wir betreiben Server, Arbeitsplätze, Netzwerk und Telefonie für dich. Du meldest dich, wir kümmern uns.</p>
-   </div>
-   <div class="fr">
-    <h3>Kommt ihr auch vorbei?</h3>
-    <p>Ja, Einsätze vor Ort am Niederrhein. Deutschlandweit helfen wir per Fernwartung.</p>
-   </div>
+  <!-- Leon 27.11.2026: Ringe vor den Fragen weg, aufklappbar wie auf Gesundheitswesen -->
+  <div class="faq-liste">
+   <details name="faq"><summary>Was passiert, wenn unser Server ausfällt?</summary><div class="faq-a"><p>Wir betreuen deinen Server im laufenden Betrieb und sichern die Daten mit <span class="lx" data-lx="backup">Managed Backup</span>. Im Ernstfall meldest du dich bei deiner Ansprechperson, wir helfen per <span class="lx" data-lx="fernwartung">Fernwartung</span> oder vor Ort. Erreichbarkeit und Reaktionszeiten halten wir schriftlich im <span class="lx" data-lx="sla">SLA</span> fest.</p></div></details>
+   <details name="faq"><summary>Wie sind Mandantendaten geschützt?</summary><div class="faq-a"><p>Mit <span class="lx" data-lx="firewall">Firewall</span>, E-Mail-Sicherheit und Sicherheitsrichtlinien für deine Kanzlei. Auf Wunsch schulen wir dein Team, zum Beispiel im Erkennen von <span class="lx" data-lx="phishing">Phishing</span>.</p></div></details>
+   <details name="faq"><summary>Wer hilft uns bei DATEV?</summary><div class="faq-a"><p>Wir kümmern uns um die IT, auf der DATEV läuft: Arbeitsplätze, Server, Updates, Zugänge und Datensicherung. Bei Störungen sind wir die erste Anlaufstelle und klären mit dir, wo es hakt.</p></div></details>
+   <details name="faq"><summary>Brauchen wir eigenes IT-Wissen in der Kanzlei?</summary><div class="faq-a"><p>Nein. Wir betreiben Server, Arbeitsplätze, Netzwerk und Telefonie für dich. Du meldest dich, wir kümmern uns.</p></div></details>
+   <details name="faq"><summary>Kommt ihr auch vorbei?</summary><div class="faq-a"><p>Ja, Einsätze vor Ort am Niederrhein. Deutschlandweit helfen wir per Fernwartung.</p></div></details>
   </div>
  </div>
 </section>
