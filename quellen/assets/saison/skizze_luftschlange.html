@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<title>Skizze Luftschlange</title>
+<!-- Skizze (Leon 27.11.2026): Luftschlange „gefällt noch nicht so ganz, darf ruhig etwas mehr Tiefe bekommen“.
+     Bisher: flache Wellenlinie. A: Spirale (Locke) mit Vorder- und Rückseite. B: Papierband, das sich dreht (Breite wechselt, Rückseite dunkler).
+     Bild: Mockup/Vergleich/Karneval_Luftschlange_Varianten.png -->
+<style>
+  body{margin:0;font:14px/1.4 "Segoe UI",sans-serif;background:#fff;color:#14171C}
+  .reihe{display:grid;grid-template-columns:repeat(3,1fr)}
+  .feld{padding:20px 18px 26px;border-right:1px solid #E3E8F0}
+  .feld:last-child{border-right:0}
+  .dunkel{background:#0B0D10;color:#fff}.dunkel .feld{border-color:#252A33}
+  h3{margin:0 0 4px;font-size:15px}p{margin:0 0 10px;font-size:12px;color:#4F5663;min-height:34px}.dunkel p{color:#AEB5C2}
+  .gross{display:flex;gap:26px;justify-content:center;align-items:flex-start;height:170px}
+  .gross svg{overflow:visible}
+  .karte{position:relative;margin-top:16px;height:92px;border-radius:30px;border:1px solid #E3E8F0;background:linear-gradient(#fff,#F4F7FC)}
+  .dunkel .karte{border-color:#252A33;background:linear-gradient(#121A27,#0E131C)}
+  .karte .oben{position:absolute;top:0;right:24px;line-height:0}.karte .oben svg{overflow:visible}
+  .karte span{position:absolute;left:24px;bottom:16px;font-size:13px;color:#4F5663}
+  .icons{display:flex;gap:12px;margin:18px 0 0 6px}
+  .ic{position:relative;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid #E3E8F0;display:grid;place-items:center;font-size:10px}
+  .dunkel .ic{background:#121A27;border-color:#252A33}
+  .ic svg{position:absolute;top:100%;left:50%;margin-left:-10px;overflow:visible}
+</style></head><body>
+<div class="reihe" id="hell"></div>
+<div class="reihe dunkel" id="dunkel"></div>
+<script>
+const F = { rot: ['#E5484F', '#A3242B', '#F48A8F'], gelb: ['#F7CF45', '#C79A16', '#FFE7A0'], blau: ['#4C84EA', '#1E4FA8', '#9DBDF6'] };
+
+// bisher (basis.js): flache Welle
+const bisher = (x, l, [f], w = 2.8) => { let d = `M${x} 0`; const n = Math.max(2, Math.round(l / 18)); for (let i = 0; i < n; i++) { const y0 = (l / n) * i, s = i % 2 ? -1 : 1; d += ` C${x + 7 * s} ${(y0 + l / n * 0.3).toFixed(1)} ${x + 7 * s} ${(y0 + l / n * 0.7).toFixed(1)} ${x} ${(y0 + l / n).toFixed(1)}`; } return `<path d="${d}" fill="none" stroke="${f}" stroke-width="${w}" stroke-linecap="round"/>`; };
+
+// A Spirale: Schraubenlinie von der Seite; vorne (cos>0) hell, hinten dunkel; Radius wächst nach unten (fällt locker aus)
+const spirale = (x, l, [vorn, hinten, licht], w = 3.4, r0 = 3.5, r1 = 7.5, steig = 19) => {
+  const N = Math.max(1.5, l / steig), schritte = Math.round(N * 40);
+  const segs = { v: [], h: [] }; let cur = null, seite = null;
+  for (let i = 0; i <= schritte; i++) {
+    const u = i / schritte, t = u * N * 2 * Math.PI, r = r0 + (r1 - r0) * u;
+    const px = x + r * Math.sin(t), py = u * l, s = Math.cos(t) >= 0 ? 'v' : 'h';
+    if (s !== seite) { if (cur) { cur.push([px, py]); segs[seite].push(cur); } cur = [[px, py]]; seite = s; } else cur.push([px, py]);
+  }
+  segs[seite].push(cur);
+  const p = (pts) => 'M' + pts.map(([a, b]) => a.toFixed(2) + ' ' + b.toFixed(2)).join('L');
+  return `<g fill="none" stroke-linecap="round">${segs.h.map((s) => `<path d="${p(s)}" stroke="${hinten}" stroke-width="${w * 0.85}"/>`).join('')}${segs.v.map((s) => `<path d="${p(s)}" stroke="${vorn}" stroke-width="${w}"/><path d="${p(s.map(([a, b]) => [a - w * 0.22, b - w * 0.1]))}" stroke="${licht}" stroke-width="${w * 0.3}" opacity=".8"/>`).join('')}</g>`;
+};
+
+// B Band: flaches Papierband, das sich beim Fallen dreht; sichtbare Breite = |cos|, Rückseite dunkler, Mittellinie leicht geschwungen
+const band = (x, l, [vorn, hinten, licht], W = 7.5, dreh = 17) => {
+  const n = Math.round(l * 2), mitte = (y) => x + 3.2 * Math.sin(y / 9), out = [];
+  for (let i = 0; i < n; i++) {
+    const y0 = (i / n) * l, y1 = ((i + 1) / n) * l, a0 = y0 / dreh * Math.PI, a1 = y1 / dreh * Math.PI;
+    const b0 = W / 2 * Math.cos(a0), b1 = W / 2 * Math.cos(a1), vorne = Math.cos((a0 + a1) / 2) >= 0;
+    const x0 = mitte(y0), x1 = mitte(y1);
+    // leichte Schräge: Band steht etwas schräg zur Fallrichtung
+    out.push(`<path d="M${(x0 - b0).toFixed(2)} ${(y0 - b0 * 0.35).toFixed(2)}L${(x0 + b0).toFixed(2)} ${(y0 + b0 * 0.35).toFixed(2)}L${(x1 + b1).toFixed(2)} ${(y1 + b1 * 0.35).toFixed(2)}L${(x1 - b1).toFixed(2)} ${(y1 - b1 * 0.35).toFixed(2)}Z" fill="${vorne ? vorn : hinten}" stroke="${vorne ? vorn : hinten}" stroke-width=".35"/>`);
+  }
+  // Lichtkante auf den Vorderseiten
+  return `<g>${out.join('')}</g>`;
+};
+
+const V = {
+  bisher: { t: 'Bisher', p: 'Flache Wellenlinie in einer Farbe.', f: bisher },
+  A: { t: 'A Locke (Spirale)', p: 'Luftschlange als lockere Spirale: Vorderseite hell mit Lichtkante, Rückseite dunkler; wird nach unten etwas weiter.', f: spirale },
+  B: { t: 'B Gedrehtes Papierband', p: 'Flaches Band, das sich beim Fallen dreht: Breite wechselt, Rückseite dunkler. Wirkt wie echtes Papier.', f: band }
+};
+const svg = (f, w, h, teile) => `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${teile}</svg>`;
+const feld = (k) => {
+  const f = V[k].f;
+  const gross = svg(f, 40, 150, f(20, 140, F.rot)) + svg(f, 40, 150, f(20, 110, F.gelb)) + svg(f, 40, 150, f(20, 125, F.blau));
+  const karte = svg(f, 84, 70, f(16, 40, F.rot) + f(42, 56, F.gelb) + f(68, 32, F.blau));
+  const ic = (l, c) => `<div class="ic">●${svg(f, 20, l + 4, f(10, l, c))}</div>`;
+  return `<div class="feld"><h3>${V[k].t}</h3><p>${V[k].p}</p><div class="gross"><div style="transform:scale(1)">${gross}</div></div>
+    <div class="karte"><div class="oben">${karte}</div><span>Karte (Originalgröße)</span></div>
+    <div class="icons">${ic(18, F.rot)}<div class="ic">●</div>${ic(32, F.gelb)}${ic(24, F.blau)}</div><div style="height:40px"></div></div>`;
+};
+for (const id of ['hell', 'dunkel']) document.getElementById(id).innerHTML = ['bisher', 'A', 'B'].map(feld).join('');
+</script>
+</body></html>
