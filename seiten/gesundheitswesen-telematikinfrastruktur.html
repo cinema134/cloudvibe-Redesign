@@ -1213,7 +1213,7 @@ body.dark .tik-logo .logo-maske{background:#fff}
 .tik-logo img{height:28px;width:auto}
 .tik-teile{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 22px}
 .tik-teile li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:center;padding:14px 0}
-.tik-teile li:first-child{grid-column:1/-1}
+.tik-teile li.tik-breit{grid-column:1/-1;border-top:1px solid var(--edge);margin-top:4px;padding-top:18px} /* Leon 27.11.2026: vier Punkte oben, Konnektor unten über die volle Breite */
 .tik-teile svg{width:40px;height:40px;padding:9px;border-radius:12px;fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;background:var(--bg);box-shadow:0 8px 20px -14px rgba(20,30,60,.45),inset 0 0 0 1px var(--edge)}
 .tik-teile b{display:block;font:700 16.5px/1.3 Comfortaa,sans-serif;letter-spacing:-.01em}
 .tik-teile li>div>span{display:block;font-size:14px;line-height:1.45;color:var(--muted);margin-top:2px}
@@ -1278,6 +1278,15 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
  .sst-s{grid-column:2;justify-self:start;margin-top:-4px}
 }
 
+/* Was bei uns liegt, schlank (Leon 27.11.2026): eine Zeile mit Symbolen statt sechs Kacheln */
+.liegt-zeile{list-style:none;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 24px;padding:clamp(20px,2.2vw,28px) clamp(24px,3vw,40px)}
+.liegt-zeile li{display:flex;align-items:center;gap:14px;font:700 17px/1.3 Comfortaa,sans-serif;letter-spacing:-.01em}
+.liegt-zeile .ic{width:40px;height:40px;padding:9px;border-radius:12px}
+@media(max-width:1000px){.liegt-zeile{justify-content:flex-start}.liegt-zeile li{flex:0 0 calc(50% - 12px)}}
+@media(max-width:600px){.liegt-zeile li{flex-basis:100%}}
+/* Managed Services Praxis-Fassung: drei statt vier Bereiche */
+.msk-band.msk-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1000px){.msk-band.msk-3{grid-template-columns:1fr}.msk-3 .msk-p:nth-child(n){border-left:0}.msk-3 .msk-p+.msk-p{border-top:1px solid var(--edge)}}
 /* MVZ und Gemeinschaftspraxen (Leon 26.11.2026): Block unter „Was bei uns liegt“, links Text, rechts vier Punkte */
 .mvz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:28px clamp(32px,4.4vw,72px);align-items:start;margin-top:clamp(18px,2vw,26px);padding:clamp(28px,3.2vw,44px)}
 .mvz-e{display:block;font:700 12px 'Mozilla Text',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--blau-t);margin-bottom:14px}
@@ -1512,7 +1521,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
 
 <!-- Kundenstimme hell, FAQ auf Fläche (Prüfdokument 24.11.2026: nach dem Ausblenden von "Für wen" bleibt der Wechsel hell/Fläche erhalten) -->
 <!-- ================= Kundenstimmen ================= -->
-<section class="ab stimmen" id="stimmen">
+<section class="ab stimmen mod-aus" id="stimmen" data-name="Kundenstimmen (entfernt)">
  <div class="wrap st-in">
   <div class="st-kopf">
    <div class="eb">Kundenstimmen</div>
@@ -1523,7 +1532,7 @@ body.dark .btr-p{background:color-mix(in srgb,var(--bg) 60%,var(--bg2));box-shad
 <figure class="st"><svg class="st-q" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V13.6C0 5.9 4.3 1.2 12 0l1.3 3.4C8.6 4.6 6.6 7.3 6.4 11H12v13H0zm19 0V13.6C19 5.9 23.3 1.2 31 0l1 3.4c-4.7 1.2-6.7 3.9-6.9 7.6H31v13H19z"/></svg><blockquote>„Die Umstellung auf die neue TI lief an einem Nachmittag. Die Sprechstunde mussten wir dafür nicht unterbrechen.“</blockquote><figcaption><b>Dr. Miriam Kessler</b><span>Inhaberin, Zahnarztpraxis Dr. Kessler, Niederrhein</span><em class="st-bsp" title="Erfundene Beispielstimme, wird durch eine freigegebene Kundenstimme ersetzt">Beispiel</em></figcaption></figure>
   </div>
  </div>
-</section>
+</section><!-- Leon 27.11.2026: Stimmen nur auf Startseite und Bereichsseiten -->
 
 <!-- ================= FAQ (eigene Fragen, keine Wiederholung der Gesundheitswesen-FAQ) ================= -->
 <section class="ab alt faq" id="faq">
