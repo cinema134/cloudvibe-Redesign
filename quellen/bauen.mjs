@@ -210,13 +210,16 @@ function seoKopf(id, seite, html) {
     '@type': 'ProfessionalService', '@id': D + '/#firma', name: 'cloudvibe GmbH', legalName: 'cloudvibe GmbH', alternateName: 'cloudvibe',
     slogan: 'Your IT. Our business.', url: D + '/', email: 'kontakt@cloudvibe.de', telephone: tel(cfg.sales), vatID: 'DE358683658',
     address: { '@type': 'PostalAddress', streetAddress: 'Von-Monschaw-Str. 12a', postalCode: '47574', addressLocality: 'Goch', addressRegion: 'Nordrhein-Westfalen', addressCountry: 'DE' },
-    areaServed: [{ '@type': 'AdministrativeArea', name: 'Niederrhein' }, { '@type': 'Country', name: 'Deutschland' }],
+    // Einsatzgebiet (Leon 27.11.2026: Kreis Kleve mit Blick auf den Niederrhein; Fernwartung deutschlandweit)
+    areaServed: [{ '@type': 'City', name: 'Goch' }, { '@type': 'City', name: 'Kleve' }, { '@type': 'AdministrativeArea', name: 'Kreis Kleve' }, { '@type': 'AdministrativeArea', name: 'Niederrhein' }, { '@type': 'Country', name: 'Deutschland' }],
+    numberOfEmployees: { '@type': 'QuantitativeValue', value: 7 },
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' }],
     contactPoint: [
       { '@type': 'ContactPoint', contactType: 'sales', telephone: tel(cfg.sales), email: 'kontakt@cloudvibe.de', availableLanguage: 'de' },
       { '@type': 'ContactPoint', contactType: 'technical support', telephone: tel(cfg.support), email: 'support@cloudvibe.de', availableLanguage: 'de' },
     ],
-    knowsAbout: ['IT-Betreuung', 'Managed Services', 'Telematikinfrastruktur', 'TI-Anbindung', 'Datensicherung', 'IT-Sicherheit', 'Fernwartung', 'DATEV', 'SelectLine'],
+    // nur Belegtes (alte Website, Stand 27.11.2026): TI-Komponenten als Telekonnekt-Partner, Managed Services, Microsoft 365, Cloud-Telefonie, DATEV-Support, SelectLine
+    knowsAbout: ['IT-Betreuung', 'Managed Services', 'Telematikinfrastruktur', 'TI-Anbindung', 'Konnektor', 'TI-Gateway', 'KIM', 'E-Rezept', 'Elektronische Patientenakte', 'Datensicherung', 'Firewall', 'IT-Sicherheit', 'Fernwartung', 'Microsoft 365', 'Cloud-Telefonie', 'DATEV', 'SelectLine'],
   };
   const graph = [firma,
     { '@type': 'WebSite', '@id': D + '/#website', url: D + '/', name: 'cloudvibe', inLanguage: 'de-DE', publisher: { '@id': D + '/#firma' } },
@@ -390,6 +393,39 @@ if (UEB) {
 <a class="k" href="seiten_mit_optionen/konzepte.html"><b>Konzepte zur Abstimmung</b><span>Offene Entscheidungen mit Varianten zum Ausprobieren, Vor- und Nachteilen und einer Empfehlung</span></a>
 </main></body></html>
 `);
+  // Livegang (SEO/GEO, 27.11.2026): robots.txt, sitemap.xml und llms.txt für cloudvibe.de, aus seiten.json erzeugt.
+  // Liegen in livegang/, damit sie die GitHub-Vorschau nicht beeinflussen; beim Livegang ins Wurzelverzeichnis der Domain.
+  {
+    const D = cfg.domain || 'https://cloudvibe.de';
+    const LG = path.join(UZ, 'livegang');
+    fs.mkdirSync(LG, { recursive: true });
+    const oeffentlich = Object.entries(cfg.seiten).filter(([, s]) => s.pfad && !s.noindex);
+    const heute = new Date().toISOString().slice(0, 10);
+    fs.writeFileSync(path.join(LG, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /login\n\nSitemap: ${D}/sitemap.xml\n`);
+    fs.writeFileSync(path.join(LG, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${oeffentlich.map(([, s]) => `  <url><loc>${D}${s.pfad}</loc><lastmod>${heute}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+    const gruppe = (ids) => oeffentlich.filter(([id]) => ids.includes(id)).map(([, s]) => `- [${s.seoTitel ? s.seoTitel.replace(/ \| cloudvibe.*$/, '') : s.titel}](${D}${s.pfad}): ${s.beschreibung || ''}`).join('\n');
+    fs.writeFileSync(path.join(LG, 'llms.txt'), `# cloudvibe GmbH
+
+> IT-Dienstleister aus Goch am Niederrhein mit einem siebenköpfigen Team. Betreut Arztpraxen, Zahnarztpraxen und MVZ, Apotheken, Pflegeeinrichtungen und SAPV-Teams, Kanzleien und Steuerberatung sowie mittelständische Unternehmen. Vor Ort in Goch, Kleve, im Kreis Kleve und am Niederrhein, per Fernwartung deutschlandweit.
+
+- Schwerpunkt Gesundheitswesen: Anbindung an die Telematikinfrastruktur (Konnektor oder TI-Gateway, Kartenterminals, KIM) als Partner von Telekonnekt.
+- Managed Services: Datensicherung, Infrastruktur, Hardware und Netzwerke, IT-Sicherheit, laufend betreut mit schriftlichem SLA.
+- Software: DATEV-Support (kein DATEV-Partner, kein Vertrieb) und SelectLine als zertifizierter Partner.
+- Kontakt: kontakt@cloudvibe.de, Support support@cloudvibe.de, Büro Von-Monschaw-Str. 12a, 47574 Goch.
+
+## Gesundheitswesen
+${gruppe(['gesundheitswesen', 'arztpraxen', 'apotheken', 'pflege', 'ti'])}
+
+## Kanzleien und Unternehmen
+${gruppe(['kanzleien', 'unternehmen', 'datev', 'selectline'])}
+
+## Leistungen
+${gruppe(['managed', 'sicherheitscheck', 'ki', 'schulungen'])}
+
+## Über cloudvibe
+${gruppe(['ueber', 'team', 'referenzen', 'lexikon', 'news'])}
+`);
+  }
   // Quellen für die KI: Bausteine, Seitenteile, Assets, Konfiguration und Bauskript
   const QZ = path.join(UZ, 'quellen');
   fs.rmSync(QZ, { recursive: true, force: true });

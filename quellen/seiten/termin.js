@@ -13,7 +13,7 @@
   const ARTEN = {
     erst: { n: 'Erstberatung', d: 30, f: ['video', 'tel'] },
     ti: { n: 'TI-Beratung', d: 45, f: ['video', 'tel', 'ort'] },
-    check: { n: 'Praxis-Check IT‑Sicherheit', d: 60, f: ['ort'] },
+    check: { n: 'Sicherheits-Check', d: 60, f: ['ort'] },
     datev: { n: 'DATEV-Termin', d: 30, f: ['video', 'tel'] },
     sl: { n: 'SelectLine-Termin', d: 30, f: ['video', 'tel'] },
     ki: { n: 'KI-Check', d: 45, f: ['video', 'tel', 'ort'] }, // eigene Terminart (Abstimmung 24.11.2026)

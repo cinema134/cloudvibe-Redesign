@@ -1,0 +1,34 @@
+# cloudvibe GmbH
+
+> IT-Dienstleister aus Goch am Niederrhein mit einem siebenköpfigen Team. Betreut Arztpraxen, Zahnarztpraxen und MVZ, Apotheken, Pflegeeinrichtungen und SAPV-Teams, Kanzleien und Steuerberatung sowie mittelständische Unternehmen. Vor Ort in Goch, Kleve, im Kreis Kleve und am Niederrhein, per Fernwartung deutschlandweit.
+
+- Schwerpunkt Gesundheitswesen: Anbindung an die Telematikinfrastruktur (Konnektor oder TI-Gateway, Kartenterminals, KIM) als Partner von Telekonnekt.
+- Managed Services: Datensicherung, Infrastruktur, Hardware und Netzwerke, IT-Sicherheit, laufend betreut mit schriftlichem SLA.
+- Software: DATEV-Support (kein DATEV-Partner, kein Vertrieb) und SelectLine als zertifizierter Partner.
+- Kontakt: kontakt@cloudvibe.de, Support support@cloudvibe.de, Büro Von-Monschaw-Str. 12a, 47574 Goch.
+
+## Gesundheitswesen
+- [IT für Praxen, Apotheken & Pflege mit TI](https://cloudvibe.de/gesundheitswesen): IT für Arztpraxen, Apotheken und Pflege inklusive TI-Anbindung mit Telekonnekt. Aus Goch, vor Ort am Niederrhein, per Fernwartung deutschlandweit.
+- [IT für Arztpraxen und MVZ: Betreuung und TI](https://cloudvibe.de/gesundheitswesen/arztpraxen): IT für Arzt- und Zahnarztpraxen, Gemeinschaftspraxen und MVZ: Arbeitsplätze, Server, Datensicherung und TI-Anbindung, auch über mehrere Standorte. Aus Goch.
+- [IT für Apotheken mit TI-Anbindung und E-Rezept](https://cloudvibe.de/gesundheitswesen/apotheken): IT für Apotheken: Arbeitsplätze, Netzwerk, Drucker, Filialen und TI-Anbindung für das E-Rezept. Aus Goch, vor Ort am Niederrhein, Fernwartung bundesweit.
+- [IT für Pflegeeinrichtungen und SAPV-Teams](https://cloudvibe.de/gesundheitswesen/pflegeeinrichtungen): IT für Pflegeeinrichtungen und SAPV-Teams: WLAN und Tablets im Haus, sicherer Zugriff und Rufbereitschaft unterwegs, TI-Anbindung. Aus Goch.
+- [TI-Anbindung mit Konnektor oder TI-Gateway](https://cloudvibe.de/gesundheitswesen/telematikinfrastruktur): TI-Anbindung für Praxen, Apotheken und Pflege mit Telekonnekt: Konnektor oder TI-Gateway, KIM und Kartenterminals, eingerichtet und betreut aus Goch.
+
+## Kanzleien und Unternehmen
+- [IT für Kanzleien und Steuerberatung, mit DATEV](https://cloudvibe.de/kanzleien): IT für Steuerberatung und Anwaltskanzleien: vertraulich, verfügbar, mit DATEV-Support. Fester Ansprechpartner aus Goch, Fernwartung bundesweit.
+- [IT für den Mittelstand, DATEV & SelectLine](https://cloudvibe.de/unternehmen): IT-Betreuung für den Mittelstand: Betrieb, Backup, Security und Hardware, dazu Support für DATEV und SelectLine. Aus Goch, vor Ort am Niederrhein.
+- [DATEV-Support: Updates, Wartung und Betreuung](https://cloudvibe.de/leistungen/datev): DATEV-Support für Kanzleien und Unternehmen: Updates in abgestimmten Wartungsfenstern, Wartung, Datensicherung und Hilfe bei Fragen. Aus Goch.
+- [SelectLine Partner: Einführung, Schulung, Support](https://cloudvibe.de/leistungen/selectline): SelectLine Warenwirtschaft, Rechnungswesen und Produktion: Auswahl, Einführung, Schulung und Support, lokal oder in der Cloud. Partner aus Goch.
+
+## Leistungen
+- [Sicherheits-Check: IT-Selbsttest für Betriebe](https://cloudvibe.de/sicherheits-check): Wie sicher ist deine IT? Selbsttest in zwei Minuten für Praxen, Apotheken, Pflege, Kanzleien und Unternehmen, oder Prüfung durch cloudvibe aus Goch.
+- [Managed Services: Backup, Betrieb, Security](https://cloudvibe.de/managed-services): Managed Services aus Goch: Backup, Infrastruktur, Hardware und Security dauerhaft betreut, mit SLA. Fernwartung bundesweit, vor Ort am Niederrhein.
+- [KI sicher nutzen: Richtlinie, Schulung, Copilot](https://cloudvibe.de/ki-sicher-nutzen): KI im Betrieb sicher nutzen: KI-Richtlinie, Schulung fürs Team, Microsoft 365 Copilot mit geprüften Berechtigungen und Datenschutz. Aus Goch.
+- [Schulungen: Word, Excel und Cybersecurity](https://cloudvibe.de/leistungen/schulungen): IT-Schulungen für dein Team: Grundlagen in Word und Excel und Cybersecurity, damit Phishing erkannt wird. Vor Ort am Niederrhein oder online. Aus Goch.
+
+## Über cloudvibe
+- [Über uns: IT-Team aus Goch am Niederrhein](https://cloudvibe.de/ueber-uns): cloudvibe aus Goch: siebenköpfiges IT-Team für Praxen, Apotheken, Pflege, Kanzleien und Unternehmen. Vor Ort im Kreis Kleve, Fernwartung bundesweit.
+- [Team: Die Menschen hinter cloudvibe in Goch](https://cloudvibe.de/ueber-uns/team): Lerne das Team von cloudvibe kennen: sieben Menschen in Goch, die deine IT betreuen. Fester Ansprechpartner, Fernwartung bundesweit, vor Ort am Niederrhein.
+- [Referenzen: Was Kunden über cloudvibe sagen](https://cloudvibe.de/ueber-uns/referenzen): Kundenstimmen aus Praxen, Apotheken, Pflegeeinrichtungen, Kanzleien und Unternehmen über die IT-Betreuung von cloudvibe aus Goch am Niederrhein.
+- [News: IT-Sicherheit, Backup, TI und DATEV](https://cloudvibe.de/news): Kurze Beiträge von cloudvibe zu IT-Sicherheit, Datensicherung, Telematikinfrastruktur und DATEV. Für Praxen, Kanzleien und Unternehmen, verständlich erklärt.
+- [IT-Lexikon: TI, Backup, Firewall und mehr erklärt](https://cloudvibe.de/lexikon): IT-Begriffe einfach erklärt: Telematikinfrastruktur, Konnektor, KIM, Managed Backup, Firewall, SLA, DATEV und mehr. Das Lexikon von cloudvibe aus Goch.

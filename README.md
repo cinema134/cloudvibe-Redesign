@@ -95,7 +95,7 @@ Hero (Startseite mit Kacheln; Unterseiten `.uhero` mit Pfad statt Eyebrow) · Te
 
 ## SEO (Pflicht)
 
-Jede Seite hat im `<head>` Titel (~60 Zeichen), Beschreibung (~155), Canonical, Open Graph und JSON-LD (ProfessionalService, WebSite, WebPage, BreadcrumbList, Service bei Leistungsseiten, FAQPage aus den FAQ). Genau eine H1. Login ist `noindex`. Werte stehen in `quellen/seiten.json` und sind 1:1 übernehmbar. Beim Livegang: 301-Weiterleitungen von der alten cloudvibe.de, XML-Sitemap, robots.txt, später `llms.txt`.
+Jede Seite hat im `<head>` Titel (~60 Zeichen), Beschreibung (~155), Canonical, Open Graph und JSON-LD (ProfessionalService, WebSite, WebPage, BreadcrumbList, Service bei Leistungsseiten, FAQPage aus den FAQ). Genau eine H1. Login ist `noindex`. Werte stehen in `quellen/seiten.json` und sind 1:1 übernehmbar. Beim Livegang: 301-Weiterleitungen von der alten cloudvibe.de. `robots.txt`, `sitemap.xml` und `llms.txt` liegen fertig in `livegang/` (bei jedem `--uebergabe` aus `seiten.json` neu erzeugt) und kommen ins Wurzelverzeichnis von cloudvibe.de. Einsatzgebiet im Schema: Goch, Kleve, Kreis Kleve, Niederrhein, Deutschland.
 
 ## Inhaltliche Regeln
 
