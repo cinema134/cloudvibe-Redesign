@@ -1110,6 +1110,9 @@ body.dark .sz-logo{filter:brightness(1.45) saturate(1.15)}
 .sz-schnee{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 .sz-schnee i{position:absolute;top:-12px;border-radius:50%;background:#fff;box-shadow:0 0 0 .6px rgba(45,108,223,.22);animation:szFall linear infinite}
 @keyframes szFall{from{transform:translate3d(0,-20px,0)}to{transform:translate3d(36px,105vh,0)}}
+/* Karneval: Konfetti statt Schnee, Schnipsel drehen sich beim Fallen */
+.sz-konf i{border-radius:1px;box-shadow:none;animation-name:szKonf}
+@keyframes szKonf{from{transform:translate3d(0,-20px,0) rotate(0)}50%{transform:translate3d(-14px,52vh,0) rotate(calc(var(--dreh) / 2))}to{transform:translate3d(22px,105vh,0) rotate(var(--dreh))}}
 @media(prefers-reduced-motion:reduce),(max-width:700px){.sz-schnee{display:none}}
 /* Telekonnekt im Fließtext: Wort (Standard) oder Logo (Option, Leon 27.11.2026), Umschalter „Telekonnekt im Text“ */
 .tk-l{display:none}

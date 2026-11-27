@@ -1285,14 +1285,21 @@ const CV = (function () {
       if (t >= new Date(o - 7 * tag) && t <= new Date(+o + tag)) return 'ostern';
       return 'aus';
     };
-    const schnee = (an) => {
+    // Startseiten-Hero: Weihnachten leichter Schnee, Karneval dezent rieselndes Konfetti (Leon 27.11.2026: „wie bei Weihnachten mit dem Schnee“)
+    const schnee = (art) => {
       const hero = document.querySelector('main>.hero');
       const alt = document.querySelector('.sz-schnee');
-      if (!an || !hero || innerWidth <= 700 || matchMedia('(prefers-reduced-motion: reduce)').matches) { if (alt) alt.remove(); return; }
-      if (alt) return;
-      const s = document.createElement('div'); s.className = 'sz-schnee'; s.setAttribute('aria-hidden', 'true');
+      const an = art === 'weihnachten' || art === 'karneval';
+      if (alt && alt.dataset.art !== art) alt.remove(); else if (alt && an) return;
+      if (!an || !hero || innerWidth <= 700 || matchMedia('(prefers-reduced-motion: reduce)').matches) { const a = document.querySelector('.sz-schnee'); if (a) a.remove(); return; }
+      const s = document.createElement('div'); s.className = 'sz-schnee' + (art === 'karneval' ? ' sz-konf' : ''); s.dataset.art = art; s.setAttribute('aria-hidden', 'true');
       let h = '';
-      for (let i = 0; i < 26; i++) { const z = 2 + ((i * 37) % 4); h += `<i style="left:${(i * 53) % 100}%;width:${z}px;height:${z}px;animation-duration:${16 + ((i * 7) % 12)}s;animation-delay:-${(i * 3.7) % 26}s;opacity:${0.55 + ((i * 7) % 4) / 10}"></i>`; }
+      if (art === 'karneval') {
+        const F = ['#D2353D', '#F2C230', '#2D6CDF', '#3FAE3A', '#E5484F', '#F7CF45'];
+        for (let i = 0; i < 22; i++) { const rund = i % 3 === 0, w = rund ? 4 : 3 + (i % 2), hh = rund ? 4 : 6 + (i % 3); h += `<i style="left:${(i * 53) % 100}%;width:${w}px;height:${hh}px;background:${F[i % F.length]};${rund ? 'border-radius:50%;' : ''}animation-duration:${15 + ((i * 7) % 11)}s;animation-delay:-${(i * 3.9) % 24}s;opacity:${0.5 + ((i * 7) % 4) / 10};--dreh:${(i % 2 ? 1 : -1) * (300 + (i * 47) % 360)}deg"></i>`; }
+      } else {
+        for (let i = 0; i < 26; i++) { const z = 2 + ((i * 37) % 4); h += `<i style="left:${(i * 53) % 100}%;width:${z}px;height:${z}px;animation-duration:${16 + ((i * 7) % 12)}s;animation-delay:-${(i * 3.7) % 26}s;opacity:${0.55 + ((i * 7) % 4) / 10}"></i>`; }
+      }
       s.innerHTML = h; hero.appendChild(s);
     };
     /* Deko (Leon 26.11.2026, Skizze assets/saison/skizze_saison_2.js):
@@ -1483,7 +1490,7 @@ const CV = (function () {
       B.classList.remove('saison-weihnachten', 'saison-ostern', 'saison-karneval');
       if (aktiv !== 'aus') B.classList.add('saison-' + aktiv);
       logosSetzen(aktiv);
-      schnee(aktiv === 'weihnachten');
+      schnee(aktiv);
       deko(aktiv);
       document.querySelectorAll('[data-saison]').forEach((b) => b.classList.toggle('on', b.dataset.saison === v));
       if (merken) merke('saison', v);
@@ -1498,7 +1505,7 @@ const CV = (function () {
     }
     setSaison(wert('saison', Q.get('saison'), 'auto'), false);
     let nestT = 0;
-    addEventListener('resize', () => { if (aktiv !== 'aus') { ruecken(); schnee(aktiv === 'weihnachten'); clearTimeout(nestT); nestT = setTimeout(fussNest, 150); } });
+    addEventListener('resize', () => { if (aktiv !== 'aus') { ruecken(); schnee(aktiv); clearTimeout(nestT); nestT = setTimeout(fussNest, 150); } });
     addEventListener('load', () => { if (aktiv !== 'aus') { ruecken(); fussNest(); } });
     if (document.fonts) document.fonts.ready.then(fussNest);
   }
