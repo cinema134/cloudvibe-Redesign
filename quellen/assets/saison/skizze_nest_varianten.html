@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<title>Skizze Osternest Varianten</title>
+<!-- Skizze (Leon 27.11.2026): Strohnest mit Eiern wertiger machen, „wertig, aber nicht künstlich billig“; Weihnachtsdeko als Maßstab.
+     Nur Vergleich, nicht in die Seiten eingebunden. Bild: Mockup/Vergleich/Ostern_Nest_Varianten.png -->
+<style>
+  body{margin:0;font:14px/1.4 "Segoe UI",sans-serif;background:#fff;color:#14171C}
+  .reihe{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+  .feld{padding:22px 18px 26px;border-right:1px solid #E3E8F0}
+  .feld:last-child{border-right:0}
+  .dunkel{background:#0B0D10;color:#fff}
+  .dunkel .feld{border-color:#252A33}
+  h3{margin:0 0 4px;font-size:15px}
+  p{margin:0 0 14px;font-size:12px;color:#4F5663;min-height:34px}
+  .dunkel p{color:#AEB5C2}
+  .gross{display:flex;justify-content:center;height:150px;align-items:flex-end}
+  .gross svg{width:240px;height:auto;overflow:visible}
+  .karte{position:relative;margin-top:62px;height:70px;border-radius:30px;border:1px solid #E3E8F0;background:linear-gradient(#fff,#F4F7FC)}
+  .dunkel .karte{border-color:#252A33;background:linear-gradient(#121A27,#0E131C)}
+  .karte .lieg{position:absolute;bottom:calc(100% - 9px);left:46px;line-height:0}
+  .karte .lieg svg{height:58px;width:auto;overflow:visible}
+  .karte span{position:absolute;left:24px;top:24px;font-size:13px;color:#4F5663}
+  .dunkel .karte span{color:#AEB5C2}
+  .ref{display:flex;gap:30px;align-items:flex-end;padding:18px;border-top:1px solid #E3E8F0}
+</style></head><body>
+<div id="hell" class="reihe"></div>
+<div id="dunkel" class="reihe dunkel"></div>
+<script>
+// deterministischer Zufall, damit jede Skizze gleich aussieht
+const rnd = (s) => () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646;
+let gid = 0;
+
+// Eiform wie in basis.js, mit Licht und Schatten
+const eiPfad = (x, y, w, h) => `M${x} ${y - h / 2} C${x - w * 0.62} ${y - h / 2} ${x - w / 2} ${y + h * 0.2} ${x - w / 2} ${y + h * 0.18} C${x - w / 2} ${y + h * 0.42} ${x - w * 0.28} ${y + h / 2} ${x} ${y + h / 2} C${x + w * 0.28} ${y + h / 2} ${x + w / 2} ${y + h * 0.42} ${x + w / 2} ${y + h * 0.18} C${x + w / 2} ${y + h * 0.2} ${x + w * 0.62} ${y - h / 2} ${x} ${y - h / 2} Z`;
+const ei = (x, y, w, h, dreh, hellF, grundF, dunkelF, extra = '') => {
+  const g = 'e' + (++gid), c = 'c' + gid;
+  return `<defs><radialGradient id="${g}" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="${hellF}"/><stop offset=".45" stop-color="${grundF}"/><stop offset="1" stop-color="${dunkelF}"/></radialGradient><clipPath id="${c}"><path d="${eiPfad(x, y, w, h)}"/></clipPath></defs>
+  <g transform="rotate(${dreh} ${x} ${y})"><path d="${eiPfad(x, y, w, h)}" fill="url(#${g})"/><g clip-path="url(#${c})">${extra}</g>
+  <ellipse cx="${x - w * 0.18}" cy="${y - h * 0.22}" rx="${w * 0.12}" ry="${h * 0.15}" fill="#fff" opacity=".28"/></g>`;
+};
+// feine Sprenkel wie bei echten Eiern
+const sprenkel = (x, y, w, h, farbe, n, seed, op = .55) => { const r = rnd(seed); let s = ''; for (let i = 0; i < n; i++) { const a = r() * 6.283, d = Math.sqrt(r()); s += `<circle cx="${(x + Math.cos(a) * d * w * 0.5).toFixed(1)}" cy="${(y + Math.sin(a) * d * h * 0.5).toFixed(1)}" r="${(0.35 + r() * 0.75).toFixed(2)}" fill="${farbe}" opacity="${(op * (0.5 + r() * 0.5)).toFixed(2)}"/>`; } return s; };
+// feines Goldband
+const goldband = (x, y, w, h) => `<path d="M${x - w} ${y - 1.5}h${w * 2}" stroke="#C9A94B" stroke-width="1.6"/><path d="M${x - w} ${y + 2.5}h${w * 2}" stroke="#C9A94B" stroke-width=".7"/><path d="M${x - w} ${y - 5.5}h${w * 2}" stroke="#C9A94B" stroke-width=".7"/>`;
+
+// Nest aus vielen feinen Halmen in mehreren Tönen (statt flacher Schale mit drei Linien)
+const nest = (eier, o = {}) => {
+  const r = rnd(o.seed || 7), n = ++gid;
+  const T = o.toene || ['#7A5530', '#93693B', '#AD8148', '#C69A5B', '#DDBA7E', '#EBD3A0'];
+  const halm = (y0, y1, bogen, anz, breite, op = 1) => {
+    let s = '';
+    for (let i = 0; i < anz; i++) {
+      const xa = 8 + r() * 30, xe = 82 + r() * 30, ya = y0 + r() * (y1 - y0), ye = y0 + r() * (y1 - y0);
+      const xm = (xa + xe) / 2 + (r() - .5) * 20, ym = Math.max(ya, ye) + bogen * (0.6 + r() * 0.6);
+      s += `<path d="M${xa.toFixed(1)} ${ya.toFixed(1)}Q${xm.toFixed(1)} ${ym.toFixed(1)} ${xe.toFixed(1)} ${ye.toFixed(1)}" stroke="${T[Math.floor(r() * T.length)]}" stroke-width="${(breite * (0.6 + r() * 0.8)).toFixed(2)}" fill="none" stroke-linecap="round" opacity="${op}"/>`;
+    }
+    return s;
+  };
+  const lose = (anz) => { let s = ''; for (let i = 0; i < anz; i++) { const links = i % 2 === 0, x = links ? 10 + r() * 8 : 102 + r() * 8, y = 38 + r() * 16, dx = (links ? -1 : 1) * (6 + r() * 9), dy = -4 + r() * 8; s += `<path d="M${x.toFixed(1)} ${y.toFixed(1)}q${(dx / 2).toFixed(1)} ${(dy - 3).toFixed(1)} ${dx.toFixed(1)} ${dy.toFixed(1)}" stroke="${T[1 + Math.floor(r() * 4)]}" stroke-width="${(0.6 + r() * 0.6).toFixed(2)}" fill="none" stroke-linecap="round"/>`; } return s; };
+  return `<svg viewBox="-4 -2 128 78" width="${o.w || 120}" height="${o.h || 72}">
+  <defs><radialGradient id="nb${n}" cx=".5" cy=".2" r=".9"><stop offset="0" stop-color="#C79B5E"/><stop offset="1" stop-color="#8E6537"/></radialGradient>
+  <filter id="sh${n}" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter></defs>
+  <ellipse cx="60" cy="68" rx="46" ry="4.5" fill="#1B2230" opacity="${o.dunkel ? .5 : .16}" filter="url(#sh${n})"/>
+  <path d="M12 38 Q60 22 108 38 Q60 31 12 38Z" fill="#6E4C2A"/>
+  ${halm(28, 36, -6, 26, 1.3)}
+  ${eier}
+  <path d="M8 38 Q10 64 60 67 Q110 64 112 38 Q60 50 8 38Z" fill="url(#nb${n})"/>
+  ${halm(40, 62, 6, 70, 1.15)}
+  ${halm(36, 44, 4, 34, 1.5)}
+  ${lose(10)}
+  ${o.gruen || ''}
+  </svg>`;
+};
+
+// Eier je Variante; Lage: links, rechts, Mitte (Mitte vorne)
+const L = [35, 31, 27, 35, -14], R = [85, 32, 27, 35, 15], M = [60, 27, 29, 38, 0];
+const V = {
+  bisher: null,
+  A: {
+    t: 'A Natur', p: 'Echte Eierfarben (Creme, Braun, Entenei-Blau) mit feinen Sprenkeln, Nest aus vielen Halmen.',
+    eier: () => ei(...L, '#F8F1E4', '#E9DCC4', '#C9B590', sprenkel(L[0], L[1], L[2], L[3], '#8A6A45', 10, 3, .35)) + ei(...R, '#E6F0EC', '#BFD7D0', '#8FB0A7', sprenkel(R[0], R[1], R[2], R[3], '#5F7F76', 16, 5)) + ei(...M, '#E9C9A7', '#C79A6F', '#9C6E46', sprenkel(M[0], M[1], M[2], M[3], '#5C3A20', 26, 9))
+  },
+  B: {
+    t: 'B Pastell gedämpft', p: 'Ruhige Pastelltöne (Butter, Malve, Salbei), weich schattiert, ohne Muster.',
+    eier: () => ei(...L, '#FBF1CF', '#EBD9A0', '#C9B26F') + ei(...R, '#F1E6F1', '#D8C3D9', '#AF95B2') + ei(...M, '#E4F0E7', '#B9D4C2', '#86AA92')
+  },
+  C: {
+    t: 'C Pastell mit Gold', p: 'Wie B, das vordere Ei mit feinem Goldband (Gold wie die Kappen der Weihnachtskugeln).',
+    eier: () => ei(...L, '#FBF1CF', '#EBD9A0', '#C9B26F') + ei(...R, '#F1E6F1', '#D8C3D9', '#AF95B2') + ei(...M, '#E4F0E7', '#B9D4C2', '#86AA92', goldband(M[0], M[1] + 2, M[2], M[3]))
+  },
+  D: {
+    t: 'D Natur mit Grün', p: 'Wie A, dazu etwas Moos und zwei kleine Blätter am Rand, eine weiße Blüte.',
+    eier: () => V.A.eier(),
+    gruen: `<path d="M14 40q-8-7-14-4q6 8 14 4Z" fill="#6F9A6B"/><path d="M14 40q-7-3-12 0" stroke="#4F7A4C" stroke-width=".6" fill="none"/><path d="M106 41q9-6 15-2q-7 7-15 2Z" fill="#7FA97A"/><path d="M106 41q7-2 13 0" stroke="#55804F" stroke-width=".6" fill="none"/><g fill="#8FB07E" opacity=".9"><circle cx="20" cy="40" r="2.2"/><circle cx="24" cy="41.5" r="1.8"/><circle cx="96" cy="41.5" r="2"/><circle cx="100" cy="40.5" r="1.6"/></g><g transform="translate(100 40)"><circle r="2.3" cx="0" cy="-3" fill="#fff"/><circle r="2.3" cx="2.9" cy="-.9" fill="#fff"/><circle r="2.3" cx="1.8" cy="2.4" fill="#fff"/><circle r="2.3" cx="-1.8" cy="2.4" fill="#fff"/><circle r="2.3" cx="-2.9" cy="-.9" fill="#fff"/><circle r="1.4" fill="#E8C35A"/></g>`
+  }
+};
+
+// Bisher (aus basis.js), zum Vergleich
+const eiAlt = (x, y, w, h, farbe, muster, dreh) => `<g transform="rotate(${dreh} ${x} ${y})"><path d="${eiPfad(x, y, w, h)}" fill="${farbe}"/>${muster}</g>`;
+const eierAlt = `${eiAlt(30, 27, 22, 29, '#F6D776', '<path d="M20 27q5-3.5 10 0t10 0" stroke="#E39A3B" stroke-width="2" fill="none"/>', -16)}${eiAlt(66, 28, 22, 29, '#C9B6E8', '<circle cx="61" cy="24" r="2" fill="#fff"/><circle cx="69" cy="30" r="2" fill="#fff"/><circle cx="63" cy="34" r="1.7" fill="#fff"/>', 14)}${eiAlt(48, 23, 24, 32, '#9ED9B8', '<path d="M37 21h22M37 27h22" stroke="#fff" stroke-width="2.2"/>', 0)}`;
+const nestAlt = `<svg width="96" height="58" viewBox="0 0 96 58"><path d="M10 34 Q48 22 86 34" fill="none" stroke="#B88A4A" stroke-width="3" stroke-linecap="round"/><path d="M14 32 Q48 24 82 32" fill="none" stroke="#DDBB78" stroke-width="2" stroke-linecap="round"/>${eierAlt}<path d="M6 34 Q8 54 48 55 Q88 54 90 34 Q48 44 6 34 Z" fill="#C99A55"/><path d="M10 38 Q48 49 86 38 M12 44 Q48 53 84 44 M18 50 Q48 56 78 50" fill="none" stroke="#A97B3C" stroke-width="1.4" stroke-linecap="round"/><path d="M14 36 Q30 42 46 40 M50 41 Q68 42 82 36 M22 46 Q38 50 54 48 M58 48 Q70 48 78 45" fill="none" stroke="#E6C88A" stroke-width="1.2" stroke-linecap="round"/><path d="M6 34 Q2 31 0 33 M90 34 Q94 30 96 32 M30 54 Q26 57 22 56 M66 54 Q72 57 76 55" fill="none" stroke="#B88A4A" stroke-width="1.3" stroke-linecap="round"/></svg>`;
+
+const feld = (k, dunkel) => {
+  const v = V[k];
+  const svg = v ? nest(v.eier(), { gruen: v.gruen, dunkel }) : nestAlt;
+  return `<div class="feld"><h3>${v ? v.t : 'Bisher'}</h3><p>${v ? v.p : 'Flache Flächen, Bastelmuster, Schale mit drei Linien.'}</p>
+    <div class="gross">${svg}</div>
+    <div class="karte"><div class="lieg">${svg}</div><span>Karte (Originalgröße 58 px hoch)</span></div></div>`;
+};
+for (const [id, d] of [['hell', false], ['dunkel', true]]) document.getElementById(id).innerHTML = Object.keys(V).map((k) => feld(k, d)).join('');
+</script>
+</body></html>

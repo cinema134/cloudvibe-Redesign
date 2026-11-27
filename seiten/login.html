@@ -1148,7 +1148,12 @@ body.dark.tkLogo .tk-l .logo-maske{background:#fff}
 .sz-fuss{position:absolute;pointer-events:none;line-height:0}
 .sz-fuss svg{display:block;overflow:visible}
 .fuss .sozial-r .sz-fk svg{width:20px;height:auto}
-.fuss .sozial-r .sz-fn svg{width:56px;height:34px}
+.fuss .sozial-r .sz-fn svg{width:60px;height:37px}
+/* Osternest (Leon 27.11.2026, Umschalter C/D): unten Platz für Schatten, daher tiefer gesetzt und etwas höher */
+.saison-ostern .sz-liegt{bottom:calc(100% - 11px)}
+.saison-ostern .sz-liegt svg{height:64px}
+.sz-ns{opacity:.16}
+body.dark .sz-ns{opacity:.5}
 .sz-fk{top:100%;left:50%;margin-left:-10px}
 .sz-fn{left:calc(100% + 6px);bottom:-6px}
 .sz-fn.sz-fn-l{left:auto;right:calc(100% + 6px)}
@@ -3002,10 +3007,39 @@ const CV = (function () {
       k2: `<svg width="60" height="54" viewBox="0 0 60 54">${kugel(18, 18, 10, '#2E7D5B', '#C9A94B', 0.6)}${kugel(44, 6, 8, '#C0392B', '#C9A94B', 1.8)}</svg>`,
       k3: `<svg width="84" height="58" viewBox="0 0 84 58">${kugel(16, 12, 9, '#C0392B', '#C9A94B', 0)}${kugel(42, 22, 11, '#D4A63A', '#B8923A', 1.3)}${kugel(68, 6, 8, '#2E7D5B', '#C9A94B', 2.1)}</svg>`
     };
-    const ei = (x, y, w, h, farbe, muster, dreh) => `<g transform="rotate(${dreh} ${x} ${y})"><path d="M${x} ${y - h / 2} C${x - w * 0.62} ${y - h / 2} ${x - w / 2} ${y + h * 0.2} ${x - w / 2} ${y + h * 0.18} C${x - w / 2} ${y + h * 0.42} ${x - w * 0.28} ${y + h / 2} ${x} ${y + h / 2} C${x + w * 0.28} ${y + h / 2} ${x + w / 2} ${y + h * 0.42} ${x + w / 2} ${y + h * 0.18} C${x + w / 2} ${y + h * 0.2} ${x + w * 0.62} ${y - h / 2} ${x} ${y - h / 2} Z" fill="${farbe}"/>${muster}</g>`;
-    const eierA = `${ei(30, 27, 22, 29, '#F6D776', '<path d="M20 27q5-3.5 10 0t10 0" stroke="#E39A3B" stroke-width="2" fill="none"/>', -16)}${ei(66, 28, 22, 29, '#C9B6E8', '<circle cx="61" cy="24" r="2" fill="#fff"/><circle cx="69" cy="30" r="2" fill="#fff"/><circle cx="63" cy="34" r="1.7" fill="#fff"/>', 14)}${ei(48, 23, 24, 32, '#9ED9B8', '<path d="M37 21h22M37 27h22" stroke="#fff" stroke-width="2.2"/>', 0)}`;
-    const NESTER = { a: eierA, b: eierA.replace(/F6D776/g, 'F4B8C8').replace(/9ED9B8/g, 'F6D776') };
-    const nest = (eier) => `<svg width="80" height="48" viewBox="0 0 96 58"><path d="M10 34 Q48 22 86 34" fill="none" stroke="#B88A4A" stroke-width="3" stroke-linecap="round"/><path d="M14 32 Q48 24 82 32" fill="none" stroke="#DDBB78" stroke-width="2" stroke-linecap="round"/>${eier}<path d="M6 34 Q8 54 48 55 Q88 54 90 34 Q48 44 6 34 Z" fill="#C99A55"/><path d="M10 38 Q48 49 86 38 M12 44 Q48 53 84 44 M18 50 Q48 56 78 50" fill="none" stroke="#A97B3C" stroke-width="1.4" stroke-linecap="round"/><path d="M14 36 Q30 42 46 40 M50 41 Q68 42 82 36 M22 46 Q38 50 54 48 M58 48 Q70 48 78 45" fill="none" stroke="#E6C88A" stroke-width="1.2" stroke-linecap="round"/><path d="M6 34 Q2 31 0 33 M90 34 Q94 30 96 32 M30 54 Q26 57 22 56 M66 54 Q72 57 76 55" fill="none" stroke="#B88A4A" stroke-width="1.3" stroke-linecap="round"/></svg>`;
+    /* Osternest (Leon 27.11.2026: „wertig, aber nicht künstlich billig“, Skizze assets/saison/skizze_nest_varianten.html):
+       Nest aus vielen feinen Halmen, Eier mit Licht und Schatten. Umschalter Design → Saison → „Osternest“:
+       C Pastell mit Gold (Standard) | D Natur mit Grün, Option osterNest, ?osternest=c|d. data-sz-o="b" tauscht die Eierfarben. */
+    let gid = 0;
+    const rnd = (s) => () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646; // fester Zufall, jedes Nest sieht gleich aus
+    const eiPfad = (x, y, w, h) => `M${x} ${y - h / 2} C${x - w * 0.62} ${y - h / 2} ${x - w / 2} ${y + h * 0.2} ${x - w / 2} ${y + h * 0.18} C${x - w / 2} ${y + h * 0.42} ${x - w * 0.28} ${y + h / 2} ${x} ${y + h / 2} C${x + w * 0.28} ${y + h / 2} ${x + w / 2} ${y + h * 0.42} ${x + w / 2} ${y + h * 0.18} C${x + w / 2} ${y + h * 0.2} ${x + w * 0.62} ${y - h / 2} ${x} ${y - h / 2} Z`;
+    const ei = ([x, y, w, h, dreh], [hell, grund, dunkel], extra = '') => {
+      const g = 'szE' + (++gid), c = 'szC' + gid;
+      return `<defs><radialGradient id="${g}" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="${hell}"/><stop offset=".45" stop-color="${grund}"/><stop offset="1" stop-color="${dunkel}"/></radialGradient><clipPath id="${c}"><path d="${eiPfad(x, y, w, h)}"/></clipPath></defs><g transform="rotate(${dreh} ${x} ${y})"><path d="${eiPfad(x, y, w, h)}" fill="url(#${g})"/><g clip-path="url(#${c})">${extra}</g><ellipse cx="${x - w * 0.18}" cy="${y - h * 0.22}" rx="${w * 0.12}" ry="${h * 0.15}" fill="#fff" opacity=".28"/></g>`;
+    };
+    const sprenkel = ([x, y, w, h], farbe, n, seed, op = 0.55) => { const r = rnd(seed); let s = ''; for (let i = 0; i < n; i++) { const a = r() * 6.283, d = Math.sqrt(r()); s += `<circle cx="${(x + Math.cos(a) * d * w * 0.5).toFixed(1)}" cy="${(y + Math.sin(a) * d * h * 0.5).toFixed(1)}" r="${(0.35 + r() * 0.75).toFixed(2)}" fill="${farbe}" opacity="${(op * (0.5 + r() * 0.5)).toFixed(2)}"/>`; } return s; };
+    const goldband = ([x, y, w]) => `<path d="M${x - w} ${y + 0.5}h${w * 2}" stroke="#C9A94B" stroke-width="1.6"/><path d="M${x - w} ${y + 4.5}h${w * 2}M${x - w} ${y - 3.5}h${w * 2}" stroke="#C9A94B" stroke-width=".7"/>`;
+    const EL = [35, 31, 27, 35, -14], ER = [85, 32, 27, 35, 15], EM = [60, 27, 29, 38, 0]; // links, rechts, Mitte (vorne)
+    const P = { butter: ['#FBF1CF', '#EBD9A0', '#C9B26F'], malve: ['#F1E6F1', '#D8C3D9', '#AF95B2'], salbei: ['#E4F0E7', '#B9D4C2', '#86AA92'] };
+    const N = { creme: ['#F8F1E4', '#E9DCC4', '#C9B590'], blau: ['#E6F0EC', '#BFD7D0', '#8FB0A7'], braun: ['#E9C9A7', '#C79A6F', '#9C6E46'] };
+    const EIER = {
+      c: (b) => ei(EL, b ? P.malve : P.butter) + ei(ER, b ? P.butter : P.malve) + ei(EM, P.salbei, goldband(EM)),
+      d: (b) => ei(EL, b ? N.blau : N.creme, sprenkel(EL, b ? '#5F7F76' : '#8A6A45', b ? 16 : 10, 3, b ? 0.55 : 0.35)) + ei(ER, b ? N.creme : N.blau, sprenkel(ER, b ? '#8A6A45' : '#5F7F76', b ? 10 : 16, 5, b ? 0.35 : 0.55)) + ei(EM, N.braun, sprenkel(EM, '#5C3A20', 26, 9))
+    };
+    const GRUEN = '<path d="M14 40q-8-7-14-4q6 8 14 4Z" fill="#6F9A6B"/><path d="M14 40q-7-3-12 0" stroke="#4F7A4C" stroke-width=".6" fill="none"/><path d="M106 41q9-6 15-2q-7 7-15 2Z" fill="#7FA97A"/><path d="M106 41q7-2 13 0" stroke="#55804F" stroke-width=".6" fill="none"/><g fill="#8FB07E" opacity=".9"><circle cx="20" cy="40" r="2.2"/><circle cx="24" cy="41.5" r="1.8"/><circle cx="96" cy="41.5" r="2"/><circle cx="100" cy="40.5" r="1.6"/></g><g transform="translate(100 40)" fill="#fff"><circle r="2.3" cy="-3"/><circle r="2.3" cx="2.9" cy="-.9"/><circle r="2.3" cx="1.8" cy="2.4"/><circle r="2.3" cx="-1.8" cy="2.4"/><circle r="2.3" cx="-2.9" cy="-.9"/><circle r="1.4" fill="#E8C35A"/></g>';
+    const HALME = (() => { // einmal erzeugt, gilt für alle Nester
+      const r = rnd(7), T = ['#7A5530', '#93693B', '#AD8148', '#C69A5B', '#DDBA7E', '#EBD3A0'];
+      const halm = (y0, y1, bogen, anz, breite) => { let s = ''; for (let i = 0; i < anz; i++) { const xa = 8 + r() * 30, xe = 82 + r() * 30, ya = y0 + r() * (y1 - y0), ye = y0 + r() * (y1 - y0), xm = (xa + xe) / 2 + (r() - 0.5) * 20, ym = Math.max(ya, ye) + bogen * (0.6 + r() * 0.6); s += `<path d="M${xa.toFixed(1)} ${ya.toFixed(1)}Q${xm.toFixed(1)} ${ym.toFixed(1)} ${xe.toFixed(1)} ${ye.toFixed(1)}" stroke="${T[Math.floor(r() * T.length)]}" stroke-width="${(breite * (0.6 + r() * 0.8)).toFixed(2)}"/>`; } return s; };
+      const hinten = halm(28, 36, -6, 26, 1.3), vorne = halm(40, 62, 6, 70, 1.15) + halm(36, 44, 4, 34, 1.5);
+      let lose = ''; for (let i = 0; i < 10; i++) { const li = i % 2 === 0, x = li ? 10 + r() * 8 : 102 + r() * 8, y = 38 + r() * 16, dx = (li ? -1 : 1) * (6 + r() * 9), dy = -4 + r() * 8; lose += `<path d="M${x.toFixed(1)} ${y.toFixed(1)}q${(dx / 2).toFixed(1)} ${(dy - 3).toFixed(1)} ${dx.toFixed(1)} ${dy.toFixed(1)}" stroke="${T[1 + Math.floor(r() * 4)]}" stroke-width="${(0.6 + r() * 0.6).toFixed(2)}"/>`; }
+      return { hinten, vorne: vorne + lose };
+    })();
+    let nestArt = 'c';
+    // Breite in px; Höhe folgt dem Seitenverhältnis (viewBox mit Platz für Schatten und lose Halme)
+    const nest = (b, w) => {
+      const n = ++gid;
+      return `<svg width="${w}" height="${Math.round(w * 78 / 128)}" viewBox="-4 -2 128 78"><defs><radialGradient id="szNb${n}" cx=".5" cy=".2" r=".9"><stop offset="0" stop-color="#C79B5E"/><stop offset="1" stop-color="#8E6537"/></radialGradient><filter id="szNs${n}" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter></defs><ellipse class="sz-ns" cx="60" cy="68" rx="46" ry="4.5" fill="#1B2230" filter="url(#szNs${n})"/><path d="M12 38 Q60 22 108 38 Q60 31 12 38Z" fill="#6E4C2A"/><g fill="none" stroke-linecap="round">${HALME.hinten}</g>${EIER[nestArt](b)}<path d="M8 38 Q10 64 60 67 Q110 64 112 38 Q60 50 8 38Z" fill="url(#szNb${n})"/><g fill="none" stroke-linecap="round">${HALME.vorne}</g>${nestArt === 'd' ? GRUEN : ''}</svg>`;
+    };
     // Ostern im Footer (Leon 26.11.2026): großes Nest unter den Telefonnummern, knapp über der Linie;
     // ist dort kein Platz (schmale Fenster, Spalten umgebrochen), kleines Nest rechts neben den Symbolen
     const fussNest = () => {
@@ -3014,7 +3048,7 @@ const CV = (function () {
       const F = [...document.querySelectorAll('.fuss')].find((f) => f.offsetHeight);
       if (!F) return;
       const linie = F.querySelector('.fk-unten');
-      const W = 130, H = 78, HOCH = 12; // Leon 26.11.2026: unter der Spalte Telefon mittig zentriert; 27.11.: etwas kleiner und minimal höher
+      const W = 136, H = Math.round(136 * 78 / 128), HOCH = 4; // Leon 26.11.2026: unter der Spalte Telefon mittig zentriert; 27.11.: etwas kleiner und minimal höher (neues Nest hat unten Platz für den Schatten, daher HOCH 4)
       // erst unter Telefon, sonst unter der nächsten Spalte, unter der bis zur Linie Platz ist
       for (const sp of linie ? F.querySelectorAll('.fk-sp') : []) {
         const fr = F.getBoundingClientRect(), tr = sp.getBoundingClientRect(), lt = linie.getBoundingClientRect().top;
@@ -3025,7 +3059,7 @@ const CV = (function () {
           const z = document.createElement('span');
           z.className = 'sz-fnest'; z.setAttribute('aria-hidden', 'true');
           z.style.cssText = `left:${(box.l - fr.left).toFixed(1)}px;top:${(box.t - fr.top).toFixed(1)}px`;
-          z.innerHTML = nest(NESTER.a).replace('width="80" height="48"', `width="${W}" height="${H}"`);
+          z.innerHTML = nest(false, W);
           F.appendChild(z);
           return;
         }
@@ -3035,7 +3069,7 @@ const CV = (function () {
       const z = document.createElement('span');
       const links = letzte.getBoundingClientRect().right + 64 > F.getBoundingClientRect().right - 8; // rechts kein Platz: links vor die Symbole
       z.className = 'sz-fuss sz-fn' + (links ? ' sz-fn-l' : ''); z.setAttribute('aria-hidden', 'true');
-      z.innerHTML = nest(NESTER.a).replace('width="80" height="48"', 'width="56" height="34"');
+      z.innerHTML = nest(false, 60);
       (links ? a[0] : letzte).appendChild(z);
     };
     // Auf der Kartenkante liegend (Leon 27.11.2026: „Ostereier oder Kugeln können auch mal oberhalb einer Karte aufliegen“):
@@ -3049,7 +3083,7 @@ const CV = (function () {
       return `<svg width="124" height="44" viewBox="0 0 124 44"><path d="M6 34 Q60 30 116 28" stroke="#5B4632" stroke-width="2" fill="none" stroke-linecap="round"/>${n}<g><rect x="63" y="15" width="6" height="4" rx="1" fill="#C9A94B"/><circle cx="66" cy="29" r="10" fill="#C0392B"/><ellipse cx="62.5" cy="25.5" rx="2.6" ry="3.8" fill="#fff" opacity=".45"/></g><g><rect x="84" y="22" width="5" height="3.4" rx="1" fill="#B8923A"/><circle cx="86.5" cy="32.5" r="7.5" fill="#D4A63A"/><ellipse cx="84" cy="30" rx="2" ry="2.9" fill="#fff" opacity=".45"/></g><circle cx="102" cy="35" r="2.2" fill="#C0392B"/><circle cx="106" cy="33" r="2.2" fill="#C0392B"/><circle cx="104" cy="37" r="2.2" fill="#C0392B"/></svg>`;
     })();
     // Ostern: das Strohnest mit Eiern (Leon 27.11.2026: liegende Eier wirkten billig, auch als Varianten A/B; „nur die Eier mit Nest“)
-    const LIEGEN = { weihnachten: zweig, ostern: nest(NESTER.a).replace('width="80" height="48"', 'width="96" height="58"') };
+    const LIEGEN = { weihnachten: () => zweig, ostern: () => nest(false, 105) }; // je Karte neu erzeugt (eigene Verlaufs-IDs)
     const deko = (s) => {
       document.querySelectorAll('.sz-deko, .sz-folge, .sz-fuss, .sz-fnest').forEach((x) => x.remove());
       if (s === 'aus') return;
@@ -3057,12 +3091,12 @@ const CV = (function () {
         // Ostern: kein zweites Nest auf der Hero-Kachel, wenn im selben Hero schon eins liegt (Leon 27.11.2026, Gesundheitswesen)
         if (s === 'ostern' && k.matches('.hk-karte') && k.closest('.uhero').querySelector('[data-sz-o]')) return;
         const z = document.createElement('span');
-        z.className = 'sz-deko sz-liegt'; z.setAttribute('aria-hidden', 'true'); z.innerHTML = LIEGEN[s];
+        z.className = 'sz-deko sz-liegt'; z.setAttribute('aria-hidden', 'true'); z.innerHTML = LIEGEN[s]();
         k.appendChild(z);
       });
       const attr = s === 'weihnachten' ? 'szW' : 'szO';
       document.querySelectorAll(s === 'weihnachten' ? '[data-sz-w]' : '[data-sz-o]').forEach((k) => {
-        const v = k.dataset[attr], html = s === 'weihnachten' ? KUGELN[v] : NESTER[v] && nest(NESTER[v]);
+        const v = k.dataset[attr], html = s === 'weihnachten' ? KUGELN[v] : (v === 'a' || v === 'b') && nest(v === 'b', 84);
         if (!html) return;
         const z = document.createElement('span');
         z.className = 'sz-deko ' + (s === 'weihnachten' ? 'sz-oben' : 'sz-unten'); z.setAttribute('aria-hidden', 'true'); z.innerHTML = html;
@@ -3129,10 +3163,18 @@ const CV = (function () {
       const g = document.createElement('section');
       g.className = 'stg-gr'; g.dataset.tab = 'design'; g.dataset.ziel = '#kopf';
       g.innerHTML = '<h5>Saison</h5><div class="stg-tipp">Automatisch: Weihnachten vom 1. Advent bis 6. Januar, Ostern eine Woche vor Ostersonntag bis Ostermontag.</div>' +
-        '<div class="stg-z"><span>Saison</span><div class="seg"><button type="button" data-saison="auto">Automatisch</button><button type="button" data-saison="aus">Aus</button><button type="button" data-saison="weihnachten">Weihnachten</button><button type="button" data-saison="ostern">Ostern</button></div></div>';
+        '<div class="stg-z"><span>Saison</span><div class="seg"><button type="button" data-saison="auto">Automatisch</button><button type="button" data-saison="aus">Aus</button><button type="button" data-saison="weihnachten">Weihnachten</button><button type="button" data-saison="ostern">Ostern</button></div></div>' +
+        '<div class="stg-z"><span>Osternest</span><div class="seg"><button type="button" data-osternest="c">C Pastell mit Gold</button><button type="button" data-osternest="d">D Natur mit Grün</button></div></div>';
       inhSp.appendChild(g);
       g.querySelectorAll('[data-saison]').forEach((b) => (b.onclick = () => setSaison(b.dataset.saison, true)));
+      g.querySelectorAll('[data-osternest]').forEach((b) => (b.onclick = () => setNest(b.dataset.osternest, true)));
     }
+    function setNest(v, merken) {
+      nestArt = v === 'd' ? 'd' : 'c';
+      document.querySelectorAll('[data-osternest]').forEach((b) => b.classList.toggle('on', b.dataset.osternest === nestArt));
+      if (merken) { merke('osterNest', nestArt); if (aktiv === 'ostern') deko(aktiv); }
+    }
+    setNest(wert('osterNest', (Q.get('osternest') || '').toLowerCase(), 'c'), false);
     setSaison(wert('saison', Q.get('saison'), 'auto'), false);
     let nestT = 0;
     addEventListener('resize', () => { if (aktiv !== 'aus') { ruecken(); schnee(aktiv === 'weihnachten'); clearTimeout(nestT); nestT = setTimeout(fussNest, 150); } });

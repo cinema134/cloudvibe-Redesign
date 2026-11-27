@@ -1134,7 +1134,12 @@ body.dark.tkLogo .tk-l .logo-maske{background:#fff}
 .sz-fuss{position:absolute;pointer-events:none;line-height:0}
 .sz-fuss svg{display:block;overflow:visible}
 .fuss .sozial-r .sz-fk svg{width:20px;height:auto}
-.fuss .sozial-r .sz-fn svg{width:56px;height:34px}
+.fuss .sozial-r .sz-fn svg{width:60px;height:37px}
+/* Osternest (Leon 27.11.2026, Umschalter C/D): unten Platz für Schatten, daher tiefer gesetzt und etwas höher */
+.saison-ostern .sz-liegt{bottom:calc(100% - 11px)}
+.saison-ostern .sz-liegt svg{height:64px}
+.sz-ns{opacity:.16}
+body.dark .sz-ns{opacity:.5}
 .sz-fk{top:100%;left:50%;margin-left:-10px}
 .sz-fn{left:calc(100% + 6px);bottom:-6px}
 .sz-fn.sz-fn-l{left:auto;right:calc(100% + 6px)}

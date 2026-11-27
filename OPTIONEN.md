@@ -25,6 +25,7 @@ Stand 24.11.2026 (nach Prüfdokument). Einige Gestaltungsfragen entscheidet clou
 | **Dunkelmodus** | alle Seiten | hell · dunkel | hell | `?dunkel=1` | Klasse `body.dark`, Farben in `basis.css`. Offen: wo der Schalter live sitzt und ob Blau für kleine Schrift auf Dunkel heller wird (Kontrast heute 3,6 bis 4,0). |
 | **Startseite: Körnung im Hero** | Startseite | an · aus | an | (Panel) | Klasse `#top.nograin` |
 | **Startseite: Logo** | Startseite | frei links neben der Leiste · in der Leiste; Größe und Abstand | frei, 90 px, Abstand 70 px | (Panel) | `body.lgB`, CSS-Variablen `--lgh`, `--lga` |
+| **Osternest** | alle Seiten zu Ostern (Kartenkanten, markierte Karten `data-sz-o`, Fußzeile) | `c` Pastell mit Gold · `d` Natur mit Grün | `c` | `?osternest=c|d`, Panel „Design → Saison“, Option `osterNest` | `basis/basis.js` Block „Saison“ (`nest()`, `EIER`), Skizze `quellen/assets/saison/skizze_nest_varianten.html` |
 | **Startseite: Kachelform** (Probe) | Startseite-Kacheln | `S` Standard · `W` Wolke · `L` Wolke leicht | `S` | `?kf=W|L` | `startseite.js` |
 
 ## Bereits entschieden (nur zur Info, technisch noch umschaltbar)
